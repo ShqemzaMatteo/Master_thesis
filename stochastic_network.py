@@ -82,7 +82,7 @@ def expo(x,eigen, P0):
     return P0*np.exp(-x*eigen) 
 
 #plot
-cmap=plt.get_cmap('gist_rainbow')
+""" cmap=plt.get_cmap('gist_rainbow')
 for i in range(4):
     plt.plot(np.linspace(0,t_max,t_max), diagonalized_probability_matrix[i, :], color=cmap(i/N_dim),label=f'node {i}')
     popt, pcov = curve_fit(expo, np.linspace(0,t_max,t_max), diagonalized_probability_matrix[i, :], (Lap_eigenvalue[i,i], diagonalized_probability_matrix[i,0]))
@@ -91,4 +91,20 @@ for i in range(4):
 plt.ylim([-0.5,0.5])
 plt.grid()
 plt.legend(loc='upper right')
+plt.show() """
+
+#entropy
+Shannon = np.zeros(t_max)
+Von_Neumann = np.zeros(t_max)
+for i in range(t_max):
+    for j in range(N_dim):
+        if probability_matrix[j,i] != 0:
+            Shannon[i] -= probability_matrix[j,i]*np.log(probability_matrix[j,i])
+
+
+
+
+plt.plot(np.linspace(0,t_max,t_max), Shannon, label='entropy')
+plt.xlabel('time')
+plt.ylabel('entropy')
 plt.show()
