@@ -11,7 +11,8 @@ beta = 1/Temp
 t_max= 500
 repetition = 100
 sequence_of_nodes = np.zeros((t_max, repetition))
-sequence_of_nodes[0,:] = 1
+for i in range(repetition):
+    sequence_of_nodes[0,i] = random.randint(0,N_dim-1)
 
 #adjacency matrix for a ring
 Adjacency = np.zeros((N_dim, N_dim))
@@ -43,7 +44,8 @@ Lap_eigenvalue = np.diag(Lap_eigenvalue)
 #dynamics
 for rep in range(repetition):
     particle_per_node = np.zeros(N_dim)
-    particle_per_node[1] = 1
+    index = int(sequence_of_nodes[0,rep])
+    particle_per_node[index] = 1
     for time in range (t_max - 1):
         for i in range(N_dim):
             if particle_per_node[i]>0.5:
@@ -106,12 +108,11 @@ for i in range(t_max):
         if diagonalized_probability_matrix[j,i] != 0:
             Von_Neumann[i] -= abs(diagonalized_probability_matrix[j,i])*np.log(abs(diagonalized_probability_matrix[j,i]))
 
-plt.plot(np.linspace(0,t_max,t_max), Shannon, label='Shannon')
-plt.plot(np.linspace(0,t_max,t_max), Von_Neumann, label='Von Neumann')
+plt.plot(np.linspace(0,t_max,t_max), Shannon, label='Shannon exp')
+plt.plot(np.linspace(0,t_max,t_max), Von_Neumann, label='Von Neumann exp')
 
 #density matrix
-probability_vector= np.zeros(N_dim)
-probability_vector[1] = 1
+probability_vector = np.ones(N_dim)/N_dim
 density_matrix = np.outer(probability_vector, probability_vector)
 
 #evolution operator
@@ -130,8 +131,7 @@ y= np.zeros(t_max)
 for i in range(t_max):
     y[i] = entropy(x[i])
 
-
-plt.plot(x, y, label='entropy')
+plt.plot(x, y, label='Von Neumann predicted')
 plt.xlabel('time')
 plt.ylabel('entropy')
 plt.legend()
