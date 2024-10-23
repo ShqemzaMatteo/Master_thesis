@@ -11,8 +11,9 @@ beta = 1/Temp
 t_max= 500
 repetition = 100
 sequence_of_nodes = np.zeros((t_max, repetition))
-for i in range(repetition):
-    sequence_of_nodes[0,i] = random.randint(0,N_dim-1)
+sequence_of_nodes[0,:] = 1
+#for i in range(repetition):
+#    sequence_of_nodes[0,i] = random.randint(0,N_dim-1)
 
 #adjacency matrix for a ring
 Adjacency = np.zeros((N_dim, N_dim))
@@ -135,4 +136,5 @@ plt.plot(x, y, label='Von Neumann predicted')
 plt.xlabel('time')
 plt.ylabel('entropy')
 plt.legend()
+plt.grid()
 plt.show()
