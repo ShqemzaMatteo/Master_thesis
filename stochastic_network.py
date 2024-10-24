@@ -12,8 +12,7 @@ t_max= 500
 repetition = 100
 sequence_of_nodes = np.zeros((t_max, repetition))
 sequence_of_nodes[0,:] = 1
-#for i in range(repetition):
-#    sequence_of_nodes[0,i] = random.randint(0,N_dim-1)
+#sequence_of_nodes[0,:] = np.random.randint(0,N_dim,size=repetition)
 
 #adjacency matrix for a ring
 Adjacency = np.zeros((N_dim, N_dim))
@@ -44,47 +43,29 @@ Lap_eigenvalue = np.diag(Lap_eigenvalue)
 
 #dynamics
 for rep in range(repetition):
-    particle_per_node = np.zeros(N_dim)
-    index = int(sequence_of_nodes[0,rep])
-    particle_per_node[index] = 1
     for time in range (t_max - 1):
-        for i in range(N_dim):
-            if particle_per_node[i]>0.5:
-                path_choice = random.random()
-                for j in range(N_dim):
-                    if path_choice < Adjacency[i, j]:
-                        particle_per_node[i] -=1
-                        particle_per_node[j] +=1 
-                        sequence_of_nodes[time + 1,rep] += j
-                        break
-                    else:
-                        path_choice -= Adjacency[i,j]
-                break
+            index = int(sequence_of_nodes[time, rep])
+            path_choice = random.random()
+            for j in range(N_dim):
+                if path_choice < Adjacency[index, j]: 
+                    sequence_of_nodes[time + 1, rep] += j
+                    break
+                else:
+                    path_choice -= Adjacency[index, j]
 
 probability_matrix = np.zeros((N_dim, t_max))
-
 # histogram
 for time in range(t_max):
-    frequency, bin_edge, _ = plt.hist(sequence_of_nodes[time,:], bins=N_dim, range =(0,N_dim) , color='blue', edgecolor='black')
+    frequency = plt.hist(sequence_of_nodes[time,:], bins=N_dim, range =(0,N_dim) , color='blue', edgecolor='black')[0]
     probability_matrix[:, time] = frequency/repetition
     plt.clf()
-    """ title = "histogram time" + str(time)
-    plt.title(title)
-    plt.xlabel('nodes')
-    plt.ylabel('Frequency')
-    plt.show() """
-
-""" print(probability_matrix[:,t_max-10])
-print(Lap_eigenvector @ probability_matrix[:,t_max-10])
-print(Lap_eigenvector @ probability_matrix[:,0]) """
 
 diagonalized_probability_matrix = Lap_eigenvector @ probability_matrix
-print(diagonalized_probability_matrix[:,400])
 
-""" def expo(x,eigen, P0):
+""" #plot
+def expo(x,eigen, P0):
     return P0*np.exp(-x*eigen) 
 
-#plot
 cmap=plt.get_cmap('gist_rainbow')
 for i in range(4):
     plt.plot(np.linspace(0,t_max,t_max), diagonalized_probability_matrix[i, :], color=cmap(i/N_dim),label=f'node {i}')
@@ -101,11 +82,8 @@ Shannon = np.zeros(t_max)
 Von_Neumann = np.zeros(t_max)
 for i in range(t_max):
     for j in range(N_dim):
-        if probability_matrix[j,i] != 0:
+        if probability_matrix[j,i] > 0.001:
             Shannon[i] -= probability_matrix[j,i]*np.log(probability_matrix[j,i])
-
-for i in range(t_max):
-    for j in range(N_dim):
         if diagonalized_probability_matrix[j,i] != 0:
             Von_Neumann[i] -= abs(diagonalized_probability_matrix[j,i])*np.log(abs(diagonalized_probability_matrix[j,i]))
 
@@ -124,13 +102,11 @@ def evolution_operator(t):
 def entropy(t):
     U = evolution_operator(t)
     density_matrix_t = U @ density_matrix @ U.conj().T
-    return -np.trace(density_matrix_t *sc.logm(density_matrix_t))
+    return -np.trace(density_matrix_t * sc.logm(density_matrix_t))
 
 #plot
-x = np.linspace(0,t_max,t_max)
-y= np.zeros(t_max)
-for i in range(t_max):
-    y[i] = entropy(x[i])
+x = np.linspace(0, t_max, t_max)
+y = np.vectorize(entropy)(x)
 
 plt.plot(x, y, label='Von Neumann predicted')
 plt.xlabel('time')

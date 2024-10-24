@@ -9,7 +9,7 @@ random.seed(random_seed)
 
 #constants
 N_dim = 25
-t_max= 5000
+t_max= 500
 beta = 0.02
 
 #adjacency matrix for a ring
@@ -40,7 +40,7 @@ Lap_eigenvector = Lap_eigenvector[:,idx]
 Lap_eigenvector = np.matrix.transpose(Lap_eigenvector) #the eigenstate were in the column
 Lap_eigenvalue = np.diag(Lap_eigenvalue)
 
-#inizial state
+#initial state
 #probability_vector = np.ones(N_dim)/N_dim
 #density_matrix = np.outer(probability_vector, probability_vector)
 """ density_matrix = np.zeros((N_dim,N_dim))
@@ -74,10 +74,12 @@ for i in range(t_max):
 for i in range(t_max):
     y_2[i] = (np.trace(evolution_operator(x[i]) @ density_matrix @ evolution_operator(x[i]))) """
 
-plt.plot(x, y_1, label='entropy')
+plt.plot(x, y_1, label='Von Neumann')
 #plt.plot(x, y_2, label='trace')
 plt.xlabel('time')
 plt.ylabel('entropy')
+plt.grid()
+plt.legend()
 plt.show()
 
 
