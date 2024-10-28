@@ -11,8 +11,13 @@ beta = 1/Temp
 t_max= 500
 repetition = 100
 sequence_of_nodes = np.zeros((t_max, repetition))
-sequence_of_nodes[0,:] = 1
-#sequence_of_nodes[0,:] = np.random.randint(0,N_dim,size=repetition)
+"""sequence_of_nodes[0,:] = 1
+probability_vector = np.zeros(N_dim)
+probability_vector[1] = 1
+density_matrix = np.outer(probability_vector, probability_vector) """
+sequence_of_nodes[0,:] = np.random.randint(0,N_dim,size=repetition)
+probability_vector_1 = np.ones(N_dim)/N_dim
+density_matrix = np.outer(probability_vector_1, probability_vector_1)
 
 #adjacency matrix for a ring
 Adjacency = np.zeros((N_dim, N_dim))
@@ -61,6 +66,7 @@ for time in range(t_max):
     plt.clf()
 
 diagonalized_probability_matrix = Lap_eigenvector @ probability_matrix
+diagonalized_probability_matrix /=  diagonalized_probability_matrix.sum()
 
 """ #plot
 def expo(x,eigen, P0):
@@ -87,30 +93,27 @@ for i in range(t_max):
         if diagonalized_probability_matrix[j,i] != 0:
             Von_Neumann[i] -= abs(diagonalized_probability_matrix[j,i])*np.log(abs(diagonalized_probability_matrix[j,i]))
 
-plt.plot(np.linspace(0,t_max,t_max), Shannon, label='Shannon exp')
-plt.plot(np.linspace(0,t_max,t_max), Von_Neumann, label='Von Neumann exp')
+plt.plot(np.arange(0,t_max), Shannon, label='Shannon exp')
+plt.plot(np.arange(0,t_max), Von_Neumann, label='Von Neumann exp')
 
-#density matrix
-probability_vector = np.ones(N_dim)/N_dim
-density_matrix = np.outer(probability_vector, probability_vector)
-
+#evolution operator
 #evolution operator
 def evolution_operator(t):
     return sc.expm(-t/2*Laplacian)
-
 #entropy
-def entropy(t):
+def entropy(t, density_matrix):
     U = evolution_operator(t)
     density_matrix_t = U @ density_matrix @ U.conj().T
-    return -np.trace(density_matrix_t * sc.logm(density_matrix_t))
+    return -np.trace(density_matrix_t @ sc.logm(density_matrix_t))
 
 #plot
-x = np.linspace(0, t_max, t_max)
-y = np.vectorize(entropy)(x)
+x = np.arange(0, t_max)
+y = np.vectorize(lambda t: entropy(t, density_matrix))(x)
 
 plt.plot(x, y, label='Von Neumann predicted')
 plt.xlabel('time')
 plt.ylabel('entropy')
 plt.legend()
 plt.grid()
-plt.show()
+plt.ylim((-1 , 5))
+plt.show() 
