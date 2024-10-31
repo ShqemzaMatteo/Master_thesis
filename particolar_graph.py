@@ -7,28 +7,49 @@ random.seed(None)
 
 #constants
 N_dim = 25
-t_max= 500
+t_max= 200
 beta = 1
 
-#adjacency matrix for a ring
-Adjacency = np.zeros((N_dim, N_dim))
-for i in range(N_dim-1):
-    Adjacency[i, i+1] = 10
-    Adjacency[i+1, i] = 1
-Adjacency[N_dim-1, 0] = 10
-Adjacency[0, N_dim-1] = 1
-""" Adjacency = np.zeros((N_dim, N_dim))
-for i in range(N_dim):
-    for j in range(N_dim):
-        Adjacency[i, j] = random.random() """
+#adjacency matrix for E-R
+def er_adjacency_matrix(n, p):
+    adjacency = np.zeros((n, n))
+    for i in range(n):
+        for j in range(i + 1, n):
+            if random.random() < p:
+                adjacency[i,j] = 1
+                adjacency[j,i] = 1
+    return adjacency
+
+#adjacency matrix for a B-A
+def ba_adjacency_matrix(n,m):
+    adjacency = np.zeros((n,n))
+    for i in range(m + 1):
+        for j in range(i + 1, m + 1):
+            adjacency[i, j] = 1
+            adjacency[j, i] = 1
+    degrees = np.sum(adjacency, axis=1)
+    for new_node in range(m + 1, n):
+        targets = set()
+        while len(targets) < m:
+            # Choose target node based on preferential attachment
+            potential_target = np.random.choice(range(new_node), p=degrees[:new_node]/np.sum(degrees[:new_node]))
+            targets.add(potential_target)
+        # Connect new node to targets
+        for target in targets:
+            adjacency[new_node, target] = 1
+            adjacency[target, new_node] = 1
+            degrees[new_node] += 1
+            degrees[target] += 1
+    return adjacency
+
+
+
+Adjacency = er_adjacency_matrix(N_dim, 0.7)
 #adjacency normalization
 for i in range(N_dim):
-    sum = 0
-    for j in range(N_dim):
-        sum += Adjacency[i, j]
+    sum = np.sum(Adjacency[i,:])
     for k in range(N_dim):
         Adjacency[i, k] /= sum
-print(Adjacency)
 # laplacian 
 Laplacian = np.identity(N_dim) - Adjacency
 #diagonalization 
@@ -40,7 +61,6 @@ Lap_eigenvector = np.matrix.transpose(Lap_eigenvector) #the eigenstate were in t
 Lap_eigenvalue = np.diag(Lap_eigenvalue)
 
 #initial state
-
 #uniform distribution
 probability_vector_1 = np.ones(N_dim)/N_dim
 density_matrix_1 = np.outer(probability_vector_1, probability_vector_1)
@@ -58,7 +78,7 @@ for number in range(sample):
     mixed_state /= sum
     density_matrix_2 += dirichlet[0, number] * np.outer(mixed_state,mixed_state)
 #Boltzmann weight
-density_matrix_3 = sc.expm(-beta*Laplacian)
+density_matrix_3 = sc.expm(-beta*Lap_eigenvalue)
 density_matrix_3 /= np.trace(density_matrix_3)
 #delta-like
 probability_vector_4 = np.zeros(N_dim)
@@ -87,44 +107,12 @@ y_4 = np.vectorize(lambda t: Von_Neumann(t,density_matrix_4))(x)
 
 plt.plot(x, y_1, label='Uniform')
 plt.plot(x, y_2, label='random mixed')
-plt.plot(x, y_3, label='Boltzmann')
-#plt.plot(x, y_4, label='delta-like')
-#plt.plot(x, y_5, label='mode-uniform')
+plt.plot(x, y_3, label='Maxwell')
+plt.plot(x, y_4, label='delta-like')
+plt.plot(x, y_5, label='mode-uniform')
 plt.xlabel('time')
 plt.ylabel('entropy')
 plt.ylim((-1 , 5))
-plt.title('Von Neumann entropy for mixed state')
 plt.grid()
 plt.legend()
 plt.show()
-
-""" #evolution operator
-def diag_evolution_operator(t):
-    return sc.expm(-t/2*Lap_eigenvalue)
-#entropy
-def diag_entropy(t, density_matrix):
-    U = diag_evolution_operator(t)
-    density_matrix = Lap_eigenvector @ density_matrix @ Lap_eigenvector.conj().T
-    density_matrix_t = U @ density_matrix @ U.conj().T
-    density_matrix_t /= np.trace(density_matrix_t)
-    return -np.trace(density_matrix_t @ sc.logm(density_matrix_t))
-
-#plot
-a = np.arange(0,t_max)
-b_1 = np.vectorize(lambda t: diag_entropy(t,density_matrix_1))(a)
-b_2 = np.vectorize(lambda t: diag_entropy(t,density_matrix_2))(a)
-b_3 = np.vectorize(lambda t: diag_entropy(t,density_matrix_3))(a)
-b_4 = np.vectorize(lambda t: diag_entropy(t,density_matrix_4))(a)
-b_5 = np.vectorize(lambda t: diag_entropy(t,density_matrix_5))(a)
- 
-plt.plot(a, b_1, label='Uniform')
-plt.plot(a, b_2, label='random mixed')
-plt.plot(a, b_3, label='Maxwell')
-plt.plot(a, b_4, label='delta-like')
-plt.plot(a, b_5, label='mode-uniform')
-plt.xlabel('time')
-plt.ylabel('entropy')
-plt.ylim((-1 , 5))
-plt.grid()
-plt.legend()
-plt.show() """

@@ -12,7 +12,7 @@ t_max= 500
 repetition = 100
 sequence_of_nodes = np.zeros((t_max, repetition))
 """sequence_of_nodes[0,:] = 1
-probability_vector = np.zeros(N_dim)
+ probability_vector = np.zeros(N_dim)
 probability_vector[1] = 1
 density_matrix = np.outer(probability_vector, probability_vector) """
 sequence_of_nodes[0,:] = np.random.randint(0,N_dim,size=repetition)
@@ -91,7 +91,7 @@ for i in range(t_max):
         if probability_matrix[j,i] > 0.001:
             Shannon[i] -= probability_matrix[j,i]*np.log(probability_matrix[j,i])
         if diagonalized_probability_matrix[j,i] != 0:
-            Von_Neumann[i] -= abs(diagonalized_probability_matrix[j,i])*np.log(abs(diagonalized_probability_matrix[j,i]))
+            Von_Neumann[i] -= diagonalized_probability_matrix[j,i]*np.log(abs(diagonalized_probability_matrix[j,i]))
 
 plt.plot(np.arange(0,t_max), Shannon, label='Shannon exp')
 plt.plot(np.arange(0,t_max), Von_Neumann, label='Von Neumann exp')
@@ -104,6 +104,7 @@ def evolution_operator(t):
 def entropy(t, density_matrix):
     U = evolution_operator(t)
     density_matrix_t = U @ density_matrix @ U.conj().T
+    density_matrix_t /= np.trace(density_matrix_t)
     return -np.trace(density_matrix_t @ sc.logm(density_matrix_t))
 
 #plot
@@ -113,6 +114,7 @@ y = np.vectorize(lambda t: entropy(t, density_matrix))(x)
 plt.plot(x, y, label='Von Neumann predicted')
 plt.xlabel('time')
 plt.ylabel('entropy')
+plt.title('Entropies for a uniform distribution')
 plt.legend()
 plt.grid()
 plt.ylim((-1 , 5))
