@@ -28,9 +28,9 @@ for i in range(N_dim):
         sum += Adjacency[i, j]
     for k in range(N_dim):
         Adjacency[i, k] /= sum
-print(Adjacency)
 # laplacian 
 Laplacian = np.identity(N_dim) - Adjacency
+Laplacian /= np.trace(Laplacian)
 #diagonalization 
 Lap_eigenvalue, Lap_eigenvector = np.linalg.eig(Laplacian)
 idx = Lap_eigenvalue.argsort()[::]    #sort the eigenvalue and eigenstate
@@ -74,8 +74,14 @@ def evolution_operator(t):
 def Von_Neumann(t, density_matrix):
     U = evolution_operator(t)
     density_matrix_t = U @ density_matrix @ U.conj().T
-    density_matrix_t /= np.trace(density_matrix_t)
+    #density_matrix_t /= np.trace(density_matrix_t)
     return -np.trace(density_matrix_t @ sc.logm(density_matrix_t))
+
+def Trace(t, density_matrix):
+    U = evolution_operator(t)
+    density_matrix_t = U @ density_matrix @ U.conj().T
+    density_matrix_t /= np.trace(density_matrix_t)
+    return np.trace(density_matrix_t)
 
 #plot
 x = np.arange(0,t_max)
@@ -84,12 +90,14 @@ y_2 = np.vectorize(lambda t: Von_Neumann(t,density_matrix_2))(x)
 y_3 = np.vectorize(lambda t: Von_Neumann(t,density_matrix_3))(x)
 y_4 = np.vectorize(lambda t: Von_Neumann(t,density_matrix_4))(x)
 #y_5 = np.vectorize(lambda t: Von_Neumann(t,density_matrix_5))(x)
+Y = np.vectorize(lambda t: Trace(t, density_matrix_1))(x)
 
 plt.plot(x, y_1, label='Uniform')
 plt.plot(x, y_2, label='random mixed')
 plt.plot(x, y_3, label='Boltzmann')
 #plt.plot(x, y_4, label='delta-like')
 #plt.plot(x, y_5, label='mode-uniform')
+plt.plot(x,Y, label='trace')
 plt.xlabel('time')
 plt.ylabel('entropy')
 plt.ylim((-1 , 5))

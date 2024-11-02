@@ -52,6 +52,7 @@ for i in range(N_dim):
         Adjacency[i, k] /= sum
 # laplacian 
 Laplacian = np.identity(N_dim) - Adjacency
+Laplacian /= np.trace(Laplacian)
 #diagonalization 
 Lap_eigenvalue, Lap_eigenvector = np.linalg.eig(Laplacian)
 idx = Lap_eigenvalue.argsort()[::]    #sort the eigenvalue and eigenstate
@@ -94,7 +95,6 @@ def evolution_operator(t):
 def Von_Neumann(t, density_matrix):
     U = evolution_operator(t)
     density_matrix_t = U @ density_matrix @ U.conj().T
-    density_matrix_t /= np.trace(density_matrix_t)
     return -np.trace(density_matrix_t @ sc.logm(density_matrix_t))
 
 #plot
@@ -109,7 +109,7 @@ plt.plot(x, y_1, label='Uniform')
 plt.plot(x, y_2, label='random mixed')
 plt.plot(x, y_3, label='Maxwell')
 plt.plot(x, y_4, label='delta-like')
-plt.plot(x, y_5, label='mode-uniform')
+#plt.plot(x, y_5, label='mode-uniform')
 plt.xlabel('time')
 plt.ylabel('entropy')
 plt.ylim((-1 , 5))

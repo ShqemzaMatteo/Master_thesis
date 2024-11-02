@@ -24,6 +24,7 @@ for i in range(N_dim):
         Adjacency[i, k] /= sum
 # laplacian 
 Laplacian = np.identity(N_dim) - Adjacency
+Laplacian /= np.trace(Laplacian)
 
 # e-r adjacency matrix
 def er_adjacency_matrix(n, p):
@@ -43,6 +44,7 @@ for i in range(N_dim):
         Adjacency_er[i, k] /= sum
 # laplacian 
 Laplacian_er = np.identity(N_dim) - Adjacency_er
+Laplacian_er /= np.trace(Laplacian_er)
 #adjacency matrix for a B-A
 def ba_adjacency_matrix(n,m):
     adjacency = np.zeros((n,n))
@@ -73,11 +75,11 @@ for i in range(N_dim):
         Adjacency_ba[i, k] /= sum
 # laplacian 
 Laplacian_ba = np.identity(N_dim) - Adjacency_ba
+Laplacian_ba /= np.trace(Laplacian_ba)
 
 #entropy
 def Von_Neumann(b, laplacian):
     density_matrix = sc.expm(-b*laplacian)
-    density_matrix /= np.trace(density_matrix)
     return -np.trace(density_matrix @ sc.logm(density_matrix))
 
 #plot
