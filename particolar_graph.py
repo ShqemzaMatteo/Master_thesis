@@ -42,6 +42,33 @@ def ba_adjacency_matrix(n,m):
             degrees[target] += 1
     return adjacency
 
+def ws_adjacency_matrix(n, k, p):
+    adjacency= np.zeros((n, n))
+    # Step 1: Create a regular ring lattice
+    for i in range(n):
+        for j in range(1, k // 2 + 1):
+            # Connect each node to k/2 neighbors on each side (mod n for wrap-around)
+            adjacency[i, (i + j) % n] = 1
+            adjacency[(i + j) % n, i] = 1
+            adjacency[i, (i - j) % n] = 1
+            adjacency[(i - j) % n, i] = 1
+
+    # Step 2: Rewire edges with probability p
+    for i in range(n):
+        for j in range(1, k // 2 + 1):
+            if np.random.rand() < p:
+                # Remove original connection
+                adjacency[i, (i + j) % n] = 0
+                adjacency[(i + j) % n, i] = 0
+                # Add new edge to a randomly chosen node
+                while True:
+                    new_connection = np.random.randint(0, n)
+                    # Ensure no self-loops or duplicate edges
+                    if new_connection != i and adjacency[i, new_connection] == 0:
+                        adjacency[i, new_connection] = 1
+                        adjacency[new_connection, i] = 1
+                        break
+    return adjacency
 
 
 Adjacency = er_adjacency_matrix(N_dim, 0.7)
@@ -52,7 +79,6 @@ for i in range(N_dim):
         Adjacency[i, k] /= sum
 # laplacian 
 Laplacian = np.identity(N_dim) - Adjacency
-Laplacian /= np.trace(Laplacian)
 #diagonalization 
 Lap_eigenvalue, Lap_eigenvector = np.linalg.eig(Laplacian)
 idx = Lap_eigenvalue.argsort()[::]    #sort the eigenvalue and eigenstate
@@ -90,11 +116,12 @@ density_matrix_5 = np.diag(np.ones(N_dim))
 
 #evolution operator
 def evolution_operator(t):
-    return sc.expm(-t/2*Laplacian)
+    return sc.expm(-t/2*Laplacian/np.trace(Laplacian))
 #entropy
 def Von_Neumann(t, density_matrix):
     U = evolution_operator(t)
     density_matrix_t = U @ density_matrix @ U.conj().T
+    density_matrix /= np.trace(density_matrix_t)
     return -np.trace(density_matrix_t @ sc.logm(density_matrix_t))
 
 #plot
@@ -103,13 +130,13 @@ y_1 = np.vectorize(lambda t: Von_Neumann(t,density_matrix_1))(x)
 y_2 = np.vectorize(lambda t: Von_Neumann(t,density_matrix_2))(x)
 y_3 = np.vectorize(lambda t: Von_Neumann(t,density_matrix_3))(x)
 y_4 = np.vectorize(lambda t: Von_Neumann(t,density_matrix_4))(x)
-#y_5 = np.vectorize(lambda t: Von_Neumann(t,density_matrix_5))(x)
+y_5 = np.vectorize(lambda t: Von_Neumann(t,density_matrix_5))(x)
 
 plt.plot(x, y_1, label='Uniform')
 plt.plot(x, y_2, label='random mixed')
 plt.plot(x, y_3, label='Maxwell')
 plt.plot(x, y_4, label='delta-like')
-#plt.plot(x, y_5, label='mode-uniform')
+plt.plot(x, y_5, label='mode-uniform')
 plt.xlabel('time')
 plt.ylabel('entropy')
 plt.ylim((-1 , 5))
