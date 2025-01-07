@@ -11,13 +11,13 @@ beta = 1/Temp
 t_max= 500
 repetition = 100
 sequence_of_nodes = np.zeros((t_max, repetition))
-"""sequence_of_nodes[0,:] = 1
- probability_vector = np.zeros(N_dim)
-probability_vector[1] = 1
-density_matrix = np.outer(probability_vector, probability_vector) """
+sequence_of_nodes[0,:] = 1
+""" probability_vector = np.zeros(N_dim)
+probability_vector[1] = 1 """
+""" density_matrix = np.outer(probability_vector, probability_vector)
 sequence_of_nodes[0,:] = np.random.randint(0,N_dim,size=repetition)
 probability_vector_1 = np.ones(N_dim)/N_dim
-density_matrix = np.outer(probability_vector_1, probability_vector_1)
+density_matrix = np.outer(probability_vector_1, probability_vector_1) """
 
 #adjacency matrix for a ring
 Adjacency = np.zeros((N_dim, N_dim))
@@ -67,22 +67,22 @@ for time in range(t_max):
 diagonalized_probability_matrix = Lap_eigenvector @ probability_matrix
 diagonalized_probability_matrix /=  diagonalized_probability_matrix.sum()
 
-""" #plot
+#plot
 def expo(x,eigen, P0):
     return P0*np.exp(-x*eigen) 
 
 cmap=plt.get_cmap('gist_rainbow')
-for i in range(4):
-    plt.plot(np.linspace(0,t_max,t_max), diagonalized_probability_matrix[i, :], color=cmap(i/N_dim),label=f'node {i}')
-    popt, pcov = curve_fit(expo, np.linspace(0,t_max,t_max), diagonalized_probability_matrix[i, :], (Lap_eigenvalue[i,i], diagonalized_probability_matrix[i,0]))
-    print(Lap_eigenvalue[i,i], popt)
-    plt.plot(np.linspace(0,t_max,t_max), expo(np.linspace(0,t_max,t_max), popt[0], popt[1]), color=cmap(i/N_dim))
-plt.ylim([-0.5,0.5])
+for i in range(1):
+    plt.plot(np.linspace(0,t_max,t_max), probability_matrix[i, :], color=cmap(i/N_dim),label=f'node {i}')
+    #popt, pcov = curve_fit(expo, np.linspace(0,t_max,t_max), diagonalized_probability_matrix[i, :], (Lap_eigenvalue[i,i], diagonalized_probability_matrix[i,0]))
+    #print(Lap_eigenvalue[i,i], popt)
+    #plt.plot(np.linspace(0,t_max,t_max), expo(np.linspace(0,t_max,t_max), popt[0], popt[1]), color=cmap(i/N_dim))
+plt.ylim([0,1])
 plt.grid()
 plt.legend(loc='upper right')
-plt.show() """
+plt.show()
 
-#entropy
+""" #entropy
 Shannon = np.zeros(t_max)
 Von_Neumann = np.zeros(t_max)
 for i in range(t_max):
@@ -117,4 +117,4 @@ plt.title('Entropies for a uniform distribution')
 plt.legend()
 plt.grid()
 plt.ylim((-1 , 5))
-plt.show() 
+plt.show()  """
