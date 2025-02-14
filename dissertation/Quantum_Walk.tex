@@ -81,25 +81,26 @@ The temporal evolution of the operator is define as in eq. \eqref{Von Neumann eq
 
 Using the mixed density matrix we can consider a system that does not start from a defined distribution, but from an ensemble of possible distribution with their probability to happen. 
 
-\subsection{Von Neumann entropy}
 To measure how mixed the density matrix is we can use the Von Neumann entropy $S[\hat\rho]=-\Tr[\hat\rho\ln\hat\rho]$.
 
-Moreover, the Von Neumann entropy is a time invariance since the evolution operator does not change how mixed are the state \cite{Nielsen_Chuang_2010}. Indeed
-\begin{equation}
-    \begin{split}
-        S[\hat\rho(t)] &=\Tr[\hat\rho(t)\ln\hat\rho(t)]= \Tr[U(t,0)\hat\rho(t)U^\dagger(t,0)\ln\left(U(t,0)\hat\rho(t)U^\dagger(t,0)\right)]\\
-        &=\Tr[U(t,0)\hat\rho(0)U^\dagger(t,0)U(t,0)\ln\left(\hat\rho(0)\right)U^\dagger(t,0)]\\
-        &= S[\hat\rho(0)].
-    \end{split}
-\end{equation}
-We can move out the evolution operator because they are unitary, since if we consider the taylor expansion
-\begin{equation}
-    \begin{split}
-        \ln\left(U(t,0)\hat\rho(t)U^\dagger(t,0)\right) &= c_0U(t,0)U^\dagger(t,0) + c_1 U(t,0)\hat\rho(t)U^\dagger(t,0)\\
-        & \quad + c_2 U(t,0)\hat\rho(t)U^\dagger(t,0)U(t,0)\hat\rho(t)U^\dagger(t,0) + ... \\
-        &=  U(t,0)\ln\left(\hat\rho(t)\right) U^\dagger(t,0).
-    \end{split}
-\end{equation}
+Moreover, the Von Neumann entropy is a time invariance since the evolution operator does not change how mixed are the state \cite{Nielsen_Chuang_2010}.
+\begin{comment}
+    \begin{equation}
+        \begin{split}
+            S[\hat\rho(t)] &=\Tr[\hat\rho(t)\ln\hat\rho(t)]= \Tr[U(t,0)\hat\rho(t)U^\dagger(t,0)\ln\left(U(t,0)\hat\rho(t)U^\dagger(t,0)\right)]\\
+            &=\Tr[U(t,0)\hat\rho(0)U^\dagger(t,0)U(t,0)\ln\left(\hat\rho(0)\right)U^\dagger(t,0)]\\
+            &= S[\hat\rho(0)].
+        \end{split}
+    \end{equation}
+    We can move out the evolution operator because they are unitary, since if we consider the taylor expansion
+    \begin{equation}
+        \begin{split}
+            \ln\left(U(t,0)\hat\rho(t)U^\dagger(t,0)\right) &= c_0U(t,0)U^\dagger(t,0) + c_1 U(t,0)\hat\rho(t)U^\dagger(t,0)\\
+            & \quad + c_2 U(t,0)\hat\rho(t)U^\dagger(t,0)U(t,0)\hat\rho(t)U^\dagger(t,0) + ... \\
+            &=  U(t,0)\ln\left(\hat\rho(t)\right) U^\dagger(t,0).
+        \end{split}
+    \end{equation}
+\end{comment}
 
 \begin{comment}
 If we consider the system in contact with a thermal bath with which exchange only energy but conserving it in average, namely the canonical condition hold, there is a stationary state $\hat\rho = e^{-\beta \hat L}$ that maximize the entropy. The parameter $\beta$ is just the inverse of a pseudo-temperature that stands for the interaction with the thermal bath. 

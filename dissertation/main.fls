@@ -1,8 +1,8 @@
-PWD c:/Users/Matteo/Desktop/roba/magistrale/Tesi/Testo
+PWD c:/Users/Matteo/Desktop/roba/magistrale/Tesi/codici/Master_thesis/dissertation
 INPUT c:/texlive/2024/texmf.cnf
 INPUT c:/texlive/2024/texmf-dist/web2c/texmf.cnf
 INPUT c:/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT c:/Users/Matteo/Desktop/roba/magistrale/Tesi/Testo/main.tex
+INPUT c:/Users/Matteo/Desktop/roba/magistrale/Tesi/codici/Master_thesis/dissertation/main.tex
 OUTPUT main.log
 INPUT c:/texlive/2024/texmf-dist/tex/latex/base/report.cls
 INPUT c:/texlive/2024/texmf-dist/tex/latex/base/report.cls

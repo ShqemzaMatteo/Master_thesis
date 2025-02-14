@@ -1,14 +1,14 @@
 # Fdb version 4
-["biber main"] 1739381898.15321 "main.bcf" "main.bbl" "main" 1739545355.83201 0
+["biber main"] 1739381898.15321 "main.bcf" "main.bbl" "main" 1739546288.03193 0
   "bibliografia.bib" 1739067878 13237 362a2f3003da3d30207c44d672eb3ffd ""
-  "main.bcf" 1739545355 110932 fc53fae975287cd53495ed776996f7bb "pdflatex"
+  "main.bcf" 1739546287 110932 fc53fae975287cd53495ed776996f7bb "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1739545346.79562 "c:/Users/Matteo/Desktop/roba/magistrale/Tesi/Testo/main.tex" "main.pdf" "main" 1739545355.83483 0
+["pdflatex"] 1739546279.49884 "c:/Users/Matteo/Desktop/roba/magistrale/Tesi/codici/Master_thesis/dissertation/main.tex" "main.pdf" "main" 1739546288.03523 0
   "Abstract.tex" 1723280720 88 48c599bfb417e0aebaeb9e9a9f9d9a86 ""
-  "Caldeira-Leggett_model.aux" 1739545354 4319 a0fec79a61eabd1dfbbcb4ff7c4d6957 "pdflatex"
+  "Caldeira-Leggett_model.aux" 1739546286 4319 58365b2c26fac58ba059c7c74b0077b1 "pdflatex"
   "Caldeira-Leggett_model.tex" 1739206222 4546 ffb186c73312363eb5ffd4eac94f70ac ""
   "Classic_oscillator.tex" 1739144911 4231 948a822be3da70d6fcb5b1254dcbb87b ""
   "Conclusion.tex" 1736906422 118 11757991cfe8d8e6d76a94d6ff7c2dfe ""
@@ -23,9 +23,9 @@
   "Matsubara_Green_Function.tex" 1736259893 3571 9e1b73956119275f37b0b6fc1f0d3f31 ""
   "Network_Theory.tex" 1739545344 3204 199c69d218a780a006a8579e4a6012de ""
   "Quantum_Stochastic_Walk.tex" 1739446470 20501 d3c63f8a069f372fbf03f5c21cc3733e ""
-  "Quantum_Walk.tex" 1738981012 12838 f0c31376098139b4b6ed64a82d5e5415 ""
+  "Quantum_Walk.tex" 1739546268 12889 b9e8266032853bdaa83dc08d9d002ecd ""
   "Quantum_oscillators.tex" 1737648547 6961 74ed012a9be72d1fb15ba235b4b99e52 ""
-  "c:/Users/Matteo/Desktop/roba/magistrale/Tesi/Testo/main.tex" 1739381887 1321 747e394c5b4b3692f23aaaa2ac613c65 ""
+  "c:/Users/Matteo/Desktop/roba/magistrale/Tesi/codici/Master_thesis/dissertation/main.tex" 1739546192 1321 747e394c5b4b3692f23aaaa2ac613c65 ""
   "c:/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1719951226 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1719952196 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2024/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm" 1719951786 1536 74b7293ec3713bb7fdca8dd1bd1f469c ""
@@ -250,12 +250,12 @@
   "image/W_S_N100_K2_p0,1.png" 1735862359 76648 73f06416ac841b119c8d760bf685475d ""
   "image/W_S_N100_K4_p0,3.png" 1735862377 222883 eb7ee3df9a08fa189c029b524cfbf00f ""
   "image/random_graph.png" 1730910762 38283 6e61600167a6b27d8eda231e7b964637 ""
-  "main.aux" 1739545354 18148 ec3a1ed79699e150d19f9d5fcb68df66 "pdflatex"
+  "main.aux" 1739546287 18017 3bfe22163603cb360b0d99358d9ef75e "pdflatex"
   "main.bbl" 1739381910 50239 e16a1fa5d405f1884f1754863c7c225f "biber main"
-  "main.out" 1739545355 6601 22ee6d9d685eac6bb5c48a1b96ae62f8 "pdflatex"
-  "main.run.xml" 1739545355 2307 5677c5ba60ee1c4f844da08d55e85d30 "pdflatex"
-  "main.tex" 1739381887 1321 747e394c5b4b3692f23aaaa2ac613c65 ""
-  "main.toc" 1739545355 3123 004ff751c41b5437b0c17eeceba6b746 "pdflatex"
+  "main.out" 1739546287 6438 02b397a09701a5e9a0b4ee8adf55e8ad "pdflatex"
+  "main.run.xml" 1739546287 2307 5677c5ba60ee1c4f844da08d55e85d30 "pdflatex"
+  "main.tex" 1739546192 1321 747e394c5b4b3692f23aaaa2ac613c65 ""
+  "main.toc" 1739546287 3033 edd13f92545f02e61612f6856d92c06d "pdflatex"
   "mystile.sty" 1738625050 872 c3ea431fe3138515e1330963553ee286 ""
   "random_Network.tex" 1739124039 5804 d0711ad1c16ae475b472a6c04d3299c7 ""
   (generated)
