@@ -1,0 +1,37 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{Introduction}{1}{chapter*.2}%
+\contentsline {chapter}{\numberline {1}Introduction to Network Theory}{3}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Introduction to Graph Theory}{3}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Random Networks}{4}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Erd\H {o}s-Rényi random graph}{4}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Barab\'abi-Albert scale-free network}{5}{subsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.3}Watts-Strogatz small world network}{5}{subsection.1.2.3}%
+\contentsline {section}{\numberline {1.3}Random walk on networks}{6}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Quantum Walk}{8}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}Von Neumann entropy}{10}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}1-D quantum random walk}{10}{subsection.1.4.2}%
+\contentsline {subsection}{\numberline {1.4.3}Double tree network}{11}{subsection.1.4.3}%
+\contentsline {chapter}{\numberline {2}Density Matrix and Entropy for Networks}{13}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Estrada's Communicability matrix}{13}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Hamiltonian system}{15}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Network of classic harmonic oscillators}{16}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Network of quantum harmonic oscillators}{17}{subsection.2.1.3}%
+\contentsline {section}{\numberline {2.2}Density matrix and entropy for complex network}{19}{section.2.2}%
+\contentsline {chapter}{\numberline {3}Lindblad master equation}{23}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Derivation of the formula}{23}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Properties of the Lindblad equation}{26}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Stationary distribution}{27}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Entropy production}{27}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Caldeira-Leggett model}{28}{section.3.5}%
+\contentsline {chapter}{\numberline {4}Quantum Stochastic Walk}{31}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Quantum master equation}{31}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Time evolution}{32}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Entropy production}{33}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Stationary distribution}{34}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Kirchhoff}{34}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Symmetry breaking}{36}{section.4.6}%
+\contentsline {chapter}{Conclusion}{37}{chapter*.8}%
+\contentsline {chapter}{\numberline {A}Mastubara Green Function}{39}{appendix.A}%
+\contentsline {chapter}{\numberline {B}Mathematical method to solve differential equation from matrix}{41}{appendix.B}%
+\contentsline {chapter}{\numberline {C}Entropy production}{43}{appendix.C}%
+\contentsline {chapter}{Bibliography}{45}{appendix*.9}%

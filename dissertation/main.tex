@@ -1,0 +1,74 @@
+\documentclass[a4paper,12pt,twoside, openright]{report}
+
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    heightrounded,
+    hmargin=2.5cm,
+    vmargin=2.5cm,
+    headheight=14.5pt
+}
+
+\usepackage{setspace} % Always before hyperref -- Enable correct footnote link
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue,linkcolor=blue]{hyperref} %pacchetto per gli le hyperreference
+\usepackage{mystile}
+\usepackage[sorting=none]{biblatex} %pacchetto bibliografico
+\addbibresource{bibliografia.bib}
+
+
+\textwidth=450pt\oddsidemargin=0pt
+
+\begin{document}
+
+\input{Frotespizio.tex}
+
+\newpage
+$ \ $
+\thispagestyle{empty}
+
+\input{Abstract.tex}
+
+
+\thispagestyle{empty}
+\pagenumbering{roman}
+\tableofcontents
+
+\newpage
+\pagenumbering{arabic}
+
+\pagestyle{fancy}
+\setlength{\headheight}{27.18335pt}
+\addtolength{\topmargin}{-12.68336pt}
+
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\fancyhead[RE]{\textbf{\leftmark}}
+\fancyhead[LO]{\textbf{\rightmark}}
+
+
+\input{Introduzione.tex}
+
+\input{Network_Theory.tex}
+
+\input{Estrada_Communicability_Matrix.tex}
+
+\input{Lindblad.tex}
+
+\input{Quantum_Stochastic_Walk.tex}
+
+%\input{Stochastic_Environment.tex}
+
+\input{Conclusion.tex}
+
+\appendix
+
+
+\input{Matsubara_Green_Function.tex}
+
+\input{Matrix_to_vector.tex}
+
+\input{Entropy_production.tex}
+
+\printbibliography[heading=bibintoc]
+
+\end{document}

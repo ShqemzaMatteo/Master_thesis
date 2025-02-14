@@ -12,7 +12,7 @@ beta = 1
 
 #adjacency matrix for a ring
 Adjacency = np.zeros((N_dim, N_dim))
-for i in range(N_dim-1):
+for i in range(N_dim):
     Adjacency[i, (i + 1) % N_dim] = 10
     Adjacency[(i + 1) % N_dim, i] = 1
 """ Adjacency = np.zeros((N_dim, N_dim))

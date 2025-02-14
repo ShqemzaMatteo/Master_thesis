@@ -7,28 +7,22 @@ random.seed(None)
 
 #constants
 N_dim = 50
-time = np.logspace(-2,3,100)
-initial_distribution = np.zeros(N_dim)
-initial_distribution[0] = 1
-
-def normalization(Adjacency):
-    for i in range(N_dim):
-        sum = 0
-        for j in range(N_dim):
-            sum += Adjacency[i, j]
-        for k in range(N_dim):
-            Adjacency[i, k] /= sum
-    return Adjacency
+beta = np.logspace(-1,3,100)
 
 #adjacency matrix for a ring
-Adjacency_ring = np.zeros((N_dim, N_dim))
-for i in range(N_dim-1):
-    Adjacency_ring[i, (i + 1) % N_dim] = 1
-    Adjacency_ring[(i + 1) % N_dim, i] = 1
+Adjacency = np.zeros((N_dim, N_dim))
+for i in range(N_dim):
+    Adjacency[i, (i + 1) % N_dim] = 1
+    Adjacency[(i + 1) % N_dim, i] = 1
 
-Adjacency_ring= normalization(Adjacency_ring)
+for i in range(N_dim):
+    sum = 0
+    for j in range(N_dim):
+        sum += Adjacency[i, j]
+    for k in range(N_dim):
+        Adjacency[i, k] /= sum
 # laplacian 
-Laplacian_ring = np.identity(N_dim) - Adjacency_ring
+Laplacian_ring = np.identity(N_dim) - Adjacency
 
 # e-r adjacency matrix
 def er_adjacency_matrix(n, p):
@@ -40,7 +34,12 @@ def er_adjacency_matrix(n, p):
                 adjacency[j,i] = 1
     return adjacency
 Adjacency_er = er_adjacency_matrix(N_dim, 0.2)
-Adjacency_er = normalization(Adjacency_er)
+for i in range(N_dim):
+    sum = 0
+    for j in range(N_dim):
+        sum += Adjacency_er[i, j]
+    for k in range(N_dim):
+        Adjacency_er[i, k] /= sum
 # laplacian 
 Laplacian_er = np.identity(N_dim) - Adjacency_er
 #adjacency matrix for a B-A
@@ -65,8 +64,12 @@ def ba_adjacency_matrix(n,m):
             degrees[target] += 1
     return adjacency
 Adjacency_ba = ba_adjacency_matrix(N_dim, 3)
-Adjacency_ba = normalization(Adjacency_ba)
-    
+for i in range(N_dim):
+    sum = 0
+    for j in range(N_dim):
+        sum += Adjacency_ba[i, j]
+    for k in range(N_dim):
+        Adjacency_ba[i, k] /= sum
 # laplacian 
 Laplacian_ba = np.identity(N_dim) - Adjacency_ba
 def ws_adjacency_matrix(n, k, p):
@@ -97,36 +100,37 @@ def ws_adjacency_matrix(n, k, p):
                         break
     return adjacency
 Adjacency_ws = ws_adjacency_matrix(N_dim, 3, 0.2)
-Adjacency_ws = normalization(Adjacency_ws)
+for i in range(N_dim):
+    sum = 0
+    for j in range(N_dim):
+        sum += Adjacency_ws[i, j]
+    for k in range(N_dim):
+        Adjacency_ws[i, k] /= sum
 # laplacian 
 Laplacian_ws = np.identity(N_dim) - Adjacency_ws
 
-def evolution(t, Laplacian, index):
-    distribution = sc.expm(-t*Laplacian) @ initial_distribution
-    return distribution[index]
-    
+#entropy
+def Free_energy(b, laplacian):
+    density_matrix = sc.expm(-b*laplacian)
+    part_func= np.trace(density_matrix)
+    print(part_func)
+    return -np.log(part_func)/b
 
-y_1 = np.vectorize(lambda t: evolution(t,Laplacian_ring,0))(time)
-y_2 = np.vectorize(lambda t: evolution(t,Laplacian_er,0))(time)
-y_3 = np.vectorize(lambda t: evolution(t,Laplacian_ba,0))(time)
-y_4 = np.vectorize(lambda t: evolution(t,Laplacian_ws,0))(time)
+#plot
+y_1 = np.vectorize(lambda t: Free_energy(t,Laplacian_ring))(beta)
+y_2 = np.vectorize(lambda t: Free_energy(t,Laplacian_er))(beta)
+y_3 = np.vectorize(lambda t: Free_energy(t,Laplacian_ba))(beta)
+y_4 = np.vectorize(lambda t: Free_energy(t,Laplacian_ws))(beta)
 
-def check():
-    somma = 0
-    for i in range(N_dim):
-        add = evolution(100,Laplacian_ba,i)
-        somma += add
-    print(somma)
-check()
-
-plt.plot(time, y_1, label='Ring')
-plt.plot(time, y_2, label='E-R')
-plt.plot(time, y_3, label='B-A')
-plt.plot(time, y_4, label='W-S')
-plt.xlabel('time')
-plt.ylabel('p(i)')
-plt.title('Probability to be in node 0')
+plt.plot(beta, y_1, label='Ring')
+plt.plot(beta, y_2, label='E-R')
+plt.plot(beta, y_3, label='B-A')
+plt.plot(beta, y_4, label='W-S')
+plt.xlabel('beta')
+plt.ylabel('F')
+plt.title('Entropy for a random graph')
 plt.xscale('log')
+#plt.ylim((-0.15 , 1.15))
 plt.grid()
 plt.legend()
 plt.show()

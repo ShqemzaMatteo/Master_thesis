@@ -1,0 +1,73 @@
+\section{Caldeira-Leggett model}
+
+The Caldeira-Leggett model was proposed in 1983 to reproduce the Brownian motion via a quantum process.
+It study the dynamics of a particle in contact with a thermal bath made by a set of harmonic oscillator.
+However, the model present the Markovian propery only in the high temperature weak coupling limit and a not Markovian one in otherwise.
+
+The free Hamiltonian of the particle is
+\begin{equation}
+    H_S = \frac{\hat p^2}{2m} + V(\hat q),
+\end{equation}
+where $\hat p$ is the momentum operator and $V(\hat q)$ is the potential.
+
+The particle is in contact with the bath composed by N harmonic oscillator. The Hamiltonian is
+\begin{equation}
+    H_E = \sum\Omega_n(\hat b_n^\dagger\hat b_n+\frac{1}{2})= \sum_n \left(\frac{p_n^2}{2m_n}+ \frac{1}{2}m_n\Omega_n^2q_n^2\right).
+\end{equation}
+where $\hat b_n^\dagger$ and $\hat b_n$ are respectively the creation and annihilation operators of the bath, and $p_n$ and $q_n$ the momentum and position operator of the oscillators of bath.
+
+The interaction Hamiltonian is given by
+\begin{equation}
+    H_I = \hat q\sum_n k_n \hat q_n = - \hat B \hat q = \hat q \sum_n k_n\frac{1}{\sqrt{2m_n\Omega_n}}\left(\hat b+ \hat b^\dagger\right)
+\end{equation}
+where $\hat B$ is the bath operator.
+
+We need to add a counterterm 
+\begin{equation}
+    H_C = \sum_n \frac{\hat q^2}{2m_n\Omega_n^2}. 
+\end{equation}
+
+Starting from equation \eqref{C_markovian} in the Schrödinger pictures
+\begin{equation}
+    \frac{d \rho(t)}{dt} = i\left[\hat H_S+ \hat H_C, \hat\rho(t)\right] -\int_0^\infty ds \Tr_E\left[\hat H_I(t),\left[\hat H_I(t-s),\hat\rho(t)\otimes\hat\rho_E(t)\right]\right],
+\end{equation}
+
+We can rewrite it using the correlation relations of the bath
+\begin{equation}
+    D(s) =i \left<\left[\hat B, \hat B^\dagger(t-s)\right]\right> \qquad D'(s) = \left<\left\{\hat B, \hat B^\dagger(t-s)\right\}\right>
+\end{equation}
+into the formula 
+\begin{equation}\label{CL_master_eq}
+    \frac{d \rho(t)}{dt} = -i\left[\hat H_S+ \hat H_C, \hat\rho(t)\right] -\int_0^\infty ds \frac{i}{2} D(s)\left[\hat q, \left\{\hat q(-s), \hat \rho(t)\right\}\right] - \frac{1}{2} D'(s)\left[\hat q, \left[\hat q(-s), \hat\rho(t)\right]\right]  
+\end{equation}
+
+Using the spectral density
+\begin{equation}
+    J(\Omega) = \sum_n \frac{k_n^2}{2m_n\Omega}\delta(\Omega-\Omega_n)
+\end{equation}
+we can rewrite the correlation as
+\begin{equation}
+    D(s) = 2\int_0^\infty d\Omega J(\Omega) \sin\Omega s \qquad D'(s) = 2\int_0^\infty d\Omega J(\Omega) \coth\left(\frac{\Omega}{2k_BT}\right)\cos\Omega s.
+\end{equation}
+
+We can simplify further the equation \eqref{CL_master_eq} looking at the $\hat q(-s)$, indeed, it can be written as 
+\begin{equation}
+    \hat q(-s) = e^{-i\hat H_S s} \hat q e^{i\hat H_S s} \approx \hat q- i\left[\hat H_S, \hat q\right]s = \hat q - \frac{\hat p}{m}s 
+\end{equation}
+
+Inserting it into \eqref{CL_master_eq} we obtain
+\begin{equation}
+    \begin{split}
+        \frac{d \rho(t)}{dt} = & -i\left[\hat H_S+ \hat H_C, \hat\rho(t)\right] -\frac{i}{2}\int\limits_0^\infty ds  D(s)\left[\hat q, \left\{\hat q, \hat \rho(t)\right\}\right]\\
+        &+ \frac{i}{2m}\int_0^\infty ds \, sD(s)\left[\hat q, \left\{\hat p, \hat \rho(t)\right\}\right] - \frac{1}{2}\int_0^\infty ds D'(s)\left[\hat q, \left[\hat q, \hat\rho(t)\right]\right]\\
+        & +\frac{1}{2m}\int_0^\infty ds \; sD'(s)\left[\hat q, \left[\hat p, \hat\rho(t)\right]\right].\\
+    \end{split}  
+\end{equation}
+
+Then, we solve the integral in the high temperature limit: the first term give us the exactly the counter term  $-i\left[\hat H_C, \hat \rho\right]$, the second becomes $-\frac{i\gamma}{2}\left[\hat q, \left\{\hat p,\hat \rho(t)\right\}\right]$, the third becomes $2m \gamma k_BT\left[\hat q,\left[\hat q,\hat\rho(t)\right]\right]$ and the last give us $\frac{2\gamma k_BT}{\Omega}\left[\hat q, \left[\hat p, \hat \rho\right]\right]$ which is negligible in the limit $\Omega \rightarrow \infty$ that we are dealing with.
+
+We have reached the Caldeira-Leggett master equation
+\begin{equation} \label{Caldeira-Leggett_master_equation}
+    \frac{d\hat\rho}{dt} = -i\left[\hat H_S, \hat\rho(t)\right]-\frac{i\gamma}{2}\left[\hat q, \left\{\hat p,\hat \rho(t)\right\}\right] - 2m \gamma k_BT\left[\hat q,\left[\hat q,\hat\rho(t)\right]\right]. 
+\end{equation}
+The Caldeira-Leggett master equation reminds of the Langevin equation where the second term is the dissipative one and the third describes the fluctuations.

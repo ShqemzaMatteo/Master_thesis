@@ -1,0 +1,118 @@
+\chapter{Stochastic Environment}
+
+The formulae in the previous chapter are valid for static networks that do not change the weight and, consequently, the transition probability or the Hamiltonian.
+
+\section{Sinai-Derrida model}
+However, we can add disorder and fluctuation also at the network level; as a matter of fact we can consider the network as random network where the weight can be subjected to fluctuations. We can choose if also the topology of the network change, but in this this dissertation they do not: if the Adjacency matrix $A_{ij} = 0$ it is constant.
+This model 
+We can express the fluctuations using white noise $\xi$ as
+\begin{equation}
+    A_{ij}(t) = A_{ij} + \xi_{ij}.
+\end{equation}
+The random noise as average $\left<\xi_{ij}\right> = 0$ and $<\xi_{ij}\xi_{kl}>=\sigma^2\delta_{ij}\delta_{kl}$.
+Thus, if we run several process, each one walk in a slightly different network.
+
+The first attempt to add randomize the transition probability was made by Sinai \cite{Sinai, Derrida} who studied the 1-D random walk in stochastic environment, that is a type of 1-D random walk with transition probability right or left are respectively 
+\begin{equation}
+    \pi_{i,i+1} = \frac{1}{2}+ \xi_i \qquad \pi_{i+1,i} = \frac{1}{2}+ \xi_i,
+\end{equation}
+where $\xi(t)_i$ is white noise. The transition probabilities change in time but their average is constant $\left<\pi_{i,i+1}\right> = \left<\pi_{i+1,i}\right> = \frac{1}{2}$.
+The position of the particle $x(t)$ is a random variable, but it does not follow the diffusion behavior since its variance is $\left<x^2(t)\right> \approx \left(\ln t\right)^4$ \cite{Bouchaud}. This type of random walk are called sub-diffusion.
+
+
+We can generalize the Sinai model to a random walk on a network. Let consider that the thermal fluctuations perturbs the symmetry of the transition rates which become random variables:
+\begin{eqnarray}
+    \pi_{ij}= \pi_{ij} + \sqrt{2T}\xi_{ij} \qquad \pi_{ji}= \pi_{ji} -  \sqrt{2T}\xi_{ij},
+\end{eqnarray}
+where $\xi_{ij}$ is white noise. In this way the symmetry is only valid “in average", namely the thermal average of the two transition rates are equal. To conserve the the fact that the probability must sum to $1$, the withe noises must hold the relations $\sum_i \xi_{ij} = 0$ and  $\sum_j \xi_{ij} = 0$.
+
+\begin{comment}
+Thus, the master equation becomes 
+\begin{equation}
+    \dot \rho(t) = -L\rho(t) + \sqrt{2T}\xi(t)\rho(t)
+\end{equation} 
+
+This system will never reach a stationary solution due to the continuos fluctuations that change the network structure. But the averages distribution probability converges  instead converge 
+
+Since, in average, the transition rates are symmetric, the system must hold the detail condition in average. Thus, the limit distribution is 
+
+If consider the base of the eigenstate of $L$, the perturbation remain gaussian (orthogonal transformation does not change the white noise and the fourier transformation neither). Therefore, we can write
+\begin{eqnarray}
+    \dot \rho_\lambda = -\lambda\rho_\lambda +  \sum_{\mu\neq0}\sqrt{2T}\xi_{\lambda\mu}(t)\rho_\mu(t).
+\end{eqnarray}
+The zero eigenstate does not interact with the thermal bath.
+Now, we can consider the average detail condition
+\begin{equation}
+    \begin{split}
+        \left<\frac{\pi_{\lambda\mu}(t)}{\pi_{\mu\lambda}(t)}\right> &= \left<e^{}\right> =\\
+    \end{split}
+\end{equation}
+
+\end{comment}
+
+\section{Stochastic Quantum Walk in random environment}
+We can introduce same concept also in the Lindblad equation \cite{Anvit_Cohen, Shapira_Cohen}
+
+\begin{equation}\label{superstocahstic_master_equation}
+    \frac{d\hat\rho}{dt} = -i\left[\hat H, \hat \rho\right] + \sum_{i<j}  w_{ij}^+\hat D_{ij}^\dagger\hat\rho\hat D_{ij} + w_{ij}^-\hat D_{ij}\hat\rho\hat D_{ij}^\dagger - \frac{w_{ij}^++w_{ij}^-}{2}\left\{ \hat D_{ij}^\dagger \hat D_{ij}, \hat\rho\right\}, 
+\end{equation}
+where $w_{ij}^\pm =  \nu_{ij} \pm \eta_{ij}$ and are random variable indicating the stochastic transition rates and the jump operators reduce to $\hat D_{ij} = \ket{i}\bra{j}$. The two parameter $\nu_{ij}$ and $\eta_{ij}$ are the quantum equivalent of the “fluctuation" and “friction" term in the Langevin equation for the Brownian motion. So we can define a temperature $\frac{\nu_{ij}}{\eta_{ij}} = 2T $.
+
+
+The stationary distribution of \eqref{superstocahstic_master_equation} is the canonical density matrix $\hat\rho^* = \frac{1}{Z} e^{-\beta H}$ \cite{Shapira_Cohen}.
+For the quantum walk $\hat H = \hat L$ and the reader can recognize that it has the same formulation of the De domenico density matrix \eqref{density_matrix}.
+
+\begin{comment}
+\begin{center}
+    $\ast \; \ast \; \ast$
+\end{center}
+
+If i consider a network in contact with a thermal bath as a system composed by a particle that move around. The particle movements are regulated by the Adjacency matrix, but there is a small probability that the particle disappear from a node and teleport to a random one. Thus, the new control operator should be the sum of the laplacian and the matrix $\xi$ composed as
+\begin{equation}
+    H_{ij} =\left\{ \begin{aligned}
+        L_{ij} - \varepsilon * L_{ii} \qquad &L_{ij} \neq 0\\
+        \epsilon \qquad & L_{ij} = 0\\
+    \end{aligned}\right. 
+\end{equation}
+
+\begin{center}
+    $\ast \; \ast \; \ast$
+\end{center}
+We consider that the system is susceptible to some thermal fluctuation that modify the dynamics by a term $\xi(t)\hat L$, where $\xi(t)$ indicates a white noise with zero average and variance $\sigma^2 = T$. The temperature $T$ as non physical meaning beyond the quantification of the fluctuations.
+
+We can consider also a thermal fluctuation in the Lindblad master equation \eqref{lindblad_master_eq} adding a new term. We obtain
+\begin{equation}
+    \frac{d}{dt}\left<\hat \rho\right> = -i\left[\hat L,\hat\rho\right] + a \hat\rho a^\dagger -\frac{1}{2} \left\{ \hat L, \hat\rho\right\} + T a^\dagger \hat\rho a  -\frac{T}{2} \left\{aa^\dagger, \hat\rho\right\}.
+\end{equation}
+
+As before, the dynamics conserves the trace of $\hat\rho$. 
+
+The stationary distribution is $\left<\hat \rho^*\right> = \frac{1}{Z}e^{-\beta \hat L}$, with $\beta = \frac{1}{T}$. As a matter of fact, considering each term independently. The first term is zero since the commutator of an hermitian operator and its exponential cancels, the proof is trivial. Instead, for second term
+\begin{equation}
+    \begin{split}
+        a e^{-\beta\hat L} a^\dagger -\frac{1}{2} \left\{ \hat L,e^{\beta\hat L}\right\} &=  a e^{-\beta a^\dagger a} a^\dagger -\frac{1}{2} \hat Le^{\beta\hat L} -\frac{1}{2} e^{-\beta\hat L}\hat L \\
+        & = a e^{-\beta a^\dagger a} a^\dagger -\hat Le^{\beta\hat L}\\
+        &= -e^{-\beta a^\dagger a} \hat L + \left[a, e^{-\beta a^\dagger a}\right]a^\dagger -\hat Le^{\beta\hat L}\\
+        &= 2 \hat Le^{\beta\hat L} + \left[a, e^{-\beta a^\dagger a}\right]a^\dagger\\
+        &= 2 \hat Le^{\beta\hat L} -\beta\left[a,a^\dagger \right]e^{-\beta \hat L}aa^\dagger\\
+        &= 2 \hat Le^{\beta\hat L} -\beta\left[a,a^\dagger \right]\hat Le^{-\beta \hat L}\\
+    \end{split}
+\end{equation}
+Last, the third one can be expand as
+\begin{equation}
+    \begin{split}
+        T a^\dagger e^{-\beta\hat L} a  -\frac{T}{2} \left\{aa^\dagger, e^{-\beta\hat L}\right\} &= T a^\dagger e^{-\beta\hat L} a - T aa^\dagger e^{-\beta\hat L}\\
+        &= T a^\dagger e^{-\beta\hat L} a + T \hat L e^{-\beta\hat L} - T \left[a,a^\dagger\right]e^{-\beta\hat L}\\
+        &= \cancel{-T \hat L e^{-\beta\hat L}}- Ta^\dagger\left[a, e^{-\beta\hat L}\right] + \cancel{T \hat L e^{-\beta\hat L}} - T \left[a,a^\dagger\right]e^{-\beta\hat L}\\
+        &= a^\dagger\left[a,a^\dagger\right]a e^{-\beta \hat L} - T \left[a,a^\dagger\right]e^{-\beta\hat L}\\
+    \end{split}
+\end{equation}
+
+\begin{equation}
+    \begin{split}
+        \left[a, e^{-\beta a^\dagger a}\right] = \left[a,1  -\beta a^\dagger a + \frac{1}{2}\beta^2  a^\dagger aa^\dagger a - \frac{1}{6}\beta^6  a^\dagger a a^\dagger a a^\dagger a\right]\\
+        =-\beta [a,a^\dagger]a + \beta^2 \frac{1}{2} \left[a,a^\dagger\right]\left\{a,L\right\}\\
+        = -\beta \left[a,a^\dagger\right]a e^{-\beta \hat L}\\
+    \end{split}
+\end{equation}
+\end{comment}

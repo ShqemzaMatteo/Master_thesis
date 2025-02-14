@@ -1,0 +1,112 @@
+\section{Estrada's Communicability matrix}
+
+Most of the study on complex networks focuses on the spread of information following the shorter path, namely the shortest sequence of links that connects two different nodes. 
+However, this is not the only way the information can flow, there are plenty of other more long route that are also available, and this vision ignores completely the complexity of the network.
+To overcome that we introduce the communicability matrix, defined to consider also these possible path to go beyond the shortest one \cite{Estrada_2012}. It must consider 
+%This concept is similar to the correlation in physics: it indicates how a node is changes in response to a perturbation in another node. 
+
+Let  $G=(V,E)$ be an undirected graph composed of $N$ nodes and $E$ links. 
+Let $A$ be the adjacency matrix of the graph, defined as
+\begin{equation}
+    A_{i, j }= \left\{ \begin{aligned}
+        +1 &\quad \mathrm{if} \; i \; \mathrm{is ~linked ~to} \; j \\
+        0 &\quad \mathrm{otherwise} \\
+    \end{aligned} \right.  .
+\end{equation}
+ 
+We can define the communicability matrix as
+\begin{equation}
+    G(A) = \sum_{k=1}^{\infty}c_k A^k
+\end{equation}
+and the communicability from node $i$ to node $j$ is given by $G_{ij}$. The power of the adjacency matrix $(A^k)_{ij}$ give us the number of path of length $k$ starting from node $i$ ending in node $j$.
+The coefficients $c_k$ indicates the weight of the paths and it is heavier the longer is the path, this is made to give more relevance to the short ones respect to the long ones. It must be chosen such that the series is convergent, they also must penalize long paths to reflect the preference to the shorter one.
+
+An intuitive choice is $c_k = \frac{1}{k!}$, which transforms the communicability into an exponential function \cite{Estrada_2008}
+\begin{equation}\label{G_E}
+    G^E(A) =\sum_{k=1}^{\infty} \frac{A^k}{k!} = e^{A} .
+\end{equation}
+We can generalize it adding a constant term $\beta$
+\begin{equation}\label{G_R}
+    G^E(A) =\sum_{k=1}^{\infty} \frac{\beta A^k}{k!} = e^{\beta A} ,
+\end{equation}
+this formulation is similar to the thermal green function for quantum system with Hamiltonian $A$ and temperature $T = \frac{1}{\beta}$.
+
+Alternatively, we can choose $c_k = \alpha^{k}$ with $\alpha<\frac{1}{\lambda_N}$, where $\lambda_N$ is the largest eigenvalue of the adjacency matrix \cite{Katz}. In this case, it becomes a geometrical series yielding
+\begin{equation}
+    G^R(A) =\sum_{k=1}^{\infty} \alpha^k A^k = (I -\alpha A)^{-1}.
+\end{equation}
+The two formulations for the communicability matrix lead to the same result and conclusion for the network in the limit $\alpha \rightarrow \frac{1}{\lambda_N}$ and $\lambda_N -\lambda_{N-1}$ large \cite{Benzi_Klymko}.
+
+
+From this, we can introduce an global index for the network that consider all the different possible communication as
+\begin{equation}
+    EE(A)  = \Tr\left[e^{\beta A}\right].
+\end{equation}
+In the literature it is called Estrada index \cite{Estrada_2008} and can be interpreted as the sum of all the self-communication, that is the sum of the paths that end in the same node they have started.
+
+We can define the communicability matrix also with the laplacian matrix $L = D - A$, where $D$ is the degree matrix. 
+Thus, the matrices becomes \cite{Estrada_2012}
+\begin{equation}\label{Estrada indeces}
+    \begin{split}
+        G^E(L) &=\sum_{k=1}^{\infty} \frac{\beta^k L^k}{k!} = e^{\beta L}  \\ 
+        G^R(L) &= \sum_{k=1}^{\infty} \alpha^k L^k \rightarrow \alpha^{-1} \tilde{L}^{-1}
+    \end{split}
+\end{equation}
+
+where $\tilde{L}^{-1} = \sum_{i=2}^N \frac{1}{\mu}v_i^Tv_i$ is the Moore-Penrose generalized inverse of the Laplacian. Here, $\mu$ are the eigenvalue ordered from the smaller to the bigger such that $\mu_1 < \mu_2 < ... < \mu_N$, and $v_i$ the respective eigenvectors of the Laplacian matrix \cite{Generalized_inverse_Laplacian}.
+Also, the Laplacian Estrada index is define as
+\begin{equation}\label{EE_L}
+    EE(L) = \Tr\left[e^{\beta L}\right].
+\end{equation}
+
+While the previous quantities using the adjacency matrix focalized over the topological aspects of the network and information spread, the laplacian communicability matrix embodies also the dynamical ones since the laplacian is involved in the random walk over a network. 
+
+\subsection{Hamiltonian system}
+The formulae \eqref{Estrada indeces} can be motivated by studying a classic and quantum harmonic oscillator on a network.
+Consider a set of $N$ harmonic oscillators with coupling matrix $K = A$, in this way the nodes are considered as particle of mass $m = 1$ connected by springs with constant $A_{ij}$. The network should not have self interacting nodes, thus $A_{ii} = 0$. The system is submerged in a thermal bath at the temperature $T$. We assume there are no dumping and no external forces acting in the system besides the thermal fluctuation. 
+Let introduce a set of coordinates $q_i$ that indicates the displacement of the $i$ particle respect the equilibrium position, the elastic elastic potential can be define as
+\begin{equation}
+    V(q) = \frac{1}{4}\sum_{i\neq j} K_{ij}(q_i-q_j)^2 = \frac{1}{2}\sum_{j}K_{jj}q_j^2 - \frac{1}{2} \sum_{i\neq j}K_{ij}q_iq_j,
+\end{equation}
+where 
+\begin{equation}
+    K_{jj} = \sum_{j \neq i} K_{ij}.
+\end{equation}
+
+We set $H_{ij}= K_{jj}\delta_{ij} - K_{ij}$, therefore the potential can be written as
+\begin{equation}
+    V(q) = \frac{1}{2}\sum_{i,j} H_{ij} q_i q_j.
+\end{equation}
+The $H$ matrix is a laplacian matrix and it is equal to the Laplacian of the network $L = D - A$, where $D$ is the degree matrix. It holds the property $\sum_j H_{ij} = 0$, therefore it has not negative eigenvalues and one must be equal to zero.
+The zero eigenvalue ensure us that the motion of the center of must is conserved. %% find a way to cite this sentence
+
+We can write the Lagrangian of the system as
+\begin{equation}
+    \mathcal{L} = \frac{1}{2}\sum_{ij} \dot q_i G_{ij} \dot q_j - \frac{1}{2} \sum_{ij} q_iH_{ij}q_j.
+\end{equation}
+
+The equations of motion are
+\begin{equation}
+    \ddot q_i = -H_{ij} q_j.
+\end{equation}
+
+The eigenmodes of the system are defined by the solution of the equation 
+\begin{equation}
+    \omega^2 \phi_i = H_{ij} \phi_j.
+\end{equation}
+
+Rewriting it in matrices form
+\begin{equation}
+    |\Omega^2 - H| = |\Omega^2 - H|.
+\end{equation}
+
+Therefore, the spectral signature of the matrix $H = L$ are the same of the harmonic oscillator. In this way we can connect the harmonic oscillator and the master equation of a network and vice versa. Since $M$ is diagonal, $H$ and $L$ have the same support, eigenvectors and eigenvalues, leading to $E = \omega^2 = \lambda$, which creates a natural ranking between the eigenvectors. 
+
+The Hamiltonian of the system is given by
+\begin{equation}\label{H_L}
+    H_L = \sum_i \frac{p_i^2}{2} + \sum_{ij} \frac{1}{2}L_{ij}q_iq_j.
+\end{equation}
+
+\input{Classic_oscillator.tex}
+
+\input{Quantum_oscillators.tex}

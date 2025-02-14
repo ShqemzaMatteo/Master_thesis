@@ -1,0 +1,60 @@
+\chapter{Mastubara Green Function} \label{Appendix_B}
+
+The Matsubara Green function is a way to add the effect of temperature to the QFT formalism \cite{Coleman_2015}.
+It is base on the analogy of the Boltzmann weight in statistical mechanics and the time evolution operator in quantum mechanics, respectively 
+\begin{equation}
+    p(\beta) = \frac{e^{-\beta H}}{Z} \qquad U(t-t') = e^{-i\frac{t-t'}{\hbar}\hat H} .
+\end{equation}
+
+Kubo observes that the finite temperature can be reformulated via a redefinition of time as $\tau = \frac{it}{\hbar}$ and the density matrix becomes 
+\begin{equation}
+    \hat \rho \propto e^{-\beta \hat H} = U(-i\hbar \beta).
+\end{equation}
+
+Matsubara propose that the thermal expectation value of an observable $A$ is equal to 
+\begin{equation}
+    \left<A\right> = \frac{\Tr \left[U(-i\hbar \beta)A\right]}{\Tr\left[U(-i\hbar \beta)\right]};
+\end{equation}
+This formulation as a reminiscence of the Gell-Mann and Low formula for the QFT except that the time evolution run over finite time $\tau \in \left[0,-i\hbar\beta\right]$
+
+The Matsubara Green Function can be written as 
+\begin{equation}
+    G(\beta, t-t') = - \left< \hat T \psi(t)\psi^\dagger(t') \right> = -\Tr\left[e^{-\beta\hat H} \psi(t)\psi^\dagger(t') \right]
+\end{equation}
+
+For free bosons and fermions it can be computed and gives \cite{Coleman_2015}
+\begin{equation}
+    \begin{split}
+        G_{\lambda}(\beta, \tau) = -e^{-\epsilon_\lambda t}\left[(1+n(\epsilon_\lambda))\Theta(\tau)+n(\epsilon_\lambda)\Theta(-\tau)\right] \qquad \mathrm{bosons}\\
+        G_{\lambda}(\beta, \tau) = -e^{-\epsilon_\lambda t}\left[(1-f(\epsilon_\lambda))\Theta(\tau)-f(\epsilon_\lambda)\Theta(-\tau)\right] \qquad \mathrm{fermion}\\
+    \end{split}
+\end{equation}
+where $\epsilon_\lambda$ is the energy level and $n(\epsilon_\lambda)$ and $f(\epsilon_\lambda)$ are respectively the Bose-Einstein distribution and the Fermi-Dirac distribution
+\begin{equation}
+    n(\epsilon_\lambda) = \frac{1}{e^{\beta\epsilon_\lambda} - 1} \qquad f(\epsilon_\lambda) = \frac{1}{e^{\beta\epsilon_\lambda} + 1}.
+\end{equation}
+
+It can be prove that the Matsubara Green function are periodic function with $T = [0,\beta]$ for bosons and $t = [-\beta, \beta]$ for fermions. Indeed
+\begin{equation}
+    \begin{split}
+        G(\beta, \beta + \tau) &= -\Tr\left[e^{-\beta\hat H} \psi(\beta + \tau)\psi^\dagger(0) \right] \\
+        &= -\Tr\left[e^{-\beta\hat H} e^{-(\beta + \tau)\hat H}\psi(0)e^{-(\beta+ \tau)\hat H}\psi^\dagger(0) \right]\\
+        &= -\Tr\left[e^{-\beta\hat H} e^{\beta\hat H}e^{\tau\hat H}\psi(0)e^{-\beta\hat H}e^{-\tau\hat H}\psi^\dagger(0) \right]\\
+        &= -\Tr\left[e^{-\beta\hat H}\psi^\dagger(0)e^{\tau\hat H}\psi(0)e^{-\tau\hat H}\right]\\
+        &= -\Tr\left[e^{-\beta\hat H}\psi^\dagger(0)\psi(\tau)\right] = \zeta G(\beta,\tau) ;
+    \end{split}
+\end{equation}
+where $\zeta = \pm 1$ for bosons or fermions. 
+
+As a consequence, the Green function can be expand in a Fourier series and the frequencies are called Matsubara frequencies. They are define as 
+\begin{equation}
+    \begin{aligned}
+        \nu_n =& 2\pi nk_BT \qquad &\mathrm{bosons}\\
+        \omega_n =& \pi (2n+1)k_BT \qquad &\mathrm{fermions}\\
+    \end{aligned}
+\end{equation}
+ 
+The propagator for bosons and fermion with the Matsubara frequencies are respectively
+\begin{equation}
+    \mathcal{G}_\lambda(i\nu_n)= \frac{1}{i\nu_n - \epsilon_\lambda} \qquad \mathcal{G}_\lambda(i\omega_n)= \frac{1}{i\omega_n - \epsilon_\lambda}.
+\end{equation}

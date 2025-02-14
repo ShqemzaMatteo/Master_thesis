@@ -1,0 +1,69 @@
+\subsection{Network of classic harmonic oscillators}
+
+To combine this with the thermodynamics, let consider the presence of a thermal bath in the Hamiltonian formalism using the Langevin equation
+\begin{equation}
+    \begin{aligned}
+        &\dot q_i = p_i; \\
+        &\dot p_i  = -H_{ij}q_j - \gamma \sum_j \left(\delta_{ij} - 1_{ij}\right)p_j + \sqrt{2T\gamma}\xi_i(t),
+    \end{aligned}
+\end{equation}
+where $\gamma$ is the friction coefficient, $T$ is the temperature (Boltzmann constant $K_B =1$), $\delta_{ij}$ the Kronecker delta and $1_{ij}$ the matrix with all entries equal to 1, $\xi_i(t)$ is white noise, namely
+\begin{equation}\label{white_noise}
+    \langle\xi_i(t)\rangle = 0 \qquad \langle\xi_i^2(t)\rangle = 1 
+\end{equation}
+
+The white noises must hold the condition $\sum_i \xi_i = 0$, that leaves invariant the motion of  system's center of mass but $\xi_i(t)$ are no more independent.
+As a matter of fact, the derivative of $\sum_i p_i$ is zero, therefore it is an integral of motion,
+\begin{equation}
+    \frac{d}{dt} \sum_i \dot p_i = - \gamma \sum_{ij}\left(\delta_{ij} - 1_{ij}\right)p_j+ \cancel{\sqrt{2T\gamma}\sum_i\xi_i(t)} = 0.
+\end{equation}
+
+The condition over the white noises $\sum_i \xi_i = 0$ adds breaks the independence between them and it adds correlation.
+We can rewriting the noise using i.i.d. white noise $w_i(t)$ as
+\begin{equation}
+    \xi_i(t) = w_i (t) + \frac{1}{N} \sum_k w_k(t).
+\end{equation}
+The covariance matrix of $\xi_i(t)$ can be written as
+\begin{equation}
+    \left<\xi_i(t)\xi_j(s)\right> = \left[\delta_{ij} - 1_{ij}\right]\delta(t-s)
+\end{equation}
+
+The distribution $\rho(q,p,t)$ is a Gaussian and satisfies the Fokker-Plank equation \cite{Fokker}
+\begin{equation}
+    \frac{\partial\rho}{\partial t} = -\sum_i p_i\frac{\partial \rho}{\partial q_i} + \sum_{ij} H_{ij}q_j\frac{\partial \rho}{\partial p_i} + \gamma\sum_{ij}\left(\delta_{ij}-1_{ij}\right)\left[\frac{\partial}{\partial p_i}p_j\rho + T \frac{\partial^2\rho}{\partial p_i \partial p_j}\right].
+\end{equation}
+The solution at equilibrium is
+\begin{equation}
+    \rho(q,p) = Z(\beta)^{-1} \exp\left[ -\beta \left( \sum_j \frac{p_j^2}{2m_j} + \sum_{ij} \frac{1}{2}q_iH_{ij}q_j\right)\right],
+\end{equation}
+where $\beta = \frac{1}{T}$ and $Z(\beta)$ is the partition function defined as
+\begin{equation}
+    Z(\beta) = \int \prod_i dp_i dq_i \; \exp\left[ -\beta \left( \sum_j \frac{p_j^2}{2m_j} + \sum_{ij} q_iH_{ij}q_j\right)\right].
+\end{equation}
+
+The marginal distribution on the coordinates is a Maxwell-Boltzmann distribution with the internal energy 
+\begin{equation}
+    \rho(q) = Z(\beta)^{-1} e^{-\beta \left(\sum_{ij} q_iH_{ij}q_j\right)}.
+\end{equation}
+
+Since there is a sum over the indices $i$ and $j$ we can change the basis of $q_i$ to $Q_\lambda$ such that the $H$ is diagonal. Therefore, the marginal distribution becomes
+\begin{equation}\label{marginal_probability}
+    \rho(q) = Z(\beta)^{-1} e^{-\beta \left(\sum_{\lambda \neq 0} Q_\lambda \lambda Q_\lambda\right)},
+\end{equation}
+with partition function 
+\begin{equation}
+    Z(\beta) = \int \prod_{\lambda\neq 0} dQ_\lambda e^{-\beta \left(\sum_{\lambda \neq 0} \lambda Q_\lambda^2\right)}.
+\end{equation}
+
+The thermal distribution does not involve the zero eigenmode since the thermal bath does not interact with it and, also, the oscillator modes $Q_\lambda$ remain the same of the unperturbed case. 
+This is a consequence of the condition $\sum_i \xi_i = 0$.
+%Moreover, this is also connected to the conservation of the stationary distribution of the master equation \eqref{stationary_distribution}. 
+The distribution has mean $\left<q_\lambda\right>= 0$ and the covariance matrix is diagonal with entries $\left<q^2_\lambda\right>= \frac{1}{\beta \lambda}$.
+
+The variance can be expresses also with the Moore-Penrose generalized inverse of the Laplacian
+\begin{equation}
+    \mathrm{Cov}(q) = \frac{1}{\beta}L^+,
+\end{equation}
+
+This is the same result as the Estrada's Communicability matrix $G^R(L)$ \eqref{Estrada indeces} with $\alpha=\beta$.
+When $T\rightarrow 0$ the spread of information drops; and when $T\rightarrow +\infty$ it becomes instantaneous.

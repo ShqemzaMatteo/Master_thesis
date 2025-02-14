@@ -1,0 +1,249 @@
+\section{Bra-Ket Notation}
+We can write it using the ``Bra-Ket" notation or Dirac notation. Let consider the ket $\ket{i}$ the state indicating when the particle is in the node $i$, the states are orthonormal, namely $\braket{i}{j}=\delta_{ij}$, with $\delta_{ij}$ is the Kronecker delta, and the form a complete basis, $\sum_i \ket{i}\bra{i} = I$, where $I$ is the identity matrix.
+
+We can define a generic state $\ket{\psi}$ as
+\begin{equation}\label{ket_state}
+    \ket{\psi} = \sum_i \sqrt{\rho_i(t)} \ket{i},
+\end{equation}
+in this way $\rho_i = |\braket{i}{\psi}|^2$ is the projection of the state in the node $i$, in other words the probability to be in the state $i$.
+
+We can rewrite the master equation \eqref{master_eq} with the new formalism as
+\begin{equation}\label{master_eq_braket}
+    \frac{d}{dt}\ket{\psi} = \sum_i\frac{d}{dt}\left(\sqrt{\rho_i(t)}\right)\ket{i} = - \frac{1}{2}\hat L \ket{\psi},
+\end{equation}
+we have promoted the Laplacian matrix to an operator as $\hat L = L_{ij} \ket{i}\bra{j}$. From now, we consider the Laplacian operator to be hermitian, so the system hold the detail balance condition.
+We can solve the differential equation that has solution
+\begin{equation}
+    \ket{\psi(t)} = e^{-\frac{t}{2}\hat L}\ket{\psi(0)},
+\end{equation}
+where $\ket{\psi(0)}$ is the initial state at time $t=0$.
+
+Let the system be in the state $\ket{\psi}$, also called pure state, we can define the density matrix as
+\begin{equation}
+    \hat\rho =\ket{\psi}\bra{\psi} = \sum_{ij} \sqrt{\rho_i} \sqrt{\rho_j}\ket{i}\bra{j},
+\end{equation}
+If the system 
+It is by definition a self-adjoint operator and $\Tr[\hat\rho] = 1$.
+
+Let be $\hat O(t) = O_{ij}\ket{i}\bra{j}$ a generic operator, the average value of the respective observable can be found as
+\begin{equation}
+    \begin{split}
+        \left< \hat O\right> &= \Tr\left[\hat O\hat\rho\right]. \\ %=\sum_{a} \bra{a}\hat O\hat\rho\ket{a}.\\
+        %&=\sum_{a,i,j} \bra{a}O_{ij}\ket{i}\braket{j}{l}\sqrt{\rho_l}\sqrt{m}\braket{m}{a} = \sum_a O_{aa}\rho_{a}
+    \end{split}
+\end{equation}
+The observable for the probability to be in the node $a$ can be express using the operator $\hat P_a = \ket{a}\bra{a}$ such that
+\begin{equation} \label{state_projection}
+    \begin{split}
+        \Tr\left[\hat P_a\hat\rho(t)\right] &= \sum_i \braket{i}{a}\braket{a}{\psi}\braket{\psi}{i}\\
+        & = \sum_{ijk} \braket{i}{a}\bra{a}\sqrt{\rho_j}\ket{j}\bra{k}\sqrt{\rho_k}\ket{i}\\
+        &= \sum_{ijk} \delta_{i,a}\delta_{a,j}\delta_{k,i}\sqrt{\rho_j}\sqrt{\rho_k}\\
+        & = \sqrt{\rho_a}\sqrt{\rho_a} = \rho_a
+    \end{split}
+\end{equation}
+
+Considering now the Heisenberg picture, let be $\hat O = \sum_{ij} O_{ij} \ket{i}\bra{j}$ a generic operators, it evolves as
+\begin{equation}     
+    \begin{split}
+    \frac{d}{dt} \hat O(t) &= \sum_{ij}\left[\left(\frac{d}{dt}\ket{i}\right)O_{ij}\bra{j} + \ket{i}O_{ij}\left(\frac{d}{dt}\bra{j}\right)\right]\\ 
+    &= \frac{1}{2}\sum_i \left[-\hat L \ket{i}O_{ij}\bra{j} -\ket{i}O_{ij}\bra{j}\hat L\right]\\ 
+    &= -\frac{1}{2}\left(\hat L \hat O + \hat O \hat L\right) = -\frac{1}{2}\left\{\hat O,\hat L \right\}\\
+    \end{split}
+\end{equation}
+where $\{\cdot, \cdot\}$ is the anticommutator. 
+
+Solving this equation for the density operator, we obtain
+\begin{equation}\label{density_matrix_evolution}
+    \hat\rho(t) = \ket{\psi(t)}\bra{\psi(t)}= e^{-\frac{t}{2}\hat L} \ket{\psi_0}\bra{\psi_0}e^{-\frac{t}{2}\hat L} = e^{-\frac{t}{2}\hat L}\hat\rho(0)e^{-\frac{t}{2}\hat L}  = \hat U(t,0) \, \hat\rho(0) \,\hat U^\dagger(t,0),
+\end{equation}
+where $\ket{\psi_0} = \sum_i\sqrt{\rho_i(0)}\ket{i}$ is the initial state and $\hat U(t,0) = e^{-\frac{t}{2}\hat L}$ is the evolution operator, which is equal to the density matrix \eqref{density_matrix}
+
+%\begin{equation}
+%    \begin{split}
+%        \Tr\left[\hat\rho(t)\right] &= \Tr\left[e^{-\frac{t}{2}\hat L}\hat\rho(0) e^{-\frac{t}{2}\hat L^\dagger}\right]\\
+%&= \Tr\left[e^{-\frac{t}{2}\hat L^\dagger}e^{-\frac{t}{2}\hat L}\hat\rho(0)\right] \\
+%&= \Tr\left[e^{-\frac{t}{2}\hat L^\dagger -\frac{t}{2}\hat L + \frac{1}{2}\left[\frac{t}{2}\hat L, \frac{t}{2}\hat L^\dagger \right]}\hat\rho(0)\right]\\
+%& = \Tr\left[e^{-t\hat L}\hat\rho(0)\right].
+%        & = \sum_i \bra{i}e^{-\frac{t}{2}\hat L}\hat\rho(0) e^{-\frac{t}{2}\hat L^\dagger}\ket{i}\\
+%        & = \sum_i \bra{i}e^{-\frac{t}{2}\hat L} \ket{\psi(0)}\bra{\psi(0)} e^{-\frac{t}{2}\hat L^\dagger}\ket{i}\\
+%        & = \sum_i \left(\bra{i}e^{-\frac{t}{2}\hat L} \ket{\psi(0)}\right)^2\\
+%        & = \sum_{i}\left(\sum_j\bra{i}e^{-\frac{t}{2}\hat L}\sqrt{\rho_j}\ket{j}\right)^2\\
+%        & = \sum_{i}\left(\sum_j\sqrt{\rho_j}e^{-\frac{t}{2} L_{ij}}\right)^2\\
+%        & = \sum_{i}\sum_{jk}\left[\left(\sqrt{\rho_j}e^{-\frac{t}{2} L_{ij}}\right)^2 + 2\left(\sqrt{\rho_j}\sqrt{\rho_k}e^{-\frac{t}{2} L_{ij}}e^{-\frac{t}{2} L_{ik}}\right) \right]\\
+%        & = \sum_{i}\sum_j\rho_je^{-tL_{ij}}=1
+%    \end{split}
+%\end{equation}
+
+The time derivate of the density matrix's trace is
+\begin{equation}
+    \begin{split}
+        \Tr\left[\frac{d}{dt}\hat\rho(t)\right] &= -\frac{1}{2}\Tr\left[\hat L \hat \rho + \hat \rho \hat L\right]\\
+        &=-\Tr\left[\hat L \hat \rho\right] \neq 0.
+    \end{split}
+\end{equation}
+
+
+Moreover, the probability to be at node $a$ at time $t$ is given by
+\begin{equation}\label{density_t_projection}
+    \begin{split}
+       \Tr\left[\hat P_a\hat\rho(t)\right] &= \sum_i \braket{i}{a}\bra{a} e^{-\frac{t}{2}\hat L} \ket{\psi_0}\bra{\psi_0}e^{-\frac{t}{2}\hat L}\ket{i}\\
+        &= \sum_{ijk} \braket{i}{a}\bra{a} e^{-\frac{t}{2}\hat L} \sqrt{\rho_j}\ket{j}\bra{k}\sqrt{\rho_k}e^{-\frac{t}{2}\hat L}\ket{i}\\
+        &= \sum_{ijk}\delta_{i,a}\sqrt{\rho_j}\sqrt{\rho_k}e^{-\frac{t}{2} L_{aj}}e^{-\frac{t}{2}L_{ki}}\\
+        &= \sum_{jk}\sqrt{\rho_je^{-tL_{ja}}}\sqrt{\rho_k e^{-t L_{ak}}}\\
+        &= \sum_{j}\sqrt{\rho_je^{-tL_{ja}}}\sum_k\sqrt{\rho_k e^{-t L_{ak}}}\\
+        &= \left(\sum_{j}\sqrt{\rho_je^{-tL_{ja}}}\right)^2\\
+        &\leq \sum_{j} e^{-tL_{aj}}\rho_j = \rho_a(t).
+    \end{split}
+\end{equation}
+
+In the last passage we use the Jensen inequality. We can say that there is an equation since if we sum in the left and on the right over all the state $\ket{a}$, thus
+\begin{equation}
+   \begin{split}
+        \sum_a\Tr\left[\hat P_a\hat\rho(t)\right] &\leq \sum_a\rho_a(t)\\
+        1=\Tr\left[\hat\rho(t)\right] &\leq 1.
+   \end{split}
+\end{equation}
+
+
+
+If we have uncertainty about the real distribution upon the network we can introduce the density matrix for mixed state. Let be $\{\ket{\psi_k}\}_{k<K\in\mathbb{R}}$ a set of different probability state that can describe the system with probability $p_k$, $\sum_k^K p_k = 1$, then the mixed density matrix is define as
+\begin{equation}
+    \hat \rho = \sum_{k=1}^K p_k \hat \rho_k \qquad \hat\rho_k = \ket{\psi_k}\bra{\psi_k}.
+\end{equation}
+
+The temporal evolution of the operator is define as in eq. \eqref{density_matrix_evolution}; the probability to be at node a at time t is the same as in eq. \eqref{density_t_projection}. All the property for the pure state still holds; this can be easily proven using the linearity of the trace.
+
+Using the mixed density matrix we can consider a system that does not start from a defined distribution, but from an ensemble of possible distribution with their probability to happen. 
+
+\subsection{Unitary transformations}
+If we apply an unitary operator $\hat U$ to the network G(N,E) it will be transformed in another network G'(N, E'), but the observable must be the same.
+Let be $\hat O' = \hat U^\dagger \hat O\hat U$ the operator $\hat O$ in the new network, then
+\begin{equation}
+    \left< \hat O'\right> = \Tr\left[\hat O'\hat\rho'\right] = \Tr\left[\hat U\hat O \hat U^\dagger \hat U\hat\rho\hat U^\dagger\right] = \Tr\left[\hat O\hat\rho\right] = \left< \hat O\right> 
+\end{equation}
+we apply the cyclic property of the trace.
+
+From that if the operator $\hat L$ is symmetric, we can diagonalize it. Called $\ket{\lambda}$ the eigenstate with eigenvalue $\lambda$ that form an orthonormal basis; then every probability vector can be decompose as $\ket{\psi} = \sum_\lambda c_\lambda \ket{\lambda}$.
+The density operator in this basis can be written as
+\begin{equation}
+    \hat \rho(t) = \ket{\psi(t)}\bra{\psi(t)} = \sum_\lambda c_\lambda c_\lambda' e^{-t\lambda}\ket{\lambda}\bra{\lambda'}
+\end{equation}
+\begin{equation}
+   \Tr\left[\hat\rho(t)\right] = \sum_{\lambda\sigma}c_\lambda c_\lambda'^*e^{-t\lambda} \braket{\sigma}{\lambda}\braket{\lambda'}{\sigma} = \sum_{\lambda\sigma}|c_\lambda|^2e^{-t\lambda} = 1
+\end{equation}
+
+
+\subsection{Von Neumann Entropy}
+After this definition, we can introduce the Von-Neumann entropy defined as the expectation value of the  probability's logarithm
+\begin{equation}\label{Von_Neumann_Entropy}
+    S(t) = -\Tr \left[\hat\rho(t) \ln \hat\rho(t)\right] = -\sum_i \bra{i}\hat\rho(t) \ln\hat\rho(t)\ket{i} = -\sum_i \rho_i(t)\ln \rho_i(t).
+\end{equation}
+
+As the Shannon one, the Von Neumann entropy is always positive, it is a convex function with boundary  $0<S < \ln N$, the equation hold respectively for pure state and for maximal mixing state \cite{Nielsen_Chuang_2010}.
+
+This quantity allows us to measure the how much mixed is the density matrix, in other words, the uncertainty over the possible state of the system.
+
+
+
+\begin{comment}
+    \subsection{Stochastic Weight}
+    
+    Let retake the eq. \eqref{master_eq}, if we do not know the exact probability transition or if it changes randomly by time we can consider how system as if it is submerged in a thermal bath that changes randomly the probability transitions. This can be seen as add a stochastic operator $\hat \xi_t$ and a pseudo-temperature $T$ in the master equation with Dirac notation
+    \begin{equation}
+    \frac{d}{dt}\ket{\psi} = - \frac{1}{2}\left(\hat L + \sqrt{2T}\hat \xi_t\right) \ket{\psi}.
+\end{equation}
+
+Let be $\hat \xi_t$ an operator that has the same eigenvector of $\hat L$ but the respective eigenvalue are chosen randomly from a gaussian distribution with zero mean and unitary variance, so each eigenvector is independent from the other (the covariance of $\hat \xi_t$ is diagonal) but the probability transition $\pi_{ij}$ are not.
+
+If we diagonalize the system it can be written as
+\begin{equation}
+\frac{d}{dt}\ket{\psi} = -\sum_\lambda \frac{1}{2}\left(\lambda + \sqrt{2T} \xi_{\lambda,t}\right) \ket{\lambda},
+\end{equation}
+where $\xi_{\lambda,t}$ is a white noise at time $t$ for the eigenstate $\ket{\lambda}$. To preserve the norm of the state the fluctuations can not act on the null eigenstate, so $\sum_\lambda\xi_{\lambda,t} = 0$.
+
+Since all the eigenstate are independent, we can separate it in different equation
+\begin{equation}
+\frac{d}{dt}c_\lambda(t)\ket{\lambda} = -\frac{1}{2}\left(\lambda + \sqrt{2T} \xi_{\lambda,t}\right) c_\lambda(t)\ket{\lambda},
+\end{equation}
+This equation can be transform in a stochastic different equation
+\begin{equation}
+dc_\lambda(t) = -\frac{1}{2}\left(\lambda dt + \sqrt{2T} dW_t\right) c_\lambda(t),
+\end{equation}
+where $dW_t$ is the Weiner process. 
+
+Since the solution of this type of stochastic differential equation satisfies the Fokker-Plank equation and the F-P satisfies the maximal entropy principle, the solution must maximize the Von Neumann entropy at given temperature $T$.
+\end{comment}
+
+Let apply the maximal entropy principle at $t$ fixed with the Von-Neumann entropy. Thus, we write the entropy with the Lagrange multiplier for the condition $\Tr[\hat\rho] = 1$ (conservation of the total probability) and $\Tr[\hat L\hat\rho] = U$ with $U$ fixed (average energy fixed)
+\begin{equation*}
+    \begin{split}
+        S &= -\Tr\left[\hat\rho\ln\hat\rho\right] - \alpha\left(\Tr\left[\hat\rho\right] - 1\right) -\beta\left(\Tr\left[\hat L\hat\rho\right] - U\right)\\
+        &= -\sum_\lambda \rho_\lambda\ln \rho_\lambda - \alpha\left(\sum_\lambda \rho_\lambda - 1\right) -\beta\left(\sum_\lambda\lambda \rho_\lambda - U\right)\\
+        & = -\sum_\lambda |c_\lambda|^2\ln \left(|c_\lambda|^2\right) - \alpha\left(\sum_\lambda |c_\lambda|^2 - 1\right) -\beta\left(\sum_\lambda\lambda |c_\lambda|^2 - U\right),
+    \end{split}
+\end{equation*}
+where $\ket{\lambda}$ are the eigenstate with $\lambda$ eigenvalue of $\hat L$.
+
+The principle assure us that this quantity must be maximize. Therefore,
+\begin{equation}
+    \begin{split}
+        0 = \frac{\partial S}{\partial |c_\sigma|^2} &= -\ln |c_\sigma|^2 + 1 -\alpha -\beta\sigma\\
+        &=-\ln|c_\sigma|^2 + 1 - \alpha -\beta\sigma\\  
+        |c_\sigma|^2 &= e^{1 - \alpha -\beta\sigma}.\\
+    \end{split}
+\end{equation}
+The parameter $\alpha$ and $\beta$ can be found using the two condition. The final result says
+\begin{equation}
+    |c_\sigma^*|^2 = \frac{1}{Z}e^{-\beta\sigma},
+\end{equation}
+with $Z = \sum_\sigma e^{-\beta\sigma}$ is the partition function and $\beta = \frac{1}{T}$.
+
+Therefore, the density matrix that maximize the Von Neumann entropy is
+\begin{equation}\label{maximal_distribution}
+    \hat \rho = \sum_\lambda \frac{1}{Z}e^{-\beta\lambda} = \sum_\lambda \frac{1}{Z}e^{-\beta\hat L}.
+\end{equation}
+
+In the case of the 
+The Von Neumann entropy of the network by time can be written as
+\begin{equation}
+        S(t) = -\Tr\left[\hat\rho(t)\ln\hat\rho(t)\right] = -\sum_\lambda e^{-t\lambda}|c_\lambda|^2\ln \left(e^{-t\lambda}|c_\lambda|^2\right) \xrightarrow{t\rightarrow\infty} 0 .
+\end{equation}
+
+This is coherent with the meaning of the Von Neumann entropy that tells the uncertainty over the state of the network, but in the limit $t \rightarrow \infty$ there is no uncertainty over the possible state because the network would be in the zero eigenstate.
+
+Moreover, the derivate of the entropy respect to time 
+\begin{equation}
+    \begin{split}
+        \frac{d}{dt} S(t) &= \frac{d}{dt} \Tr[\hat\rho(t) \ln\hat\rho(t)] = \Tr\left[\frac{d}{dt}\left(\hat\rho(t)\right)\ln\hat\rho(t) + \hat\rho(t) \frac{d}{dt}\left(\ln\hat\rho(t)\right)\right]\\
+        &= \Tr\left[\frac{d\hat\rho(t)}{dt}\ln\hat\rho(t) + \hat\rho(t)\hat\rho(t)^{-1}\frac{d\hat\rho(t)}{dt} \right]\\
+        &= \Tr\left[\frac{d\hat\rho(t)}{dt}\left(\ln\hat\rho(t) + I\right)\right]\\
+        &= -\frac{1}{2}\Tr\left[\left(\hat L \hat \rho + \hat \rho \hat L\right)\left(\ln\hat\rho(t) + I\right)\right]\\
+        &= -\frac{1}{2}\Tr\left[\left(\hat L \hat \rho + \hat \rho \hat L\right)\ln\hat\rho\right]-\cancel{\frac{1}{2}\Tr\left[\left(\hat L \hat \rho + \hat \rho \hat L\right)\right]}\\
+        &=-\frac{1}{2}\sum_a\bra{a}\hat L\hat\rho\ln\hat\rho\ket{a}-\frac{1}{2}\sum_a\bra{a}\hat\rho\hat L\ln\hat\rho\ket{a}\\
+        &=-\frac{1}{2}\sum_{ab}\bra{a}\hat L\ket{b}\bra{b}\hat\rho\ln\hat\rho\ket{a}-\frac{1}{2}\sum_{ab}\bra{a}\hat L\ket{b}\bra{b}\hat\rho\ln\hat\rho\ket{a} \leq 0.
+    \end{split}
+\end{equation}
+The last inequality is derived by the fact that $-\bra{b}\hat\rho\ln\hat\rho\ket{a}$ is always bigger than zero, and $\bra{a}\hat L\ket{b}$  is negative by definition.
+From this result it emerges that the evolution of the system reduces the uncertainty over the distribution; as a matter of fact the limit $t\rightarrow \infty$ the system must be in the stationary state without doubt.
+
+The entropy at each time give the information about the randomness of the diffusion process itself, namely about the path the network can take to reach the stationary state. It measure the uncertainty in the ensemble of possible distribution that can be over the network. If we start from a pure state there is no uncertainty about the future distribution, but if the initial state is not pure we have more possible distribution for each time. The density matrix \eqref{maximal_distribution} is the distribution with more uncertainty during all its relaxation. 
+It give us different information respect the Shannon entropy of the system
+\begin{equation}
+    S= \sum_i p_i\ln p_i,
+\end{equation}
+that measure the randomness in the position of the particle. However, the two entropies are linked by a Fourier transform.
+
+%For mixed state $\hat\rho = \sum_n p_n\ket{\psi_n}\bra{\psi_n}$, so
+%\begin{equation}
+%    \begin{split}
+%        S(t) &= \Tr\left[\hat\rho(t)\ln(\hat\rho(t))\right]=\Tr\left[\left(\sum_n \ket{\psi_n(t)}\bra{\psi_n(t)}\right)\ln\left(\sum_n \ket{\psi_n(t)}\bra{\psi_n(t)}\right)\right]\\
+%        & =\Tr\left[\left(\sum_{in}p_nc_{i,n}^2(t)\ket{i}\bra{i}\right)\ln\left(\sum_np_nc_{i,n}^2(t)\ket{i}\bra{i}\right)\right]\\
+%        & =\Tr\left[\left(\sum_{n\lambda} p_n c_{\lambda,n}^2(t)\ket{\lambda}\bra{\lambda}\right)\sum_{\sigma}\ln\left(\sum_np_nc_{\sigma,n}^2(t)\right)\ket{\sigma}\bra{\sigma}\right]\\
+%        & = \sum_{n\lambda} p_n c_{\lambda,n}^2(t)\ln\left( \sum_n p_n c_{\lambda,n}^2(t)\right)\\
+%        & = \sum_{n\lambda} p_n c_{\lambda,n}^2e^{-t\lambda}\ln\left( \sum_n p_n c_{\lambda,n}^2e^{-tL}\right) \xrightarrow{t\rightarrow\infty} 0.
+%    \end{split}
+%\end{equation}
+
+%As proven by De Domenico \cite{De_Domenico_2023}, all this framework can be apply to all the dynamics over a network that can be expressed with an differential equation as the \eqref{master_eq}.
+
+The Von Neumann property has a interesting property: if the laplacian does not hold the detail balance condition, thus its spectral decomposition are imaginary, the entropy depends just by the their real part. Indeed, the exponential $e^{-t\mathfrak{Im}(\lambda)}$ is equal to the quantum evolution operator that does not change the Von Neumann entropy.

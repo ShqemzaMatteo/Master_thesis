@@ -1,0 +1,54 @@
+\chapter{Mathematical method to solve differential equation from matrix}\label{A_vectorial_density_matrix}
+
+In the chapter \ref{C_Quantum Stochastic Walk} we study the time evolution of the density matrix transforming it into a vector. In this chapter we explain how it works.
+
+First of all, we start with a differential equation in the form
+\begin{eqnarray}
+    \frac{d}{dt} X = A X B,
+\end{eqnarray}
+where $X$, $A$ and $B$ are $2\times 2$ matrix. 
+We can solve the differential equation transforming the matrix $X$ into a vector $\sket{X} = \left(x_{11}, x_{12},x_{21}, x_{22}\right)^T$, thus, the differential equation becomes
+\begin{equation}
+    \frac{d}{dt} \sket{X} = C \sket{X},
+\end{equation}
+$C$ is a matrix that derives from $A$ and $B$.
+
+As a matter of fact, considering the evolution of each element of $X$ we obtain
+\begin{equation}
+    \left\{\begin{aligned}
+        \frac{dx_{11}}{dt} = a_{11}x_{11}b_{11} +a_{11}x_{12}b_{21}+ a_{12}x_{21}b_{11}+ a_{12}x_{22}b_{21}\\
+        \frac{dx_{21}}{dt} = a_{21}x_{11}b_{11} +a_{21}x_{12}b_{21}+ a_{22}x_{21}b_{11}+ a_{22}x_{22}b_{21}\\
+        \frac{dx_{12}}{dt} = a_{11}x_{11}b_{12} +a_{11}x_{12}b_{22}+ a_{12}x_{21}b_{12}+ a_{12}x_{22}b_{22}\\
+        \frac{dx_{22}}{dt} = a_{21}x_{11}b_{12} +a_{21}x_{12}b_{22}+ a_{22}x_{21}b_{12}+ a_{22}x_{22}b_{22}\\
+    \end{aligned}\right. 
+\end{equation}
+We can rearrange them in a vectorial form
+\begin{equation}\label{differential_matrix_element}
+    \frac{d}{dt}\begin{pmatrix}
+        x_{11}\\ x_{12}\\x_{21}\\ x_{22}\\
+    \end{pmatrix} = \begin{pmatrix}
+        a_{11}b_{11} &a_{11}b_{21}& a_{12}b_{11}& a_{12}b_{21}\\
+        a_{11}b_{12} &a_{11}b_{22}& a_{12}b_{12}& a_{12}b_{22}\\
+        a_{21}b_{11} &a_{21}b_{21}& a_{22}b_{11}& a_{22}b_{21}\\
+        a_{21}b_{12} &a_{21}b_{22}& a_{22}b_{12}& a_{22}b_{22}\\
+    \end{pmatrix}\begin{pmatrix}
+        x_{11}\\ x_{12}\\ x_{21}\\ x_{22}\\
+    \end{pmatrix} = C \sket{X}
+\end{equation}
+
+The matrix $C$ in equation \eqref{differential_matrix_element} is the tensorial product
+\begin{equation}
+    C= A\otimes B^T = \begin{pmatrix}
+        A_{11}B^T & A_{12}B^T\\
+        A_{21}B^t& A_{22}B^T\\
+    \end{pmatrix}.
+\end{equation}
+where $B^T$ is the transpose of matrix $B$.
+
+With similar procedure, we can vectorize also the differential equation
+\begin{equation}
+    \frac{d}{dt}X = AX + XB \rightarrow \frac{d}{dt}\sket{X} = \left(A\otimes \mathbb{I} + \mathbb{I} \otimes B^T\right)\sket{X}
+\end{equation}
+where $\mathbb{I}$ is the identity matrix.
+
+The generalization to $N \times N$ matrix and finite dimensional operator is straightforward.

@@ -1,0 +1,124 @@
+\chapter{Hamiltonian system}
+Another way to solve the stochastic different equation is via the analogy with a hamiltonian system.
+
+Let take a system of point connect by springs of elastic constant $K_{ij}$, with the condition $i \neq j$. 
+Considering $q_i$ the coordinates of the $i$ point, the elastic elastic potential can be define as
+\begin{equation}
+    V(q) = \frac{1}{4}\sum_{i\neq j} K_{ij}(q_i-q_j)^2 = \frac{1}{2}\sum_{j}K_{jj}q_j^2 - \frac{1}{2} \sum_{i\neq j}K_{ij}q_iq_j,
+\end{equation}
+where 
+\begin{equation}
+    K_{jj} = \sum_{j \neq i} K_{ij}.
+\end{equation}
+
+We set $K_{ij}=-H_{ij}$, therefore the potential can be written as
+\begin{equation}
+    V(q) = \frac{1}{2}\sum_{i\neq j} H_{ij} q_i q_j.
+\end{equation}
+The $H$ matrix is a laplacian matrix since it holds the property $\sum_j H_{ij} = 0$, so it has not negative eigenvalue which one must be equal to zero. %% find a way to cite this sentence
+
+We can write the Lagrangian of the system as
+\begin{equation}
+    \mathcal{L} = \frac{1}{2}\sum_{ij} \dot q_i G_{ij} \dot q_j -\frac{1}{2} \sum_{ij} q_iH_{ij}q_j.
+\end{equation}
+
+If we consider a dynamics over weight graph as define in \ref{master_eq}; if the detail balance condition holds, i.e. $L_{ij}p_j^*=L_{ji} p_i^*$, we can define a matrix $H_{ij} = L_{ij}p_j^*$ that is laplacian and symmetric. Assuming $m_i = p_i^*$, we can write a Lagrangian 
+\begin{equation}
+    \mathcal{L} = \frac{1}{2}\sum_{ij} \dot q_i G_{ij} \dot q_j -\frac{1}{2} \sum_{ij} q_iH_{ij}q_j.
+\end{equation}
+
+The equations of motion are
+\begin{equation}
+    m_i \ddot q_i = -H_{ij} q_j.
+\end{equation}
+
+The eigenmodes of the system are defined by the solution of the equation 
+\begin{equation}
+    m_i \omega^2 \phi_i = H_{ij} \phi_j.
+\end{equation}
+
+Rewriting it in matrices form
+\begin{equation}
+    |M\Omega^2 - H| = |\Omega^2 - HM^{-1}|.
+\end{equation}
+
+Therefore, the spectral signature of the matrix $HM^{-1} = L$ are the same of the harmonic oscillator. In this way we can connect the harmonic oscillator and the master equation of a network and vice versa. Since $M$ is diagonal, $H$ and $L$ have the same support, eigenvectors and eigenvalues, leading to $E = \omega^2 = \lambda$, which creates a natural ranking between the eigenvectors. 
+
+To combine this with the thermodynamics, let consider the presence of a thermal bath in the Hamiltonian formalism
+\begin{equation}
+    \begin{aligned}
+        &\dot q_i = \frac{p_i}{m_i}; \\
+        &\dot p_i  = -H_{ij}q_j - \gamma \sum_j \left(\delta_{ij} - \frac{1_{ij}}{M}\right)\frac{p_j}{m_j} + \sqrt{2T\gamma}\xi_i(t),
+    \end{aligned}
+\end{equation}
+where $\gamma$ is a parameter that represent the interaction with the thermal bath, $T$ is the temperature,$\delta_{ij}$ the Kronecker delta and $1_{ij}$ the matrix with all entries equal to 1,  $\xi_i(t)$ is a random noise such that $\sum_i \xi_i = 0$. The condition over the noise leave constant the system's center of mass.
+The derivative of $\sum_i p_i$ is constant, therefore an integral of motion
+\begin{equation}
+        \frac{d}{dt} \sum_i \dot p_i = - \gamma \sum_{ij}\left(\delta_{ij} - \frac{1_{ij}}{M}\right) \frac{p_j}{m_j} + \cancel{\sqrt{2T\gamma}\sum_i\xi_i(t)} = 0.
+\end{equation}
+
+For the initial condition
+\begin{equation}
+    \sum_i m_i q_i = 1 \qquad \sum_i p_i = 0
+\end{equation}
+
+we can rewriting the noise using a i.i.d. variable $w(t)$
+
+\begin{equation}
+    \xi_i(t) = w_i (t) + \frac{1}{M} \sum_k w_k(t).
+\end{equation}
+
+The variance can be written as
+
+\begin{equation}
+    \left<\xi_i(t)\xi_j(s)\right> = \left[\delta_{ij} - \frac{1_{ij}}{M}\right]\delta(t-s)
+\end{equation}
+
+The distribution $\rho(q,p,t)$ is a Gaussian and satisfies the Fokker-Plank equation
+\begin{equation}
+    \frac{\partial\rho}{\partial t} = -\sum_i \frac{p_i}{m_i}\frac{\partial \rho}{\partial q_i} + \sum_{ij} H_{ij}q_j\frac{\partial \rho}{\partial p_i} + \gamma\sum_{ij}\left(\delta_{ij}-\frac{1_{ij}}{M}\right)\left[\frac{\partial}{\partial p_i}\frac{p_j}{m_j}\rho + T \frac{\partial^2}{\partial p_i \partial p_j}\right].
+\end{equation}
+
+The solution at equilibrium is
+\begin{equation}
+    \rho(q,p) = Z(\beta)^{-1} \exp\left[ -\beta \left( \sum_j \frac{p_j^2}{2m_j} + \sum_{ij} q_iH_{ij}q_j\right)\right],
+\end{equation}
+where $\beta = \frac{1}{T}$ and $A(\beta)$ is the partition function defined as
+\begin{equation}
+    Z(\beta) = \int \prod_i dp_i dq_i \; \exp\left[ -\beta \left( \sum_j \frac{p_j^2}{2m_j} + \sum_{ij} q_iH_{ij}q_j\right)\right].
+\end{equation}
+
+The marginal distribution on the coordinates is a Maxwell-Boltzmann distribution with the internal energy 
+\begin{equation}
+    \rho(q) = Z(\beta)^{-1} e^{-\beta \left(\sum_{ij} q_iH_{ij}q_j\right)}.
+\end{equation}
+
+Since there is a sum over the indices $i$ and $j$ we can change the basis of $q_i$ to $Q_\lambda$ such that the $H$ is diagonal. Therefore, the marginal distribution becomes
+\begin{equation}\label{marginal_probability}
+    \rho(q) = Z(\beta)^{-1} e^{-\beta \left(\sum_{\lambda \neq 0} Q_\lambda \lambda Q_\lambda\right)},
+\end{equation}
+with partition function 
+\begin{equation}
+    Z(\beta) = \int \prod_{\lambda\neq 0} dQ_\lambda e^{-\beta \left(\sum_{\lambda \neq 0} \lambda Q_\lambda^2\right)}.
+\end{equation}
+
+The thermal distribution does not involve the zero eigenmode since The bath does not thermal interact with it because we want to keep the integral of motion constant. Moreover, this requirement guarantees the conservation of the stationary distribution of the master equation \ref{stationary_distribution}.  
+This is encoded in the condition $\sum_i \xi_i = 0$.
+The distribution has mean $<q_\lambda>= 0$ and the covariance matrix is diagonal with entries $<q^2_\lambda>= \frac{1}{\beta \lambda}$.
+
+To connect this this distribution to the master equation \ref{master_eq}, we can integrate out also the positions obtaining
+\begin{equation}
+    \rho(\lambda) = e^{-\beta \lambda} = \frac{}{Z(\beta)} e^{-\beta L} \qquad Z(\beta) = \sum_\lambda e^{-\beta \lambda}.
+\end{equation}
+
+Now let quantize it: consider a system in the Hilbert space $\mathcal{H} = \mathrm{span}\{\ket{i}\}_{i\leq N} = \mathbb{R}^N$, where the set $\{\ket{i}\}_{i\leq N}$ is form by orthonormal vector. The system has the Hamiltonian $\hat H = L_{ij}\ket{i}\bra{j} = \hat L$ with $L_{ij}$ the Laplacian, this is the operational form of the Laplacian matrix.
+
+Therefore, the density can be written as
+\begin{equation}\label{stationary_state}
+    \hat \rho = Z^{-1}e^{-\beta \lambda}  \ket{\lambda}\bra{\lambda}= Z^{-1} e^{-\beta \hat L}.
+\end{equation}
+
+Reminding the diffusion on network in Dirac notation, the probability of finding the particle on node $i$ at time $t$ can be express with \ref{state_projection}.
+This formulation is similar to the previous density operator for canonical ensemble and it maximize the Von Neumann entropy.
+If we consider a quasi-stationary transformation where we decrease slowly the temperature in a way that the system have time to relax, it will always have a density matrix of the form of \ref{stationary_state}. When the temperature $T \rightarrow 0$, we have found a preferential path to reach the equilibrium state of the system.
+

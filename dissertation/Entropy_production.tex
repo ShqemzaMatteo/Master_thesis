@@ -1,0 +1,68 @@
+\chapter{Entropy production} \label{A_entropy_increasing}
+
+In chapter \ref{C_Quantum Stochastic Walk} computing the derivative of the entropy for the quantum stochastic walk we reach the result \eqref{QSW_entropy_production}
+\begin{equation}
+        \dot S(\hat\rho) =  -\sum_{ij}A_{ij}\left(\Tr\left[\hat J_{ij} \hat\rho\hat J_{ij}^\dagger\ln\hat\rho\right]-\Tr\left[\hat J_{ij}^\dagger \hat J_{ij}\hat\rho\ln\hat\rho\right]\right)
+\end{equation}
+that it is positive ensuring the increasing of the entropy.
+
+To prove the last statement, since $A_{ij}$is always positive, we need to prove the following inequality
+\begin{equation}\label{AA_entropy_inequality}
+    \Tr\left[\hat J_{ij}\hat\rho\hat J_{ij}^\dagger\ln\hat\rho\right] \leq \Tr\left[\hat J_{ij}^\dagger\hat J_{ij}\hat\rho\ln\hat\rho\right].
+\end{equation}
+
+First we diagonalize the density matrix. let be $\ket{\Lambda_i}$ the eigenstate with eigenvalue $\Lambda_i$, the density matrix can be written as
+\begin{equation}
+    \hat \rho = \sum_k \Lambda_k\ket{\Lambda_k}\bra{\Lambda_k}.
+\end{equation}
+We transform also the jump operator in this basis $\hat{\mathcal{J}}_{ij}= \hat O \hat J_{ij}\hat O^\dagger$.
+The l.h.s. of the inequality \eqref{AA_entropy_inequality} becomes with some algebra can be reduces to 
+\begin{equation}
+    \begin{split}
+        \Tr\left[\hat J_{ij} \hat\rho\hat J_{ij}^\dagger\ln\hat\rho\right]=& \sum_{kl}\Tr\left[\hat{\mathcal{J}}_{ij} \Lambda_k\ket{\Lambda_k}\bra{\Lambda_k}\hat{\mathcal{J}}_{ij}^\dagger\ln\Lambda_l \ket{\Lambda_l}\bra{\Lambda_l}\right] \\
+        %&= \sum_{kl}\Lambda_k\ln\Lambda_l\Tr\left[\bra{\Lambda_l}\hat{\mathcal{J}}_{ij} \ket{\Lambda_k}\bra{\Lambda_k}\hat{\mathcal{J}}_{ij}^\dagger\ket{\Lambda_l}\right]\\
+        &= \sum_{kl}\Lambda_k\ln\Lambda_l\Tr\left[|\bra{\Lambda_l}\hat{\mathcal{J}}_{ij} \ket{\Lambda_k}|^2\right]\\
+        %&= \sum_{kl}\Lambda_k\ln\Lambda_l\Tr\left[x^{(ij)}_{k,l}\right]\\
+        &= N \sum_{kl}\Lambda_k\ln\Lambda_lx^{(ij)}_{kl}
+    \end{split}
+\end{equation}
+where $x^{(ij)}_{kl} = |\bra{\Lambda_l}\hat{\mathcal{J}}_{ij} \ket{\Lambda_k}|^2$ and it is symmetric respect the change $k \leftrightarrow l$. 
+
+The r.h.s. becomes
+\begin{equation}
+    \begin{split}
+        \Tr\left[\hat J_{ij}^\dagger \hat J_{ij}\hat\rho\ln\hat\rho\right]=& \sum_{kl}\Tr\left[\hat J_{ij}^\dagger \hat J_{ij}\Lambda_k\ket{\Lambda_k}\bra{\Lambda_k}\ln\Lambda_l\ket{\Lambda_l}\bra{\Lambda_l}\right]\\
+        & = \sum_{kl}\Lambda_k\ln\Lambda_l\Tr\left[\bra{\Lambda_l}\hat J_{ij}^\dagger\hat J_{ij}\ket{\Lambda_k}\braket{\Lambda_k}{\Lambda_l}\right]\\
+        &= \sum_{k}\Lambda_k\ln\Lambda_k\Tr\left[\bra{\Lambda_k}\hat J_{ij}^\dagger\hat J_{ij}\ket{\Lambda_k}\right]\\
+        &= \sum_{kl}\Lambda_k\ln\Lambda_k\Tr\left[\bra{\Lambda_k}\hat J_{ij}^\dagger\ket{\Lambda_l}\bra{\Lambda_l}\hat J_{ij}\ket{\Lambda_k}\right]\\
+        &= N\sum_{kl}\Lambda_k\ln\Lambda_k x^{(ij)}_{kl}.\\
+    \end{split}
+\end{equation}
+
+The second braket in the trace is just a Kronecker delta. We use the completeness relation $I = \sum_l\ket{\Lambda_l}\bra{\Lambda_l}$ obtaining
+\begin{equation}
+    \begin{split}
+        \Tr\left[\hat J_{ij}^\dagger \hat J_{ij}\hat\rho\ln\hat\rho\right]&= \sum_{kl}\Lambda_k\ln\Lambda_k\Tr\left[\bra{\Lambda_k}\hat J_{ij}^\dagger\ket{\Lambda_l}\bra{\Lambda_l}\hat J_{ij}\ket{\Lambda_k}\right]\\
+        &= N\sum_{kl}\Lambda_k\ln\Lambda_k x^{(ij)}_{kl}.\\
+    \end{split}
+\end{equation}
+
+
+The inequality \eqref{AA_entropy_inequality} reduces to 
+\begin{equation}
+    N \sum_{kl}\Lambda_k\ln\Lambda_lx^{(ij)}_{kl} \leq N\sum_{kl}\Lambda_k\ln\Lambda_k x^{(ij)}_{kl}.
+\end{equation}
+
+We can rearrange the term in the two sum as
+\begin{equation}
+    \begin{split}
+        \sum_{k}\sum_{l<k}2\Lambda_k\ln\Lambda_lx^{(ij)}_{k,l} +& \sum_k\Lambda_k\ln\Lambda_k x^{(ij)}_{k,k} \leq\\ 
+        \sum_{k}\sum_{l<k}&\left(\Lambda_k\ln\Lambda_k+ \Lambda_l\ln\Lambda_l\right)x^{(ij)}_{kl} + \sum_{k}\Lambda_k\ln\Lambda_k x_{kk} 
+    \end{split}
+\end{equation}
+
+Therefore, to prove it it necessary that 
+\begin{equation}
+    2\Lambda_k\ln\Lambda_l \leq \Lambda_k\ln\Lambda_k+ \Lambda_l\ln\Lambda_l, 
+\end{equation}
+but it can be proved using the triangular inequality.
