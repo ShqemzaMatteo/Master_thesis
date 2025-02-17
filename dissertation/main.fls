@@ -1,8 +1,8 @@
-PWD c:/Users/Matteo/Desktop/roba/magistrale/Tesi/Testo
+PWD c:/Users/Matteo/Desktop/roba/magistrale/Tesi/codici/Master_thesis/dissertation
 INPUT c:/texlive/2024/texmf.cnf
 INPUT c:/texlive/2024/texmf-dist/web2c/texmf.cnf
 INPUT c:/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT c:/Users/Matteo/Desktop/roba/magistrale/Tesi/Testo/main.tex
+INPUT c:/Users/Matteo/Desktop/roba/magistrale/Tesi/codici/Master_thesis/dissertation/main.tex
 OUTPUT main.log
 INPUT c:/texlive/2024/texmf-dist/tex/latex/base/report.cls
 INPUT c:/texlive/2024/texmf-dist/tex/latex/base/report.cls
@@ -429,9 +429,9 @@ INPUT ./image/W_S_N100_K4_p0,3.png
 INPUT ./image/W_S_N100_K4_p0,3.png
 INPUT ./image/W_S_N100_K4_p0,3.png
 INPUT ./image/W_S_N100_K4_p0,3.png
-INPUT ./Diffusion_network.tex
-INPUT ./Diffusion_network.tex
-INPUT Diffusion_network.tex
+INPUT ./Random_walk.tex
+INPUT ./Random_walk.tex
+INPUT Random_walk.tex
 INPUT ./Quantum_Walk.tex
 INPUT ./Quantum_Walk.tex
 INPUT Quantum_Walk.tex

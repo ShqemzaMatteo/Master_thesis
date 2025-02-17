@@ -1,27 +1,30 @@
 \section{Quantum Walk}
-Instead of studying the diffusion of a classic particle in a network, we can extent the diffusion model to quantum particles. 
-They must follow the Schrödinger equation with the Laplacian operator as Hamiltonian. It can be written as
-\begin{equation}\label{Schrödinger_quantum_walk}
-    \frac{d}{dt}\ket{\psi} = -i\frac{1}{2}L\ket{\psi}.
-\end{equation}
-The ket state $\ket{\psi}$ is define as
+Instead of studying the random walk of a classical particle in a network, we can extend the diffusion model to quantum particles. 
+They must follow the Schrödinger equation with the Laplacian as Hamiltonian. This model is known as “continuos time quantum walk" \cite{Farhi_98}.
+
+Let us define an orthonormal basis $\{\ket{i}\}$, where each element $\ket{i}$ indicates their corresponding node $i$, satisfying $\braket{i}{j}=\delta_{ij}$. 
+A general general state of the network can be encoded in the ket state $\ket{\psi}$ is define as
 \begin{equation}\label{ket_state_quantum}
     \ket{\psi} = \sum_i \sqrt{\rho_i(t)} \ket{i},
 \end{equation}
 in this way $\rho_i = |\braket{i}{\psi}|^2$ is the projection of the state in the node $i$, in other words the probability to be in the state $i$.
+The Schrödinger equation can be written as
+\begin{equation}\label{Schrödinger_quantum_walk}
+    \frac{d}{dt}\ket{\psi} = -i\frac{1}{2}\hat L\ket{\psi}.
+\end{equation}
+where $\hat L = L_{ij}\ket{i}\bra{j}$ is the Laplacian operator.
 
-This model is called  “continuos time quantum walk" \cite{Farhi_98}.
-The formula \eqref{Schrödinger_quantum_walk} requires that $\hat L$ is hermitian; therefore, the network must hold the detail balance.
 
-The equation \eqref{Schrödinger_quantum_walk} has a solution in the from of 
+The formula \eqref{Schrödinger_quantum_walk} requires that $\hat L$ is hermitian; therefore, the network must hold the detailed balance condition \eqref{detail_condition}.
+
+The solution of the equation \eqref{Schrödinger_quantum_walk} takes the form
 \begin{equation}
     \ket{\psi(t)} = \hat U(t,0) \ket{\psi(0)} = e^{-\frac{i}{2}\hat L t} \ket{\psi(0)},
 \end{equation}
+where $\hat U(t,t') =e^{-\frac{i}{2}\hat L (t-t')}$ is the evolution operator and now it is  unitary. It holds the following property: $\hat U(t,t')\hat U(t',t'') = U(t,t'')$.
 
-The evolution operator $\hat U(t,t') =e^{-\frac{i}{2}\hat L (t-t')} $ is now unitary and it holds the following property: $\hat U(t,t')\hat U(t',t'') = U(t,t'')$.
-
-However, the system does not converge to the stationary distribution $\rho^*$. 
-Despite that, it is possible to define a limiting distribution of a quantum walk as follow: suppose we start form node $\ket{a}$, we measure the system after a time $t$, random variable uniformly distributed over the interval $t \in [0,T]$ \cite{quantum_walk}. The probability of transition from node $a$ to $b$ is given by
+However, the system does not converge to a stationary distribution $\rho^*$. 
+Despite that, it is possible to define a limiting transition probability for a quantum walk as follow: suppose the system starts at node $\ket{a}$, we measure it after a time $t$, random variable uniformly distributed over the interval $t \in [0,T]$ \cite{quantum_walk}. The transition probability from node $a$ to $b$ is given by
 \begin{equation}
     \begin{split}
         \rho_{a\rightarrow b}(T) &= \frac{1}{T}\int_0^T |\bra{a}e^{-i\frac{t}{2}\hat L} \ket{b}|^2 dt\\
@@ -30,7 +33,7 @@ Despite that, it is possible to define a limiting distribution of a quantum walk
         &= |\braket{a}{\lambda}\braket{\lambda}{b}|^2+2\sum_{\lambda\neq\lambda'}\braket{a}{\lambda}\braket{\lambda}{b}\braket{b}{\lambda'}\braket{\lambda'}{a}\frac{1-e^{-i(\lambda-\lambda')\frac{T}{2}}}{i(\lambda-\lambda')T},\\
     \end{split}
 \end{equation}
-where $\ket{\lambda}$ are the eigenstate of $\hat L$ with eigenvalue $\lambda$. In the limit $T\rightarrow \infty$ it tend to 
+where $\ket{\lambda}$ are the eigenstates of $\hat L$ with eigenvalues $\lambda$. In the limit $T\rightarrow \infty$ it tend to 
 \begin{equation}
     \rho_{a\rightarrow b}(T) \xrightarrow[T \rightarrow \infty]{} |\braket{a}{\lambda}\braket{\lambda}{b}|^2.
 \end{equation}
@@ -39,40 +42,42 @@ Let the system be in the state $\ket{\psi}$, also called pure state, we can defi
 \begin{equation}
     \hat\rho =\ket{\psi}\bra{\psi} = \sum_{ij} \sqrt{\rho_i} \sqrt{\rho_j}\ket{i}\bra{j},
 \end{equation}
-If the system 
-It is by definition a self-adjoint operator and $\Tr[\hat\rho] = 1$.
+It is a self-adjoint operator and $\Tr[\hat\rho] = 1$ \cite{Nielsen_Chuang_2010}.
 
-Let be $\hat O(t) = O_{ij}\ket{i}\bra{j}$ a generic operator, the average value of the respective observable can be found as
+For a generic operator $\hat O(t) = O_{ij}\ket{i}\bra{j}$, the expectation value of the respective observable can be found as
 \begin{equation}
         \left< \hat O\right> = \Tr\left[\hat O\hat\rho\right].
 \end{equation}
-The observable for the probability to be in the node $a$ can be express using the operator $\hat P_a = \ket{a}\bra{a}$ such that
+The probability to be in the node $a$ can be express using the operator $\hat P_a = \ket{a}\bra{a}$ such that
 \begin{equation} \label{state_projection_quantum}
     \begin{split}
-        \Tr\left[\hat P_a\hat\rho(t)\right] &= \sum_i \braket{i}{a}\braket{a}{\psi}\braket{\psi}{i}\\
-        & = \sum_{ijk} \braket{i}{a}\bra{a}\sqrt{\rho_j}\ket{j}\bra{k}\sqrt{\rho_k}\ket{i}\\
-        &= \sum_{ijk} \delta_{i,a}\delta_{a,j}\delta_{k,i}\sqrt{\rho_j}\sqrt{\rho_k}\\
-        & = \sqrt{\rho_a}\sqrt{\rho_a} = \rho_a
+        \Tr\left[\hat P_a\hat\rho(t)\right] 
+        %= \sum_i \braket{i}{a}\braket{a}{\psi}\braket{\psi}{i}
+        %& = \sum_{ijk} \braket{i}{a}\bra{a}\sqrt{\rho_j}\ket{j}\bra{k}\sqrt{\rho_k}\ket{i}\\
+        %&= \sum_{ijk} \delta_{i,a}\delta_{a,j}\delta_{k,i}\sqrt{\rho_j}\sqrt{\rho_k}\\
+        %= \sqrt{\rho_a}\sqrt{\rho_a} 
+        = \rho_a
     \end{split}
 \end{equation}
 
 In the Heisenberg picture, the density operator evolution can be found solving the different equation called Von Neumann equation
 \begin{equation}\label{Von Neumann equation}
     \begin{split}
-        \frac{d}{dt}\hat\rho(t) &= \frac{d}{dt}\left(\ket{\psi(t)}\bra{\psi(t)}\right) = \\
-        &= -\frac{i}{2}\hat L\ket{\psi(t)}\bra{\psi(t)} + \ket{\psi(t)}\bra{\psi(t)}\frac{i}{2}\hat L\\
+        \frac{d}{dt}\hat\rho(t) 
+        %&= \frac{d}{dt}\left(\ket{\psi(t)}\bra{\psi(t)}\right) = \\
+        %&= -\frac{i}{2}\hat L\ket{\psi(t)}\bra{\psi(t)} + \ket{\psi(t)}\bra{\psi(t)}\frac{i}{2}\hat L\\
         &= -\frac{i}{2}\left[\hat L,\rho\right]
     \end{split}
 \end{equation}
 where $[\cdot,\cdot]$ is the commutator.
-The solution of the different equation is
+The solution of the differential equation is
 \begin{equation}
-    \hat\rho(t) = \hat U(t,0)\hat\rho(0)\hat U^\dagger(t,0) = e^{-\frac{i}{2}t\hat L}\hat\rho e^{\frac{i}{2}t\hat L}.
+    \hat\rho(t) = \hat U(t,0)\hat\rho(0)\hat U^\dagger(t,0) = e^{-\frac{i}{2}t\hat L}\hat\rho\, e^{\frac{i}{2}t\hat L}.
 \end{equation}
 
 Using the cyclic property of the trace and the unitary of the evolution operator, it can be proved that the $\Tr[\hat\rho]$ is time invariant.
 
-If we have uncertainty about the real distribution upon the network we can introduce the density matrix for mixed state. Let be $\{\ket{\psi_k}\}_{k<K\in\mathbb{R}}$ a set of different probability state that can describe the system with probability $p_k$, $\sum_k^K p_k = 1$, then the mixed density matrix is define as
+If the initial distribution over the network is uncertain, we can introduce the density matrix for mixed state. Let be $\{\ket{\psi_k}\}_{k<K\in\mathbb{R}}$ a set of different probability state that can describe the system with probability $p_k$, such that $\sum_k^K p_k = 1$, then the mixed density matrix is define as
 \begin{equation}
     \hat \rho = \sum_{k=1}^K p_k \hat \rho_k \qquad \hat\rho_k = \ket{\psi_k}\bra{\psi_k}.
 \end{equation}
@@ -81,25 +86,25 @@ The temporal evolution of the operator is define as in eq. \eqref{Von Neumann eq
 
 Using the mixed density matrix we can consider a system that does not start from a defined distribution, but from an ensemble of possible distribution with their probability to happen. 
 
-\subsection{Von Neumann entropy}
 To measure how mixed the density matrix is we can use the Von Neumann entropy $S[\hat\rho]=-\Tr[\hat\rho\ln\hat\rho]$.
-
-Moreover, the Von Neumann entropy is a time invariance since the evolution operator does not change how mixed are the state \cite{Nielsen_Chuang_2010}. Indeed
-\begin{equation}
-    \begin{split}
-        S[\hat\rho(t)] &=\Tr[\hat\rho(t)\ln\hat\rho(t)]= \Tr[U(t,0)\hat\rho(t)U^\dagger(t,0)\ln\left(U(t,0)\hat\rho(t)U^\dagger(t,0)\right)]\\
-        &=\Tr[U(t,0)\hat\rho(0)U^\dagger(t,0)U(t,0)\ln\left(\hat\rho(0)\right)U^\dagger(t,0)]\\
-        &= S[\hat\rho(0)].
-    \end{split}
-\end{equation}
-We can move out the evolution operator because they are unitary, since if we consider the taylor expansion
-\begin{equation}
-    \begin{split}
-        \ln\left(U(t,0)\hat\rho(t)U^\dagger(t,0)\right) &= c_0U(t,0)U^\dagger(t,0) + c_1 U(t,0)\hat\rho(t)U^\dagger(t,0)\\
-        & \quad + c_2 U(t,0)\hat\rho(t)U^\dagger(t,0)U(t,0)\hat\rho(t)U^\dagger(t,0) + ... \\
-        &=  U(t,0)\ln\left(\hat\rho(t)\right) U^\dagger(t,0).
-    \end{split}
-\end{equation}
+Moreover, the Von Neumann entropy is a time invariance since the evolution operator does not change how mixed the state are \cite{Nielsen_Chuang_2010}.
+\begin{comment}
+    \begin{equation}
+        \begin{split}
+            S[\hat\rho(t)] &=\Tr[\hat\rho(t)\ln\hat\rho(t)]= \Tr[U(t,0)\hat\rho(t)U^\dagger(t,0)\ln\left(U(t,0)\hat\rho(t)U^\dagger(t,0)\right)]\\
+            &=\Tr[U(t,0)\hat\rho(0)U^\dagger(t,0)U(t,0)\ln\left(\hat\rho(0)\right)U^\dagger(t,0)]\\
+            &= S[\hat\rho(0)].
+        \end{split}
+    \end{equation}
+    We can move out the evolution operator because they are unitary, since if we consider the taylor expansion
+    \begin{equation}
+        \begin{split}
+            \ln\left(U(t,0)\hat\rho(t)U^\dagger(t,0)\right) &= c_0U(t,0)U^\dagger(t,0) + c_1 U(t,0)\hat\rho(t)U^\dagger(t,0)\\
+            & \quad + c_2 U(t,0)\hat\rho(t)U^\dagger(t,0)U(t,0)\hat\rho(t)U^\dagger(t,0) + ... \\
+            &=  U(t,0)\ln\left(\hat\rho(t)\right) U^\dagger(t,0).
+        \end{split}
+    \end{equation}
+\end{comment}
 
 \begin{comment}
 If we consider the system in contact with a thermal bath with which exchange only energy but conserving it in average, namely the canonical condition hold, there is a stationary state $\hat\rho = e^{-\beta \hat L}$ that maximize the entropy. The parameter $\beta$ is just the inverse of a pseudo-temperature that stands for the interaction with the thermal bath. 
@@ -107,15 +112,15 @@ Since the thermal bath actively changes the entries of $\hat L$, it is changing 
 The reader can recognize that this density matrix is the same the De Domenico has introduced \eqref{density_matrix}.
 \end{comment}
 
-\subsection{1-D quantum random walk}
-Let consider a toy model: the random walk over a line \cite{Farhi_98}. The probability to go left or right is $\frac{1}{2}$.
-To analyze this model is useful to introduce the momentum state $\ket{p}$ such that $\braket{j}{p} = e^{ijp}$, where $-\pi < p< \pi$.
+\subsection{1-D Quantum Random Walk}
+Consider a toy model: the quantum random walk over a discrete line \cite{Farhi_98}. The probability of moving left or right is $\frac{1}{2}$.
+To analyze this model, it is useful to introduce the momentum state $\ket{p}$ such that $\braket{j}{p} = e^{ijp}$, where $-\pi < p< \pi$.
 
 In line the Laplacian is defined as
 \begin{equation}
     \hat L \ket{j} = 2\ket{j} -\ket{j-1} -\ket{j+1} . 
 \end{equation}
-Therefore,
+Therefore, Applying this to the momentum state
 \begin{equation}
     \begin{split}
         \bra{j}\hat L \ket{p} &= \braket{j}{p} -\frac{1}{2}\braket{j-1}{p} -\frac{1}2{}\braket{j+1}{p}\\
@@ -124,7 +129,7 @@ Therefore,
     \end{split}
 \end{equation}
 
-Thus, the amplitude of the walk can be computed as the integral over all the momenta
+Thus, the amplitude of the walk can be computed as the integral over all the momenta, leading to
 \begin{equation}
     \begin{split}
         \bra{j}e^{-i\frac{t}{2}\hat L} \ket{k}&= \frac{1}{2\pi}\int_{-\pi}^{\pi} e^{-i\frac{t}{2}(\cos(p) - 1)} \braket{j}{p} \braket{p}{k} dp\\
@@ -132,19 +137,20 @@ Thus, the amplitude of the walk can be computed as the integral over all the mom
         & = e^{i\frac{t}{2}}(-i)^{k-j}J_{k-j}\left(\frac{t}{2}\right),
    \end{split}
 \end{equation}
-where $J_{n}(x)$ is the Bessel function of the first kind of order $n$. 
+where $J_{n}(x)$ is the Bessel function of the first kind of order $n$.
+
 Applying the Wick rotation we obtain 
-\begin{equation}
+\begin{equation}\label{Bessel_function}
     \left|\bra{j}e^{-i\frac{t}{2}\hat L} \ket{k}\right|^2 = e^{-t} \left(I_{k-j}\left(\frac{t}{2}\right)\right)^2,
 \end{equation}
 where $I_{n}(x) = i^{n}J_{n}(ix)$ is the modified Bessel function of the first kind.
-In the limit $t>>1$ it tends to a gaussian centered in the origin and variance $\sqrt{t}$, in accordance with the classical model \cite{mabramowitz64:handbook}.
+In the limit $t\gg 1$ it tends to a gaussian centered in the origin and variance $\sqrt{t}$, in accordance with the classical model \cite{mabramowitz64:handbook}.
 
 \subsection{Double tree network}
-Another important toy modes is the quantum walk over a network that is form by two binary tree with depth $n$ with the ending connected, shown in figure \ref{fig:Double_Tree}.
-We start form one root and we look for the probability to be in the other one \cite{quantum_walk}.
-Classically, the probability to cross the network scale exponentially as $2^{-n}$, and it is not computable for big $n$.
-Instead, using the quantum version it is computable.
+Another important toy model is the quantum walk on a network consisting of two binary trees of depth $n$ with the ending connected as shown in figure \ref{fig:Double_Tree}.
+We start from one root and analyze the probability to reach the other one \cite{quantum_walk}.
+Classically, the probability of crossing the network scales exponentially as $2^{-n}$, and it is not computable for big $n$.
+However, using the quantum version it remains computable.
 \begin{figure}[ht!]
     \centering
     \begin{tikzpicture}[>=stealth, node distance=2cm, every node/.style={circle, draw, fill=black}]
@@ -206,27 +212,30 @@ Instead, using the quantum version it is computable.
     \label{fig:Double_Tree}
 \end{figure}
 
-We can introduce a new basis $\ket{\mathrm{col}\; j}_{j<2n}$ that indicates just the column and not the single node, except for the two border nodes where they coincide, as
+To simplify the analysis, we can introduce a new basis $\ket{\mathrm{col}\; j}_{j<2n}$ that indicates a column and not the single node, except at the two root nodes where they coincide. This basis is defined as
 \begin{equation}
-    \ket{\mathrm{col}\; j} = \frac{1}{\sqrt{N_j}}\sum_{a\in \mathrm{column}} \ket{a} \qquad N_j = \left\{\begin{aligned}
+    \ket{\mathrm{col}\; j} = \frac{1}{\sqrt{N_j}}\sum_{a\in \mathrm{column}} \ket{a}, 
+\end{equation}
+where the renormalization factor $N_j$ is 
+\begin{equation}
+    N_j = \left\{\begin{aligned}
         &2^j \qquad &0\leq j\leq n\\
         &2^{2n-j} \qquad &n \leq j \leq 2n
-    \end{aligned}\right.
+    \end{aligned}\right. .
 \end{equation}
 
-In this basis, the Laplacian act like
+In this basis, the Laplacian act as
 \begin{equation}
-    \bra{\mathrm{col}\; j}\hat L \ket{\mathrm{col}\; j} = 1
-\end{equation}
-and  
-\begin{equation}
-    \bra{\mathrm{col}\; j \pm 1}\hat L \ket{\mathrm{col}\; j} =\left\{\begin{aligned}
-        \frac{\sqrt{2}}{2} \qquad j=0,n,2,\\
-        \frac{\sqrt{2}}{3} \qquad \mathrm{otherwise}\\
-    \end{aligned}\right.
+    \begin{aligned}
+        \bra{\mathrm{col}\; j}\hat L \ket{\mathrm{col}\; j} &= 1\\
+        \bra{\mathrm{col}\; j \pm 1}\hat L \ket{\mathrm{col}\; j} &=\left\{\begin{aligned}
+            \frac{\sqrt{2}}{2} \qquad j=0,n,2,\\
+            \frac{\sqrt{2}}{3} \qquad \mathrm{otherwise}\\
+        \end{aligned}\right.
+    \end{aligned}
 \end{equation}
 
-Thus, the dynamics along the network reduce to a 1-D quantum walk that is solvable with solution \cite{quantum_walk}
+Thus, the dynamics along the network reduces to a 1-D quantum walk which has a known solution \eqref{Bessel_function} %\cite{quantum_walk}
 \begin{equation}
     \bra{0}e^{i\frac{t}{2}\hat L}\ket{2n} = e^{-t} I_{2n}\left(\frac{t}{2}\right),
 \end{equation}
