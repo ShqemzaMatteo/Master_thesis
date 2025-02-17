@@ -11,3 +11,5 @@
 /dissertation/main.out
 /dissertation/main.toc
 /dissertation/main.synctex.gz
+/dissertation/main.run.xml
+.gitignore
