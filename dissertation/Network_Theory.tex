@@ -1,9 +1,9 @@
 \chapter{Introduction to Network Theory}\label{Network_Theory}
 
-In this chapter it is introduce the basic concept of the diffusion or random walk over a network and its connection with the density matrix proposed above.
+Networks are all around us, shaping the very fabric of our world. From social interactions and transportation systems to the intricate connections within biological organisms and the internet, networks provide a powerful framework to understand complex systems. Graph theory, the mathematical foundation of network theory, offers the tools needed to analyze these interconnected structures.
 
-Scientists use network to map the interaction between units. A lot of problem can be address using network like the road in a city, the internet and the social media, but also the interaction in a protein and the communication between neurons in the brain. 
-Initially, the 
+In this chapter, we introduce the fundamental concepts of network and graph theory, along with various types of random graphs.
+Then, we focus on random walks and diffusion processes on networks, considering both classical and quantum cases, which play a crucial role in modeling real-world phenomena such as information spread, epidemic modeling, and quantum transport.
 
 
 \section{Introduction to Graph Theory}
@@ -11,38 +11,40 @@ Initially, the
 %definition of network, adjacency matrix, laplacian matrix, shortest path, ...
 The mathematical framework used in Network theory is given by Graph theory. 
 
-A graph is defined by a ordinate couple $(V,E)$ where $V = \{1,2,3, ...,n\}$ is the set of nodes and $E = \left\{ (i, j): i , j \in V ; i \mathrm{\, is\, linked\, to\,} j\right\}$ is the set of links or edges. Usually, a general graph is called $G =(N,M)$ where $N$ and $M$ are respectively the cardinality of $V$ and $E$.
+A graph is defined by an ordinate couple $(V,E)$ where $V = \{1,2,3, ...,n\}$ is the set of nodes or vertices and $E = \left\{ (i, j): i , j \in V ; i \text{ is linked to } j\right\}$ is the set of links or edges. Usually, a general graph is denoted as $G =(N,M)$ where $N$ and $M$ are the cardinality of $V$ and $E$ respectively.
 
-The graph can be view also via a matrix called Adjacency matrix defined as
+A graph can be viewed also via a matrix called Adjacency matrix which is defined as
 \begin{equation}
     A_{ij}= \left\{ \begin{aligned}
         +1 &\quad \mathrm{if} \; i \; \mathrm{is ~linked ~to} \; j \\
         0 &\quad \mathrm{otherwise} \\
     \end{aligned} \right.  .
 \end{equation}
-The degree $d_i$ of a node $i$ is the number of nodes that are linked to it. It can be compute from the adjacency matrix as
+The degree $d_i$ of a node $i$ is the number of nodes to which it is connected. We can introduce the degree matrix $D$ as $D_{ij} = d_i\delta_{ij}$
+It can be computed from the adjacency matrix as
 \begin{equation}
-    d_i = \sum_j A_{ij}
+    d_i = \sum_j A_{ij}.
 \end{equation}
+
+Graphs can be grouped mainly into two type: \textit{undirected} and \textit{directed} graph. In the first one if the node $i$ is linked to $j$ then $j$ is linked to $i$, namely $(i, j) = (i, j)$; its adjacency matrix is symmetric.
+In contrast, in the second one, if the node $i$ is linked to $j$ not necessary $j$ is linked to $i$, namely $(i, j) \neq (i, j)$; its adjacency matrix is not symmetric.
+
+An important concept in graph theory is the study of connections between nodes that are not directly linked by an edge. As a matter of fact, two nodes can be connected by passing through multiple other nodes.
+A \textit{walk} of length $k$ from node $i$ to node $j$ is a sequence of nodes $(x_0,x_1,...,x_k)$ such that $x_0=i$, $x_k=j$ and $(x_l, x_{l+1}) \in E$ for all $l \in \{0, ..., k-1\}$. A node can be crossed multiple times.  
+If a walk visits each node only once, it is called a \textit{path}.
+A particularly important concept is the \textit{shortest path} or \textit{geodesic} that is the path that crosses the minimum number of nodes.  
+The number of walks $W_{ij}(k)$ of length $k$ from node $i$ to node $j$ can be computed using the adjacency matrix as
+\begin{equation}
+    W_{ij}(k) = (A^k)_{ij} .
+\end{equation}
+
+A graph is said to be \textit{connected} if, for each pair of distinct nodes $i$ and $j$, there exists a walk that connects them. 
 We can defined $G' =(V',E')$ a subgraph of $G= (V,E)$ if $V' \subseteq V$ and $E' \subseteq E$.
-
-Graphs can be grouped mainly into two type: \textit{undirected} and \textit{directed} graph. In the first one if the node $i$ is connected to $j$ then $j$ is connected to $i$, namely $(i, j) = (i, j)$; its adjacency matrix is symmetric.
-In the second one, instead, if the node $i$ is connected to $j$ not necessary the inverse its true, namely $(i, j) \neq (i, j)$; its adjacency matrix is not symmetric.
-
-An important concept is the study of the connection between nodes that are not linked together by an edge. As a matter of fact, two nodes can be connected also passing through multiple other nodes.
-A \textit{walk} of length $k$ from node $i$ to node $j$ its a sequence of nodes $(x_0,x_1,...,x_k)$ that begins in node $x_0=i$ and ends in node $x_k=j$ such that $(x_l, x_{l+1}) \in E$, a node can be crossed multiple times.  
-A walk where the nodes are crossed only one time is called path.
-An important relevance has the \textit{shortest path} or \textit{geodesic} that is the path that cross the less number of nodes.  
-The number of walks $W_{ij}(k)$ of length $k$ from node $i$ to node $j$ can be found using the adjacency matrix as
-\begin{equation}
-    W_{ij}(k) = (A^k)_{ij}
-\end{equation}
-
-A graph is said connected if for each couple of distinct nodes $i$ and $j$ exists a walk that connect them. 
-A \textit{component} of a graph $G= (V,E)$ is a connected subgraph $G' =(V',E')$ that is connected to nothing else, that is $(i,j)\notin E$ for each $i\in V'$ and $j\in V\setminus V'$. 
+A \textit{component} of a graph $G= (V,E)$ is a connected subgraph $G' =(V',E')$ meaning that not connected to any external node of the graph, that is $(i,j)\notin E$ for each $i\in V'$ and $j\in V\setminus V'$. 
+A important concept is the \textit{giant component}: a connected subgraph that has approximately the same number of nodes of the total graph. 
 
 \input{random_Network.tex}
 
-\input{Diffusion_network.tex}
+\input{Random_walk.tex}
 
 \input{Quantum_Walk.tex}

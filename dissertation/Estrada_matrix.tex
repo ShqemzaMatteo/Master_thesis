@@ -5,15 +5,7 @@ However, this is not the only way the information can flow, there are plenty of 
 To overcome that we introduce the communicability matrix, defined to consider also these possible path to go beyond the shortest one \cite{Estrada_2012}. It must consider 
 %This concept is similar to the correlation in physics: it indicates how a node is changes in response to a perturbation in another node. 
 
-Let  $G=(V,E)$ be an undirected graph composed of $N$ nodes and $E$ links. 
-Let $A$ be the adjacency matrix of the graph, defined as
-\begin{equation}
-    A_{i, j }= \left\{ \begin{aligned}
-        +1 &\quad \mathrm{if} \; i \; \mathrm{is ~linked ~to} \; j \\
-        0 &\quad \mathrm{otherwise} \\
-    \end{aligned} \right.  .
-\end{equation}
- 
+Let $G=(V,E)$ be an undirected graph composed of $N$ nodes and $E$ links and let $A$ be the adjacency matrix of the graph.
 We can define the communicability matrix as
 \begin{equation}
     G(A) = \sum_{k=1}^{\infty}c_k A^k

@@ -429,9 +429,9 @@ INPUT ./image/W_S_N100_K4_p0,3.png
 INPUT ./image/W_S_N100_K4_p0,3.png
 INPUT ./image/W_S_N100_K4_p0,3.png
 INPUT ./image/W_S_N100_K4_p0,3.png
-INPUT ./Diffusion_network.tex
-INPUT ./Diffusion_network.tex
-INPUT Diffusion_network.tex
+INPUT ./Random_walk.tex
+INPUT ./Random_walk.tex
+INPUT Random_walk.tex
 INPUT ./Quantum_Walk.tex
 INPUT ./Quantum_Walk.tex
 INPUT Quantum_Walk.tex
