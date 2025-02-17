@@ -19,6 +19,66 @@
 
 \refsection{0}
   \datalist[entry]{none/global//global/global/global}
+    \entry{Euler}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=549012998db8899f0b65cc0b257ff788}{%
+           family={Leonhard},
+           familyi={L\bibinitperiod},
+           given={Euler},
+           giveni={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{549012998db8899f0b65cc0b257ff788}
+      \strng{fullhash}{549012998db8899f0b65cc0b257ff788}
+      \strng{fullhashraw}{549012998db8899f0b65cc0b257ff788}
+      \strng{bibnamehash}{549012998db8899f0b65cc0b257ff788}
+      \strng{authorbibnamehash}{549012998db8899f0b65cc0b257ff788}
+      \strng{authornamehash}{549012998db8899f0b65cc0b257ff788}
+      \strng{authorfullhash}{549012998db8899f0b65cc0b257ff788}
+      \strng{authorfullhashraw}{549012998db8899f0b65cc0b257ff788}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Commentarii Academiae Scientiarum Petropolitanae}
+      \field{title}{Solutio Problematis Ad Geometriam Situs Pertinentis}
+      \field{volume}{8}
+      \field{year}{1736}
+      \field{pages}{128\bibrangedash 140}
+      \range{pages}{13}
+    \endentry
+    \entry{erdos-renyi1960}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=6bdf16ead0815d7b7b3548f89f0f1355}{%
+           family={Erdős},
+           familyi={E\bibinitperiod},
+           given={Paul},
+           giveni={P\bibinitperiod}}}%
+        {{hash=d1fe4e3577456830636963a58be0aabd}{%
+           family={Rényi},
+           familyi={R\bibinitperiod},
+           given={Alfréd},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{97a933f3856d267f220b0c9a1cf91245}
+      \strng{fullhash}{97a933f3856d267f220b0c9a1cf91245}
+      \strng{fullhashraw}{97a933f3856d267f220b0c9a1cf91245}
+      \strng{bibnamehash}{97a933f3856d267f220b0c9a1cf91245}
+      \strng{authorbibnamehash}{97a933f3856d267f220b0c9a1cf91245}
+      \strng{authornamehash}{97a933f3856d267f220b0c9a1cf91245}
+      \strng{authorfullhash}{97a933f3856d267f220b0c9a1cf91245}
+      \strng{authorfullhashraw}{97a933f3856d267f220b0c9a1cf91245}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Publication of the Mathematical Institute of the Hungarian Academy of Sciences}
+      \field{number}{1}
+      \field{title}{On the Evolution of Random Graphs}
+      \field{volume}{5}
+      \field{year}{1960}
+      \field{pages}{17\bibrangedash 61}
+      \range{pages}{45}
+    \endentry
     \entry{Bianconi_entropy_1}{article}{}{}
       \name{author}{2}{}{%
         {{hash=02fd745acacc872840fd2f858a8bab08}{%
@@ -43,8 +103,8 @@
       \strng{authornamehash}{ddf5ea39689582bfe93287727c22da0b}
       \strng{authorfullhash}{ddf5ea39689582bfe93287727c22da0b}
       \strng{authorfullhashraw}{ddf5ea39689582bfe93287727c22da0b}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issue}{4}
@@ -77,8 +137,8 @@
       \strng{authornamehash}{4cd18b85ef5745178ffbaf9b01920c77}
       \strng{authorfullhash}{4cd18b85ef5745178ffbaf9b01920c77}
       \strng{authorfullhashraw}{4cd18b85ef5745178ffbaf9b01920c77}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issue}{3}
@@ -116,8 +176,8 @@
       \strng{authornamehash}{6c47276f9c0eb76d39a0296ccdc5ecb1}
       \strng{authorfullhash}{6c47276f9c0eb76d39a0296ccdc5ecb1}
       \strng{authorfullhashraw}{6c47276f9c0eb76d39a0296ccdc5ecb1}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{2160-3308}
@@ -130,39 +190,6 @@
       \verb{doi}
       \verb 10.1103/physrevx.6.041062
       \endverb
-    \endentry
-    \entry{erdos-renyi1960}{article}{}{}
-      \name{author}{2}{}{%
-        {{hash=6bdf16ead0815d7b7b3548f89f0f1355}{%
-           family={Erdős},
-           familyi={E\bibinitperiod},
-           given={Paul},
-           giveni={P\bibinitperiod}}}%
-        {{hash=d1fe4e3577456830636963a58be0aabd}{%
-           family={Rényi},
-           familyi={R\bibinitperiod},
-           given={Alfréd},
-           giveni={A\bibinitperiod}}}%
-      }
-      \strng{namehash}{97a933f3856d267f220b0c9a1cf91245}
-      \strng{fullhash}{97a933f3856d267f220b0c9a1cf91245}
-      \strng{fullhashraw}{97a933f3856d267f220b0c9a1cf91245}
-      \strng{bibnamehash}{97a933f3856d267f220b0c9a1cf91245}
-      \strng{authorbibnamehash}{97a933f3856d267f220b0c9a1cf91245}
-      \strng{authornamehash}{97a933f3856d267f220b0c9a1cf91245}
-      \strng{authorfullhash}{97a933f3856d267f220b0c9a1cf91245}
-      \strng{authorfullhashraw}{97a933f3856d267f220b0c9a1cf91245}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Publication of the Mathematical Institute of the Hungarian Academy of Sciences}
-      \field{number}{1}
-      \field{title}{On the Evolution of Random Graphs}
-      \field{volume}{5}
-      \field{year}{1960}
-      \field{pages}{17\bibrangedash 61}
-      \range{pages}{45}
     \endentry
     \entry{gilbert}{article}{}{}
       \name{author}{1}{}{%
@@ -180,8 +207,8 @@
       \strng{authornamehash}{75e064428eb19a4e37600fca4b6dcdc6}
       \strng{authorfullhash}{75e064428eb19a4e37600fca4b6dcdc6}
       \strng{authorfullhashraw}{75e064428eb19a4e37600fca4b6dcdc6}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{The Annals of Mathematical Statistics}
@@ -219,8 +246,8 @@
       \strng{authornamehash}{b4063d5171bad9750494dbdb05406431}
       \strng{authorfullhash}{b4063d5171bad9750494dbdb05406431}
       \strng{authorfullhashraw}{b4063d5171bad9750494dbdb05406431}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{1095-9203}
@@ -257,8 +284,8 @@
       \strng{authornamehash}{61ec8115bb61a3bd19135c7c8b217c6a}
       \strng{authorfullhash}{61ec8115bb61a3bd19135c7c8b217c6a}
       \strng{authorfullhashraw}{61ec8115bb61a3bd19135c7c8b217c6a}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Nature}
@@ -297,8 +324,8 @@
       \strng{authornamehash}{7e38ff801a8222de2d40730b76c6b8c5}
       \strng{authorfullhash}{7e38ff801a8222de2d40730b76c6b8c5}
       \strng{authorfullhashraw}{7e38ff801a8222de2d40730b76c6b8c5}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Physics Reports}
@@ -347,8 +374,8 @@
       \strng{authornamehash}{3569bbb3a6be5fa6f5603272cfcd0edd}
       \strng{authorfullhash}{5ebce3cdcf1bed4140b46103219675e6}
       \strng{authorfullhashraw}{5ebce3cdcf1bed4140b46103219675e6}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Physics Reports}
@@ -524,8 +551,8 @@
       \strng{authornamehash}{ba6f515564540bce22515674f7d75620}
       \strng{authorfullhash}{ba6f515564540bce22515674f7d75620}
       \strng{authorfullhashraw}{ba6f515564540bce22515674f7d75620}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Physical Review E}
@@ -564,8 +591,8 @@
       \strng{authornamehash}{5ef4c8da001a11b7e830a731815c6f71}
       \strng{authorfullhash}{5ef4c8da001a11b7e830a731815c6f71}
       \strng{authorfullhashraw}{5ef4c8da001a11b7e830a731815c6f71}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{0370-1573}
@@ -749,8 +776,8 @@
       \strng{authornamehash}{d779bcd7a813fb800a88a35a2d0055b2}
       \strng{authorfullhash}{d779bcd7a813fb800a88a35a2d0055b2}
       \strng{authorfullhashraw}{d779bcd7a813fb800a88a35a2d0055b2}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issue}{5}

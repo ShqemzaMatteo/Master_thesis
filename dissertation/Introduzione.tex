@@ -3,9 +3,19 @@
 \addcontentsline{toc}{chapter}{Introduction}
 
 The traffic jam in the morning, the airport traffic, but also the functioning of the brain can be study as a network problem. 
-A lot of studies are made to analyze the equilibrium point of a network but only few achieve to understand what happen in the not equilibrium point. This work aim to add a piece to the knowledge in this dark topic.
+This kind of problem can be naturally study through network: the vertices indicates the elements and link the interaction between them, for the airport traffic the airport are the vertices and the flights the link, for the brain, instead, the neurons and the synapses. 
 
 
+
+The first ideas of graph theory was introduce by Euler in 1736 with his famous problem about the Seven Bridges of Königsberg \cite{Euler}. The dilemma was about the find a route, if it exist, that cross all the seven bridges that connect the two island on the Pregel river with the rest of the city once and only one.  Euler solve the problem eliminating all the irrelevant information and focus just on the sequence of the bridges. In other words, he reformulate the problem considering the island and the rivers banks as nodes and the bridges as link.
+Graph theory has begun. 
+One of the success of this theory is the proof of the five color problem.
+
+With the spread of the graph theory through different fields and the complexity of the networks, the necessity to find a way to reproduce reliable  artificial networks with basic algorithm was crucial. The first answer was given by Erd\H{o}s and Rényi \cite{erdos-renyi1960} with their random graphs. This model is widely studied and understood and use a base to for ages. 
+However,due to the increasing our data and computational power, the Erd\H{o}s-Rényi model starts failing to capture the behavior of the real network like Internet. In fact, real networks present strong hubs and short distances, features that this model has not. 
+To answer the new question, in the last 40 years many model has been proposed and studied, each one with their unique properties. The network theory has born. 
+
+With the new discovery in quantum computing, many point of contact between quantum information and network theory arose. \dots
 
 
 Due to the vast range of applications, there is a lack of a unified theoretical framework in the network theory, particularly concerning information theory and entropy. 
@@ -13,3 +23,5 @@ In the literature, there have been various attempts to formulate entropy for net
 Another attempt was made by De Domenico \cite{De_Domenico_2016}; he defines the entropy at time $t$ as $\Tr[\rho \ln \rho]$ with $\rho = e^{-tL}$ as density matrix and $L$ as the Laplacian matrix. This type of entropy not only captures the topological features of the network but also its dynamical behavior.
 
 
+
+A lot of studies are made to analyze the equilibrium point of a network but only few achieve to understand what happen in the not equilibrium point. This work aim to add a piece to the knowledge in this dark topic.
