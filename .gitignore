@@ -1,0 +1,5 @@
+/dissertation/.vscode/
+/dissertation/*.aux
+/dissertation/main.*
+!/dissertation/main.pdf
+!/dissertation/main.tex

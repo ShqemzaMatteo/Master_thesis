@@ -53,9 +53,9 @@ Also, the Laplacian Estrada index is define as
 
 While the previous quantities using the adjacency matrix focalized over the topological aspects of the network and information spread, the laplacian communicability matrix embodies also the dynamical ones since the laplacian is involved in the random walk over a network. 
 
-\subsection{Hamiltonian system}
+\subsection{Hamiltonian formalism}
 The formulae \eqref{Estrada indeces} can be motivated by studying a classic and quantum harmonic oscillator on a network.
-Consider a set of $N$ harmonic oscillators with coupling matrix $K = A$, in this way the nodes are considered as particle of mass $m = 1$ connected by springs with constant $A_{ij}$. The network should not have self interacting nodes, thus $A_{ii} = 0$. The system is submerged in a thermal bath at the temperature $T$. We assume there are no dumping and no external forces acting in the system besides the thermal fluctuation. 
+Consider a set of $N$ harmonic oscillators with coupling matrix $K = A$, where $A$ is a symmetric adjacency matrix. In this way, the nodes are considered as particle of mass $m = 1$ connected by springs with constant $A_{ij}$. The network should not have self interacting nodes, thus $A_{ii} = 0$. The system is submerged in a thermal bath at the temperature $T$. We assume there are no dumping and no external forces acting in the system besides the thermal fluctuation. 
 Let introduce a set of coordinates $q_i$ that indicates the displacement of the $i$ particle respect the equilibrium position, the elastic elastic potential can be define as
 \begin{equation}
     V(q) = \frac{1}{4}\sum_{i\neq j} K_{ij}(q_i-q_j)^2 = \frac{1}{2}\sum_{j}K_{jj}q_j^2 - \frac{1}{2} \sum_{i\neq j}K_{ij}q_iq_j,
