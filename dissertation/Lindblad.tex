@@ -57,21 +57,21 @@ where $\hat S_i$ is an operator acting on $\mathcal{H}$ (is not a spin operator)
     \end{split}
 \end{equation}
 
-The first term of the r.h.s. vanish because $ \Tr_E\left[\tilde E_i(t)\tilde\rho_E(0)\right] = \left<E_i(t)\right>$ can be consider as zero. 
-It may seem strange, but if the it does not vanish, we can always redefine the environmental Hamiltonian as $\hat E'_i = \hat E_i - \left<E_i(t)\right>$. The extra term is a constant and do not modify the Von Neumann equation.
-Instead, The second term needs more stringent assumption: since $\alpha$ is small, the system and the environment should not be correlated during all the time evolution, namely the timescale of the correlation is much smaller than the timescale of the system. Thus, we can consider that the total density matrix is always separable with the environment in the thermal state.
-Nevertheless, the equation is still not markovian. To add this property, we can extend the upper limit of the integration to infinity with no real change in the outcome. Then we change the integral variable to $t - s$, we arrive to 
+The first term on the r.h.s. vanishes because $ \Tr_E\left[\tilde E_i(t)\tilde\rho_E(0)\right] = \left<E_i(t)\right>$ can be considered as zero. 
+It may seem strange, however, if it does not vanish, we can always redefine the environmental Hamiltonian as $\hat E'_i = \hat E_i - \left<E_i(t)\right>$. The extra term is a constant and does not modify the Von Neumann equation.
+The second term requires more stronger assumption: since $\alpha$ is small, the system and the environment should remain uncorrelated throughout the evolution, that is the timescale of the correlation should be much shorter than the timescale of the system. Thus, we can consider that the total density matrix is always separable, with the environment in the thermal state.
+Nevertheless, the equation is still not markovian. To add this property, we can extend the upper limit of the integration to infinity with no real change in the outcome. Then, changing the integral variable to $t - s$, we arrive to 
 \begin{eqnarray}\label{C_markovian}
     \frac{d\tilde \rho(t)}{dt} = -\alpha^2 \int_0^\infty ds \Tr_E\left[\tilde H_I(t),\left[\tilde H_I(t-s),\tilde\rho(t)\otimes\tilde\rho_E(t)\right]\right].
 \end{eqnarray}
 This is called Redfield equation \cite{Redfield}.
-This is the Markov approximation and is justified if the timescale over which the state of the system varies appreciably is large compared to the timescale over which the reservoir correlation functions decay. The sum of approximations made before are called Born-Markov approximation \cite{Breuer-Petruccione}.
+This is the Markov approximation, which is justified if the timescale over which the state of the system varies appreciably is large compared to the timescale over which the reservoir correlation functions decay. The sum of approximations made before are called Born-Markov approximation \cite{Breuer-Petruccione}.
 
-The equation \eqref{C_markovian} can generate negative density matrix. To exclude this possibility, we consider a superoperator $\mathbb{H} A = \left[H,A\right]$, with $A$ a general operator. The eigenvectors of the superoperator generate a complete basis of the space $\{\hat S_i(\omega)\}$ of the bounded operators acting on the Hilbert $\mathcal{H}$, they satisfy the condition
+The equation \eqref{C_markovian} can generate a negative density matrix. To exclude this possibility, we consider a superoperator $\mathbb{H} A = \left[H,A\right]$, with $A$ a general operator. The eigenvectors of the superoperator generate a complete basis of the space $\{\hat S_i(\omega)\}$ of the bounded operators acting on the Hilbert $\mathcal{H}$, they satisfy the condition
 \begin{equation}
-    \mathbb{H}\hat S_i(\omega) = -\omega \hat S_i(\omega) \qquad \mathbb{H}\hat S_i^\dagger(\omega) = \omega \hat S_i^\dagger(\omega);
+    \mathbb{H}\hat S_i(\omega) = -\omega \hat S_i(\omega) \qquad \mathbb{H}\hat S_i^\dagger(\omega) = \omega \hat S_i^\dagger(\omega).
 \end{equation}
-$\omega$ indicates the energy difference after the operator $\hat A_i(\omega)$ has acted.
+Here, $\omega$ indicates the energy difference after the operator $\hat A_i(\omega)$ has acted.
 It satisfies the relations
 \begin{equation}
     \begin{split}
@@ -80,12 +80,12 @@ It satisfies the relations
     \end{split}
 \end{equation}
 We can decompose the operators $S_i$ as $\hat S_i = \sum_\omega \hat S_i(\omega)$.
-To apply this decompose in \eqref{C_markovian} we need to go back in\ the Schrödinger picture for the Hamiltonian acting on the proper system. Using $\tilde S_i(\omega)=e^{i\hat Ht}\hat S_i(\omega)e^{-i\hat H t}$, we obtain the Hamiltonian in the interacting picture
+To apply this decomposition in \eqref{C_markovian}, we need to go back to the Schrödinger picture for the Hamiltonian acting on the proper system. Using $\tilde S_i(\omega)=e^{i\hat Ht}\hat S_i(\omega)e^{-i\hat H t}$, we obtain the Hamiltonian in the interacting picture
 \begin{equation}\label{eigen_Hamiltonian}
     \tilde H_i(t) = \sum_{i\omega} e^{-i\hat Ht}\hat S_i(\omega) \otimes \tilde E_i (t)= \sum_{i\omega} e^{i\hat Ht}\hat S_i^\dagger(\omega) \otimes \tilde E_i (t)
 \end{equation}
 
-After having expanded the commutators in \eqref{C_markovian}, we can substitute the decomposition for $\hat S_k(\omega)$. Using the ciclic property of the trace and the fact that $\Tr[\hat H_e,\hat\rho_E(0)]=0$, with some algebra we arrive to the result
+After expanding the commutators in \eqref{C_markovian}, we substitute the decomposition for $\hat S_k(\omega)$. Using the cyclic property of the trace and the fact that $\Tr[\hat H_e,\hat\rho_E(0)]=0$, we arrive at the result
 \begin{equation}\label{c_substitue}
     \frac{d\tilde\rho(t)}{dt} = \sum_{\omega,\omega',i,j}e^{i(\omega-\omega')t}\Gamma_{ij}\left[\hat S_j(\omega)\tilde\rho(t),\hat S_i^\dagger(\omega')\right]+ e^{-i(\omega-\omega')t}\Gamma_{ji}^\dagger\left[\hat S_j(\omega),\tilde\rho(t)\hat S_i^\dagger(\omega')\right],
 \end{equation}
@@ -93,16 +93,14 @@ where $\Gamma_{kl}(\omega)$ contains the effect of the environment and it is def
 \begin{equation}\label{environment_coefficients}
     \Gamma_{ij}(\omega) = \int_{0}^{\infty}ds e^{i\omega s}\Tr\left[\tilde E_i^\dagger(t)\tilde E_j(t-s)\hat\rho_E(0)\right]
 \end{equation}
-where the operator $\tilde E_j(t)=e^{i\hat H_E t}\hat E_j e^{-i\hat H_E t}$ is in the interaction pictures. It does not depend by time since the environment is in the stationary state and the correlations function of the environment decay extremely fast.
+where the operator $\tilde E_j(t)=e^{i\hat H_E t}\hat E_j e^{-i\hat H_E t}$ is in the interaction picture. It does not depend on time since the environment is in a stationary state and the correlation function of the environment decay extremely fast.
 
-Now, we make the last assumption: we consider the system in the rotating wave approximation. The term proportional to $|\omega-\omega'| >> \alpha^2$ will oscillate much faster that the timescale of the system; thus they do not contribute to the evolution of the system. In the low-
-coupling regime, $\alpha\rightarrow 0$, we can consider that only the resonant terms, $\omega=\omega'$, contribute to the dynamics and
-remove all the others. Therefore, the equation \eqref{c_substitue} reduces to
+Now, we make the final assumption: we consider the system in the rotating wave approximation. The terms proportional to $|\omega-\omega'| >> \alpha^2$ will oscillate much faster than the timescale of the system; thus, they do not contribute to the evolution of the system. In the low-coupling regime, $\alpha\rightarrow 0$, we can consider that only the resonant terms, $\omega=\omega'$, contribute to the dynamics and remove all the others. Therefore, the equation \eqref{c_substitue} reduces to
 \begin{eqnarray}\label{C_rotating_wave}
     \frac{d\tilde\rho(t)}{dt} = \sum_{\omega,i,j}\Gamma_{ij}\left[\hat S_j(\omega)\tilde\rho(t),\hat S_i^\dagger(\omega)\right]+\Gamma_{ji}^\dagger\left[\hat S_j(\omega),\tilde\rho(t)\hat S_i^\dagger(\omega)\right].
 \end{eqnarray}
 
-The operators $\Gamma_{ij}(\omega)$ are not force to be hermitian. Thus, we divide them into the hermitian and not hermitian parts, $\Gamma_{ij}(\omega) =\frac{1}{2}\gamma_{ij}(\omega)+i\pi_{ij}(\omega)$, respectively
+The operators $\Gamma_{ij}(\omega)$ are not necessarily Hermitian. Thus, we divide them into the Hermitian and not Hermitian parts, $\Gamma_{ij}(\omega) =\frac{1}{2}\gamma_{ij}(\omega)+i\pi_{ij}(\omega)$, respectively
 \begin{equation}
     \begin{split}
         \gamma_{ij}(\omega) &=   \Gamma_{ij}(\omega) + \Gamma_{ij}^\dagger(\omega) = \int_{-\infty}^\infty ds e^{i\omega s}\Tr\left[\left\{\tilde E_i^\dagger(t),\tilde E_j(t-s)\right\}\hat\rho_E(0)\right]\\
@@ -110,13 +108,13 @@ The operators $\Gamma_{ij}(\omega)$ are not force to be hermitian. Thus, we divi
     \end{split}
 \end{equation}
 
-Inserting them in the equation \eqref{C_rotating_wave} and going back to the Schrödinger picture, we obtain
+Inserting them into the equation \eqref{C_rotating_wave} and returning to the Schrödinger picture, we obtain
 \begin{equation}\label{general_Lindblad_equation}
     \frac{d}{dt}\hat\rho = -i\left[\hat H + \hat H_{LS},\hat\rho\right] + \sum_{i,j,\omega} \gamma_{ij}(\omega) \left(\hat S_i(\omega) \hat\rho \hat S^\dagger_j(\omega) - \frac{1}{2}\left\{ \hat S^\dagger_i(\omega)\hat S_j(\omega), \hat\rho\right\} \right),
 \end{equation}
-where $\hat H_{LS} = \sum_{\omega,i,j} \pi_{ij}(\omega)\hat S^\dagger_i(\omega)\hat S_j(\omega)$ is called Lamb shift Hamiltonian and it adjusts the energy levels with the interaction of the environment. The equation \eqref{general_Lindblad_equation} is the general version of the Markovian master equation. The matrix $\gamma(\omega)$ must be positive define, although the trace preserving of the dynamics is not guaranteed.
+where $\hat H_{LS} = \sum_{\omega,i,j} \pi_{ij}(\omega)\hat S^\dagger_i(\omega)\hat S_j(\omega)$ is called Lamb shift Hamiltonian and it adjusts the energy levels due to thee interaction with the environment. The equation \eqref{general_Lindblad_equation} is the general version of the Markovian master equation. The matrix $\gamma(\omega)$ must be positive define, although the trace preserving of the dynamics is not guaranteed.
 
-However, if the matrix $\gamma(\omega)$ can be diagonalize, namely exist a diagonal matrix $D=\hat O \gamma(\omega) \hat O^\dagger$ with $\hat O$ a unitary operator, and considering the simplest case of just one frequency $\omega$ then we can write the Lindblad-Gorini-Kossakowski-Sudarshan master equation as
+If the matrix $\gamma(\omega)$ can be diagonalized, namely exist a diagonal matrix $D=\hat O \gamma(\omega) \hat O^\dagger$ with $\hat O$ a unitary operator, and considering the simplest case of just one frequency $\omega$ then we can write the Lindblad-Gorini-Kossakowski-Sudarshan master equation as
 \begin{equation}\label{Lindbladian}
     \frac{d}{dt}\hat\rho =\mathcal{L}\left[\hat\rho\right] = -i\left[\hat H+\hat H_{LS},\hat\rho\right] + \sum_k \gamma_k \left(\hat J_k \hat\rho \hat J^\dagger_k - \frac{1}{2}\left\{ \hat J^\dagger_k\hat J_k, \hat\rho\right\} \right).
 \end{equation}
@@ -126,25 +124,25 @@ The operator $\hat J_k= \sum_i O_{ki} \hat S_{i}$ are called jump operators, the
 
 \section{Properties of the Lindblad equation}
 The Lindblad master equation satisfies some important properties.
-The Lindblad master equation defines a set of dynamical map $\phi_t\left(\hat\rho\right)= e^{\mathcal{L}t}\hat\rho(0)$ on the space of density matrix such that
+The Lindblad master equation defines a set of dynamical maps $\phi_t\left(\hat\rho\right)= e^{\mathcal{L}t}\hat\rho(0)$ on the space of density matrices such that
 \begin{equation}
     \hat\rho(t) = \phi_t\left(\hat\rho(0)\right).
 \end{equation}
-This maps have the semigroup property, that is
+These maps have the semigroup property, that is,
 \begin{equation}
     \phi_s\left(\phi_t\left(\hat\rho(0)\right)\right)=\phi_{t+s}\left(\hat\rho(0)\right)
 \end{equation}
 
-The Lindblad master equation is the most general form for the generator of a quantum dynamical system. As a matter of fact, the Lindblad equation can be found also starting from this assumption \cite{Breuer-Petruccione}.
+The Lindblad master equation is the most general form for the generator of a quantum dynamical system. As a matter of fact, the Lindblad equation can also be derived starting from this assumption \cite{Breuer-Petruccione}.
 
-The Lindblad master equation is invariant under the following transformation \cite{Breuer-Petruccione}:
+The Lindblad master equation is invariant under the following transformations \cite{Breuer-Petruccione}:
 \begin{itemize}
-    \item unitary transformation of the Lindblad operator:
+    \item Unitary transformation of the Lindblad operator:
         \begin{equation}
             \sqrt{\gamma_i}\hat J_i \rightarrow \sqrt{\gamma_i'}\hat J_i' = \sum_j u_{ij}\sqrt{\gamma_j}\hat J_j
         \end{equation}
         where $u_{ij}$ is an unitary matrix.
-    \item inhomogeneous transformation:
+    \item Inhomogeneous transformation:
         \begin{equation}
             \begin{split}
                 \hat J_i &\rightarrow \hat J'_i = \hat J_i + a_i\\
@@ -153,38 +151,39 @@ The Lindblad master equation is invariant under the following transformation \ci
         \end{equation}
         where $a_i \in\mathbf{C}$ and $b \in \mathbf{R}$.
 \end{itemize}
-The last transformation allows us to choose always a traceless jump operator.
+The last transformation allows us to always choose a traceless jump operator.
 
 Lastly, we can prove that the dynamics \eqref{Lindblad_master_equation} conserve $\Tr[\hat\rho]$. As a matter of fact, the derivative along time of it is
 \begin{equation}\label{Lindblad_master_equation}
     \frac{d}{dt}\Tr[\hat\rho] = \Tr\left[-i\left(\hat H\hat\rho - \hat\rho\hat H \right) +  \hat J_k \hat\rho \hat J_k^\dagger -\frac{1}{2} \left(\hat L\hat\rho + \hat\rho\hat L\right)\right] = 0,
 \end{equation}
-proved using the cyclic property of the trace. But it does not conserve the purity $\Tr\left[\hat\rho^2\right]$ that decreases \cite{Manzano}. 
+proved using the cyclic property of the trace. 
+However, it does not conserve the purity $\Tr\left[\hat\rho^2\right]$ that decreases \cite{Manzano}. 
 
 
 \section{Stationary distribution}
-The Lindblad distribution allows a stationary distribution that satisfies the condition
+The Lindblad equation allows for a stationary distribution that satisfies the condition
 \begin{equation}
     \mathcal{L}\hat\rho = 0.
 \end{equation}
-It can be proven that the stationery distribution is equal to the Gibbs states \cite{Breuer-Petruccione}
+
+In the previous section, we assumed that the environment is in a Gibbs state. Now, consider that the damping parameter satisfies the relation
+\begin{equation}\label{C_gamma}
+    \gamma_{ij}(-\omega) = e^{-\beta \omega}\gamma_{ij}(\omega)
+\end{equation}
+which is called KMS condition \cite{Breuer-Petruccione}.
+If this condition is satisfied, it can be proven that the stationary distribution is equal to the Gibbs states \cite{Breuer-Petruccione}
 \begin{equation}
     \hat\rho^* = \frac{e^{-\beta \hat H}}{\Tr\left[e^{-\beta \hat H}\right]}.
 \end{equation}
 
-In the previous section we assume that the environment is in a Gibbs state, now consider that the dump parameter satisfies the relation
-\begin{equation}\label{C_gamma}
-    \gamma_{ij}(-\omega) = e^{-\beta \omega}\gamma_{ij}(\omega),
-\end{equation}
-it is called KMS condition \cite{Breuer-Petruccione}.
-
-If the spectrum of the Hamiltonian $H = \sum_n \epsilon_n\ket{n}\bra{n}$ is not degenerate, it give rise to a close equation for the population 
+If the spectrum of the Hamiltonian $H = \sum_n \epsilon_n\ket{n}\bra{n}$ is not degenerate, it gives rise to a closed equation for the population 
 \begin{equation}
     P(n,t) = \bra{n}\hat\rho(t)\ket{n}
 \end{equation}
-Thus, the dynamics decouple the diagonal and off-diagonal terms. The firsts are governed by the Pauli master equation
+Thus, the dynamics decouple the diagonal and off-diagonal terms. The former are governed by the Pauli master equation
 \begin{equation}\label{to_Fermi_golden_rule}
-    \frac{dP(n,t)}{dt} = \sum_m \left[ W(n|m)P(m,t) + W(m|n)P(n,t)\right]
+    \frac{dP(n,t)}{dt} = \sum_m \left[ W(n|m)P(m,t) - W(m|n)P(n,t)\right]
 \end{equation}
 with time independent transition rate
 \begin{equation}
@@ -195,7 +194,7 @@ Using the equation \eqref{C_gamma} and considering the l.h.s. of the equation \e
 \begin{equation}
     W(n|m)e^{-\beta \epsilon_n} = W(m|n) e^{-\beta \epsilon_m}
 \end{equation}
-which is nothing else that a detail balance condition with stationary distribution
+which is nothing other that a detailed balance condition with stationary distribution
 \begin{equation}
     \hat\rho = \frac{1}{Z}e^{-\beta \hat H}
 \end{equation}

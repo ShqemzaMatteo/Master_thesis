@@ -44,6 +44,18 @@ We can defined $G' =(V',E')$ a subgraph of $G= (V,E)$ if $V' \subseteq V$ and $E
 A \textit{component} of a graph $G= (V,E)$ is a connected subgraph $G' =(V',E')$ meaning that not connected to any external node of the graph, that is $(i,j)\notin E$ for each $i\in V'$ and $j\in V\setminus V'$. 
 A important concept is the \textit{giant component}: a connected subgraph that has approximately the same number of nodes of the total graph. 
 
+A directed graph is said \textit{irreducible} if its adjacency matrix is not similar by permutation to a block upper triangular matrix. In other word, that exchanging two or more raws the adjacency matrix such that the it can be written in the form
+\begin{equation}
+    A = \begin{pmatrix}
+        A_{11} & A_{12} & \cdots & A_{1N}\\
+        0 & A_{22}& \cdots & A_{2N}\\
+        \vdots & \vdots & \ddots & \vdots\\
+        0 &0 &\cdot & A_{NN}\\
+    \end{pmatrix} .
+\end{equation}
+If it hold, the graph is said \textit{strongly connected}: there exists a path that connect each the nodes to all the other ones.
+
+
 \input{random_Network.tex}
 
 \input{Random_walk.tex}

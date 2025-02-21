@@ -1,4 +1,4 @@
-/dissertation/.vscode/
+/dissertation/.vscode/*
 /dissertation/*.aux
 /dissertation/main.*
 !/dissertation/main.pdf
