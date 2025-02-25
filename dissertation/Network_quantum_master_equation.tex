@@ -1,0 +1,85 @@
+\chapter{Quantum Network Master Equation}
+
+In chapter \ref{C_Density_Matrix} we have introduce the concept of density matrix for a network, based on the communicability matrix. This quantity considers the correlation between the nodes created by the random walk dynamics. 
+
+In this chapter we try to unify the two concept taken from the quantum realm: the quantum random walk and the density matrix, 
+
+Nel 2 capitolo abbiamo introdotto la density matrix per i network, basata sulla communicability matrix. Questa grandezza esprime il modo in cui l'informazione si diffonde all'interno di un network a cui è applicata una dinamica di random walk. 
+In questo capitolo colleghiamo la suddetta ad un network con una dinamica di quantum random walk che subisce anche delle fluttuazioni termiche. Studiando il sistema tramite una Lindblad master equation, si ricava la sua stazionary distribution che coincide proprio con la density matrix per i networks.  
+
+In chapter \ref{C_Density_Matrix} we have introduced the density matrix for a network based on the dynamical communicability matrix. This quantity express the possible way the 
+
+\input{Quantum_Stochastic_Walk}
+
+\input{BCS_quantum_network_master_equation}
+
+
+\section{Generalization to other dynamic}
+
+Until now, we have examined only the random walk on network, but this framework can be generalize to other more complex dynamics on network \cite{De_Domenico_2023}.
+The dynamics should be linear such that the evolution of the observable per node $i$ are 
+\begin{equation}
+    \frac{d}{dt} x_i = \sum_j H_{ij} x_j,
+\end{equation}
+where $H_{ij}$ controls the evolution of the system.
+For the continuos time random walk the control matrix coincides with the Laplacian.
+In order to apply the Wick rotation and we obtain the quantum version of the system.
+Let $\{\ket{i}\}_{i<N}$, $N$ is the number of node, be a orthonormal basis for the Hilbert space $\mathcal{H}$, the state $\ket{\psi}$ is defined as
+\begin{equation}
+    \ket{\psi}= \sum_i\sqrt{x_i}\ket{i}
+\end{equation}
+such that $x_i = |\braket{i}{\psi}|^2$.
+The evolution follow the Schrödinger equation
+\begin{equation}
+    \frac{d}{dt}\ket{\psi(t)} = -i\hat H\ket{\psi(t)}
+\end{equation}
+where 
+$\hat H = \sum_{ij} H_{ij} \ket{i}\bra{j}$ is the control operator or the chosen dynamics. To satisfy the Schrödinger equation the control operator must be symmetric.
+Now we can add thermal noise arriving at quantum master equation \eqref{Lindblad_energy_jump} which has stationary distribution 
+\begin{equation}
+    \rho^*= \frac{1}{Z}e^{-\beta\hat H}
+\end{equation}
+with $Z= \Tr\left[e^{-\beta\hat H}\right]$ is the partition function.
+
+With  Von Neumann entropy we can study the relaxation.
+\begin{comment} 
+We know some complex dynamics, for example, the control operator for the SIS epidemiological model is
+\begin{equation}
+    \frac{d}{dt}x_i = -\sum_j \left(B\delta_{ij} + R(1-x_i)\right)x_j
+\end{equation}
+
+And for the Kuramoto's synchronization model \cite{Kuramoto}
+\begin{equation}
+\frac{d}{dt} x_i =\omega_i  + R \sum_j A_{ij}\sin(x_j-x_i).
+\end{equation}
+\end{comment}
+
+
+\newpage
+\section{Symmetry breaking}
+
+Until now, we have considered the network holding the detail balance condition and, therefore, be mapped in a symmetric matrix; 
+but the majority of the networks do not satisfy this condition. To deal with them, we modify slightly the Lindblad master equation \eqref{stochastic_lindblad_master}. 
+As a matter of fact, in the chapter \ref{C_Lindblad} we have analyzed also the case where the interaction with the environment is not symmetric \eqref{environment_coefficients}. Thus, taking the dissipative part of the equation \eqref{C_rotating_wave} in the Schrödinger picture with the coefficients $\Gamma_{ij} = L_{ij}$ and the jump operators $J_{ij} = \ket{i}\bra{j}$ we obtain 
+\begin{equation}
+    \frac{d\hat\rho(t)}{dt} = \sum_{ij}\Gamma_{ij}\left[\hat J_j\hat\rho(t),\hat J_i^\dagger\right]+\Gamma_{ji}^\dagger\left[\hat J_j,\hat\rho(t)\hat J_i^\dagger\right].
+\end{equation}
+Isolating the symmetric and antisymmetric part of the Laplacian, respectively $\gamma_{ij} = \left(L_{ij} + L_{ji}\right)$ and $\pi_{ij} =  \frac{-i}{2}\left(L_{ij}-L_{ji}\right)$ such that $\Gamma_{ij}(\omega) =\frac{1}{2}\gamma_{ij}(\omega)+i\pi_{ij}(\omega)$, we arrive to the equation
+\begin{equation}
+    \frac{d\hat\rho(t)}{dt} = \sum_{ij}\gamma_{ij}\hat J_j\hat\rho(t)\hat J_i^\dagger -\frac{\gamma_{ij}}{2}\left\{\hat J_i^\dagger\hat J_j,\hat\rho(t)\right\} + i\pi_{ij}\left[\hat J_i^\dagger\hat J_j,\hat\rho(t)\right],
+\end{equation}
+where $[\cdot,\cdot]$ and $\{\cdot,\cdot\}$ are respectively the commutator and anticommutator.
+
+Let define a new Hamiltonian $\hat H_{A} = \sum_{ij}\pi_{ij}\hat J_i^\dagger\hat J_j$ that encodes the dynamics of the not symmetric part. 
+It give origin to a coherent dynamics that follow the Von Neumann equation. As a matter of fact the total dynamics can be written as
+\begin{equation}\label{antisymmetric_master_equation}
+    \frac{d\hat\rho(t)}{dt} = i\left[\hat H_{A},\hat\rho(t)\right] + \sum_{ij}\gamma_{ij}\hat J_j\hat\rho(t)\hat J_i^\dagger -\frac{\gamma_{ij}}{2}\left\{\hat J_i^\dagger\hat J_j,\hat\rho(t)\right\}.
+\end{equation}
+
+The dynamics \eqref{antisymmetric_master_equation} does not converge no more to a stationary state due to the Von Neumann part.
+We can generalize as in the \eqref{stochastic_lindblad_master} 
+
+\begin{equation}
+    \frac{d}{dt}\hat \rho = -i\left[\hat H + \omega\hat H_{A},\hat\rho\right] + \sum_{ij}\gamma_{ij}\left[\hat J_{ij} \hat\rho\hat J_{ij}^\dagger -\frac{1}{2} \left\{ \hat J_{ij}^\dagger \hat J_{ij}, \hat\rho\right\}\right].
+\end{equation}
+where $\hat H$ is the hermitian part of the Laplacian operator.

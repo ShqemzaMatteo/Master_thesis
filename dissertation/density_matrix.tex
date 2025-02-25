@@ -14,7 +14,7 @@ From this, we can define the Von Neumann entropy as
 \end{equation}
 
 
-The entropy is not negative and it is equal to zero if and oly if the $\hat\rho$ is a pure state. It has a higher bound $S \leq \ln(N)$ \cite{Nielsen_Chuang_2010}.
+The entropy is not negative and it is equal to zero if and only if the $\hat\rho$ is a pure state. It has a higher bound $S \leq \ln(N)$ \cite{Nielsen_Chuang_2010}.
 %It has been proven that this matrix satisfies the sub-additivity property\cite{De_Domenico_2016}:
 %Let $\hat\rho$, $\hat\tau$ and $\hat\sigma$ be density matrices corresponding to networks with same node $G$, $T$, $S$ respectively. If $G = T + S$ then $S(\hat\rho) \leq S(\hat\tau) + S(\hat\sigma)$.
 
@@ -105,15 +105,15 @@ with $Z = \Tr[\hat U(t)]$ the partition function.
 In the limit of maximal uncertainty over the possible perturbations, this formula tends to the previous one \eqref{density_matrix}, which also maximize the entropy for a given network at time $t$.
 \end{comment}
 
-From the concept of entropy, we can also introduce the Kullback-Liebler divergence as
-\begin{equation}
+Starting from the concept of entropy, we can also introduce the Kullback-Liebler divergence as
+\begin{equation}\label{KL_divergence}
     D(\hat \rho || \hat \sigma) = \Tr \left[\hat \rho \ln\left(\frac{\hat\sigma}{\hat\rho}\right)\right].
 \end{equation}
 It can be used to make comparisons between networks. Moreover, this concept we can be applied to the reconstruction of network starting from real data using the maximum likelihood estimation.  
 
 However the Kullback-Liebler divergence is not symmetric, so can not be use as a metric. 
 But we can symmetrize introducing the Jensen-Shannon divergence as
-\begin{equation}
+\begin{equation}\label{JS_metric}
     \mathcal{D}(\hat\rho||\hat\sigma) = D(\hat \rho || \hat \mu) + D(\hat \sigma || \hat \mu) = S(\hat\mu)-\frac{1}{2}\left[S(\hat\rho) + S(\hat\sigma)\right],
 \end{equation}
 where $\hat\mu =\frac{1}{2}(\hat\rho+\hat\sigma)$. It is a metric: it is symmetric, positive define, and hold the triangular inequality \cite{Jensen-Shannon_divergence}. It has been use successfully to measure the distance between the layer of a multilayer network \cite{multilayer}.

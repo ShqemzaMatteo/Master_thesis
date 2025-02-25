@@ -1,55 +1,45 @@
-\chapter{Quantum Stochastic Walk}\label{C_Quantum Stochastic Walk}
+\section{Quantum Stochastic Random Walk}\label{C_Quantum Stochastic Walk}
 
-In chapter \ref{Network_Theory} we have introduced two possibility for a random walk: one using classic particles, the other using quantum ones. But they have different properties that distinguish them self
-In this chapter, we propose a way to unify the two approach using the Lindblad master equation. This new approach generates a more general random walk on network that include the properties of both the system \cite{QSW}
+The first approach to a Open Quantum Walk on network was proposed by Whitfield, Rodr\'iguez-Rosario and Aspuru-Guzik. \cite{QSW}. They defined a quantum walk on network in contact with a thermal bath, the dynamics is describe by a Lindblad master equation with the jump operators proportional to the Adjacency matrix $A_{ij}$ of the network. The thermal bath act as noise in the dynamics which does not follow strictly the Von Neumann equation \eqref{Von Neumann equation}. The system dissipation reminds the classic random walk.
 
-\section{Quantum master equation}
-Let we consider a quantum system in contact with a thermal bath that randomly interact with; the density matrix of the system $\hat\rho$ should follow the Lindblad master equation \eqref{Lindblad_master_equation}
-\begin{equation}\label{Lindblad_equation_(stoc_chapter)}
-    \frac{d}{dt}\hat\rho =\mathcal{L}\left[\hat\rho\right] = -i\left[\hat H,\hat\rho\right] + \sum_i \gamma_i \left(\hat J_i \hat\rho \hat J^\dagger_i - \frac{1}{2}\left\{ \hat J^\dagger_i\hat J_i, \hat\rho\right\} \right),
-\end{equation}
-
-where $[\cdot,\cdot]$ and $\{\cdot,\cdot\}$ are respectively the commutator and anticommutator; $\hat H$ is the Hamiltonian; $\{\hat J_i\}_i$ are the jump operators which describe the interaction with the thermal bath and they are dissipative part of the dynamics; $\gamma_i$ are the dumping rates, they must be non negative and real, when $\gamma_i = 0$ we recover the Von Neumann equation \eqref{Von Neumann equation}. $\mathcal{L}\left[\hat\rho\right]$ is a superoperator that act in the space of the density matrix.
-
-
-The equation \eqref{Lindblad_equation_(stoc_chapter)} is composed by two distinct terms: the first term, also called coherent dynamics,
-$\mathcal{L}^{qm}\left[\hat\rho(t)\right] = -i\left[H,\hat\rho\right]$ 
-is equal to the quantum walk dynamics; instead, the second 
-$\mathcal{L}^{cl}\left[\hat\rho(t)\right] = \sum_i \gamma_i \left(\hat J_i \hat\rho \hat J^\dagger_i - \frac{1}{2}\left\{ \hat J^\dagger_i\hat J_i, \hat\rho\right\} \right)$, 
-called decoherent dynamics, encodes the dissipation. 
-As in the quantum random walk, the Hamiltonian $\hat H$ is the Laplacian operator $\hat L$.
-We can define a set of jump operator $\{\hat J_{ij} \}_{i,j=0}^{N}$ as general measurement and a set of coefficients $\{\gamma_{ij}\}_{i,j=0}^{N}$ that behave as the Adjacency matrix, namely $\gamma_{ij} =A_{ij}$ and $\hat J_{ij} = \ket{i}\bra{j}$.
-From that, we obtain a master equation that contains both the quantum and classical aspect of a diffusion over a network as
+Let we consider a quantum walk on a network $G(N,M)$, the system in contact with a thermal bath that randomly interact with modifying the dynamic of the quantum particle. we can describe the its evolution with the Lindblad master equation \eqref{Lindblad_master_equation}: the Laplacian operator $\hat L$ is Hamiltonian $\hat H$ and the jump operator $\{\hat J_k\}_{k<M}$ are the jumps from two node connected by a link. For convenience, we will call the jump operator with two indeces referring to the starting node and the ending node of the jump;therefore, the jumps operator are $\hat J_{ij} = \ket{i}\bra{j}$. The dumping rates $\gamma_i$ are the $\gamma_{ij} =A_{ij}$.
+We obtain the master equation
 \begin{equation}\label{stochastic_lindblad_master}
-    \frac{d}{dt}\hat \rho = -i\left[\hat H,\hat\rho\right] + \sum_{ij}\gamma_{ij}\left[\hat J_{ij} \hat\rho\hat J_{ij}^\dagger -\frac{1}{2} \left\{ \hat J_{ij}^\dagger \hat J_{ij}, \hat\rho\right\}\right].
+    \frac{d}{dt}\hat \rho = -i\left[\hat H,\hat\rho\right] + \sum_{ij}\gamma_{ij}\left[\hat J_{ij} \hat\rho\hat J_{ij}^\dagger -\frac{1}{2} \left\{ \hat J_{ij}^\dagger \hat J_{ij}, \hat\rho\right\}\right],
 \end{equation}
+where $[\cdot,\cdot]$ and $\{\cdot,\cdot\}$ are respectively the commutator and the anticommutator.
+The equation \eqref{stochastic_lindblad_master} is composed by two distinct terms: the first term, also called coherent dynamics,
+$\mathcal{L}^{qm}\left[\hat\rho(t)\right] = -i\left[H,\hat\rho\right]$ is equal to the quantum walk dynamics; instead, the second $\mathcal{L}^{cl}\left[\hat\rho(t)\right] = \sum_i \gamma_i \left(\hat J_i \hat\rho \hat J^\dagger_i - \frac{1}{2}\left\{ \hat J^\dagger_i\hat J_i, \hat\rho\right\} \right)$, called decoherent dynamics, encodes the dissipation. 
+When $\gamma_{ij} = 0$ we recover the Von Neumann equation for the quantum walk \eqref{Von Neumann equation}. 
+$\mathcal{L}\left[\hat\rho\right]$ is a superoperator that act in the space of the density matrix.
 
-The classical random walk behavior emerges considering the evolution of the diagonal element of the density matrix for just $\mathcal{L}^{cl}$
+From that, we obtain a master equation that contains both the quantum and classical aspect of a diffusion over a network. As a matter of fact,the classical random walk behavior emerges considering the evolution of the diagonal element of the density matrix under just the dissipative part. Let $\rho = \ket{k}\bra{k}$ be the density matrix of a system in node $k$, it evolves following
 \begin{equation}
     \begin{split}
-        \mathcal{L}^{cl}\ket{a}\bra{a} &= \sum_{ij}\gamma_{ij}\left[\hat J_{ij} \ket{a}\bra{a}\hat J_{ij}^\dagger -\frac{1}{2} \left\{ \hat J_{ij}^\dagger \hat J_{ij}, \ket{a}\bra{a}\right\}\right]\\
+        \mathcal{L}^{cl}\ket{k}\bra{k} &= \sum_{ij}\gamma_{ij}\left[\hat J_{ij} \ket{k}\bra{k}\hat J_{ij}^\dagger -\frac{1}{2} \left\{ \hat J_{ij}^\dagger \hat J_{ij}, \ket{k}\bra{k}\right\}\right]\\
         %&= \sum_{ij}\left[\sqrt{A_{ij}}\ket{i}\braket{j}{a}\braket{a}{j}\bra{i}\sqrt{A_{ij}} -\frac{1}{2}\ket{i}\sqrt{A_{ia}}\braket{j}{j}\sqrt{A_{ia}}\braket{i}{a}\bra{a}\right.\\ 
         %&\quad \left. - \frac{1}{2} \ket{a}\braket{a}{i}\sqrt{A_{ia}}\braket{j}{j}\sqrt{A_{ia}}\bra{i}\right]\\
-        &= \sum_{i}\left[A_{ia} \ket{i}\bra{i} -A_{ia}\ket{a}\bra{a}\right]\\
-        &=\sum_{i} A_{ai} \ket{i}\bra{i} - d_a \ket{a}\bra{a} = -\sum_i L_{ai} \ket{i}\bra{i}.
+        &= \sum_{i}\left[A_{ik} \ket{i}\bra{i} -A_{ik}\ket{k}\bra{k}\right]\\
+        &=\sum_{i} A_{ki} \ket{i}\bra{i} - d_a \ket{k}\bra{k} = -\sum_i L_{ki} \ket{i}\bra{i}.
     \end{split}
 \end{equation} 
 where $d_i$ is the degree of the node $i$.
 We have recovered the dynamics of the classical random walk over a network.
 
-Considering now the off-diagonal terms, they  evolve as 
+Considering the off-diagonal terms, they evolve as 
 \begin{equation}
     \begin{split}
-        \mathcal{L}^{cl}\ket{a}\bra{b} &= \sum_{ij}\gamma_{ij}\left[\hat J_{ij} \ket{a}\bra{b}\hat J_{ij}^\dagger -\frac{1}{2} \left\{ \hat J_{ij}^\dagger \hat J_{ij}, \ket{a}\bra{b}\right\}\right]\\
-        &= \sum_{ij}\left[\sqrt{A_{ij}}\ket{i}\braket{j}{a}\braket{b}{j}\bra{i}\sqrt{A_{ij}} -\frac{1}{2}\ket{i}\sqrt{A_{ia}}\braket{j}{j}\sqrt{A_{ia}}\braket{i}{a}\bra{b}\right.\\ 
-        &\quad\left. - \frac{1}{2} \ket{a}\braket{b}{i}\sqrt{A_{ia}}\braket{j}{j}\sqrt{A_{ia}}\bra{i}\right]\\
-        &= \sum_{j}\left[-\frac{1}{2} A_{ja}\ket{a}\bra{b} - \frac{1}{2} A_{ja}\ket{a}\bra{b}\right]\\
-        &= - \frac{1}{2}(d_a + d_b)\ket{a}\bra{b}.
+        \mathcal{L}^{cl}\ket{k}\bra{kl} &= \sum_{ij}\gamma_{ij}\left[\hat J_{ij} \ket{k}\bra{l}\hat J_{ij}^\dagger -\frac{1}{2} \left\{ \hat J_{ij}^\dagger \hat J_{ij}, \ket{k}\bra{l}\right\}\right]\\
+        %&= \sum_{ij}\left[\sqrt{A_{ij}}\ket{i}\braket{j}{k}\braket{l}{j}\bra{i}\sqrt{A_{ij}} -\frac{1}{2}\ket{i}\sqrt{A_{ik}}\braket{j}{j}\sqrt{A_{ik}}\braket{i}{k}\bra{l}\right.\\ 
+        %&\quad\left. - \frac{1}{2} \ket{k}\braket{l}{i}\sqrt{A_{ik}}\braket{j}{j}\sqrt{A_{ik}}\bra{i}\right]\\
+        &= \sum_{j}\left[-\frac{1}{2} A_{jk}\ket{k}\bra{l} - \frac{1}{2} A_{jl}\ket{k}\bra{l}\right]\\
+        &= - \frac{1}{2}(d_k + d_l)\ket{a}\bra{b}.
     \end{split} 
 \end{equation}
 
 $\mathcal{L}^{cl}$ do not mixed the diagonal term with the off-diagonal ones. Thus, the superoperator is divide in two block: one for the diagonal element, the other for the off-diagonal ones.
-The superoperator $\mathcal{L}^{cl}$ has a diagonal form with spectrum $\sigma^{cl} = -(\lambda_1,...,\lambda_N,\frac{1}{2}(d_1 + d_2),...,\frac{1}{2}(d_N + d_{n-1}))$, where $\lambda_i$ are the eigenvalue of the Laplacian matrix \cite{Bruderer_Plenio}.
+The superoperator $\mathcal{L}^{cl}$ has a diagonal form with spectrum $\sigma^{cl} = -(\lambda_1,...,\lambda_N,\frac{1}{2}(d_1 + d_2),...,\frac{1}{2}(d_N + d_{N-1}))$, where $\lambda_i$ are the eigenvalue of the Laplacian matrix \cite{Bruderer_Plenio}.
+If the network satisfies the detailed balance condition \eqref{detail_condition}, the Laplacian matrix has a zero eigenvalue and, therefore, also the superoperator $\mathcal{L}^{cl}$ has a zero eigenvalue and a stationary distribution.
 
 
 \begin{comment}
@@ -71,45 +61,7 @@ Both the two possible jump operator recover the classical random walk over a net
 
 
 
-\section{Time evolution}
-Following the resolution proposed by Fujii \cite{fujii2012} for a quantum harmonic oscillator, we can solve the Lindblad master equation. 
-First of all, we vectorize the density matrix: let introduce an Hilbert space with dimension $N^2$ such that a vector is $\sket{\rho} = (\rho_{00},\rho_{01},...,\rho_{NN-1},\rho_{NN})^T$ and the scalar product is $\sbraket{\phi}{\rho}= \Tr[\hat\phi^\dagger\hat\rho]$. This is called Fock-Liouville space \cite{Manzano}.
-
-The follow operation can be vectorize as
-\begin{equation}
-    \hat A \hat\rho \hat B \rightarrow (\hat A\otimes\hat B)\sket{\rho} \qquad \hat A \hat\rho +\hat\rho\hat B \rightarrow \left(\hat A\otimes\mathbb{I} +\mathbb{I}\otimes\hat B\right)\sket{\rho},
-\end{equation}
-where $\mathbb{I}$ is the identity matrix, $\hat A$ and $\hat B$ are two generic operator. The glyph $\otimes$ represents the tensorial product that generates a $N^2\times N^2$ matrix defined as
-\begin{equation}
-    \hat A\otimes\hat B = \begin{pmatrix}
-        A_{11} \hat B & \cdots & A_{1N}\hat B\\
-        \vdots & \ddots &\vdots\\
-        A_{n1}\hat B& \cdots & A_{NN}\hat B\\
-    \end{pmatrix}.
-\end{equation}
-More detail are shown in the Appendix \ref{A_vectorial_density_matrix}.
-
-In this space the Lindblad equation \eqref{stochastic_lindblad_master} becomes
-\begin{equation}\label{vectorize_master_equation}
-        \frac{d}{dt}\sket{\rho(t)} = \tilde{\mathcal{L}}\sket{\rho(t)},
-    \end{equation}
-    where $\tilde{\mathcal{L}}$ is the operator 
-    \begin{equation}
-        \tilde{\mathcal{L}}=-i(1-\omega)\left[\hat H\otimes\mathbb{I}-\mathbb{I}\otimes\hat H\right]+\omega\sum_{ij}\gamma_{ij}\left[\hat J_{ij}\otimes\hat J^\dagger_{ij} + \hat J_{ij}^\dagger \hat J_{ij}\otimes\mathbb{I} +\mathbb{I}\otimes\hat J_{ij}^\dagger \hat J_{ij}\right].
-\end{equation}
-The solution equation \eqref{vectorize_master_equation} can be written as
-\begin{equation}
-    \sket{\rho(t)} = \hat U(t,\omega)\sket{\rho(0)},
-\end{equation}
-where $U(t,\omega)$ is the evolution operator \cite{Domino}
-\begin{equation}
-    \begin{split}
-            \hat U(t,\omega) = \exp&\left\{-i\left(1-\omega\right)t\left(\hat H\otimes\mathbb{I}-\mathbb{I}\otimes\hat H\right)\right.\\
-            &+\left.\omega t\sum_{ij}\gamma_{ij}\left[ \hat J_{ij}\otimes\hat J^\dagger_{ij}-\frac{1}{2}\hat J_{ij}\hat J^\dagger_{ij}\otimes\mathbb{I}-\frac{1}{2}\mathbb{I}\otimes\hat J_{ij}\hat J^\dagger_{ij}\right]\right\}
-        \end{split}
-\end{equation}
-The evolution operator is not unitary.
-
+\begin{comment}
 \section{Entropy production}
 We can compute also the Von Neumann entropy for the network. 
 Looking at its derivative $\dot S(\hat\rho(t))$, we can consider just the dissipative part, since the unitary one does not change entropy. Knowing that the dynamics is trace preserving, namely $\Tr\left[\frac{d\hat\rho}{dt}\right] = 0$, we obtain
@@ -135,18 +87,19 @@ The equation \eqref{QSW_entropy_production} is always positive, the proof is in 
 
 The last result tell us that the dynamics increases the entropy and, thus, change a pure density matrix in a mixed one.
 As a consequent, the the stationary distribution must have maximum entropy.
+\end{comment}
 
-\section{Stationary distribution}
+\subsection{Stationary distribution}
 
 Following the prove of the stationary distribution in chapter \ref{C_Lindblad}, we can find the stationary density matrix $\hat\rho^*$ for the quantum stochastic walk.
-Let consider the case $\omega = 1$, thus, only the dissipative term survive.
+Let consider the only dissipation dynamics.
 The dynamics decouples the diagonal and off-diagonal terms. The first follow the evolution 
 \begin{equation}
     \frac{d}{dt}\rho_{ii} = \sum_j\left[W(i|j)\rho_{jj}(t) - W(j|i)\rho_{ii}(t)\right],
 \end{equation}
 with transition rate
 \begin{equation}
-    W(i|j) = \sum_{lm} \gamma_{lm}\bra{i}J_{lm}\ket{j}\bra{i}J_{lm}^\dagger\ket{j} = W(j|i).
+    W(i|j) = W(j|i) = A_{ij}.
 \end{equation}
 
 Since the stationary distribution must satisfy the detail balance, namely
@@ -155,14 +108,21 @@ Since the stationary distribution must satisfy the detail balance, namely
 \end{equation}
 Thus, the diagonal entries must be equal. 
 Instead, considering the vector $\sket{\rho}$, the block of corresponding to the off diagonal part of $\mathcal{L}$ is already diagonal with eigenvalue $\frac{1}{2}(d_i + d_j)>0$. Thus, off diagonal terms must be equal to zero.
+
 The stationary density matrix will be
 \begin{equation}
     \hat\rho^* = \frac{1}{N}\begin{pmatrix}
-        1&&\\
+        1&&0\\
         &\ddots&\\
-        &&1\\
+        0&&1\\
     \end{pmatrix}.
 \end{equation}
+
+As anticipated, the stationary distribution has maximal Von Neumann entropy 
+\begin{equation}
+    S\left(\hat\rho^*\right) = \ln N.
+\end{equation}
+
 
 \begin{comment}
 In chapter  we prove that the master equation \eqref{stochastic_lindblad_master} allows a stationary distribution in the form
@@ -243,34 +203,3 @@ If the previous condition are satisfy the stationary distribution of the system 
 \end{equation}
 that is the density matrix \eqref{density_matrix} introduced by De Domenico to identify networks.
 \end{comment}
-
-\newpage
-\section{Symmetry breaking}
-
-Until now, we have considered the network holding the detail balance condition and, therefore, be mapped in a symmetric matrix; 
-but the majority of the networks do not satisfy this condition. To deal with them, we modify slightly the Lindblad master equation \eqref{stochastic_lindblad_master}. 
-As a matter of fact, in the chapter \ref{C_Lindblad} we have analyzed also the case where the interaction with the environment is not symmetric \eqref{environment_coefficients}. Thus, taking the dissipative part of the equation \eqref{C_rotating_wave} in the Schrödinger picture with the coefficients $\Gamma_{ij} = L_{ij}$ and the jump operators $J_{ij} = \ket{i}\bra{j}$ we obtain 
-\begin{equation}
-    \frac{d\hat\rho(t)}{dt} = \sum_{ij}\Gamma_{ij}\left[\hat J_j\hat\rho(t),\hat J_i^\dagger\right]+\Gamma_{ji}^\dagger\left[\hat J_j,\hat\rho(t)\hat J_i^\dagger\right].
-\end{equation}
-Isolating the symmetric and antisymmetric part of the Laplacian, respectively $\gamma_{ij} = \left(L_{ij} + L_{ji}\right)$ and $\pi_{ij} =  \frac{-i}{2}\left(L_{ij}-L_{ji}\right)$ such that $\Gamma_{ij}(\omega) =\frac{1}{2}\gamma_{ij}(\omega)+i\pi_{ij}(\omega)$, we arrive to the equation
-\begin{equation}
-    \frac{d\hat\rho(t)}{dt} = \sum_{ij}\gamma_{ij}\hat J_j\hat\rho(t)\hat J_i^\dagger -\frac{\gamma_{ij}}{2}\left\{\hat J_i^\dagger\hat J_j,\hat\rho(t)\right\} + i\pi_{ij}\left[\hat J_i^\dagger\hat J_j,\hat\rho(t)\right],
-\end{equation}
-where $[\cdot,\cdot]$ and $\{\cdot,\cdot\}$ are respectively the commutator and anticommutator.
-
-Let define a new Hamiltonian $\hat H_{A} = \sum_{ij}\pi_{ij}\hat J_i^\dagger\hat J_j$ that encodes the dynamics of the not symmetric part. 
-It give origin to a coherent dynamics that follow the Von Neumann equation. As a matter of fact the total dynamics can be written as
-\begin{equation}\label{antisymmetric_master_equation}
-    \frac{d\hat\rho(t)}{dt} = i\left[\hat H_{A},\hat\rho(t)\right] + \sum_{ij}\gamma_{ij}\hat J_j\hat\rho(t)\hat J_i^\dagger -\frac{\gamma_{ij}}{2}\left\{\hat J_i^\dagger\hat J_j,\hat\rho(t)\right\}.
-\end{equation}
-
-The dynamics \eqref{antisymmetric_master_equation} does not converge no more to a stationary state due to the Von Neumann part.
-We can generalize as in the \eqref{stochastic_lindblad_master} 
-
-\begin{equation}
-    \frac{d}{dt}\hat \rho = -i\left[(1-\omega)\hat H + \omega\hat H_{A},\hat\rho\right] + \omega\sum_{ij}\gamma_{ij}\left[\hat J_{ij} \hat\rho\hat J_{ij}^\dagger -\frac{1}{2} \left\{ \hat J_{ij}^\dagger \hat J_{ij}, \hat\rho\right\}\right].
-\end{equation}
-where $\hat H$ is the hermitian part of the Laplacian operator.
-
-

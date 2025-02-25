@@ -160,6 +160,46 @@ Lastly, we can prove that the dynamics \eqref{Lindblad_master_equation} conserve
 proved using the cyclic property of the trace. 
 However, it does not conserve the purity $\Tr\left[\hat\rho^2\right]$ that decreases \cite{Manzano}. 
 
+\section{Time evolution}
+Following the resolution proposed by Fujii \cite{fujii2012} for a quantum harmonic oscillator, we can solve the Lindblad master equation. 
+First of all, we vectorize the density matrix: let introduce an Hilbert space with dimension $N^2$ such that a vector is $\sket{\rho} = (\rho_{00},\rho_{01},...,\rho_{NN-1},\rho_{NN})^T$ and the scalar product is $\sbraket{\phi}{\rho}= \Tr[\hat\phi^\dagger\hat\rho]$. This is called Fock-Liouville space \cite{Manzano}.
+
+The follow operation can be vectorize as
+\begin{equation}
+    \hat A \hat\rho \hat B \rightarrow (\hat A\otimes\hat B)\sket{\rho} \qquad \hat A \hat\rho +\hat\rho\hat B \rightarrow \left(\hat A\otimes\mathbb{I} +\mathbb{I}\otimes\hat B\right)\sket{\rho},
+\end{equation}
+where $\mathbb{I}$ is the identity matrix, $\hat A$ and $\hat B$ are two generic operator. The glyph $\otimes$ represents the tensorial product that generates a $N^2\times N^2$ matrix defined as
+\begin{equation}
+    \hat A\otimes\hat B = \begin{pmatrix}
+        A_{11} \hat B & \cdots & A_{1N}\hat B\\
+        \vdots & \ddots &\vdots\\
+        A_{n1}\hat B& \cdots & A_{NN}\hat B\\
+    \end{pmatrix}.
+\end{equation}
+More detail are shown in the Appendix \ref{A_vectorial_density_matrix}.
+
+In this space the Lindblad equation \eqref{Lindbladian} becomes
+\begin{equation}\label{vectorize_master_equation}
+    \frac{d}{dt}\sket{\rho(t)} = \tilde{\mathcal{L}}\sket{\rho(t)},
+\end{equation}
+where $\tilde{\mathcal{L}}$ is the operator 
+\begin{equation}
+    \tilde{\mathcal{L}}=-i\left[\hat H\otimes\mathbb{I}-\mathbb{I}\otimes\hat H\right]+\sum_{k}\gamma_{k}\left[\hat J_{k}\otimes\hat J^\dagger_{k} + \hat J_{k}^\dagger \hat J_{k}\otimes\mathbb{I} +\mathbb{I}\otimes\hat J_{k}^\dagger \hat J_{k}\right].
+\end{equation}
+The solution equation \eqref{vectorize_master_equation} can be written as
+\begin{equation}
+    \sket{\rho(t)} = \hat U(t)\sket{\rho(0)},
+\end{equation}
+where $U(t)$ is the evolution operator \cite{Domino}
+\begin{equation}
+    \begin{split}
+        \hat U(t) = \exp&\left\{-it\left(\hat H\otimes\mathbb{I}-\mathbb{I}\otimes\hat H\right)\right.\\
+        &+\left. t\sum_{k}\gamma_{k}\left[ \hat J_{k}\otimes\hat J^\dagger_{k}-\frac{1}{2}\hat J_{k}\hat J^\dagger_{k}\otimes\mathbb{I}-\frac{1}{2}\mathbb{I}\otimes\hat J_{k}\hat J^\dagger_{k}\right]\right\}
+    \end{split}
+\end{equation}
+The evolution operator is not unitary.
+
+\input{Entropy_production}
 
 \section{Stationary distribution}
 The Lindblad equation allows for a stationary distribution that satisfies the condition
@@ -200,6 +240,6 @@ which is nothing other that a detailed balance condition with stationary distrib
 \end{equation}
 with $\beta$ the inverse temperature of the environment and $Z = \Tr\left[e^{-\beta \hat H}\right]$ is the partition function.
 
-\section{Entropy production}
 
-\include{Caldeira-Leggett_model.tex}
+
+%\include{Caldeira-Leggett_model.tex}
