@@ -1,41 +1,39 @@
 \section{Quantum Walk}
-Instead of studying the random walk of a classical particle in a network, we can extend the diffusion model to quantum particles. 
-They must follow the Schrödinger equation with the Laplacian as Hamiltonian. This model is known as “continuos time quantum walk" \cite{Farhi_98}.
+We can extend the random walk model to quantum particles. 
+They must follow the Schrödinger equation with the Laplacian as Hamiltonian. However, the Schrödinger equation requires that the Laplacian is hermitian; therefore, the network must hold the detailed balance condition \eqref{detail_condition}.
+This model is known as “continuos time quantum walk" \cite{Farhi_98}.
 
 Let us define an orthonormal basis $\{\ket{i}\}$, where each element $\ket{i}$ indicates their corresponding node $i$, satisfying $\braket{i}{j}=\delta_{ij}$. 
 A general general state of the network can be encoded in the ket state $\ket{\psi}$ is define as
 \begin{equation}\label{ket_state_quantum}
     \ket{\psi} = \sum_i \sqrt{\rho_i(t)} \ket{i},
 \end{equation}
-in this way $\rho_i = |\braket{i}{\psi}|^2$ is the projection of the state in the node $i$, in other words the probability to be in the state $i$.
+in this way $\rho_i = |\braket{i}{\psi}|^2$ is the projection of the state in the node $i$, in other words the probability that the system can be measured in the node $i$. The norm of $\ket{\psi}$ is normalize to $1$, therefore, the projections $\rho_i$ satisfy the condition $\sum_i \rho_i = 1$.
 The Schrödinger equation can be written as
 \begin{equation}\label{Schrödinger_quantum_walk}
     \frac{d}{dt}\ket{\psi} = -i\frac{1}{2}\hat L\ket{\psi}.
 \end{equation}
-where $\hat L = L_{ij}\ket{i}\bra{j}$ is the Laplacian operator.
-
-
-The formula \eqref{Schrödinger_quantum_walk} requires that $\hat L$ is hermitian; therefore, the network must hold the detailed balance condition \eqref{detail_condition}.
+where $\hat L = \sum_{ij} L_{ij}\ket{i}\bra{j}$ is the Laplacian operator.
+If we apply a Wick rotation into the equation \eqref{Schrödinger_quantum_walk} we recover the master equation of the classic random walk \eqref{master_eq}.
 
 The solution of the equation \eqref{Schrödinger_quantum_walk} takes the form
 \begin{equation}
     \ket{\psi(t)} = \hat U(t,0) \ket{\psi(0)} = e^{-\frac{i}{2}\hat L t} \ket{\psi(0)},
 \end{equation}
-where $\hat U(t,t') =e^{-\frac{i}{2}\hat L (t-t')}$ is the evolution operator and now it is  unitary. It holds the following property: $\hat U(t,t')\hat U(t',t'') = U(t,t'')$.
+where $\hat U(t,t') =e^{-\frac{i}{2}\hat L (t-t')}$ is the evolution operator and now it is unitary. It holds the following property: $\hat U(t,t')\hat U(t',t'') = U(t,t'')$.
 
-However, the system does not converge to a stationary distribution $\rho^*$. 
-Despite that, it is possible to define a limiting transition probability for a quantum walk as follow: suppose the system starts at node $\ket{a}$, we measure it after a time $t$, random variable uniformly distributed over the interval $t \in [0,T]$ \cite{quantum_walk}. The transition probability from node $a$ to $b$ is given by
+It is possible to define a limiting transition probability for a quantum walk as follow: suppose the system starts at node $\ket{a}$, we measure it after a time $t$, random variable uniformly distributed over the interval $t \in [0,T]$ \cite{quantum_walk}. The transition probability from node $a$ to $b$ is given by
 \begin{equation}
     \begin{split}
         \rho_{a\rightarrow b}(T) &= \frac{1}{T}\int_0^T |\bra{a}e^{-i\frac{t}{2}\hat L} \ket{b}|^2 dt\\
-        &=\frac{1}{T}\int_0^T \sum_{\lambda,\lambda'}\bra{a}e^{-i\frac{t}{2}\hat L}\ket{\lambda}\braket{\lambda}{b} \bra{b}e^{-i\frac{t}{2}\hat L} \ket{\lambda'}\braket{\lambda'}{a} dt\\
+        &=\frac{1}{T}\int_0^T \sum_{\lambda,\lambda'}\bra{a}e^{i\frac{t}{2}\hat L}\ket{\lambda}\braket{\lambda}{b} \bra{b}e^{-i\frac{t}{2}\hat L} \ket{\lambda'}\braket{\lambda'}{a} dt\\
         &= \sum_{\lambda,\lambda'}\braket{a}{\lambda}\braket{\lambda}{b}\braket{b}{\lambda'}\braket{\lambda'}{a}\frac{1}{T}\int_0^T e^{-i(\lambda-\lambda')\frac{t}{2}}dt\\
-        &= |\braket{a}{\lambda}\braket{\lambda}{b}|^2+2\sum_{\lambda\neq\lambda'}\braket{a}{\lambda}\braket{\lambda}{b}\braket{b}{\lambda'}\braket{\lambda'}{a}\frac{1-e^{-i(\lambda-\lambda')\frac{T}{2}}}{i(\lambda-\lambda')T},\\
+        &= \sum_\lambda|\braket{a}{\lambda}\braket{\lambda}{b}|^2+2\sum_{\lambda\neq\lambda'}\braket{a}{\lambda}\braket{\lambda}{b}\braket{b}{\lambda'}\braket{\lambda'}{a}\frac{1-e^{-i(\lambda-\lambda')\frac{T}{2}}}{i(\lambda-\lambda')T},\\
     \end{split}
 \end{equation}
 where $\ket{\lambda}$ are the eigenstates of $\hat L$ with eigenvalues $\lambda$. In the limit $T\rightarrow \infty$ it tend to 
 \begin{equation}
-    \rho_{a\rightarrow b}(T) \xrightarrow[T \rightarrow \infty]{} |\braket{a}{\lambda}\braket{\lambda}{b}|^2.
+    \rho_{a\rightarrow b}(T) \xrightarrow[T \rightarrow \infty]{} \sum_\lambda|\braket{a}{\lambda}\braket{\lambda}{b}|^2.
 \end{equation}
 
 Let the system be in the state $\ket{\psi}$, also called pure state, we can define the density matrix as
@@ -48,15 +46,15 @@ For a generic operator $\hat O(t) = O_{ij}\ket{i}\bra{j}$, the expectation value
 \begin{equation}
         \left< \hat O\right> = \Tr\left[\hat O\hat\rho\right].
 \end{equation}
-The probability to be in the node $a$ can be express using the operator $\hat P_a = \ket{a}\bra{a}$ such that
+The probability $\rho_k$ to be in the node $k$ can be express using the operator $\hat P_k = \ket{k}\bra{k}$ such that
 \begin{equation} \label{state_projection_quantum}
     \begin{split}
-        \Tr\left[\hat P_a\hat\rho(t)\right] 
+        \Tr\left[\hat P_k\hat\rho(t)\right] 
         %= \sum_i \braket{i}{a}\braket{a}{\psi}\braket{\psi}{i}
         %& = \sum_{ijk} \braket{i}{a}\bra{a}\sqrt{\rho_j}\ket{j}\bra{k}\sqrt{\rho_k}\ket{i}\\
         %&= \sum_{ijk} \delta_{i,a}\delta_{a,j}\delta_{k,i}\sqrt{\rho_j}\sqrt{\rho_k}\\
         %= \sqrt{\rho_a}\sqrt{\rho_a} 
-        = \rho_a
+        = \rho_k.
     \end{split}
 \end{equation}
 
@@ -75,19 +73,23 @@ The solution of the differential equation is
     \hat\rho(t) = \hat U(t,0)\hat\rho(0)\hat U^\dagger(t,0) = e^{-\frac{i}{2}t\hat L}\hat\rho\, e^{\frac{i}{2}t\hat L}.
 \end{equation}
 
-Using the cyclic property of the trace and the unitary of the evolution operator, it can be proved that the $\Tr[\hat\rho]$ is time invariant.
+Using the cyclic property of the trace and the unity of the evolution operator, it can be proved that the $\Tr[\hat\rho]$ is time invariant.
 
 If the initial distribution over the network is uncertain, we can introduce the density matrix for mixed state. Let be $\{\ket{\psi_k}\}_{k<K\in\mathbb{R}}$ a set of different probability state that can describe the system with probability $p_k$, such that $\sum_k^K p_k = 1$, then the mixed density matrix is define as
 \begin{equation}
     \hat \rho = \sum_{k=1}^K p_k \hat \rho_k \qquad \hat\rho_k = \ket{\psi_k}\bra{\psi_k}.
 \end{equation}
 
-The temporal evolution of the operator is define as in eq. \eqref{Von Neumann equation}; the probability to be at node a at time t is the same as in eq. \eqref{state_projection_quantum}. All the property for the pure state still holds; this can be easily proven using the linearity of the trace.
+The temporal evolution of the operator is defined as in eq. \eqref{Von Neumann equation}; the probability to be at node a at time t is the same as in eq. \eqref{state_projection_quantum}. All the property for the pure state still holds; this can be easily proven using the linearity of the trace.
 
-Using the mixed density matrix we can consider a system that does not start from a defined distribution, but from an ensemble of possible distribution with their probability to happen. 
+Using the mixed density matrix we can consider a system that does not start from a defined distribution, but from an ensemble of possible distribution with their probability. 
 
-To measure how mixed the density matrix is we can use the Von Neumann entropy $S[\hat\rho]=-\Tr[\hat\rho\ln\hat\rho]$.
-Moreover, the Von Neumann entropy is a time invariance since the evolution operator does not change how mixed the state are \cite{Nielsen_Chuang_2010}.
+We can introduce the concept of entropy with the Von Neumann entropy
+\begin{equation}
+    S[\hat\rho]=-\Tr[\hat\rho\ln\hat\rho].
+\end{equation}
+It is bounded $0\geq S[\hat\rho] \geq \ln N$. It vanishes for pure states.
+The Von Neumann entropy is a time invariance, thus, the evolution operator takes pure state into pure state \cite{Nielsen_Chuang_2010}.
 \begin{comment}
     \begin{equation}
         \begin{split}
@@ -235,8 +237,8 @@ In this basis, the Laplacian act as
     \end{aligned}
 \end{equation}
 
-Thus, the dynamics along the network reduces to a 1-D quantum walk which has a known solution \eqref{Bessel_function} %\cite{quantum_walk}
+Thus, the dynamics along the network reduces to a 1-D quantum walk which has a known computable solution \eqref{Bessel_function} %\cite{quantum_walk}
 \begin{equation}
     \bra{0}e^{i\frac{t}{2}\hat L}\ket{2n} = e^{-t} I_{2n}\left(\frac{t}{2}\right),
 \end{equation}
-where $I_{n}(x) = i^{n}J_{n}(ix)$ is the modified Bessel function of the first kind.
+where $I_{n}(x) = i^{n}J_{n}(ix)$ is the modified Bessel function of the first kind. 
