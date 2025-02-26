@@ -115,12 +115,33 @@ Thus, all the eigenvectors with not zero eigenvalues belong to this subspace.
 
 
 The uncertainty in the particle's location can be captured by the Shannon entropy
-\begin{equation}
-    S = -\sum_i p_i\ln p_i.
+\begin{equation}\label{Shannon_entropy}
+    S(t) = -\sum_i \rho_i(t)\ln \rho_i(t).
 \end{equation}
 It is a bounded function $0\geq S \geq \ln N$.
+
+The random walk process is a irreversible, the entropy \eqref{Shannon_entropy} increases by time. 
+In fact, the entropy's derivative for the random walk is
+\begin{equation}
+        \dot S(t) = -\sum_i \dot\rho_i(t)\ln \rho_i(t) = -\sum_{ij} L_{ij} \rho_j(t)\ln \rho_i(t).
+\end{equation}
+We can diagonalize the Laplacian such that $\rho_\lambda$ the probability to find the system in the eigenstate of $\lambda$ eigenvalue.
+The eigenvalues of the Laplacian are not negative. Thus, the entropy's derivative becomes
+\begin{equation}
+    \dot S = -\sum_\lambda \lambda \rho_\lambda(t) \ln \rho_\lambda(t) \geq 0.
+\end{equation}
 It can been shown that the stationary distribution maximizes the Shannon entropy $S = \ln N$.
-    
+
+Figure \ref{Fig:Shannon_entropy} shows the Shannon entropy \eqref{Shannon_entropy} for a random walk on different networks: Erd\H{o}s-Rényi (E-R) random graph with connectivity probability 0.7 (orange), a Barab\'abi-Albert (B-A) scale-free network with parameter m = 3 (green), and a Watts-Strogatz (W-S) small world network. The Shannon entropy is a monotonic increasing function and the stationary distribution has maximal entropy.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\linewidth]{image/Shannon_entropy.png}
+    \caption{Plot of the Shannon entropy as a function of time $t$ for a random walk over different network types with 50 nodes: a ring graph (blue), a Erd\H{o}s-Rényi (E-R) random graph with connectivity probability 0.7 (orange), a Barab\'abi-Albert (B-A) scale-free network with parameter m = 3 (green), and a Watts-Strogatz (W-S) small world network with parameter K = 6 and rewire probability 0.2 (red). The x-axis has a logarithmic scale. In every network the entropy is monotonically increasing. For large $t$ the entropy is equal to $S = \ln 50$. }
+    \label{Fig:Shannon_entropy}
+\end{figure}
+   
+
 \begin{comment}
     In figure \ref{fig:node_0} is shown only the probability to be in the initial node as a function of time starting  from a Dirac delta distribution for different types of networks\footnote{The python scripts can be found in the GitHub page of the author at the link: \url{https://github.com/ShqemzaMatteo/Master_thesis}}: a ring graph, an Erd\H{o}s-Rényi (E-R) random graph\cite{erdos-renyi1960}, a Barab\'asi-Albert (B-A) scale-free graph\cite{Barabasi_Albert_1999}, and a Watts-Strogatz (W-S) small-sworld graph\cite{Watts-Strogatz_1998}. All the algorithm are explained in the Appendix \Ref{Appendix_A}. 
 

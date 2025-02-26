@@ -13,7 +13,21 @@ $\mathcal{L}^{qm}\left[\hat\rho(t)\right] = -i\left[H,\hat\rho\right]$ is equal 
 When $\gamma_{ij} = 0$ we recover the Von Neumann equation for the quantum walk \eqref{Von Neumann equation}. 
 $\mathcal{L}\left[\hat\rho\right]$ is a superoperator that act in the space of the density matrix.
 
-From that, we obtain a master equation that contains both the quantum and classical aspect of a diffusion over a network. As a matter of fact,the classical random walk behavior emerges considering the evolution of the diagonal element of the density matrix under just the dissipative part. Let $\rho = \ket{k}\bra{k}$ be the density matrix of a system in node $k$, it evolves following
+In the Fock-Liouville space, the quantum system evolves following the equation
+\begin{equation}
+    \sket{\rho(t)}  = U(t) \sket{\rho(0)}
+\end{equation} 
+where the evolution operator is defined as \cite{Domino}
+\begin{equation}
+    \begin{split}
+        \hat U(t) = \exp&\left\{-it\left(\hat H\otimes\mathbb{I}-\mathbb{I}\otimes\hat H\right)\right.\\
+        &+\left. t\sum_{ij}\gamma_{ij}\left[ \hat J_{ij}\otimes\hat J^\dagger_{ij}-\frac{1}{2}\hat J_{ij}\hat J^\dagger_{ij}\otimes\mathbb{I}-\frac{1}{2}\mathbb{I}\otimes\hat J_{ij}\hat J^\dagger_{ij}\right]\right\}.
+    \end{split}
+\end{equation}
+
+
+
+The master equation \eqref{stochastic_lindblad_master} contains both the quantum and classical aspect of a diffusion over a network. As a matter of fact,the classical random walk behavior emerges considering the evolution of the diagonal element of the density matrix under just the dissipative part. Let $\rho = \ket{k}\bra{k}$ be the density matrix of a system in node $k$, it evolves following
 \begin{equation}
     \begin{split}
         \mathcal{L}^{cl}\ket{k}\bra{k} &= \sum_{ij}\gamma_{ij}\left[\hat J_{ij} \ket{k}\bra{k}\hat J_{ij}^\dagger -\frac{1}{2} \left\{ \hat J_{ij}^\dagger \hat J_{ij}, \ket{k}\bra{k}\right\}\right]\\
