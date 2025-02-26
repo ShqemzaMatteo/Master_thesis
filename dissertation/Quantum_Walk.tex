@@ -1,7 +1,7 @@
 \section{Quantum Walk}
 We can extend the random walk model to quantum particles. 
 They must follow the Schrödinger equation with the Laplacian as Hamiltonian. However, the Schrödinger equation requires that the Laplacian is hermitian; therefore, the network must hold the detailed balance condition \eqref{detail_condition}.
-This model is known as “continuos time quantum walk" \cite{Farhi_98}.
+This model is known as “continuos time quantum walk" \cite{Farhi_98, quantum_walk}. This model is used to build quantum algorithms \cite{Quantum_walk_Google, classic_to_quantum_networks}.
 
 Let us define an orthonormal basis $\{\ket{i}\}$, where each element $\ket{i}$ indicates their corresponding node $i$, satisfying $\braket{i}{j}=\delta_{ij}$. 
 A general general state of the network can be encoded in the ket state $\ket{\psi}$ is define as
@@ -84,11 +84,12 @@ The temporal evolution of the operator is defined as in eq. \eqref{Von Neumann e
 
 Using the mixed density matrix we can consider a system that does not start from a defined distribution, but from an ensemble of possible distribution with their probability. 
 
-We can introduce the concept of entropy with the Von Neumann entropy
-\begin{equation}
+To study the mixed state we introduce the Von Neumann entropy
+\begin{equation}\label{Von_Neumann_entropy}
     S[\hat\rho]=-\Tr[\hat\rho\ln\hat\rho].
 \end{equation}
-It is bounded $0\geq S[\hat\rho] \geq \ln N$. It vanishes for pure states.
+It is the quantum counterpart of the Shannon entropy for classical information theory.
+The Von Neumann entropy \eqref{Von_Neumann_entropy} is bounded $0\geq S[\hat\rho] \geq \ln N$. It vanishes for pure states.
 The Von Neumann entropy is a time invariance, thus, the evolution operator takes pure state into pure state \cite{Nielsen_Chuang_2010}.
 \begin{comment}
     \begin{equation}
@@ -122,7 +123,7 @@ In line the Laplacian is defined as
 \begin{equation}
     \hat L \ket{j} = 2\ket{j} -\ket{j-1} -\ket{j+1} . 
 \end{equation}
-Therefore, Applying this to the momentum state
+Therefore, applying this to the momentum state
 \begin{equation}
     \begin{split}
         \bra{j}\hat L \ket{p} &= \braket{j}{p} -\frac{1}{2}\braket{j-1}{p} -\frac{1}2{}\braket{j+1}{p}\\
