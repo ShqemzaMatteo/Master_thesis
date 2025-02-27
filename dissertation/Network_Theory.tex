@@ -14,7 +14,7 @@ The mathematical framework used in Network theory is given by Graph theory.
 
 A graph is defined by an ordinate couple $(V,E)$ where $V = \{1,2,3, ...,n\}$ is the set of nodes or vertices and $E = \left\{ (i, j): i , j \in V ; i \text{ is linked to } j\right\}$ is the set of links or edges. Usually, a general graph is denoted as $G =(N,M)$ where $N$ and $M$ are the cardinality of $V$ and $E$ respectively.
 
-A graph can be viewed also via a matrix called Adjacency matrix which is defined as
+A graph can be viewed also via a $N\times N$ matrix called Adjacency matrix which is defined as
 \begin{equation}
     A_{ij}= \left\{ \begin{aligned}
         +1 &\quad \mathrm{if} \; i \; \mathrm{is ~linked ~to} \; j \\
@@ -55,10 +55,14 @@ A directed graph is said \textit{irreducible} if its adjacency matrix is not sim
 \end{equation}
 If it hold, the graph is said \textit{strongly connected}: there exists a path that connect each the nodes to all the other ones.
 
+Some systems present interactions with different strength between the elements. Thus, the binary representation, the link exist or not, is no more sufficient. To model this kind of system we introduce the \textit{weight graphs} $G(V,E,W)$, where $W$ is the set of real weights attached to the links.   
+It can be described with the $N\times N$ weight matrix which entries are the weight $w_{ij}$ of each link. If there is no link between two nodes $w_{ij} = 0$. The weight matrix is not necessary symmetric. 
+
+Figure \ref{fig:weight_graphs} shows three examples for undirected, directed and weight networks.
 \begin{figure}[ht!]
     \centering
     \includegraphics[scale=0.5]{image/weight_graphs.png}
-    \caption{}
+    \caption{Examples of undirected (a), directed (b), weight (c) networks with $N=7$ and $M=14$. The arrows indicates the direction of each link. In the weight graph the thickness of the links represents its weight.}
     \label{fig:weight_graphs}
 \end{figure}
 

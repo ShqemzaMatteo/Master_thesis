@@ -24,6 +24,10 @@ In un unweighted network, the transition rates can be identified with the adjace
 \begin{equation}
     \pi_{ij} = \frac{A_{ij}}{\sum_j A_{ij}}.
 \end{equation}
+In a weight network, the transition rate can be computed starting from the weights of the links
+\begin{equation}
+    \pi_{ij} = \frac{w_{ij}}{\sum_j w_{ij}}.
+\end{equation}
 
 Taking the continuum limit of the evolution \eqref{discrite random walk} we obtain the master equation \cite{Classic_random_walk}
 \begin{equation}\label{master_eq}
@@ -132,14 +136,14 @@ The eigenvalues of the Laplacian are not negative. Thus, the entropy's derivativ
 \end{equation}
 It can been shown that the stationary distribution maximizes the Shannon entropy $S = \ln N$.
 
-Figure \ref{Fig:Shannon_entropy} shows the Shannon entropy \eqref{Shannon_entropy} for a random walk on different networks: Erd\H{o}s-Rényi (E-R) random graph with connectivity probability 0.7 (orange), a Barab\'abi-Albert (B-A) scale-free network with parameter m = 3 (green), and a Watts-Strogatz (W-S) small world network. The Shannon entropy is a monotonic increasing function and the stationary distribution has maximal entropy.
 
-\begin{figure}
+\begin{figure}[ht!]
     \centering
-    \includegraphics[width=0.75\linewidth]{image/Shannon_entropy.png}
-    \caption{Plot of the Shannon entropy as a function of time $t$ for a random walk over different network types with 50 nodes: a ring graph (blue), a Erd\H{o}s-Rényi (E-R) random graph with connectivity probability 0.7 (orange), a Barab\'abi-Albert (B-A) scale-free network with parameter m = 3 (green), and a Watts-Strogatz (W-S) small world network with parameter K = 6 and rewire probability 0.2 (red). The x-axis has a logarithmic scale. In every network the entropy is monotonically increasing. For large $t$ the entropy is equal to $S = \ln 50$. }
+    \includegraphics[width=0.70\linewidth]{image/Shannon_entropy.png}
+    \caption{Plot of the Shannon entropy as a function of time $t$ for a random walk over different network types with 50 nodes: a ring graph (blue), a Erd\H{o}s-Rényi (E-R) random graph with connectivity probability 0.7 (orange), a Barab\'abi-Albert (B-A) scale-free network with parameter m = 3 (green), and a Watts-Strogatz (W-S) small world network with parameter K = 6 and rewire probability 0.2 (red). The x-axis has a logarithmic scale. In every network the entropy is monotonically increasing. For large $t$ the entropy per node is equal to $S/N = \ln(50)/50 \approx 0.0782$. }
     \label{Fig:Shannon_entropy}
 \end{figure}
+Figure \ref{Fig:Shannon_entropy} shows the Shannon entropy \eqref{Shannon_entropy} for a random walk on different networks: Erd\H{o}s-Rényi (E-R) random graph with connectivity probability 0.7 (orange), a Barab\'abi-Albert (B-A) scale-free network with parameter m = 3 (green), and a Watts-Strogatz (W-S) small world network. The Shannon entropy is a monotonic increasing function and the stationary distribution has maximal entropy.
    
 
 \begin{comment}

@@ -2,12 +2,9 @@
 
 In chapter \ref{C_Density_Matrix} we have introduce the concept of density matrix for a network, based on the communicability matrix. This quantity considers the correlation between the nodes created by the random walk dynamics. 
 
-In this chapter we try to unify the two concept taken from the quantum realm: the quantum random walk and the density matrix, 
-
-Nel 2 capitolo abbiamo introdotto la density matrix per i network, basata sulla communicability matrix. Questa grandezza esprime il modo in cui l'informazione si diffonde all'interno di un network a cui è applicata una dinamica di random walk. 
-In questo capitolo colleghiamo la suddetta ad un network con una dinamica di quantum random walk che subisce anche delle fluttuazioni termiche. Studiando il sistema tramite una Lindblad master equation, si ricava la sua stazionary distribution che coincide proprio con la density matrix per i networks.  
-
-In chapter \ref{C_Density_Matrix} we have introduced the density matrix for a network based on the dynamical communicability matrix. This quantity express the possible way the 
+In this chapter we try to unify the two concept taken from the quantum realm: the quantum random walk and the density matrix.
+In fact, we considering a quantum walk process exposed to thermal noise we obtain a stationaty distribution which coincides with the network's density matrix. 
+The interaction between the quantum system and the thermal noise are considered Markovian, thus, it is studied with the Lindblad master equation.
 
 \input{Quantum_Stochastic_Walk}
 
@@ -18,7 +15,7 @@ In chapter \ref{C_Density_Matrix} we have introduced the density matrix for a ne
 
 Until now, we have examined only the random walk on network, but this framework can be generalize to other more complex dynamics on network \cite{De_Domenico_2023}.
 The dynamics should be linear such that the evolution of the observable per node $i$ are 
-\begin{equation}
+\begin{equation}\label{general_dynamics}
     \frac{d}{dt} x_i = \sum_j H_{ij} x_j,
 \end{equation}
 where $H_{ij}$ controls the evolution of the system.
@@ -41,7 +38,12 @@ Now we can add thermal noise arriving at quantum master equation \eqref{Lindblad
 \end{equation}
 with $Z= \Tr\left[e^{-\beta\hat H}\right]$ is the partition function.
 
-With  Von Neumann entropy we can study the relaxation.
+Therefore, the network entropy for network under the dynamics \eqref{general_dynamics} is 
+\begin{equation}
+    S = -\Tr\left[\frac{1}{Z}e^{-\beta\hat H}\ln\left(\frac{1}{Z}e^{-\beta\hat H}\right) \right].
+\end{equation}
+Based on the considered dynamics the network will have a different entropy's value.
+
 \begin{comment} 
 We know some complex dynamics, for example, the control operator for the SIS epidemiological model is
 \begin{equation}
