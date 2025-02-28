@@ -1,15 +1,13 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import random
+from scipy.optimize import curve_fit
+import scipy.linalg as sc
+random.seed(None)
 
 #constants
 N_dim = 50
-time = np.logspace(-1,2,100)
-time_f = time[1:]
-time_f = np.append(time_f, 100)
-delta_t= time - time_f
-initial_distribution = np.zeros(N_dim)
-initial_distribution[0] = 1
+beta = np.logspace(-2,3,100)
 
 #adjacency matrix for a ring
 Adjacency = np.zeros((N_dim, N_dim))
@@ -24,7 +22,7 @@ for i in range(N_dim):
     for k in range(N_dim):
         Adjacency[i, k] /= sum
 # laplacian 
-Laplacian_ring = np.identity(N_dim) - Adjacency
+Laplacian = np.identity(N_dim) - Adjacency
 
 # e-r adjacency matrix
 def er_adjacency_matrix(n, p):
@@ -35,7 +33,7 @@ def er_adjacency_matrix(n, p):
                 adjacency[i,j] = 1
                 adjacency[j,i] = 1
     return adjacency
-Adjacency_er = er_adjacency_matrix(N_dim, 0.8)
+Adjacency_er = er_adjacency_matrix(N_dim, 0.2)
 for i in range(N_dim):
     sum = 0
     for j in range(N_dim):
@@ -44,6 +42,7 @@ for i in range(N_dim):
         Adjacency_er[i, k] /= sum
 # laplacian 
 Laplacian_er = np.identity(N_dim) - Adjacency_er
+
 #adjacency matrix for a B-A
 def ba_adjacency_matrix(n,m):
     adjacency = np.zeros((n,n))
@@ -65,7 +64,7 @@ def ba_adjacency_matrix(n,m):
             degrees[new_node] += 1
             degrees[target] += 1
     return adjacency
-Adjacency_ba = ba_adjacency_matrix(N_dim, 5)
+Adjacency_ba = ba_adjacency_matrix(N_dim, 3)
 for i in range(N_dim):
     sum = 0
     for j in range(N_dim):
@@ -74,6 +73,8 @@ for i in range(N_dim):
         Adjacency_ba[i, k] /= sum
 # laplacian 
 Laplacian_ba = np.identity(N_dim) - Adjacency_ba
+
+#adjacency matrix for WS network
 def ws_adjacency_matrix(n, k, p):
     adjacency= np.zeros((n, n))
     # Step 1: Create a regular ring lattice
@@ -101,7 +102,7 @@ def ws_adjacency_matrix(n, k, p):
                         adjacency[new_connection, i] = 1
                         break
     return adjacency
-Adjacency_ws = ws_adjacency_matrix(N_dim, 6, 0.2)
+Adjacency_ws = ws_adjacency_matrix(N_dim, 3, 0.2)
 for i in range(N_dim):
     sum = 0
     for j in range(N_dim):
@@ -111,31 +112,33 @@ for i in range(N_dim):
 # laplacian 
 Laplacian_ws = np.identity(N_dim) - Adjacency_ws
 
-#entropy
-def Shannon_entropy(laplacian):
-    distribution = initial_distribution
-    entropy = np.zeros_like(time)
-    for i in range(len(time)):
-        distribution += delta_t[i] * (laplacian @ distribution)
-        distribution[N_dim-1] = 1- np.sum(distribution[:N_dim-1])
-        for d in distribution:
-            if(d>0.001):
-                entropy[i] -= d*np.log(d)   
-    return entropy
 
+#KL divergence
+def KL_divergence(b, laplacian_1, laplacian_2):
+    density_matrix_1 = sc.expm(-b*laplacian_1)
+    density_matrix_1 /= np.trace(density_matrix_1)
+    density_matrix_2 = sc.expm(-b*laplacian_2)
+    density_matrix_2 /= np.trace(density_matrix_2)
+    return np.trace(density_matrix_1 @ sc.logm(density_matrix_1)) -np.trace(density_matrix_1 @ sc.logm(density_matrix_2))
+
+def JS_divergence(b, laplacian_1, laplacian_2):
+    density_matrix_1 = sc.expm(-b*laplacian_1)
+    density_matrix_1 /= np.trace(density_matrix_1)
+    density_matrix_2 = sc.expm(-b*laplacian_2)
+    density_matrix_2 /= np.trace(density_matrix_2)
+    density_matrix_3 = (density_matrix_1 + density_matrix_2)/2
+    return np.trace(density_matrix_1 @ sc.logm(density_matrix_1)) -np.trace(density_matrix_1 @ sc.logm(density_matrix_3))+ np.trace(density_matrix_2 @ sc.logm(density_matrix_2)) -np.trace(density_matrix_2 @ sc.logm(density_matrix_3))
 #plot
-y_1 = Shannon_entropy(Laplacian_ring)
-y_2 = Shannon_entropy(Laplacian_er)
-y_3 = Shannon_entropy(Laplacian_ba)
-y_4 = Shannon_entropy(Laplacian_ws)
+y_1 = np.vectorize(lambda t: JS_divergence(t,Laplacian_ba, Laplacian_er))(beta)
+y_2 = np.vectorize(lambda t: JS_divergence(t,Laplacian_ba, Laplacian_ws))(beta)
+y_3 = np.vectorize(lambda t: JS_divergence(t,Laplacian_ws, Laplacian_er))(beta)
 
-plt.plot(time, y_1/N_dim, label='Ring')
-plt.plot(time, y_2/N_dim, label='E-R')
-plt.plot(time, y_3/N_dim, label='B-A')
-plt.plot(time, y_4/N_dim, label='W-S')
-plt.xlabel('time')
-plt.ylabel('S/N')
-plt.title('Shannon Entropy for a random graph')
+plt.plot(beta, y_1,label ='ER - BA')
+plt.plot(beta, y_2,label ='ER - WS')
+plt.plot(beta, y_3,label ='BA - WS')
+plt.xlabel('β')
+plt.ylabel('JS')
+plt.title('JS divergence between random networks')
 plt.xscale('log')
 #plt.ylim((-0.15 , 1.15))
 plt.grid()

@@ -8,23 +8,31 @@ where $Z$ is the partition function and it is equal to the Laplacian Estrada ind
 It is a hermitian and positive defined matrix with trace equal to unity. 
 It can be seen that $e^{-\beta L}$ is the propagator for diffusion equation in a network at time $t = \beta$.
 
-From this, we can define the Von Neumann entropy as
+From this, we can define the network's entropy as the Von Neumann entropy
 \begin{equation} \label{entropy}
     S(\hat\rho) = -\Tr[\hat \rho \ln \hat \rho].
 \end{equation}
 
+Considering \eqref{density_matrix}, the network's entropy can be written also in the form
+\begin{equation}\label{alternative_entropy}
+    S(\hat\rho) = \beta \Tr\left[L\hat\rho\right] + \ln Z.
+\end{equation}
 
-The entropy is not negative and it is equal to zero if and only if the $\hat\rho$ is a pure state. It has a higher bound $S \leq \ln(N)$ \cite{Nielsen_Chuang_2010}.
-%It has been proven that this matrix satisfies the sub-additivity property\cite{De_Domenico_2016}:
-%Let $\hat\rho$, $\hat\tau$ and $\hat\sigma$ be density matrices corresponding to networks with same node $G$, $T$, $S$ respectively. If $G = T + S$ then $S(\hat\rho) \leq S(\hat\tau) + S(\hat\sigma)$.
+The entropy is not negative and it is equal to zero if and only if the $\hat\rho$ is a pure state. It has a higher bound $S \leq \ln(N)$,  \cite{Nielsen_Chuang_2010}.
+
+The entropy satisfy the sub-additivity property \cite{De_Domenico_2016}:
+Let $\hat\rho$, $\hat\tau$ and $\hat\sigma$ be density matrices corresponding to the networks $G$, $H$, $I$ respectively. The networks $t$ and $S$ are subgraph of the network $G$ such that $G = H + I$.
+If the sub-additivity is satisfied  then $S(\hat\rho) \leq S(\hat\tau) + S(\hat\sigma)$, the equivalence is obtain if the two subgraphs does not have nodes from the same component of $G$. In appendix \ref{C_sub_additivity} there is a mathematical proof.
+
+
 
 
 Figure \ref{fig:ER-BA-WS} shows the entropy \eqref{entropy} for different types of networks\footnote{The python scripts can be found in the GitHub page of the author at the link: \url{https://github.com/ShqemzaMatteo/Master_thesis}}: a ring graph, an Erd\H{o}s-Rényi (E-R) random graph, a Barab\'asi-Albert (B-A) scale-free graph, and a Watts-Strogatz (W-S) small-sworld graph.
 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=0.65\linewidth]{image/random_graph.png}
-    \caption{Plot of the Von Neumann entropy as a function of $\beta$ for different network types with $50$ nodes: a ring graph (blue), a Erd\H{o}s-Rényi (E-R) random graph with connectivity probability $0.7$ (orange), a Barab\'asi-Albert (B-A) scale-free graph with parameter $m=3$ (green), and a Watts-Strogatz (W-S) small world graph with parameter $K=3$ and rewire probability 0.2 (red). The x-axis has a logarithmic scale. }
+    \includegraphics[width=0.75\linewidth]{image/random_graph.png}
+    \caption{Plot of the network's entropy per node as a function of $\beta$ for different network types with $50$ nodes: a ring graph (blue), a Erd\H{o}s-Rényi (E-R) random graph with connectivity probability $0.7$ (orange), a Barab\'asi-Albert (B-A) scale-free graph with parameter $m=3$ (green), and a Watts-Strogatz (W-S) small world graph with parameter $K=3$ and rewire probability 0.2 (red). The x-axis has a logarithmic scale. For large $\beta$ the entropy tends to zero far all the networks.}
     \label{fig:ER-BA-WS}
 \end{figure}
 
@@ -90,30 +98,37 @@ The complexity of information streams can be quantified by the Von Neumann entro
 When the information dynamics is described by a single information stream, a pure state, entropy is zero.
 In contrast, as the information dynamics becomes more complex and diverse, the number of information streams increases, resulting in higher entropy.
 
-\begin{comment}
-The connection between the density matrix \eqref{density_matrix} and the diffusion on networks suggests that this instruments can be used also to study the dynamical properties of the diffusion especially out-of-equilibrium. We can find a preferential path to relax to equilibrium that maximize the De Domenico's entropy; this special path should work as an attractor for the other paths. However, this hypothesis that needs further investigation to understand how this process works.
-
-In the case the distribution of the initial information is not uniform and it is known, we can write a more accurate density matrix based on the it \cite{De_Domenico_2023}. If the initial distribution is 
-\begin{equation}
-    \hat U(t) = \sum_{j}p_j\ket{\Delta \psi^{(j)}(t)}\bra{\Delta \psi^{(j)}(t)}
-\end{equation}
-which is the sum of the different possible perturbation weighted by their probability to happen. Therefore, the density matrix is 
-\begin{equation}
-    \hat \rho(t) = \frac{\hat U(t)}{Z}
-\end{equation}
-with $Z = \Tr[\hat U(t)]$ the partition function.
-In the limit of maximal uncertainty over the possible perturbations, this formula tends to the previous one \eqref{density_matrix}, which also maximize the entropy for a given network at time $t$.
-\end{comment}
-
-Starting from the concept of entropy, we can also introduce the Kullback-Liebler divergence as
+\subsection{Kullback-Liebler and Jensen-Shannon Divergences}
+Starting from the concept of entropy, we can also introduce the Kullback-Liebler (KL) divergence or relative entropy \cite{K-L_divergence} as
 \begin{equation}\label{KL_divergence}
-    D(\hat \rho || \hat \sigma) = \Tr \left[\hat \rho \ln\left(\frac{\hat\sigma}{\hat\rho}\right)\right].
+    D_{KL}(\hat \rho || \hat \sigma) = \Tr \left[\hat \rho \ln\left(\frac{\hat\sigma}{\hat\rho}\right)\right].
 \end{equation}
-It can be used to make comparisons between networks. Moreover, this concept we can be applied to the reconstruction of network starting from real data using the maximum likelihood estimation.  
+It measure the close is the distribution $\hat \sigma$ to reproduce a event with real distribution $\hat \rho$. 
+The KL divergence is always non negative and it equals zero when $\hat \rho = \hat \sigma$. It is not symmetric an unbounded \cite{J-S_divergence}.
 
-However the Kullback-Liebler divergence is not symmetric, so can not be use as a metric. 
-But we can symmetrize introducing the Jensen-Shannon divergence as
+It can be used to make comparisons between networks. Moreover, this concept we can be applied to the reconstruction of network starting from real data using the maximum likelihood estimation: it is to find the best model that reproduce the experimental data. In fact, the maximum likelihood estimation can be apply minimizing the Kullback-Liebler divergence between chosen network models and the dataset \cite{De_Domenico_2016}. This opens the door to the application of machine learning technique in complex network.
+
+
+However the Kullback-Liebler divergence is not symmetric, therefore it can not be use as a metric. 
+But we can symmetrize introducing the Jensen-Shannon (JS) divergence \cite{J-S_divergence} as
 \begin{equation}\label{JS_metric}
-    \mathcal{D}(\hat\rho||\hat\sigma) = D(\hat \rho || \hat \mu) + D(\hat \sigma || \hat \mu) = S(\hat\mu)-\frac{1}{2}\left[S(\hat\rho) + S(\hat\sigma)\right],
+    \mathcal{D}_{JS}(\hat\rho||\hat\sigma) =  \frac{1}{2}D(\hat \rho || \hat \mu) + \frac{1}{2}D(\hat \sigma || \hat \mu) = S(\hat\mu)-\frac{1}{2}\left[S(\hat\rho) + S(\hat\sigma)\right],
 \end{equation}
-where $\hat\mu =\frac{1}{2}(\hat\rho+\hat\sigma)$. It is a metric: it is symmetric, positive define, and hold the triangular inequality \cite{Jensen-Shannon_divergence}. It has been use successfully to measure the distance between the layer of a multilayer network \cite{multilayer}.
+where $\hat\mu =\frac{1}{2}(\hat\rho+\hat\sigma)$. 
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.75\textwidth]{image/JS_divergence.png}
+    \caption{Plot of the KL divergence as a function of $\beta$ between different network types with $50$ nodes: a Erd\H{o}s-Rényi (E-R) random graph with connectivity probability $0.7$ and a Barab\'asi-Albert (B-A) scale-free graph with parameter $m=3$ (blue); a Erd\H{o}s-Rényi (E-R) random graph with connectivity probability $0.7$ and Watts-Strogatz (W-S) small world graph with parameter $K=3$ and rewire probability 0.2 (orange); a Barab\'asi-Albert (B-A) scale-free graph with parameter $m=3$ and a Watts-Strogatz (W-S) small world graph with parameter $K=3$ and rewire probability 0.2 (green). The x-axis has a logarithmic scale.The ER and BA networks are closer respect to a WS network. The divergence is maximum around $\beta = 10$.}
+    \label{Fig:JS_divergence}
+\end{figure}
+
+The JS divergence is a bounded function \cite{J-S_divergence}
+\begin{equation}
+    0 \geq \mathcal{D}_{JS}(\hat\rho||\hat\sigma) \geq 1.
+\end{equation}
+$\left(\mathcal{D}_{JS}\right)^{\frac{1}{2}}$ defines a metric: it is symmetric, positive define, and hold the triangular inequality \cite{Jensen-Shannon_divergence}. 
+
+%It has been use successfully to measure the distance between the layer of a multilayer network in order to aggregate them and eliminate the redundant layers \cite{multilayer}.
+It has been use successfully to measure the distance between the network in order to aggregate them \cite{multilayer}.
+
+Figure \ref{Fig:JS_divergence} shows the Jensen-Shannon divergence between an Erd\H{o}s-Rényi (E-R) random graph, a Barab\'asi-Albert (B-A) scale-free graph and a Watts-Strogatz (W-S) small-sworld graph \footnote{The python scripts can be found in the GitHub page of the author at the link: \url{https://github.com/ShqemzaMatteo/Master_thesis}}.

@@ -91,29 +91,7 @@ To study the mixed state we introduce the Von Neumann entropy
 It is the quantum counterpart of the Shannon entropy for classical information theory.
 The Von Neumann entropy \eqref{Von_Neumann_entropy} is bounded $0\geq S[\hat\rho] \geq \ln N$. It vanishes for pure states.
 The Von Neumann entropy is a time invariance, thus, the evolution operator takes pure state into pure state \cite{Nielsen_Chuang_2010}.
-\begin{comment}
-    \begin{equation}
-        \begin{split}
-            S[\hat\rho(t)] &=\Tr[\hat\rho(t)\ln\hat\rho(t)]= \Tr[U(t,0)\hat\rho(t)U^\dagger(t,0)\ln\left(U(t,0)\hat\rho(t)U^\dagger(t,0)\right)]\\
-            &=\Tr[U(t,0)\hat\rho(0)U^\dagger(t,0)U(t,0)\ln\left(\hat\rho(0)\right)U^\dagger(t,0)]\\
-            &= S[\hat\rho(0)].
-        \end{split}
-    \end{equation}
-    We can move out the evolution operator because they are unitary, since if we consider the taylor expansion
-    \begin{equation}
-        \begin{split}
-            \ln\left(U(t,0)\hat\rho(t)U^\dagger(t,0)\right) &= c_0U(t,0)U^\dagger(t,0) + c_1 U(t,0)\hat\rho(t)U^\dagger(t,0)\\
-            & \quad + c_2 U(t,0)\hat\rho(t)U^\dagger(t,0)U(t,0)\hat\rho(t)U^\dagger(t,0) + ... \\
-            &=  U(t,0)\ln\left(\hat\rho(t)\right) U^\dagger(t,0).
-        \end{split}
-    \end{equation}
-\end{comment}
 
-\begin{comment}
-If we consider the system in contact with a thermal bath with which exchange only energy but conserving it in average, namely the canonical condition hold, there is a stationary state $\hat\rho = e^{-\beta \hat L}$ that maximize the entropy. The parameter $\beta$ is just the inverse of a pseudo-temperature that stands for the interaction with the thermal bath. 
-Since the thermal bath actively changes the entries of $\hat L$, it is changing the weight of the network and the probability to move from node $i$ to $j$. Thus, we are considering a network that is changing randomly by time. 
-The reader can recognize that this density matrix is the same the De Domenico has introduced \eqref{density_matrix}.
-\end{comment}
 
 \subsection{1-D Quantum Random Walk}
 Consider a toy model: the quantum random walk over a discrete line \cite{Farhi_98}. The probability of moving left or right is $\frac{1}{2}$.

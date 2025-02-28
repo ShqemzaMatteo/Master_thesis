@@ -2,37 +2,6 @@
 
 Instead, for the quantum case ($\hbar = 1$), $H_L$, $q_i$ and $p_j$ are promoted to operators $\hat H_L$, $\hat q_i$ and $\hat p_j$ and  they satisfy the commutator relation $\left[\hat q_i, \hat p_j\right] = i \delta_{ij}$.
 
-\begin{comment}
-    Since the network is undirected, $L$ is symmetric and, therefore, we can diagonalize it. The diagonalized laplacian is written in the form $\Lambda = OLO^T$.
-    This generates a new set of operators respect the eigenvalue $\mu$ of the Laplacian
-    \begin{equation}
-    \hat q_\mu = \sum_j \hat q_\mu O_{\mu j}  \qquad \hat p_\mu= \sum_j \hat p_\mu O^T_{\mu j} .
-\end{equation}
-Thus,
-\begin{equation}
-\hat H_L = \sum_\mu \frac{\hat p_\mu^2}{2} + \frac{\mu}{2}\hat q_\mu^2,
-\end{equation}
-
-We introduce the bosons creation and annihilation operators as
-\begin{equation}
-     \hat a_\mu = \frac{1}{\sqrt{2}}\left(\sqrt{\omega} \hat q_\mu + \frac{i}{\sqrt{\omega}}\hat p_\mu\right) \qquad 
-     \hat a_\mu^\dagger = \frac{1}{\sqrt{2}}\left(\sqrt{\omega} \hat q_\mu - \frac{i}{\sqrt{\omega}}\hat p_\mu\right), 
-\end{equation}      
-and the inverse is
-\begin{equation}
-    \hat q_\mu = \sqrt{\frac{1}{2\omega}}\left(\hat a_\mu + \hat a_\mu^\dagger\right) \qquad
-    \hat p_\mu = i\sqrt{\frac{\omega}{2}}\left(\hat a_\mu - \hat a_\mu^\dagger\right) \qquad,
-\end{equation}
-where $\omega = \sqrt{\mu}$.
-They satisfy the commutation relation $\left[\hat a_i, \hat a^\dagger_j\right] = \delta_{ij}$.
-
-Thus, the new Hamiltonian becomes a sum of independent Hamiltonians for each mode
-\begin{equation}
-\hat H_L = \sum_\mu \hat H_\mu, \qquad
-\hat H_\mu = \omega \left(\hat a_\mu \hat a^\dagger_\mu + \frac{1}{2}\right).
-\end{equation}
-\end{comment}
-
 We need to add a new term; it should be considered as additional springs with constant $K'$ that connect each node to the ground: it prevent the the center of mass from moving. So the Hamiltonian becomes
 \begin{equation}\label{H_L_QM}
     H_L = \sum_i\left(\frac{\hat p_i^2}{2}+\frac{K'}{2}\hat q_i^2\right) + \sum_{ij}\frac{1}{2} L_{ij}\hat q_i\hat q_j.
@@ -79,14 +48,6 @@ We now consider the system as fermionic so the modes do not excite beyond the fi
 
 
 Now, we can compute the thermal Green function or Matsubara Green function for fermions $G$. This quantity describes the probability amplitude for the particle to travel from one state to the other in a given time $\tau$ (more detail in the Appendix \ref{Appendix_B}). For $\tau > 0$ it is
-%\begin{equation}
-%    \begin{split}
-%        G^L_{ij}(\beta, \tau) &= \frac{1}{Z}\bra{g}\hat a_i (\tau) e^{-\beta \hat H_L} \hat a_j^\dagger\ket{g}\\
-%        &= \frac{1}{Z} \sum_{\mu\nu} O_{i\mu}\bra{g}\hat b_\mu e^{-\beta \hat H_L} \hat b_\nu^\dagger\ket{g}O_{j\nu}\\
-%        &= \frac{1}{Z} \sum_{\mu} O_{i\mu}\bra{g}\hat b_\mu e^{-\beta \hat H_L} \hat b_\mu^\dagger\ket{g}O_{j\mu}\\
-%        &= \sum_{\mu} O_{i\mu}e^{-\beta \Omega\left[1 + \frac{\omega^2}{4\Omega^2}\mu\right]}O_{j\mu}\\
-%    \end{split}
-%\end{equation}
 
 \begin{equation}
     \begin{split}

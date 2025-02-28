@@ -113,8 +113,8 @@ Laplacian_ws = np.identity(N_dim) - Adjacency_ws
 def Free_energy(b, laplacian):
     density_matrix = sc.expm(-b*laplacian)
     part_func= np.trace(density_matrix)
-    print(part_func)
-    return -np.log(part_func)/b
+    
+    return (part_func)/b
 
 #plot
 y_1 = np.vectorize(lambda t: Free_energy(t,Laplacian_ring))(beta)
@@ -122,13 +122,13 @@ y_2 = np.vectorize(lambda t: Free_energy(t,Laplacian_er))(beta)
 y_3 = np.vectorize(lambda t: Free_energy(t,Laplacian_ba))(beta)
 y_4 = np.vectorize(lambda t: Free_energy(t,Laplacian_ws))(beta)
 
-plt.plot(beta, y_1, label='Ring')
-plt.plot(beta, y_2, label='E-R')
-plt.plot(beta, y_3, label='B-A')
-plt.plot(beta, y_4, label='W-S')
+plt.plot(beta, y_1/N_dim, label='Ring')
+plt.plot(beta, y_2/N_dim, label='E-R')
+plt.plot(beta, y_3/N_dim, label='B-A')
+plt.plot(beta, y_4/N_dim, label='W-S')
 plt.xlabel('beta')
-plt.ylabel('F')
-plt.title('Entropy for a random graph')
+plt.ylabel('F/N')
+plt.title('Free energy for random networks')
 plt.xscale('log')
 #plt.ylim((-0.15 , 1.15))
 plt.grid()

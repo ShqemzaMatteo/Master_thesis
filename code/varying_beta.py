@@ -6,7 +6,7 @@ import scipy.linalg as sc
 random.seed(None)
 
 #constants
-N_dim = 5
+N_dim = 50
 beta = np.logspace(-2,3,100)
 
 #adjacency matrix for a ring
@@ -133,21 +133,22 @@ def Von_Neumann(b, laplacian):
 
 #plot
 y_1 = np.vectorize(lambda t: Von_Neumann(t,Laplacian))(beta)
-#y_2 = np.vectorize(lambda t: Von_Neumann(t,Laplacian_er))(beta)
+y_2 = np.vectorize(lambda t: Von_Neumann(t,Laplacian_er))(beta)
 y_3 = np.vectorize(lambda t: Von_Neumann(t,Laplacian_ba))(beta)
 y_4 = np.vectorize(lambda t: Von_Neumann(t,Laplacian_ws))(beta)
 #y_5 = np.vectorize(lambda t: Von_Neumann(t,Laplacian_star))(beta)
 
-plt.plot(beta, y_1/(np.log(N_dim)), label='Ring')
-#plt.plot(beta, y_2/(np.log(N_dim)), label='E-R')
-plt.plot(beta, y_3/(np.log(N_dim)), label='B-A')
-plt.plot(beta, y_4/(np.log(N_dim)), label='W-S')
+plt.plot(beta, y_1/(N_dim), label='Ring')
+plt.plot(beta, y_2/(N_dim), label='E-R')
+plt.plot(beta, y_3/(N_dim), label='B-A')
+plt.plot(beta, y_4/(N_dim), label='W-S')
 #plt.plot(beta, y_5/(np.log(N_dim)), label='Star')
-plt.xlabel('beta')
-plt.ylabel('entropy/log(N)')
+plt.rcParams['text.usetex'] = True
+plt.xlabel('β')
+plt.ylabel('S/N')
 plt.title('Entropy for a random graph')
 plt.xscale('log')
-plt.ylim((-0.15 , 1.15)) 
+#plt.ylim((-0.15 , 1.15)) 
 plt.grid()
 plt.legend()
 plt.show()

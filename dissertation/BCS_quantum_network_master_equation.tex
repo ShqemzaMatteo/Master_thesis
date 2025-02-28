@@ -129,23 +129,23 @@ In contrast, in the extremely cold environment, $\beta \rightarrow \infty$, the 
 \end{equation}
 
 The first term cancel out,  and the second is a sum of Kronecker delta. Thus, it reduces to
-\begin{equation}
+\begin{equation}\label{gamma_T=0}
     \begin{split}
         \gamma_{ij;kl}&= \sum_{\lambda}\braket{i}{\lambda}\braket{\lambda}{k}\braket{l}{\lambda}\braket{\lambda}{j}+ \sum_{\mu>\lambda}\infty\braket{i}{\lambda}\braket{\lambda}{k}\braket{l}{\mu}\braket{\mu}{j} \rightarrow \infty
     \end{split}
 \end{equation}
 
-\begin{comment}
-
-    \begin{equation}
-    \frac{d}{dt}\ket{\Psi}=-\frac{i}{2} L\ket{\Psi}
+The stationary distribution is 
+\begin{equation}
+    \hat\rho^* = \frac{1}{N}\begin{pmatrix}
+        1&\dots&1\\
+        \vdots&\ddots&\vdots\\
+        1&\dots&1\\
+    \end{pmatrix}.
 \end{equation}
+We recovers the distribution \eqref{beta_inf_stationary_distribution} whose entropy vanishes. 
 
-(senza radice).
-In rappresentazione spettrale $\ket{\Psi}=\sum_\lambda \psi_\lambda \ket{\lambda}$ togliendo la rotazione di Wick $|\psi_\lambda|^2$ ridanno le probabilità degli stati nel tempo
-
-
-
+\begin{comment}
 \newpage
 The same distribution can be obtain in position space. As a matter of fact, the master equation \eqref{stochastic_lindblad_master} for the distribution \eqref{pretended_stationary_distribution}. Let assume that it is the stationary distribution, thus
 \begin{equation}
@@ -194,6 +194,6 @@ Thus, cooling down the quantum system is similar to the temporal evolution of th
 
 
 The complexity of the possible paths is encoded into the Von Neumann entropy as explained in chapter \ref{C_Density_Matrix}.
-The entropy allows us to make a distinction between different network based on the dynamical properties of the network itself. 
+The entropy allows us to classify different network based on the dynamical properties of the network itself. 
 We can do it introducing the Kullback-Lieber divergence \eqref{KL_divergence} and the Jensen-Shannon divergence \eqref{JS_metric}.
 However, because this quantities employs the trace of a Laplacian's function, the entropy studies only the spectral properties of the system. Therefore, networks with same spectrum but different structure and eigenstate may be indistinguishable with these methods.
