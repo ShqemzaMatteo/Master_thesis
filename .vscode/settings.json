@@ -4,6 +4,8 @@
         "Ljapunov",
         "superoperator",
         "Lindblad",
-        "viceversa"
+        "viceversa",
+        "Kullback",
+        "Leibler"
     ]
 }

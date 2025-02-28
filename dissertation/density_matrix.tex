@@ -98,18 +98,18 @@ The complexity of information streams can be quantified by the Von Neumann entro
 When the information dynamics is described by a single information stream, a pure state, entropy is zero.
 In contrast, as the information dynamics becomes more complex and diverse, the number of information streams increases, resulting in higher entropy.
 
-\subsection{Kullback-Liebler and Jensen-Shannon Divergences}
-Starting from the concept of entropy, we can also introduce the Kullback-Liebler (KL) divergence or relative entropy \cite{K-L_divergence} as
+\subsection{Kullback-Leibler and Jensen-Shannon Divergences}
+Starting from the concept of entropy, we can also introduce the Kullback-Leibler (KL) divergence or relative entropy \cite{K-L_divergence} as
 \begin{equation}\label{KL_divergence}
     D_{KL}(\hat \rho || \hat \sigma) = \Tr \left[\hat \rho \ln\left(\frac{\hat\sigma}{\hat\rho}\right)\right].
 \end{equation}
 It measure the close is the distribution $\hat \sigma$ to reproduce a event with real distribution $\hat \rho$. 
 The KL divergence is always non negative and it equals zero when $\hat \rho = \hat \sigma$. It is not symmetric an unbounded \cite{J-S_divergence}.
 
-It can be used to make comparisons between networks. Moreover, this concept we can be applied to the reconstruction of network starting from real data using the maximum likelihood estimation: it is to find the best model that reproduce the experimental data. In fact, the maximum likelihood estimation can be apply minimizing the Kullback-Liebler divergence between chosen network models and the dataset \cite{De_Domenico_2016}. This opens the door to the application of machine learning technique in complex network.
+It can be used to make comparisons between networks. Moreover, this concept we can be applied to the reconstruction of network starting from real data using the maximum likelihood estimation: it is to find the best model that reproduce the experimental data. In fact, the maximum likelihood estimation can be apply minimizing the Kullback-Leibler divergence between chosen network models and the dataset \cite{De_Domenico_2016}. This opens the door to the application of machine learning technique in complex network.
 
 
-However the Kullback-Liebler divergence is not symmetric, therefore it can not be use as a metric. 
+However the Kullback-Leibler divergence is not symmetric, therefore it can not be use as a metric. 
 But we can symmetrize introducing the Jensen-Shannon (JS) divergence \cite{J-S_divergence} as
 \begin{equation}\label{JS_metric}
     \mathcal{D}_{JS}(\hat\rho||\hat\sigma) =  \frac{1}{2}D(\hat \rho || \hat \mu) + \frac{1}{2}D(\hat \sigma || \hat \mu) = S(\hat\mu)-\frac{1}{2}\left[S(\hat\rho) + S(\hat\sigma)\right],
