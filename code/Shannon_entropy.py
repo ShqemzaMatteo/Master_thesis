@@ -2,10 +2,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 import scipy.linalg as sc
 import random
+random.seed(15)
 
 #constants
 N_dim = 50
-time = np.logspace(-1,3,100)
+time = np.logspace(-2,3,100)
 initial_distribution = np.zeros(N_dim)
 initial_distribution[0] = 1
 
@@ -99,7 +100,7 @@ def ws_adjacency_matrix(n, k, p):
                         adjacency[new_connection, i] = 1
                         break
     return adjacency
-Adjacency_ws = ws_adjacency_matrix(N_dim, 6, 0.2)
+Adjacency_ws = ws_adjacency_matrix(N_dim, 3, 0.2)
 for i in range(N_dim):
     sum = 0
     for j in range(N_dim):
@@ -129,7 +130,7 @@ plt.plot(time, y_1/N_dim, label='Ring')
 plt.plot(time, y_2/N_dim, label='E-R')
 plt.plot(time, y_3/N_dim, label='B-A')
 plt.plot(time, y_4/N_dim, label='W-S')
-plt.xlabel('time')
+plt.xlabel('t')
 plt.ylabel('S/N')
 plt.title('Shannon Entropy for a random graph')
 plt.xscale('log')

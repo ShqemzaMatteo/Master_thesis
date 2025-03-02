@@ -9,7 +9,7 @@ This type of random graph has peculiar properties, such as the degree distributi
     P(k) = \binom{n-1}{k}p^k(1-p)^{n-1-k}
 \end{equation} 
 Additionally, if $p > \frac{1}{N}$ then is almost sure that the network presents a giant component.
-In this work we use the second approach. Figure \ref{E-R_example} shows two examples of E-R random graph, one below and one above the giant component threshold.
+In this work we use the second formation $G(N,p)$. Figure \ref{E-R_example} shows two examples of E-R random graph, one below and one above the giant component threshold.
 
 \begin{figure}[ht!]
     \centering
@@ -22,20 +22,21 @@ In this work we use the second approach. Figure \ref{E-R_example} shows two exam
         \centering
         \includegraphics[width=\linewidth]{image/E_R_N100_p0,02.png}
     \end{subfigure}
-    \caption{Two examples of Erd\H{o}s-Rényi random graphs: on the left, it has 100 nodes and $p = 0.01$; on the right, it has 100 nodes and $p = 0.02$. Overcoming the threshold $p > 0.01$ can be seen the formation of the giant component.}
+    \caption{Two examples of Erd\H{o}s-Rényi random graphs with $100$ nodes: on the left, it has $p = 0.01$; on the right, it has $p = 0.02$. Overcoming the threshold $p > 0.01$ can be seen the formation of the giant component.}
     \label{E-R_example}
 \end{figure}
 %the algorithm is define as below :
 %\begin{enumerate}
- %   \item we identify the graph by its adjacency matrix;
- %   \item For each possible link, we generate a random number, if it is less than $p$ the respective entry in the adjacency matrix  is 1 otherwise 0.
+%   \item we identify the graph by its adjacency matrix;
+%   \item For each possible link, we generate a random number, if it is less than $p$ the respective entry in the adjacency matrix  is 1 otherwise 0.
 %\end{enumerate}
 
-However, the E-R algorithm does not produce networks similar to those found in nature which tend to be more clustered and to have hubs (nodes with very high degree). To simulate these properties, new algorithms have been proposed like the Barab\'abi-Albert scale-free network and the Watts-Strogatz small-world network.
+However, the E-R algorithm does not reproduce networks similar to those found in nature, which tend to be more clustered and to have hubs (nodes with very high degree). To simulate these properties, new algorithms have been proposed like the Barab\'abi-Albert scale-free network and the Watts-Strogatz small-world network.
 
 \subsection{Barab\'abi-Albert Scale-Free Network}
-Barab\'abi and Albert (B-A) proposed a scale-free network $G(N, m)$, where $N$ is the number of nodes and $m$ is a parameter, that mimics the behavior of real graph like the Internet \cite{Barabasi_Albert_1999}. This type of graph exhibits some preferential nodes which have a degree order of magnitude higher than the average and it presents a power law as degree distribution.
-The model works by preferential attachment, where new nodes are more likely to connect to nodes that already have a higher degree. 
+Barab\'abi and Albert (B-A) proposed a scale-free network $G(N, m)$, where $N$ is the number of nodes and $m$ is a parameter, that mimics the behavior of real graph like the Internet \cite{Barabasi_Albert_1999}. This type of graph exhibits some preferential nodes with a degree order of magnitude higher than the average and it presents a power law as degree distribution.
+
+The model works by preferential attachment: we begin from a small network and connect other nodes such that is more likely that a new nodes are connected to nodes with a high degree. 
 
 The algorithm is defined as follow:
 \begin{enumerate}

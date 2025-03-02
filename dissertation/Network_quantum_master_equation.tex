@@ -46,11 +46,12 @@ Based on the considered dynamics the network will have a different entropy's val
 
 
 
-\newpage
 \section{Symmetry breaking}
 
 Until now, we have considered the network holding the detail balance condition and, therefore, be mapped in a symmetric matrix; 
-but the majority of the networks do not satisfy this condition. To deal with them, we modify slightly the Lindblad master equation \eqref{stochastic_lindblad_master}. 
+but the majority of the networks do not satisfy this condition. 
+
+To deal with them, we modify slightly the Lindblad master equation \eqref{stochastic_lindblad_master}. 
 As a matter of fact, in the chapter \ref{C_Lindblad} we have analyzed also the case where the interaction with the environment is not symmetric \eqref{environment_coefficients}. Thus, taking the dissipative part of the equation \eqref{C_rotating_wave} in the Schrödinger picture with the coefficients $\Gamma_{ij} = L_{ij}$ and the jump operators $J_{ij} = \ket{i}\bra{j}$ we obtain 
 \begin{equation}
     \frac{d\hat\rho(t)}{dt} = \sum_{ij}\Gamma_{ij}\left[\hat J_j\hat\rho(t),\hat J_i^\dagger\right]+\Gamma_{ji}^\dagger\left[\hat J_j,\hat\rho(t)\hat J_i^\dagger\right].
@@ -74,3 +75,25 @@ We can generalize as in the \eqref{stochastic_lindblad_master}
     \frac{d}{dt}\hat \rho = -i\left[\hat H + \omega\hat H_{A},\hat\rho\right] + \sum_{ij}\gamma_{ij}\left[\hat J_{ij} \hat\rho\hat J_{ij}^\dagger -\frac{1}{2} \left\{ \hat J_{ij}^\dagger \hat J_{ij}, \hat\rho\right\}\right].
 \end{equation}
 where $\hat H$ is the hermitian part of the Laplacian operator.
+
+
+\bigskip
+
+The quantum walk on network with a not hermitian Hamiltonian has a evolution operator that is not unitary. It can be split between the hermitian $\hat H_S$ and anti-hermitian $\hat H_A$ components as
+\begin{equation}\label{not_hermitian_time_operator}
+    U(t,0) = e^{-it\hat H_S} e^{-t\hat H_A}
+\end{equation}
+with
+\begin{equation}
+    \hat H_S =  \frac{1}{2}\left(\hat H + \hat H^\dagger\right) \qquad \qquad
+    \hat H_A = \frac{-i}{2}\left(\hat H - \hat H^\dagger\right)
+\end{equation}
+
+If the Hamiltonian $\hat H$ is positive defined, the second exponential of the equation \eqref{not_hermitian_time_operator} dissipate energy. 
+Thus, the system can be studied again with a Lindblad master equation \eqref{Lindbladian} in the form
+\begin{equation}
+    \frac{d}{dt}\hat\rho = -i\left[\hat H_S,\hat\rho\right] + \sum_k \gamma_k \left(\hat J_k \hat\rho \hat J^\dagger_k - \frac{1}{2}\left\{ \hat J^\dagger_k\hat J_k, \hat\rho\right\} \right).
+\end{equation}
+The jumps operators must reproduce the same dissipation as the anti-hermitian operator $\hat H_A$.
+
+The damping coefficients do not have to hold the Kirchhoff law. Thus, the system may not converge to a stationary state but may persist some stationary density currents.

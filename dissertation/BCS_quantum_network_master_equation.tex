@@ -97,6 +97,32 @@ Inserting the equation \eqref{gamma_detailed_balance} into \eqref{gamma_position
     \gamma_{ij;kl}= \sum_{\lambda\mu}e^{-\frac{\beta}{2}\left(\epsilon_\lambda - \epsilon_\mu\right)}\braket{i}{\lambda}\braket{\lambda}{k}\braket{l}{\mu}\braket{\mu}{j}.
 \end{equation}
 
+The master equation for the stationary distribution \eqref{pretended_stationary_distribution} in position space is 
+\begin{equation}
+    0 = \sum_{ijkl} \gamma_{ij;kl} \left(\hat J_{ij}  \frac{e^{-\beta\hat H}}{Z} \hat J^\dagger_{kl} - \frac{1}{2}\left\{ \hat J^\dagger_{ij}\hat J_{kl},  \frac{e^{-\beta\hat H}}{Z}\right\} \right).
+\end{equation}
+The first term reduces to
+\begin{equation}
+    \sum_{ijkl}\gamma_{ij;kl} \ket{i}\bra{j} \frac{e^{-\beta\hat H}}{Z} \ket{l}\bra{k} = \sum_{ijkl}\gamma_{ij;kl} \frac{e^{-\beta H_{jl}}}{Z}\ket{i}\bra{k}.
+\end{equation}
+
+The anticommutator reduces to
+\begin{equation}
+    \begin{split}
+        \sum_{ijkl}  \frac{\gamma_{ij;kl}}{2}\left(\ket{j}\braket{i}{k}\bra{l} \frac{e^{-\beta\hat H}}{Z}+ \frac{e^{-\beta\hat H}}{Z}\ket{j}\braket{i}{k}\bra{l}\right) \\ 
+        = \sum_{ijlm}\frac{1}{2} \left(\gamma_{ij;im}  \frac{e^{-\beta H_{lm}}}{Z} + \frac{\gamma_{il;im}}{2}\frac{e^{-\beta H_{jl}}}{Z}\right)\ket{j}\bra{m}
+    \end{split}
+\end{equation}
+We have applied some algebra and exchange dummy indices.
+Thus, combining all together we obtain
+\begin{equation}
+    \begin{split}
+        \sum_{ijkl}\left(\gamma_{(ik)\leftarrow(jl)} \frac{e^{-\beta H_{jl}}}{Z} - \frac{\gamma_{(jj)\leftarrow(ik)}}{2} \frac{e^{-\beta H_{lk}}}{Z} - \frac{\gamma_{(jj)\leftarrow(lk)}}{2}\frac{e^{-\beta H_{il}}}{Z}\right)\ket{i}\bra{k} = 0\\
+        %\sum_{ijl}\left(\gamma_{ij;il} \frac{e^{-\beta H_{jl}}}{Z} - \frac{\gamma_{ji;ji}}{2} \frac{e^{-\beta H_{li}}}{Z} - \frac{\gamma_{jl;ji}}{2}\frac{e^{-\beta H_{il}}}{Z}\right)\ket{i}\bra{i} = 0
+    \end{split}
+\end{equation}
+It can be interpreted as a Kirchhoff law in the link. Let suppose that the transition of the particle through the link is not instantaneous, then at each movement the particle chooses one link to travel. The probability to be in a specific link $(i,j)$ is given by $\frac{e^{-\beta H_{ij}}}{Z}$. In order to have a stationary distribution the dumping rate must satisfy the Kirchhoff law over the links distribution.
+
 Taking again the two limits, in the extremely hot environment, $\beta \rightarrow 0$, the damping rates are
 \begin{equation}
     \gamma_{ij;kl}= \sum_{\lambda\mu} 1 \braket{i}{\lambda}\braket{\lambda}{k}\braket{l}{\mu}\braket{\mu}{j}.
@@ -105,8 +131,8 @@ Using the completeness relation we reach
 \begin{equation}
     \gamma_{ij;kl} = 1 \delta_{ik}\delta_{jl},
 \end{equation}
-where $\delta_{ik}$ is the Kronecker delta.
-In this case the position quantum network master equation \eqref{quantum_network_position} becomes “symmetric"
+where $\delta_{ik}$ is the Kronecker delta. Thus, the particle travel always through the same link.
+In this case the position quantum network master equation \eqref{quantum_network_position} acquires a “symmetric" form
 \begin{equation}
     \frac{d}{dt}\hat\rho = -i\left[\hat H,\hat\rho\right] +\sum_{ij}\left(\hat J_{ij}\hat\rho \hat J_{ij}^\dagger - \frac{1}{2}\left\{ \hat J_{ij}^\dagger\hat J_{ij}, \hat\rho\right\} \right).
 \end{equation}
@@ -146,39 +172,40 @@ The stationary distribution is
 We recovers the distribution \eqref{beta_inf_stationary_distribution} whose entropy vanishes. 
 
 \begin{comment}
-\newpage
-The same distribution can be obtain in position space. As a matter of fact, the master equation \eqref{stochastic_lindblad_master} for the distribution \eqref{pretended_stationary_distribution}. Let assume that it is the stationary distribution, thus
-\begin{equation}
-0 = \sum_{\lambda\mu} \gamma_{ij} \left(\hat J_{ij}  \frac{e^{-\beta\hat H}}{Z} \hat J^\dagger_{ij} - \frac{1}{2}\left\{ \hat J^\dagger_{ij}\hat J_{ij},  \frac{e^{-\beta\hat H}}{Z}\right\} \right).
+    \newpage
+    The same distribution can be obtain in position space. As a matter of fact, the master equation \eqref{stochastic_lindblad_master} for the distribution \eqref{pretended_stationary_distribution}. Let assume that it is the stationary distribution, thus
+    \begin{equation}
+    0 = \sum_{\lambda\mu} \gamma_{ij} \left(\hat J_{ij}  \frac{e^{-\beta\hat H}}{Z} \hat J^\dagger_{ij} - \frac{1}{2}\left\{ \hat J^\dagger_{ij}\hat J_{ij},  \frac{e^{-\beta\hat H}}{Z}\right\} \right).
 \end{equation}
 
 the first term can be written as
 \begin{equation}
-    \sum_{ij} \gamma_{ij} \ket{i}\bra{j}  \frac{e^{-\beta\hat H}}{Z} \ket{j}\bra{i} = 
-    \sum_{ji} \gamma_{ij} \frac{e^{-\beta H_{jj}}}{Z} \ket{i}\bra{i}
+\sum_{ij} \gamma_{ij} \ket{i}\bra{j}  \frac{e^{-\beta\hat H}}{Z} \ket{j}\bra{i} = 
+\sum_{ji} \gamma_{ij} \frac{e^{-\beta H_{jj}}}{Z} \ket{i}\bra{i}
 \end{equation}
 
 Whereas, the second term becomes
 \begin{equation}
-    \sum_{ij}\frac{\gamma_{ij}}{2}\ket{j}\bra{j} \frac{e^{-\beta\hat H}}{Z} + \frac{\gamma_{ij}}{2}\frac{e^{-\beta\hat H}}{Z}\ket{j}\bra{j}=
-    \sum_{ijk} \frac{1}{2}\left(\gamma_{ij}\frac{e^{-\beta H_{jk}}}{Z} + \gamma_{ik}\frac{e^{-\beta H_{jk}}}{Z}\right)\ket{j}\bra{k}
+\sum_{ij}\frac{\gamma_{ij}}{2}\ket{j}\bra{j} \frac{e^{-\beta\hat H}}{Z} + \frac{\gamma_{ij}}{2}\frac{e^{-\beta\hat H}}{Z}\ket{j}\bra{j}=
+\sum_{ijk} \frac{1}{2}\left(\gamma_{ij}\frac{e^{-\beta H_{jk}}}{Z} + \gamma_{ik}\frac{e^{-\beta H_{jk}}}{Z}\right)\ket{j}\bra{k}
 \end{equation}
 
 We can combine together all the terms obtaining
 \begin{equation}
-    \begin{split}
-        \sum_{ji} \left(\gamma_{ji}\frac{e^{-\beta H_{ii}}}{Z} - \gamma_{ij}\frac{e^{-\beta H_{jj}}}{Z}\right)\ket{j}\bra{j} = 0\\
-        \sum_{jk} \frac{1}{2}\left(\sum_i\gamma_{ij} + \sum_i\gamma_{ik}   \right)\frac{e^{-\beta H_{jk}}}{Z}\ket{j}\bra{k} = 0\\
-    \end{split}
+\begin{split}
+\sum_{ji} \left(\gamma_{ji}\frac{e^{-\beta H_{ii}}}{Z} - \gamma_{ij}\frac{e^{-\beta H_{jj}}}{Z}\right)\ket{j}\bra{j} = 0\\
+\sum_{jk} \frac{1}{2}\left(\sum_i\gamma_{ij} + \sum_i\gamma_{ik}   \right)\frac{e^{-\beta H_{jk}}}{Z}\ket{j}\bra{k} = 0\\
+\end{split}
 \end{equation}
 The first equation is again the Kirchhoff's current law, while the second is a condition over the parameter $\gamma$.
 
 If the previous condition are satisfy the stationary distribution of the system is the canonical one. In our case it becomes
 \begin{equation}
-    \hat\rho^* = \frac{e^{-\beta\hat L}}{Z} \qquad Z = \Tr[e^{-\beta\hat L}]  
+\hat\rho^* = \frac{e^{-\beta\hat L}}{Z} \qquad Z = \Tr[e^{-\beta\hat L}]  
 \end{equation}
 that is the density matrix \eqref{density_matrix} introduced by De Domenico to identify networks.
 \end{comment}
+
 
 \subsection{Interpretation}
 
@@ -187,11 +214,11 @@ if we start from the stationary state and we add a perturbation in one node, the
 
 In addition, we can apply a Wick rotation to the quantum dynamics \eqref{Lindblad_energy_jump} returning to a special random walk of classic particle. The rotation connect the stationary distribution at inverse temperature $\beta$ \eqref{pretended_stationary_distribution} with the propagator at time $t$ \eqref{random_walk_solution}.
 \begin{equation}
-    e^{-\beta\hat L} \rightarrow e^{-t\hat L}
+e^{-\beta\hat L} \rightarrow e^{-t\hat L}
 \end{equation}
 
 Thus, cooling down the quantum system is similar to the temporal evolution of the classical one. In fact, the two limits $\beta \rightarrow \infty$ and $t \rightarrow \infty$ converge to the same distribution: the system will be entirely in the zero eigenstate of the Laplacian.
-
+Moreover, the density distribution \eqref{pretended_stationary_distribution} is always in the maximal entropy state, as a consequence, also the  distribution for the classical random walk should cross state with maximal entropy.
 
 The complexity of the possible paths is encoded into the Von Neumann entropy as explained in chapter \ref{C_Density_Matrix}.
 The entropy allows us to classify different network based on the dynamical properties of the network itself. 

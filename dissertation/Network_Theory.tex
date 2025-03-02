@@ -10,11 +10,10 @@ Then, we focus on random walks and diffusion processes on networks, considering 
 \section{Introduction to Graph Theory}
 
 %definition of network, adjacency matrix, laplacian matrix, shortest path, ...
-The mathematical framework used in Network theory is given by Graph theory. 
 
 A graph is defined by an ordinate couple $(V,E)$ where $V = \{1,2,3, ...,n\}$ is the set of nodes or vertices and $E = \left\{ (i, j): i , j \in V ; i \text{ is linked to } j\right\}$ is the set of links or edges. Usually, a general graph is denoted as $G =(N,M)$ where $N$ and $M$ are the cardinality of $V$ and $E$ respectively.
 
-A graph can be viewed also via a $N\times N$ matrix called Adjacency matrix which is defined as
+A graph can be described with a $N\times N$ matrix called Adjacency matrix which is defined as
 \begin{equation}
     A_{ij}= \left\{ \begin{aligned}
         +1 &\quad \mathrm{if} \; i \; \mathrm{is ~linked ~to} \; j \\
@@ -34,17 +33,20 @@ An important concept in graph theory is the study of connections between nodes t
 A \textit{walk} of length $k$ from node $i$ to node $j$ is a sequence of nodes $(x_0,x_1,...,x_k)$ such that $x_0=i$, $x_k=j$ and $(x_l, x_{l+1}) \in E$ for all $l \in \{0, ..., k-1\}$. A node can be crossed multiple times.  
 If a walk visits each node only once, it is called a \textit{path}.
 A particularly important concept is the \textit{shortest path} or \textit{geodesic} that is the path that crosses the minimum number of nodes.  
-The number of walks $W_{ij}(k)$ of length $k$ from node $i$ to node $j$ can be computed using the adjacency matrix as
+The number of walks $N_{ij}(k)$ of length $k$ from node $i$ to node $j$ can be computed using the adjacency matrix as
 \begin{equation}
-    W_{ij}(k) = (A^k)_{ij} .
+    N_{ij}(k) = (A^k)_{ij} .
 \end{equation}
+A undirected graph is said to be \textit{connected} if, for each pair of distinct nodes $i$ and $j$, there exists a walk that connects them. 
 
-A graph is said to be \textit{connected} if, for each pair of distinct nodes $i$ and $j$, there exists a walk that connects them. 
 We can defined $G' =(V',E')$ a subgraph of $G= (V,E)$ if $V' \subseteq V$ and $E' \subseteq E$.
 A \textit{component} of a graph $G= (V,E)$ is a connected subgraph $G' =(V',E')$ meaning that not connected to any external node of the graph, that is $(i,j)\notin E$ for each $i\in V'$ and $j\in V\setminus V'$. 
 A important concept is the \textit{giant component}: a connected subgraph that has approximately the same number of nodes of the total graph. 
 
-A directed graph is said \textit{irreducible} if its adjacency matrix is not similar by permutation to a block upper triangular matrix. In other word, that exchanging two or more raws the adjacency matrix such that the it can be written in the form
+A directed graph is said to be \textit{weakly connected} if replacing all its links with undirected ones it produces a connected graph. 
+It is said to be \textit{unilaterally connected} if there exists a walk from node $i$ to $j$ or a walk from node $j$ to $i$ for each pair of vertex $i$ and $j$. 
+It is said to be \textit{strongly connected} if there exists a walk from node $i$ to $j$ and a walk from node $j$ to $i$ each pair of nodes $i$ and $j$.
+A strongly connected graph is \textit{irreducible}, its adjacency matrix is not similar by permutation to a block upper triangular matrix. In other word, that exchanging two or more raws the adjacency matrix such that the it can be written in the form
 \begin{equation}
     A = \begin{pmatrix}
         A_{11} & A_{12} & \cdots & A_{1N}\\
@@ -53,7 +55,6 @@ A directed graph is said \textit{irreducible} if its adjacency matrix is not sim
         0 &0 &\cdot & A_{NN}\\
     \end{pmatrix} .
 \end{equation}
-If it hold, the graph is said \textit{strongly connected}: there exists a path that connect each the nodes to all the other ones.
 
 Some systems present interactions with different strength between the elements. Thus, the binary representation, the link exist or not, is no more sufficient. To model this kind of system we introduce the \textit{weight graphs} $G(V,E,W)$, where $W$ is the set of real weights attached to the links.   
 It can be described with the $N\times N$ weight matrix which entries are the weight $w_{ij}$ of each link. If there is no link between two nodes $w_{ij} = 0$. The weight matrix is not necessary symmetric. 
@@ -62,7 +63,7 @@ Figure \ref{fig:weight_graphs} shows three examples for undirected, directed and
 \begin{figure}[ht!]
     \centering
     \includegraphics[scale=0.45]{image/weight_graphs.png}
-    \caption{Examples of undirected (a), directed (b), weight (c) networks with $N=7$ and $M=13$. The arrows indicates the direction of each link. In the weight graph the thickness of the links represents its weight.}
+    \caption{Examples of undirected (a), directed (b), weight (c) networks with $N=7$ and $M=12$. The arrows indicates the direction of each link. In the weight graph the thickness of the links represents its weight.}
     \label{fig:weight_graphs}
 \end{figure}
 

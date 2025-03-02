@@ -41,7 +41,7 @@ The Laplacian matrix has the property that $L_{ij} < 0 $ for $i \neq j$ and also
     \sum_i L_{ij} = 0 .
 \end{equation} 
 
-The eigenvalues of the Laplacian matrix have always a not negative real part and its spectrum contains at least one zero eigenvalue, therefore it is not invertible \cite{Boccaletti}. The multiplicity of the zero eigenvalue is equal to the number of connected component of the network: in fact that if the network is not connected the Laplacian should be a block matrix,  block for each connected component, each component can be seen as an independent network with their zero eigenvalue.
+The eigenvalues of the Laplacian matrix have always a not negative real part and its spectrum contains at least one zero eigenvalue, therefore it is not invertible \cite{Boccaletti}. The multiplicity of the zero eigenvalue is equal to the number of connected component of the network: in fact that if the network is not connected the Laplacian should be a block matrix, one block for each connected component, each component can be seen as an independent network with its zero eigenvalue.
 
 The solution of master equation \eqref{master_eq} is
 \begin{equation}\label{random_walk_solution}
@@ -57,52 +57,46 @@ This implies a first integral of motion
     \sum_i \rho_i(t) = \sum_i \rho_i(0) .
 \end{equation}
 
+
 If the network is irreducible the master equation \eqref{master_eq} has a unique stationary solution $\rho^*$ that satisfies
 \begin{equation}
     \sum_j (\pi_{ij}\rho_j^\ast-\pi_{ji}\rho_i^\ast)=-\sum_j J^*_{ij}=0
 \end{equation}
 where we introduce the stationary density currents $J^*_{ij} = \pi_{ji}\rho_i^\ast-\pi_{ij}\rho_j^\ast $.
-The stationary density currents $J_{ij}^\ast$ vanishes and the vector field on the network
-$$
-v_{ij}=\ln \pi_{ij}-\ln \pi_{ji}
-$$
-is exact and it admits a potential $V_i$ such that
-$$
-v_{ij}=V_j-V_i\qquad \forall \; (i,j)
-$$
-The stationary distribution can be written in the form
-\begin{equation}
-    \label{MB}
-    \rho_i^\ast \propto \exp(-V_i)
-\end{equation}
-and one recovers the MB distribution according to MEP.
 
-If Laplacian is symmetric the system admits a unique stationary solution \cite{Classic_random_walk} 
-\begin{equation}\label{ones_vector}
-    \rho^* = \frac{1}{N} \left(1,1,\cdots,1,1\right).
+Consider a system that hold the detailed balance condition
+\begin{equation}\label{detail_condition}
+    \pi_{ij} \rho_j^* = \pi_{ji} \rho_i^*,
+\end{equation}
+in other word, where each stationary density current $J^*_{ij}$ vanishes.
+In this case, the Laplacian matrix can be reduced to a symmetric matrix 
+\begin{equation}
+    S_{ij}=\frac{1}{\sqrt{\rho_i^\ast}}L_{ij}\sqrt{\rho_j^\ast},
+\end{equation}
+so that the eigenvalues are real and the eigenvectors are orthogonal. In particular the master equation becomes  
+\begin{equation}
+    \tilde p_i=-\sum_j S_{ij} \tilde p_j
+\end{equation}
+where $\tilde p_i=p_i\sqrt{\rho_i^\ast}$.
+For these systems we can introduce a vector field on the network as
+\begin{equation}
+    v_{ij}=\ln \pi_{ij}-\ln \pi_{ji}, 
+\end{equation}
+it admits a potential $V_i$ such that
+\begin{equation}
+    v_{ij}=V_j-V_i\qquad \forall \; (i,j) .
+\end{equation}
+The stationary distribution can be written in the form
+\begin{equation}\label{MB}
+    \rho_i^\ast \propto \exp(-V_i).
 \end{equation} 
 such that
 \begin{equation}
     \sum_j L_{ij}\rho^*_j =  0.
 \end{equation}
-Thus, the stationary distribution \eqref{ones_vector} is the eigenvector with eigenvalue $0$ of the Laplacian matrix. 
+Thus, the stationary distribution \eqref{MB} is the eigenvector with eigenvalue $0$ of the Laplacian matrix.
+We have recovered the Boltzmann distribution.
 
-We can consider a less strict condition for the system known as detailed balance condition
-\begin{equation}\label{detail_condition}
-    \pi_{ij} \rho_j^* = \pi_{ji} \rho_i^*,
-\end{equation}
-in other word, each current $J^*_{ij}$ vanishes.
-In this case, the Laplacian matrix can be reduced to a symmetric matrix 
-\begin{equation}
-    S_{ij}=\frac{1}{\sqrt{\rho_i^\ast}}L_{ij}\sqrt{\rho_j^\ast},
-\end{equation}
-so that the eigenvalues are real and the eigenvectors are orthogonal. In particular \eqref{ones_vector} is the zero eigenvector of $S_{ij}$ and the master equation reads 
-\begin{equation}
-    \tilde p_i=-\sum_j S_{ij} \tilde p_j
-\end{equation}
-where $\tilde p_i=p_i\sqrt{\rho_i^\ast}$. 
-
-.
 %The other eigenvalues are connected to the Ljapunov exponent and to the time that the occurs to converge to $\rho^*$.
 
 Let us now assume the network satisfies the detailed balance condition \eqref{detail_condition}, then there exists a hyperplane $\Sigma_0$ that is orthogonal to the stationary distribution and this subspace is invariant under the dynamics. Let be $w \in \Sigma_0$, this subspace is identify by the relation
@@ -124,7 +118,7 @@ The uncertainty in the particle's location can be captured by the Shannon entrop
 \end{equation}
 It is a bounded function $0\geq S \geq \ln N$.
 
-The random walk process is a irreversible, the entropy \eqref{Shannon_entropy} increases by time. 
+The random walk process is irreversible, the entropy \eqref{Shannon_entropy} increases by time. 
 In fact, the entropy's derivative for the random walk is
 \begin{equation}
         \dot S(t) = -\sum_i \dot\rho_i(t)\ln \rho_i(t) = -\sum_{ij} L_{ij} \rho_j(t)\ln \rho_i(t).
@@ -140,7 +134,7 @@ It can been shown that the stationary distribution maximizes the Shannon entropy
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=0.70\linewidth]{image/Shannon_entropy.png}
-    \caption{Plot of the Shannon entropy per node as a function of time $t$ for a random walk over different network types with 50 nodes: a ring graph (blue), a Erd\H{o}s-Rényi (E-R) random graph with connectivity probability 0.7 (orange), a Barab\'abi-Albert (B-A) scale-free network with parameter m = 3 (green), and a Watts-Strogatz (W-S) small world network with parameter K = 6 and rewire probability 0.2 (red). The x-axis has a logarithmic scale. In every network the entropy is monotonically increasing. For large $t$ the entropy per node is equal to $S/N = \ln(50)/50 \approx 0.0782$. }
+    \caption{Plot of the Shannon entropy per node as a function of time $t$ for a random walk over different types of networks with 50 nodes: a ring graph (blue), a Erd\H{o}s-Rényi (E-R) random graph with connectivity probability 0.7 (orange), a Barab\'abi-Albert (B-A) scale-free network with parameter m = 3 (green), and a Watts-Strogatz (W-S) small world network with parameter K = 6 and rewire probability 0.2 (red). The x-axis has a logarithmic scale. In every network the entropy is monotonically increasing. For large $t$ the entropy per node is equal to $S/N = \ln(50)/50 \approx 0.0782$. }
     \label{Fig:Shannon_entropy}
 \end{figure}
-Figure \ref{Fig:Shannon_entropy} shows the Shannon entropy \eqref{Shannon_entropy} for a random walk on different networks \footnote{The python scripts can be found in the GitHub page of the author at the link: \url{https://github.com/ShqemzaMatteo/Master_thesis}}: Erd\H{o}s-Rényi (E-R) random graph with connectivity probability 0.7 (orange), a Barab\'abi-Albert (B-A) scale-free network with parameter m = 3 (green), and a Watts-Strogatz (W-S) small world network. The Shannon entropy is a monotonic increasing function and the stationary distribution has maximal entropy.
+Figure \ref{Fig:Shannon_entropy} shows the Shannon entropy \eqref{Shannon_entropy} as a function of time for a random walk on different networks:\footnote{The python scripts can be found in the GitHub page of the author at the link: \url{https://github.com/ShqemzaMatteo/Master_thesis}} a ring graph, a Erd\H{o}s-Rényi (E-R) random graph, a Barab\'abi-Albert (B-A) scale-free network, and a Watts-Strogatz (W-S) small world network. The Shannon entropy is a monotonic increasing function and the stationary distribution has maximal entropy.

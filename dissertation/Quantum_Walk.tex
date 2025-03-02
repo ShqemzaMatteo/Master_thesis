@@ -3,7 +3,7 @@ We can extend the random walk model to quantum particles.
 They must follow the Schrödinger equation with the Laplacian as Hamiltonian. However, the Schrödinger equation requires that the Laplacian is hermitian; therefore, the network must hold the detailed balance condition \eqref{detail_condition}.
 This model is known as “continuos time quantum walk" \cite{Farhi_98, quantum_walk}. This model is used to build quantum algorithms \cite{Quantum_walk_Google, classic_to_quantum_networks}.
 
-Let us define an orthonormal basis $\{\ket{i}\}$, where each element $\ket{i}$ indicates their corresponding node $i$, satisfying $\braket{i}{j}=\delta_{ij}$. 
+Consider a network $G(N,M)$. Let us introduce an Hilbert space $\mathcal{H}$ with an orthonormal basis $\{\ket{i}\}_{i<N}$, where each element $\ket{i}$ indicates their corresponding node $i$, satisfying $\braket{i}{j}=\delta_{ij}$. 
 A general general state of the network can be encoded in the ket state $\ket{\psi}$ is define as
 \begin{equation}\label{ket_state_quantum}
     \ket{\psi} = \sum_i \sqrt{\rho_i(t)} \ket{i},
@@ -20,29 +20,32 @@ The solution of the equation \eqref{Schrödinger_quantum_walk} takes the form
 \begin{equation}
     \ket{\psi(t)} = \hat U(t,0) \ket{\psi(0)} = e^{-\frac{i}{2}\hat L t} \ket{\psi(0)},
 \end{equation}
-where $\hat U(t,t') =e^{-\frac{i}{2}\hat L (t-t')}$ is the evolution operator and now it is unitary. It holds the following property: $\hat U(t,t')\hat U(t',t'') = U(t,t'')$.
+where $\hat U(t,t') =e^{-\frac{i}{2}\hat L (t-t')}$ is the evolution operator and it is unitary. It holds the following property \begin{equation}
+    \hat U(t,t')\hat U(t',t'') = U(t,t'') .
+\end{equation}
 
-It is possible to define a limiting transition probability for a quantum walk as follow: suppose the system starts at node $\ket{a}$, we measure it after a time $t$, random variable uniformly distributed over the interval $t \in [0,T]$ \cite{quantum_walk}. The transition probability from node $a$ to $b$ is given by
+The quantum walk does not converge to a stationary distribution. 
+However, it is possible to define a limiting transition probability for a quantum walk as follow: suppose the system starts at node $\ket{i}$, we measure it after a time $t$, random variable uniformly distributed over the interval $t \in [0,T]$ \cite{quantum_walk}. The transition probability from node $i$ to $j$ is given by
 \begin{equation}
     \begin{split}
-        \rho_{a\rightarrow b}(T) &= \frac{1}{T}\int_0^T |\bra{a}e^{-i\frac{t}{2}\hat L} \ket{b}|^2 dt\\
-        &=\frac{1}{T}\int_0^T \sum_{\lambda,\lambda'}\bra{a}e^{i\frac{t}{2}\hat L}\ket{\lambda}\braket{\lambda}{b} \bra{b}e^{-i\frac{t}{2}\hat L} \ket{\lambda'}\braket{\lambda'}{a} dt\\
-        &= \sum_{\lambda,\lambda'}\braket{a}{\lambda}\braket{\lambda}{b}\braket{b}{\lambda'}\braket{\lambda'}{a}\frac{1}{T}\int_0^T e^{-i(\lambda-\lambda')\frac{t}{2}}dt\\
-        &= \sum_\lambda|\braket{a}{\lambda}\braket{\lambda}{b}|^2+2\sum_{\lambda\neq\lambda'}\braket{a}{\lambda}\braket{\lambda}{b}\braket{b}{\lambda'}\braket{\lambda'}{a}\frac{1-e^{-i(\lambda-\lambda')\frac{T}{2}}}{i(\lambda-\lambda')T},\\
+        \rho_{i\rightarrow j}(T) &= \frac{1}{T}\int_0^T |\bra{i}e^{-i\frac{t}{2}\hat L} \ket{j}|^2 dt\\
+        &=\frac{1}{T}\int_0^T \sum_{\lambda,\lambda'}\bra{i}e^{i\frac{t}{2}\hat L}\ket{\lambda}\braket{\lambda}{j} \bra{j}e^{-i\frac{t}{2}\hat L} \ket{\lambda'}\braket{\lambda'}{i} dt\\
+        &= \sum_{\lambda,\lambda'}\braket{i}{\lambda}\braket{\lambda}{j}\braket{j}{\lambda'}\braket{\lambda'}{i}\frac{1}{T}\int_0^T e^{-i(\lambda-\lambda')\frac{t}{2}}dt\\
+        &= \sum_\lambda|\braket{i}{\lambda}\braket{\lambda}{j}|^2+2\sum_{\lambda\neq\lambda'}\braket{i}{\lambda}\braket{\lambda}{j}\braket{j}{\lambda'}\braket{\lambda'}{j}\frac{1-e^{-i(\lambda-\lambda')\frac{T}{2}}}{i(\lambda-\lambda')T},\\
     \end{split}
 \end{equation}
 where $\ket{\lambda}$ are the eigenstates of $\hat L$ with eigenvalues $\lambda$. In the limit $T\rightarrow \infty$ it tend to 
 \begin{equation}
-    \rho_{a\rightarrow b}(T) \xrightarrow[T \rightarrow \infty]{} \sum_\lambda|\braket{a}{\lambda}\braket{\lambda}{b}|^2.
+    \rho_{i\rightarrow j}(T) \xrightarrow[T \rightarrow \infty]{} \sum_\lambda|\braket{i}{\lambda}\braket{\lambda}{j}|^2.
 \end{equation}
 
 Let the system be in the state $\ket{\psi}$, also called pure state, we can define the density matrix as
 \begin{equation}
     \hat\rho =\ket{\psi}\bra{\psi} = \sum_{ij} \sqrt{\rho_i} \sqrt{\rho_j}\ket{i}\bra{j},
 \end{equation}
-It is a self-adjoint operator and $\Tr[\hat\rho] = 1$ \cite{Nielsen_Chuang_2010}.
+It is a self-adjoint operator and $\Tr[\hat\rho] = 1$ .
 
-For a generic operator $\hat O(t) = O_{ij}\ket{i}\bra{j}$, the expectation value of the respective observable can be found as
+For a generic operator $\hat O(t) = O_{ij}\ket{i}\bra{j}$, the expectation value of the respective observable can be found as \cite{Nielsen_Chuang_2010}
 \begin{equation}
         \left< \hat O\right> = \Tr\left[\hat O\hat\rho\right].
 \end{equation}
@@ -58,7 +61,7 @@ The probability $\rho_k$ to be in the node $k$ can be express using the operator
     \end{split}
 \end{equation}
 
-In the Heisenberg picture, the density operator evolution can be found solving the different equation called Von Neumann equation
+In the Heisenberg picture, the density operator's evolution can be found solving the different equation called Von Neumann equation
 \begin{equation}\label{Von Neumann equation}
     \begin{split}
         \frac{d}{dt}\hat\rho(t) 
@@ -80,7 +83,7 @@ If the initial distribution over the network is uncertain, we can introduce the 
     \hat \rho = \sum_{k=1}^K p_k \hat \rho_k \qquad \hat\rho_k = \ket{\psi_k}\bra{\psi_k}.
 \end{equation}
 
-The temporal evolution of the operator is defined as in eq. \eqref{Von Neumann equation}; the probability to be at node a at time t is the same as in eq. \eqref{state_projection_quantum}. All the property for the pure state still holds; this can be easily proven using the linearity of the trace.
+The temporal evolution of the operator is defined as in eq. \eqref{Von Neumann equation}; the probability to be at node a at time t is the same as in eq. \eqref{state_projection_quantum}. All the properties for the pure state still holds; this can be easily proven using the linearity of the trace.
 
 Using the mixed density matrix we can consider a system that does not start from a defined distribution, but from an ensemble of possible distribution with their probability. 
 

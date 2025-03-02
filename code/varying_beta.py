@@ -1,9 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import random
-from scipy.optimize import curve_fit
 import scipy.linalg as sc
-random.seed(None)
+random.seed(15)
 
 #constants
 N_dim = 50

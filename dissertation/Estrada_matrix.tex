@@ -8,24 +8,24 @@ To overcome that we introduce the communicability matrix, defined to consider al
 Let $G=(V,E)$ be an undirected graph composed of $N$ nodes and $E$ links and let $A$ be the adjacency matrix of the graph.
 We can define the communicability matrix as
 \begin{equation}
-    G(A) = \sum_{k=1}^{\infty}c_k A^k
+    G(A) = \sum_{k=0}^{\infty}c_k A^k
 \end{equation}
 and the communicability from node $i$ to node $j$ is given by $G_{ij}$. The power of the adjacency matrix $(A^k)_{ij}$ give us the number of path of length $k$ starting from node $i$ ending in node $j$.
 The coefficients $c_k$ indicates the weight of the paths and it is heavier the longer is the path, this is made to give more relevance to the short ones respect to the long ones. It must be chosen such that the series is convergent, they also must penalize long paths to reflect the preference to the shorter one.
 
 An intuitive choice is $c_k = \frac{1}{k!}$, which transforms the communicability into an exponential function \cite{Estrada_2008}
 \begin{equation}\label{G_E}
-    G^E(A) =\sum_{k=1}^{\infty} \frac{A^k}{k!} = e^{A} .
+    G^E(A) =\sum_{k=0}^{\infty} \frac{A^k}{k!} = e^{A} .
 \end{equation}
 We can generalize it adding a constant term $\beta$
 \begin{equation}
-    G^E(A) =\sum_{k=1}^{\infty} \frac{\beta A^k}{k!} = e^{\beta A} ,
+    G^E(A) =\sum_{k=0}^{\infty} \frac{\beta^k A^k}{k!} = e^{\beta A} ,
 \end{equation}
 this formulation is similar to the thermal green function for quantum system with Hamiltonian $A$ and temperature $T = \frac{1}{\beta}$.
 
 Alternatively, we can choose $c_k = \alpha^{k}$ with $\alpha<\frac{1}{\lambda_N}$, where $\lambda_N$ is the largest eigenvalue of the adjacency matrix \cite{Katz}. In this case, it becomes a geometrical series yielding
 \begin{equation}\label{G_R}
-    G^R(A) =\sum_{k=1}^{\infty} \alpha^k A^k = (I -\alpha A)^{-1}.
+    G^R(A) =\sum_{k=0}^{\infty} \alpha^k A^k = (I -\alpha A)^{-1}.
 \end{equation}
 The two formulations for the communicability matrix lead to the same result and conclusion for the network in the limit $\alpha \rightarrow \frac{1}{\lambda_N}$ and $\lambda_N -\lambda_{N-1}$ large \cite{Benzi_Klymko}.
 
@@ -42,12 +42,12 @@ If we consider the simplest dynamics, the random walk, it is governed by the Lap
 Thus, the communicability matrices for random walk are \cite{Estrada_2012}
 \begin{equation}\label{Estrada indeces}
     \begin{split}
-        G^E(L) &=\sum_{k=1}^{\infty} \frac{\beta^k L^k}{k!} = e^{\beta L}  \\ 
-        G^R(L) &= \sum_{k=1}^{\infty} \alpha^k L^k \rightarrow \alpha^{-1} \tilde{L}^{-1}
+        G^E(L) &=\sum_{k=0}^{\infty} \frac{\beta^k L^k}{k!} = e^{\beta L}  \\ 
+        G^R(L) &= \sum_{k=0}^{\infty} \alpha^k L^k \rightarrow \alpha^{-1} \tilde{L}^{-1}
     \end{split}
 \end{equation}
 
-where $\tilde{L}^{-1} = \sum_{i=2}^N \frac{1}{\mu}v_i^Tv_i$ is the Moore-Penrose generalized inverse of the Laplacian. Here, $\mu$ are the eigenvalue ordered from the smaller to the bigger such that $\mu_1 < \mu_2 < ... < \mu_N$, and $v_i$ the respective eigenvectors of the Laplacian matrix \cite{Generalized_inverse_Laplacian}.
+where $\tilde{L}^{-1} = \sum_{i=2}^N \frac{1}{\mu_i}v_i^Tv_i$ is the Moore-Penrose generalized inverse of the Laplacian. Here, $\mu$ are the eigenvalue ordered from the smaller to the bigger such that $\mu_1 < \mu_2 < ... < \mu_N$, and $v_i$ the respective eigenvectors of the Laplacian matrix \cite{Generalized_inverse_Laplacian}.
 Also, the Laplacian Estrada index is define as
 \begin{equation}\label{EE_L}
     EE(L) = \Tr\left[e^{\beta L}\right].
