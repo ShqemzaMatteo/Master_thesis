@@ -32,13 +32,14 @@ The distribution $\rho(q,p,t)$ is a Gaussian and satisfies the Fokker-Plank equa
 \begin{equation}
     \frac{\partial\rho}{\partial t} = -\sum_i p_i\frac{\partial \rho}{\partial q_i} + \sum_{ij} H_{ij}q_j\frac{\partial \rho}{\partial p_i} + \gamma\sum_{ij}\left(\delta_{ij}-1_{ij}\right)\left[\frac{\partial}{\partial p_i}p_j\rho + T \frac{\partial^2\rho}{\partial p_i \partial p_j}\right].
 \end{equation}
+The dynamics converges to a stationary distribution with time scale depending on the eigenvalue of the Laplacian matrix.  
 The solution at equilibrium is
 \begin{equation}
-    \rho(q,p) = Z(\beta)^{-1} \exp\left[ -\beta \left( \sum_j \frac{p_j^2}{2m_j} + \sum_{ij} \frac{1}{2}q_iH_{ij}q_j\right)\right],
+    \rho(q,p) = Z(\beta)^{-1} \exp\left[ -\beta \left( \sum_j {p_j^2} + \sum_{ij} \frac{1}{2}q_iH_{ij}q_j\right)\right],
 \end{equation}
 where $\beta = \frac{1}{T}$ and $Z(\beta)$ is the partition function defined as
 \begin{equation}
-    Z(\beta) = \int \prod_i dp_i dq_i \; \exp\left[ -\beta \left( \sum_j \frac{p_j^2}{2m_j} + \sum_{ij} q_iH_{ij}q_j\right)\right].
+    Z(\beta) = \int \prod_i dp_i dq_i \; \exp\left[ -\beta \left( \sum_j {p_j^2} + \sum_{ij} q_iH_{ij}q_j\right)\right].
 \end{equation}
 
 The marginal distribution on the coordinates is a Maxwell-Boltzmann distribution with the internal energy 
@@ -46,7 +47,8 @@ The marginal distribution on the coordinates is a Maxwell-Boltzmann distribution
     \rho(q) = Z(\beta)^{-1} e^{-\beta \left(\sum_{ij} q_iH_{ij}q_j\right)}.
 \end{equation}
 
-Since there is a sum over the indices $i$ and $j$ we can change the basis of $q_i$ to $Q_\lambda$ such that the $H$ is diagonal. Therefore, the marginal distribution becomes
+If $H$ is symmetric, namely the detailed balance condition holds, we can diagonalize the equation obtaining the motion of independent oscillators in the same thermal bath.
+Therefore, changing the basis from $q_i$ to $Q_\lambda$ eigenvectors of the Hamiltonian, the marginal distribution becomes
 \begin{equation}\label{marginal_probability}
     \rho(q) = Z(\beta)^{-1} e^{-\beta \left(\sum_{\lambda \neq 0} Q_\lambda \lambda Q_\lambda\right)},
 \end{equation}
@@ -55,13 +57,13 @@ with partition function
     Z(\beta) = \int \prod_{\lambda\neq 0} dQ_\lambda e^{-\beta \left(\sum_{\lambda \neq 0} \lambda Q_\lambda^2\right)}.
 \end{equation}
 
-The thermal distribution does not involve the zero eigenmode since the thermal bath does not interact with it and, also, the oscillator modes $Q_\lambda$ remain the same of the unperturbed case. 
+The thermal distribution does not involve the zero eigenmode since the thermal bath does not interact with it. Thus, we can project the system into a invariant subspace orthogonal to the stationary distribution. The oscillator modes $Q_\lambda$ remain the same of the unperturbed case. 
 This is a consequence of the condition $\sum_i \xi_i = 0$.
 %Moreover, this is also connected to the conservation of the stationary distribution of the master equation \eqref{stationary_distribution}. 
 The distribution has mean $\left<Q_\lambda\right>= 0$ and the covariance matrix is diagonal with entries $\left<Q^2_\lambda\right>= \frac{1}{\beta \lambda}$.
 
 The variance can be expresses also with the Moore-Penrose generalized inverse of the Laplacian
-\begin{equation}
+\begin{equation}\label{classic_correlation}
     \mathrm{Cov}(Q) = \frac{1}{\beta}L^{-1},
 \end{equation}
 

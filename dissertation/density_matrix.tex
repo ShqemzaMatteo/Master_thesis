@@ -1,32 +1,21 @@
-\section{Density matrix and entropy for complex network}
+\section{Density matrix and entropy for network}
 %as in paper 2023 with the special case in paper 2020
-The communicability matrix defined above possesses peculiar properties that make it suitable for use as a density matrix. Moreover, the presence of the Laplacian matrix ensure that it does not only consider the topological features of the network but also the dynamics. Taking the exponential communicability matrix as a reference, we can define a density matrix as
+The communicability matrix defined above possesses peculiar properties that make it suitable for use as a density matrix. Moreover, the presence of the Laplacian matrix ensures that it does not only consider the topological features of the network but also the dynamics. Taking the exponential communicability matrix as a reference, we can define a density matrix as
 \begin{equation}\label{density_matrix}
     \hat \rho(\beta) = \frac{1}{Z} e^{-\beta \hat L} \qquad \mathrm{with} \qquad Z(\beta) = \Tr[e^{-\beta \hat L}],
 \end{equation}
 where $Z$ is the partition function and it is equal to the Laplacian Estrada index of the network \eqref{EE_L}.
-It is a hermitian and positive defined matrix with trace equal to unity. 
-It can be seen that $e^{-\beta L}$ is the propagator for diffusion equation in a network at time $t = \beta$.
+It is a Hermitian and positive defined matrix with trace equal to unity. 
+It can be seen that $e^{-\beta L}$ is the propagator of the master equation \eqref{random_walk_solution} in a network at time $t = \beta$.
 
 From this, we can define the network's entropy as the Von Neumann entropy
 \begin{equation} \label{entropy}
     S(\hat\rho) = -\Tr[\hat \rho \ln \hat \rho].
 \end{equation}
-
-Considering \eqref{density_matrix}, the network's entropy can be written also in the form
-\begin{equation}\label{alternative_entropy}
-    S(\hat\rho) = \beta \Tr\left[L\hat\rho\right] + \ln Z.
-\end{equation}
-
 The entropy is not negative and it is equal to zero if and only if the $\hat\rho$ is a pure state. It has a higher bound $S \leq \ln(N)$,  \cite{Nielsen_Chuang_2010}.
-
 The entropy satisfy the sub-additivity property \cite{De_Domenico_2016}:
 Let $\hat\rho$, $\hat\tau$ and $\hat\sigma$ be density matrices corresponding to the networks $G$, $H$, $I$ respectively. The networks $t$ and $S$ are subgraph of the network $G$ such that $G = H + I$.
 If the sub-additivity is satisfied  then $S(\hat\rho) \leq S(\hat\tau) + S(\hat\sigma)$, the equivalence is obtain if the two subgraphs does not have nodes from the same component of $G$. In appendix \ref{C_sub_additivity} there is a mathematical proof.
-
-
-
-
 Figure \ref{fig:ER-BA-WS} shows the entropy \eqref{entropy} for different types of networks\footnote{The python scripts can be found in the GitHub page of the author at the link: \url{https://github.com/ShqemzaMatteo/Master_thesis}}: a ring graph, an Erd\H{o}s-Rényi (E-R) random graph, a Barab\'asi-Albert (B-A) scale-free graph, and a Watts-Strogatz (W-S) small-sworld graph.
 
 \begin{figure}[ht!]
@@ -36,7 +25,7 @@ Figure \ref{fig:ER-BA-WS} shows the entropy \eqref{entropy} for different types 
     \label{fig:ER-BA-WS}
 \end{figure}
 
-Using the density matrix, we can introduce also other thermodynamics quantities like the Helmoltz free energy $F = -\frac{1}{\beta} \ln Z$.
+%Using the density matrix, we can introduce also other thermodynamics quantities like the Helmoltz free energy $F = -\frac{1}{\beta} \ln Z$.
 
 
 A possible interpretation of this density matrix is given by De Domenico \cite{De_Domenico_2020}.
@@ -44,7 +33,6 @@ Consider a network composed of $N$ nodes, encoded in the adjacency matrix $A$. E
 The evolution of these variables is governed by the control operator $\hat L$. 
 
 The network can be described using the Dirac notation. Let be $\ket{\psi} = \sum_i n_i \ket{i}$ the state of the system, where $\ket{i}$ is the canonical vector identifying the node $i$. The set $\{\ket{i}\}_{i=0}^N$ forms an orthogonal basis, satisfying $\braket{i}{j} = \delta_{ij}$, where $\delta_{ij}$ is the Kronecker delta.
-
 The dynamics can be written as
 \begin{equation} \label{time_evolution}
     \partial_t \ket{\psi(t)} = - \hat L \ket{\psi(t)},
@@ -115,20 +103,20 @@ But we can symmetrize introducing the Jensen-Shannon (JS) divergence \cite{J-S_d
     \mathcal{D}_{JS}(\hat\rho||\hat\sigma) =  \frac{1}{2}D_{KL}(\hat \rho || \hat \mu) + \frac{1}{2}D_{KL}(\hat \sigma || \hat \mu) = S(\hat\mu)-\frac{1}{2}\left[S(\hat\rho) + S(\hat\sigma)\right],
 \end{equation}
 where $\hat\mu =\frac{1}{2}(\hat\rho+\hat\sigma)$. 
-\begin{figure}[ht!]
-    \centering
-    \includegraphics[width=0.75\textwidth]{image/JS_divergence.png}
-    \caption{Plot of the KL divergence as a function of $\beta$ between different network types with $50$ nodes: a Erd\H{o}s-Rényi (E-R) random graph with connectivity probability $0.7$ and a Barab\'asi-Albert (B-A) scale-free graph with parameter $m=3$ (blue); a Erd\H{o}s-Rényi (E-R) random graph with connectivity probability $0.7$ and Watts-Strogatz (W-S) small world graph with parameter $K=3$ and rewire probability 0.2 (orange); a Barab\'asi-Albert (B-A) scale-free graph with parameter $m=3$ and a Watts-Strogatz (W-S) small world graph with parameter $K=3$ and rewire probability 0.2 (green). The x-axis has a logarithmic scale.The ER and BA networks are closer respect to a WS network. The divergence is maximum around $\beta = 10$.}
-    \label{Fig:JS_divergence}
-\end{figure}
 
 The JS divergence is a bounded function \cite{J-S_divergence}
 \begin{equation}
     0 \geq \mathcal{D}_{JS}(\hat\rho||\hat\sigma) \geq 1.
 \end{equation}
 $\left(\mathcal{D}_{JS}\right)^{\frac{1}{2}}$ defines a metric: it is symmetric, positive define, and hold the triangular inequality \cite{Jensen-Shannon_divergence}. 
-
 %It has been use successfully to measure the distance between the layer of a multilayer network in order to aggregate them and eliminate the redundant layers \cite{multilayer}.
 It has been use successfully to measure the distance between the network in order to aggregate them \cite{multilayer}.
 
 Figure \ref{Fig:JS_divergence} shows the Jensen-Shannon divergence between an Erd\H{o}s-Rényi (E-R) random graph, a Barab\'asi-Albert (B-A) scale-free graph and a Watts-Strogatz (W-S) small-sworld graph \footnote{The python scripts can be found in the GitHub page of the author at the link: \url{https://github.com/ShqemzaMatteo/Master_thesis}}.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.75\textwidth]{image/JS_divergence.png}
+    \caption{Plot of the KL divergence as a function of $\beta$ between different network types with $50$ nodes: a Erd\H{o}s-Rényi (E-R) random graph with connectivity probability $0.7$ and a Barab\'asi-Albert (B-A) scale-free graph with parameter $m=3$ (blue); a Erd\H{o}s-Rényi (E-R) random graph with connectivity probability $0.7$ and Watts-Strogatz (W-S) small world graph with parameter $K=3$ and rewire probability 0.2 (orange); a Barab\'asi-Albert (B-A) scale-free graph with parameter $m=3$ and a Watts-Strogatz (W-S) small world graph with parameter $K=3$ and rewire probability 0.2 (green). The x-axis has a logarithmic scale.The ER and BA networks are closer respect to a WS network. The divergence is maximum around $\beta = 10$.}
+    \label{Fig:JS_divergence}
+\end{figure}

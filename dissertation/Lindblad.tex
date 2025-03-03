@@ -123,6 +123,44 @@ If the matrix $\gamma(\omega)$ can be diagonalized, namely exist a diagonal matr
 \end{equation}
 The operator $\hat J_k(\omega)= \sum_i O_{ki} \hat S_{i}(\omega)$ are called jump operators, the superoperator $\mathcal{L}$ is called Lindblad superoperator and $\gamma_i(\omega)$ are the damping rates. In the limit $\gamma_k(\omega) = 0$ the Von Neumann equation is recovered with the Hamiltonian $\hat H+\hat H_{LS}$.
 
+\section{Time evolution}
+Following the resolution proposed by Fujii \cite{fujii2012} for a quantum harmonic oscillator, we can solve the Lindblad master equation. 
+First of all, we vectorize the density matrix: let introduce an Hilbert space with dimension $N^2$ such that a vector is $\sket{\rho} = (\rho_{00},\rho_{01},...,\rho_{NN-1},\rho_{NN})^T$ and the scalar product is $\sbraket{\phi}{\rho}= \Tr[\hat\phi^\dagger\hat\rho]$. This is called Fock-Liouville space \cite{Manzano}.
+
+The follow operation can be vectorize as
+\begin{equation}
+    \hat A \hat\rho \hat B \rightarrow (\hat A\otimes\hat B)\sket{\rho} \qquad \hat A \hat\rho +\hat\rho\hat B \rightarrow \left(\hat A\otimes\mathbb{I} +\mathbb{I}\otimes\hat B\right)\sket{\rho},
+\end{equation}
+where $\mathbb{I}$ is the identity matrix, $\hat A$ and $\hat B$ are two generic operator. The glyph $\otimes$ represents the tensorial product that generates a $N^2\times N^2$ matrix defined as
+\begin{equation}
+    \hat A\otimes\hat B = \begin{pmatrix}
+        A_{11} \hat B & \cdots & A_{1N}\hat B\\
+        \vdots & \ddots &\vdots\\
+        A_{n1}\hat B& \cdots & A_{NN}\hat B\\
+    \end{pmatrix}.
+\end{equation}
+More detail are shown in the Appendix \ref{A_vectorial_density_matrix}.
+
+In this space the Lindblad equation \eqref{Lindbladian} becomes
+\begin{equation}\label{vectorize_master_equation}
+    \frac{d}{dt}\sket{\rho(t)} = \tilde{\mathcal{L}}\sket{\rho(t)},
+\end{equation}
+where $\tilde{\mathcal{L}}$ is the operator 
+\begin{equation}
+    \tilde{\mathcal{L}}=-i\left[\hat H\otimes\mathbb{I}-\mathbb{I}\otimes\hat H\right]+\sum_{k}\gamma_{k}\left[\hat J_{k}\otimes\hat J^\dagger_{k} + \hat J_{k}^\dagger \hat J_{k}\otimes\mathbb{I} +\mathbb{I}\otimes\hat J_{k}^\dagger \hat J_{k}\right].
+\end{equation}
+The solution equation \eqref{vectorize_master_equation} can be written as
+\begin{equation}
+    \sket{\rho(t)} = \hat U(t,0)\sket{\rho(0)},
+\end{equation}
+where $U(t,0)$ is the evolution operator
+\begin{equation}
+    \begin{split}
+        \hat U(t,0) = \exp&\left\{-it\left(\hat H\otimes\mathbb{I}-\mathbb{I}\otimes\hat H\right)\right.\\
+        &+\left. t\sum_{k}\gamma_{k}\left[ \hat J_{k}\otimes\hat J^\dagger_{k}-\frac{1}{2}\hat J_{k}\hat J^\dagger_{k}\otimes\mathbb{I}-\frac{1}{2}\mathbb{I}\otimes\hat J_{k}\hat J^\dagger_{k}\right]\right\}
+    \end{split}
+\end{equation}
+The evolution operator is not unitary.
 
 
 \section{Properties of the Lindblad equation}
@@ -163,45 +201,6 @@ Lastly, we can prove that the dynamics \eqref{Lindblad_master_equation} conserve
 \end{equation}
 proved using the cyclic property of the trace. 
 However, it does not conserve the purity $\Tr\left[\hat\rho^2\right]$ that decreases \cite{Manzano}. 
-
-\section{Time evolution}
-Following the resolution proposed by Fujii \cite{fujii2012} for a quantum harmonic oscillator, we can solve the Lindblad master equation. 
-First of all, we vectorize the density matrix: let introduce an Hilbert space with dimension $N^2$ such that a vector is $\sket{\rho} = (\rho_{00},\rho_{01},...,\rho_{NN-1},\rho_{NN})^T$ and the scalar product is $\sbraket{\phi}{\rho}= \Tr[\hat\phi^\dagger\hat\rho]$. This is called Fock-Liouville space \cite{Manzano}.
-
-The follow operation can be vectorize as
-\begin{equation}
-    \hat A \hat\rho \hat B \rightarrow (\hat A\otimes\hat B)\sket{\rho} \qquad \hat A \hat\rho +\hat\rho\hat B \rightarrow \left(\hat A\otimes\mathbb{I} +\mathbb{I}\otimes\hat B\right)\sket{\rho},
-\end{equation}
-where $\mathbb{I}$ is the identity matrix, $\hat A$ and $\hat B$ are two generic operator. The glyph $\otimes$ represents the tensorial product that generates a $N^2\times N^2$ matrix defined as
-\begin{equation}
-    \hat A\otimes\hat B = \begin{pmatrix}
-        A_{11} \hat B & \cdots & A_{1N}\hat B\\
-        \vdots & \ddots &\vdots\\
-        A_{n1}\hat B& \cdots & A_{NN}\hat B\\
-    \end{pmatrix}.
-\end{equation}
-More detail are shown in the Appendix \ref{A_vectorial_density_matrix}.
-
-In this space the Lindblad equation \eqref{Lindbladian} becomes
-\begin{equation}\label{vectorize_master_equation}
-    \frac{d}{dt}\sket{\rho(t)} = \tilde{\mathcal{L}}\sket{\rho(t)},
-\end{equation}
-where $\tilde{\mathcal{L}}$ is the operator 
-\begin{equation}
-    \tilde{\mathcal{L}}=-i\left[\hat H\otimes\mathbb{I}-\mathbb{I}\otimes\hat H\right]+\sum_{k}\gamma_{k}\left[\hat J_{k}\otimes\hat J^\dagger_{k} + \hat J_{k}^\dagger \hat J_{k}\otimes\mathbb{I} +\mathbb{I}\otimes\hat J_{k}^\dagger \hat J_{k}\right].
-\end{equation}
-The solution equation \eqref{vectorize_master_equation} can be written as
-\begin{equation}
-    \sket{\rho(t)} = \hat U(t,0)\sket{\rho(0)},
-\end{equation}
-where $U(t,0)$ is the evolution operator
-\begin{equation}
-    \begin{split}
-        \hat U(t,0) = \exp&\left\{-it\left(\hat H\otimes\mathbb{I}-\mathbb{I}\otimes\hat H\right)\right.\\
-        &+\left. t\sum_{k}\gamma_{k}\left[ \hat J_{k}\otimes\hat J^\dagger_{k}-\frac{1}{2}\hat J_{k}\hat J^\dagger_{k}\otimes\mathbb{I}-\frac{1}{2}\mathbb{I}\otimes\hat J_{k}\hat J^\dagger_{k}\right]\right\}
-    \end{split}
-\end{equation}
-The evolution operator is not unitary.
 
 \input{Entropy_production}
 
