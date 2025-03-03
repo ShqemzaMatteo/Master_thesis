@@ -6,37 +6,37 @@ Let retake the standard Lindblad equation \eqref{Lindbladian} with Hamiltonian $
 We consider the basis $\{\ket{\lambda}\}$ such that $\hat H = \sum_\lambda \epsilon_\lambda\ket{\lambda}\bra{\lambda} = \hat L$ is diagonal (the network must hold the detail balance condition \eqref{detail_condition}).
 We define the jump operator $\hat J_{\lambda\mu} = \ket{\lambda}\bra{\mu}$ as the jumps from the energy states $\ket{\mu}$ to the energy state $\ket{\lambda}$ obtaining the master equation
 \begin{equation}\label{Lindblad_energy_jump}
-    \frac{d}{dt}\hat\rho = -i\left[\hat H,\hat\rho\right] + \sum_{\lambda\mu} \gamma_{\lambda\mu} \left(\hat J_{\lambda\mu} \hat\rho \hat J^\dagger_{\lambda\mu} - \frac{1}{2}\left\{ \hat J^\dagger_{\lambda\mu}\hat J_{\lambda\mu}, \hat\rho\right\} \right),
+    \frac{d}{dt}\hat\rho = -i\left[\hat L,\hat\rho\right] + \sum_{\lambda\mu} \gamma_{\lambda\mu} \left(\hat J_{\lambda\mu} \hat\rho \hat J^\dagger_{\lambda\mu} - \frac{1}{2}\left\{ \hat J^\dagger_{\lambda\mu}\hat J_{\lambda\mu}, \hat\rho\right\} \right),
 \end{equation}
 the coefficients $\gamma_{\lambda\mu}$ indicate the probability to take their respective jumps.
 
 We assume that the dynamics will tend to a stationary distribution in the form of
 \begin{equation}\label{pretended_stationary_distribution}
-    \hat \rho^* = \frac{e^{-\beta\hat H}}{Z},
+    \hat \rho^* = \frac{e^{-\beta\hat L}}{Z},
 \end{equation}
-with $Z = \Tr\left[e^{-\beta\hat H}\right]$ is the partition function.
+with $Z = \Tr\left[e^{-\beta\hat L}\right]$ is the partition function.
 
 The master equation for the stationary distribution is
 \begin{equation}\label{cancel_master_equation}
-    0 = -i\left[\hat H, \frac{e^{-\beta\hat H}}{Z}\right] + \sum_{\lambda\mu} \gamma_{\lambda\mu} \left(\hat J_{\lambda\mu}  \frac{e^{-\beta\hat H}}{Z} \hat J^\dagger_{\lambda\mu} - \frac{1}{2}\left\{ \hat J^\dagger_{\lambda\mu}\hat J_{\lambda\mu},  \frac{e^{-\beta\hat H}}{Z}\right\} \right).
+    0 = -i\left[\hat H, \frac{e^{-\beta\hat L}}{Z}\right] + \sum_{\lambda\mu} \gamma_{\lambda\mu} \left(\hat J_{\lambda\mu}  \frac{e^{-\beta\hat L}}{Z} \hat J^\dagger_{\lambda\mu} - \frac{1}{2}\left\{ \hat J^\dagger_{\lambda\mu}\hat J_{\lambda\mu},  \frac{e^{-\beta\hat H}}{Z}\right\} \right).
 \end{equation}
 The first term in the r.h.s. vanishes because the commutator is zero. 
 The first term of the sum can be written as 
 \begin{equation}
-        \sum_{\lambda\mu} \gamma_{\lambda\mu} \ket{\lambda}\bra{\mu}\frac{e^{-\beta\hat H}}{Z} \ket{\mu}\bra{\lambda} = 
+        \sum_{\lambda\mu} \gamma_{\lambda\mu} \ket{\lambda}\bra{\mu}\frac{e^{-\beta\hat L}}{Z} \ket{\mu}\bra{\lambda} = 
         \sum_{\lambda\mu} \gamma_{\lambda\mu} \frac{e^{-\beta \epsilon_\mu}}{Z} \ket{\lambda}\bra{\lambda}.
 \end{equation}
 
 While the second becomes
 \begin{equation}
-    \sum_{\lambda\mu} \gamma_{\lambda\mu}\left[\frac{1}{2}\ket{\mu}\braket{\lambda}{\lambda}\bra{\mu}\frac{e^{-\beta\hat H}}{Z} +\frac{1}{2}\frac{e^{-\beta\hat H}}{Z}\ket{\mu}\braket{\lambda}{\lambda}\bra{\mu}\right]= \sum_{\lambda\mu} \gamma_{\lambda\mu}\left[\frac{e^{-\beta \epsilon_\mu}}{Z}\ket{\mu}\bra{\mu}\right].
+    \sum_{\lambda\mu} \gamma_{\lambda\mu}\left[\frac{1}{2}\ket{\mu}\braket{\lambda}{\lambda}\bra{\mu}\frac{e^{-\beta\hat L}}{Z} +\frac{1}{2}\frac{e^{-\beta\hat L}}{Z}\ket{\mu}\braket{\lambda}{\lambda}\bra{\mu}\right]= \sum_{\lambda\mu} \gamma_{\lambda\mu}\left[\frac{e^{-\beta \epsilon_\mu}}{Z}\ket{\mu}\bra{\mu}\right].
 \end{equation}
 
 Therefore, the master equation \eqref{cancel_master_equation} reduces to 
 \begin{equation}\label{Kirchhoff_law_energy}
     \sum_{\lambda\mu}\left[\gamma_{\lambda\mu}\frac{e^{-\beta \epsilon_\mu}}{Z} - \gamma_{\mu\lambda}\frac{e^{-\beta \epsilon_\lambda}}{Z}\right]\ket{\lambda}\bra{\lambda} = 0.
 \end{equation}
-It is the Kirchhoff's current law that says that the sum of all the currents must vanish. The system should satisfy this request in order to have the canonical distribution.
+It is the Kirchhoff's current law that says that the sum of all the currents must vanish. The system should satisfy this request in order to have the Boltzmann distribution.
 However, there are several possible choice for the coefficients $\gamma_{\lambda\mu}$ such that equation \eqref{Kirchhoff_law_energy} holds.
 Each different choice generate a different path to reach the stationary distribution \eqref{pretended_stationary_distribution}. We assume that the system must satisfy the maximal entropy production principle: the system should relax to the stationary distribution following the trajectory that has maximal entropy production. The principle is satisfied when the Kirchhoff law \eqref{Kirchhoff_law_energy} reduces to the detail balance condition
 \begin{equation}
@@ -96,7 +96,6 @@ Inserting the equation \eqref{gamma_detailed_balance} into \eqref{gamma_position
 \begin{equation}
     \gamma_{ij;kl}= \sum_{\lambda\mu}e^{-\frac{\beta}{2}\left(\epsilon_\lambda - \epsilon_\mu\right)}\braket{i}{\lambda}\braket{\lambda}{k}\braket{l}{\mu}\braket{\mu}{j}.
 \end{equation}
-
 The master equation for the stationary distribution \eqref{pretended_stationary_distribution} in position space is 
 \begin{equation}
     0 = \sum_{ijkl} \gamma_{ij;kl} \left(\hat J_{ij}  \frac{e^{-\beta\hat H}}{Z} \hat J^\dagger_{kl} - \frac{1}{2}\left\{ \hat J^\dagger_{ij}\hat J_{kl},  \frac{e^{-\beta\hat H}}{Z}\right\} \right).
@@ -105,7 +104,6 @@ The first term reduces to
 \begin{equation}
     \sum_{ijkl}\gamma_{ij;kl} \ket{i}\bra{j} \frac{e^{-\beta\hat H}}{Z} \ket{l}\bra{k} = \sum_{ijkl}\gamma_{ij;kl} \frac{e^{-\beta H_{jl}}}{Z}\ket{i}\bra{k}.
 \end{equation}
-
 The anticommutator reduces to
 \begin{equation}
     \begin{split}
@@ -210,7 +208,7 @@ that is the density matrix \eqref{density_matrix} introduced by De Domenico to i
 \subsection{Interpretation}
 
 The equation \eqref{Lindblad_energy_jump} describes the evolution of a quantum walk in presence of a classic noise, the temperature $T$ determines the noise strength.
-if we start from the stationary state and we add a perturbation in one node, the spread of the perturbation across the network depends on temperature: higher is the temperature, fewer nodes the perturbation can reach. Thus, the parameter $\beta$ permits us to analyze the system's dynamics over paths of varying length.
+If we start from the stationary state and we add a perturbation in one node, the spread of the perturbation across the network depends on temperature: higher is the temperature, fewer nodes the perturbation can reach. Thus, the parameter $\beta$ permits us to analyze the system's dynamics over paths of varying length.
 
 In addition, we can apply a Wick rotation to the quantum dynamics \eqref{Lindblad_energy_jump} returning to a special random walk of classic particle. The rotation connect the stationary distribution at inverse temperature $\beta$ \eqref{pretended_stationary_distribution} with the propagator at time $t$ \eqref{random_walk_solution}.
 \begin{equation}
