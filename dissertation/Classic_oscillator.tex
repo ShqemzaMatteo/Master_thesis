@@ -62,10 +62,11 @@ This is a consequence of the condition $\sum_i \xi_i = 0$.
 %Moreover, this is also connected to the conservation of the stationary distribution of the master equation \eqref{stationary_distribution}. 
 The distribution has mean $\left<Q_\lambda\right>= 0$ and the covariance matrix is diagonal with entries $\left<Q^2_\lambda\right>= \frac{1}{\beta \lambda}$.
 
-The variance can be expresses also with the Moore-Penrose generalized inverse of the Laplacian
+The variance can be expresses as
 \begin{equation}\label{classic_correlation}
     \mathrm{Cov}(Q) = \frac{1}{\beta}L^{-1},
 \end{equation}
+where ${L}^{-1} = \sum_{i=2}^N \frac{1}{\mu_i}v_i^Tv_i$ is the Moore-Penrose generalized inverse of the Laplacian. Here, $\mu$ are the eigenvalue ordered from the smaller to the bigger such that $\mu_1 < \mu_2 < ... < \mu_N$, and $v_i$ the respective eigenvectors of the Laplacian matrix \cite{Generalized_inverse_Laplacian}.
 
 This is the same result as the Estrada's Communicability matrix $G^R(L)$ \eqref{Estrada indeces} with $\alpha=\beta$.
 When $T\rightarrow 0$ the spread of information drops; and when $T\rightarrow +\infty$ it becomes instantaneous.
