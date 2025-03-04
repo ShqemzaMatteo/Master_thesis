@@ -1,9 +1,9 @@
 \section{Quantum Network Master Equation}
 
-The previous description of noise in quantum walk lack of parameter that in thermodynamics correspond to the temperature. 
+The previous description of noise in quantum walk lacks of parameter that in thermodynamics correspond to the temperature. 
 Thus, we change picture: instead of considering the noise on the node's basis, we consider the thermal bath interaction in the energy's basis.
 Let retake the standard Lindblad equation \eqref{Lindbladian} with Hamiltonian $\hat H = \hat L$.
-We consider the basis $\{\ket{\lambda}\}$ such that $\hat H = \sum_\lambda \epsilon_\lambda\ket{\lambda}\bra{\lambda} = \hat L$ is diagonal (the network must hold the detail balance condition \eqref{detail_condition}).
+We consider the basis $\{\ket{\lambda}\}_{\lambda}$ such that $\hat H = \sum_\lambda \lambda\ket{\lambda}\bra{\lambda} = \hat L$ is diagonal (the network must hold the detail balance condition \eqref{detail_condition}).
 We define the jump operator $\hat J_{\lambda\mu} = \ket{\lambda}\bra{\mu}$ as the jumps from the energy states $\ket{\mu}$ to the energy state $\ket{\lambda}$ obtaining the master equation
 \begin{equation}\label{Lindblad_energy_jump}
     \frac{d}{dt}\hat\rho = -i\left[\hat L,\hat\rho\right] + \sum_{\lambda\mu} \gamma_{\lambda\mu} \left(\hat J_{\lambda\mu} \hat\rho \hat J^\dagger_{\lambda\mu} - \frac{1}{2}\left\{ \hat J^\dagger_{\lambda\mu}\hat J_{\lambda\mu}, \hat\rho\right\} \right),
@@ -15,29 +15,27 @@ We assume that the dynamics will tend to a stationary distribution in the form o
     \hat \rho^* = \frac{e^{-\beta\hat L}}{Z},
 \end{equation}
 with $Z = \Tr\left[e^{-\beta\hat L}\right]$ is the partition function.
-
-The master equation for the stationary distribution is
+The master equation for the stationary distribution \eqref{pretended_stationary_distribution} reduces to
 \begin{equation}\label{cancel_master_equation}
     0 = -i\left[\hat H, \frac{e^{-\beta\hat L}}{Z}\right] + \sum_{\lambda\mu} \gamma_{\lambda\mu} \left(\hat J_{\lambda\mu}  \frac{e^{-\beta\hat L}}{Z} \hat J^\dagger_{\lambda\mu} - \frac{1}{2}\left\{ \hat J^\dagger_{\lambda\mu}\hat J_{\lambda\mu},  \frac{e^{-\beta\hat H}}{Z}\right\} \right).
 \end{equation}
-The first term in the r.h.s. vanishes because the commutator is zero. 
-The first term of the sum can be written as 
-\begin{equation}
+The first term in the r.h.s. vanishes since the commutator is zero.
+Now, we analyze the terms in the summation independently.
+The first one can be written as 
+\begin{equation}\label{BCS_first_term}
         \sum_{\lambda\mu} \gamma_{\lambda\mu} \ket{\lambda}\bra{\mu}\frac{e^{-\beta\hat L}}{Z} \ket{\mu}\bra{\lambda} = 
         \sum_{\lambda\mu} \gamma_{\lambda\mu} \frac{e^{-\beta \epsilon_\mu}}{Z} \ket{\lambda}\bra{\lambda}.
 \end{equation}
-
 While the second becomes
-\begin{equation}
+\begin{equation}\label{BCS_second_term}
     \sum_{\lambda\mu} \gamma_{\lambda\mu}\left[\frac{1}{2}\ket{\mu}\braket{\lambda}{\lambda}\bra{\mu}\frac{e^{-\beta\hat L}}{Z} +\frac{1}{2}\frac{e^{-\beta\hat L}}{Z}\ket{\mu}\braket{\lambda}{\lambda}\bra{\mu}\right]= \sum_{\lambda\mu} \gamma_{\lambda\mu}\left[\frac{e^{-\beta \epsilon_\mu}}{Z}\ket{\mu}\bra{\mu}\right].
 \end{equation}
-
-Therefore, the master equation \eqref{cancel_master_equation} reduces to 
+Therefore, inserting the equations \eqref{BCS_first_term} and \eqref{BCS_second_term} into the master equation \eqref{cancel_master_equation} we obtain 
 \begin{equation}\label{Kirchhoff_law_energy}
-    \sum_{\lambda\mu}\left[\gamma_{\lambda\mu}\frac{e^{-\beta \epsilon_\mu}}{Z} - \gamma_{\mu\lambda}\frac{e^{-\beta \epsilon_\lambda}}{Z}\right]\ket{\lambda}\bra{\lambda} = 0.
+    \sum_{\lambda\mu}\left[\gamma_{\lambda\mu}\frac{e^{-\beta \mu}}{Z} - \gamma_{\mu\lambda}\frac{e^{-\beta \lambda}}{Z}\right]\ket{\lambda}\bra{\lambda} = 0.
 \end{equation}
 It is the Kirchhoff's current law that says that the sum of all the currents must vanish. The system should satisfy this request in order to have the Boltzmann distribution.
-However, there are several possible choice for the coefficients $\gamma_{\lambda\mu}$ such that equation \eqref{Kirchhoff_law_energy} holds.
+However, fixed $\beta$, there are several possible choice for the coefficients $\gamma_{\lambda\mu}$ such that equation \eqref{Kirchhoff_law_energy} holds.
 Each different choice generate a different path to reach the stationary distribution \eqref{pretended_stationary_distribution}. We assume that the system must satisfy the maximal entropy production principle: the system should relax to the stationary distribution following the trajectory that has maximal entropy production. The principle is satisfied when the Kirchhoff law \eqref{Kirchhoff_law_energy} reduces to the detail balance condition
 \begin{equation}
     \gamma_{\lambda\mu}\frac{e^{-\beta \epsilon_\mu}}{Z} - \gamma_{\mu\lambda}\frac{e^{-\beta \epsilon_\lambda}}{Z} = 0,
@@ -88,16 +86,18 @@ Thus, the equation \eqref{Lindblad_energy_jump} becomes
 \begin{equation}\label{quantum_network_position}
     \frac{d}{dt}\hat\rho = -i\left[\hat H,\hat\rho\right] +\sum_{ijkl} \gamma_{ij;kl} \left(\hat J_{ij}\hat\rho \hat J_{kl}^\dagger - \frac{1}{2}\left\{ \hat J_{kl}^\dagger\hat J_{ij}, \hat\rho\right\} \right),
 \end{equation}
-with the dump coefficient
+with the damping coefficient
 \begin{equation}\label{gamma_position}
     \gamma_{ij;kl}= \sum_{\lambda\mu}\gamma_{\lambda\mu}\braket{i}{\lambda}\braket{\lambda}{k}\braket{l}{\mu}\braket{\mu}{j}.
 \end{equation}
-Inserting the equation \eqref{gamma_detailed_balance} into \eqref{gamma_position} we reach
+The master equation \eqref{quantum_network_position} is more complicated because its formulate in the general form \eqref{general_Lindblad_equation}. The damping rates are no more diagonal.
+Inserting the equation \eqref{gamma_detailed_balance} into \eqref{gamma_position}, the damping rates in this basis are
 \begin{equation}
     \gamma_{ij;kl}= \sum_{\lambda\mu}e^{-\frac{\beta}{2}\left(\epsilon_\lambda - \epsilon_\mu\right)}\braket{i}{\lambda}\braket{\lambda}{k}\braket{l}{\mu}\braket{\mu}{j}.
 \end{equation}
-The master equation for the stationary distribution \eqref{pretended_stationary_distribution} in position space is 
-\begin{equation}
+\begin{comment}
+    The master equation for the stationary distribution \eqref{pretended_stationary_distribution} in position space is 
+    \begin{equation}
     0 = \sum_{ijkl} \gamma_{ij;kl} \left(\hat J_{ij}  \frac{e^{-\beta\hat H}}{Z} \hat J^\dagger_{kl} - \frac{1}{2}\left\{ \hat J^\dagger_{ij}\hat J_{kl},  \frac{e^{-\beta\hat H}}{Z}\right\} \right).
 \end{equation}
 The first term reduces to
@@ -108,18 +108,20 @@ The anticommutator reduces to
 \begin{equation}
     \begin{split}
         \sum_{ijkl}  \frac{\gamma_{ij;kl}}{2}\left(\ket{j}\braket{i}{k}\bra{l} \frac{e^{-\beta\hat H}}{Z}+ \frac{e^{-\beta\hat H}}{Z}\ket{j}\braket{i}{k}\bra{l}\right) \\ 
-        = \sum_{ijlm}\frac{1}{2} \left(\gamma_{ij;im}  \frac{e^{-\beta H_{lm}}}{Z} + \frac{\gamma_{il;im}}{2}\frac{e^{-\beta H_{jl}}}{Z}\right)\ket{j}\bra{m}
+        = \sum_{ijlm} \left(\frac{\gamma_{ij;il}}{2}\frac{e^{-\beta H_{lm}}}{Z} + \frac{\gamma_{il;im}}{2}\frac{e^{-\beta H_{jl}}}{Z}\right)\ket{j}\bra{m}
     \end{split}
 \end{equation}
 We have applied some algebra and exchange dummy indices.
 Thus, combining all together we obtain
 \begin{equation}
     \begin{split}
-        \sum_{ijkl}\left(\gamma_{(ik)\leftarrow(jl)} \frac{e^{-\beta H_{jl}}}{Z} - \frac{\gamma_{(jj)\leftarrow(ik)}}{2} \frac{e^{-\beta H_{lk}}}{Z} - \frac{\gamma_{(jj)\leftarrow(lk)}}{2}\frac{e^{-\beta H_{il}}}{Z}\right)\ket{i}\bra{k} = 0\\
+        \sum_{ijkl}\left(\gamma_{ij;kl} \frac{e^{-\beta H_{jl}}}{Z} - \frac{\gamma_{ji;jl}}{2} \frac{e^{-\beta H_{lk}}}{Z} - \frac{\gamma_{jl;jk}}{2}\frac{e^{-\beta H_{il}}}{Z}\right)\ket{i}\bra{k} = 0\\
+        \sum_{ijkl}\left(\gamma_{(ik)\leftarrow(jl)} \frac{e^{-\beta H_{jl}}}{Z} - \frac{\gamma_{(jj)\leftarrow(il)}}{2} \frac{e^{-\beta H_{lk}}}{Z} - \frac{\gamma_{(jj)\leftarrow(lk)}}{2}\frac{e^{-\beta H_{il}}}{Z}\right)\ket{i}\bra{k} = 0\\
         %\sum_{ijl}\left(\gamma_{ij;il} \frac{e^{-\beta H_{jl}}}{Z} - \frac{\gamma_{ji;ji}}{2} \frac{e^{-\beta H_{li}}}{Z} - \frac{\gamma_{jl;ji}}{2}\frac{e^{-\beta H_{il}}}{Z}\right)\ket{i}\bra{i} = 0
     \end{split}
 \end{equation}
 It can be interpreted as a Kirchhoff law in the link. Let suppose that the transition of the particle through the link is not instantaneous, then at each movement the particle chooses one link to travel. The probability to be in a specific link $(i,j)$ is given by $\frac{e^{-\beta H_{ij}}}{Z}$. In order to have a stationary distribution the dumping rate must satisfy the Kirchhoff law over the links distribution.
+\end{comment}
 
 Taking again the two limits, in the extremely hot environment, $\beta \rightarrow 0$, the damping rates are
 \begin{equation}
@@ -134,6 +136,7 @@ In this case the position quantum network master equation \eqref{quantum_network
 \begin{equation}
     \frac{d}{dt}\hat\rho = -i\left[\hat H,\hat\rho\right] +\sum_{ij}\left(\hat J_{ij}\hat\rho \hat J_{ij}^\dagger - \frac{1}{2}\left\{ \hat J_{ij}^\dagger\hat J_{ij}, \hat\rho\right\} \right).
 \end{equation}
+Since the relation \eqref{gamma_detailed_balance} can be modify by a constant, we recover the master equation for the Quantum Stochastic Walk \eqref{stochastic_lindblad_master}.
 The stationary distribution is 
 \begin{equation}
     \hat\rho^* = \frac{1}{N}\begin{pmatrix}
@@ -143,6 +146,7 @@ The stationary distribution is
     \end{pmatrix}.
 \end{equation}
 
+
 In contrast, in the extremely cold environment, $\beta \rightarrow \infty$, the damping coefficient are
 \begin{equation}
     \begin{split}
@@ -151,23 +155,20 @@ In contrast, in the extremely cold environment, $\beta \rightarrow \infty$, the 
         & + \sum_{\lambda\mu} e^{-\frac{\beta}{2}\left(\epsilon_\lambda - \epsilon_\mu\right)}\braket{i}{\lambda}\braket{\lambda}{k}\braket{l}{\mu}\braket{\mu}{j}\Theta(\mu-\lambda)
     \end{split}
 \end{equation}
-
 The first term cancel out,  and the second is a sum of Kronecker delta. Thus, it reduces to
 \begin{equation}\label{gamma_T=0}
     \begin{split}
         \gamma_{ij;kl}&= \sum_{\lambda}\braket{i}{\lambda}\braket{\lambda}{k}\braket{l}{\lambda}\braket{\lambda}{j}+ \sum_{\mu>\lambda}\infty\braket{i}{\lambda}\braket{\lambda}{k}\braket{l}{\mu}\braket{\mu}{j} \rightarrow \infty
     \end{split}
 \end{equation}
-
-The stationary distribution is 
+The stationary distribution \eqref{beta_inf_stationary_distribution} for the node reduces to
 \begin{equation}
-    \hat\rho^* = \frac{1}{N}\begin{pmatrix}
-        1&\dots&1\\
-        \vdots&\ddots&\vdots\\
-        1&\dots&1\\
-    \end{pmatrix}.
+    \hat\rho^* = \sum_{ij} \braket{i}{\lambda = 0}\braket{\lambda = 0}{j} \ket{i}\bra{j} = \sqrt{\rho^*_i\rho^*_j} \ket{i}\bra{j}
 \end{equation}
-We recovers the distribution \eqref{beta_inf_stationary_distribution} whose entropy vanishes. 
+The Von Neumann entropy vanishes. 
+
+Collegare a overdamped case 
+
 
 \begin{comment}
     \newpage

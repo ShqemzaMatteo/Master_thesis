@@ -3,11 +3,11 @@ import numpy as np
 import random
 from scipy.optimize import curve_fit
 import scipy.linalg as sc
-random.seed(None)
+random.seed(15)
 
 #constants
 N_dim = 50
-beta = np.logspace(-1,3,100)
+beta = np.logspace(-2,3,100)
 
 #adjacency matrix for a ring
 Adjacency = np.zeros((N_dim, N_dim))
@@ -113,8 +113,7 @@ Laplacian_ws = np.identity(N_dim) - Adjacency_ws
 def Free_energy(b, laplacian):
     density_matrix = sc.expm(-b*laplacian)
     part_func= np.trace(density_matrix)
-    
-    return (part_func)/b
+    return -np.log(part_func)/b
 
 #plot
 y_1 = np.vectorize(lambda t: Free_energy(t,Laplacian_ring))(beta)
@@ -129,7 +128,7 @@ plt.plot(beta, y_4/N_dim, label='W-S')
 plt.xlabel('beta')
 plt.ylabel('F/N')
 plt.title('Free energy for random networks')
-plt.xscale('log')
+#plt.xscale('log')
 #plt.ylim((-0.15 , 1.15))
 plt.grid()
 plt.legend()

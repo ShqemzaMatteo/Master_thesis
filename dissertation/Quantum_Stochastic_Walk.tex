@@ -1,10 +1,10 @@
 \section{Quantum Stochastic Random Walk}\label{C_Quantum Stochastic Walk}
 
-One of the firsts approaches to a Open Quantum Walk on network was proposed by Whitfield, Rodr\'iguez-Rosario and Aspuru-Guzik. \cite{QSW}. They defined a quantum walk on network in contact with a thermal bath with the dynamics described by a Lindblad master equation. In this framework, the jump operators are proportional to the adjacency  matrix $A_{ij}$ of the network. The thermal bath introduces noise into the dynamics, causing it which to deviate from the  Von Neumann equation \eqref{Von Neumann equation}. The system dissipation is reminiscent of the classic random walk.
+One of the early approaches to a Open Quantum Walk on network was proposed by Whitfield, Rodr\'iguez-Rosario and Aspuru-Guzik. \cite{QSW}. They defined a quantum walk on network in contact with a thermal bath with the dynamics described by a Lindblad master equation. In this framework, the jump operators are proportional to the adjacency  matrix $A_{ij}$ of the network. The thermal bath introduces noise into the dynamics, causing it which to deviate from the  Von Neumann equation \eqref{Von Neumann equation}. The system dissipation is reminiscent of the classic random walk.
 
 Let us consider a quantum walk on a network $G(N,M)$, the system in contact with a thermal bath that randomly interact with modifying the dynamic of the quantum particle.
 Let us introduce a Hilbert space $\mathcal{H}$ with an orthonormal basis $\{\ket{i}\}_{i<N}$, where each element $\ket{i}$ corresponds to the node $i$, satisfying $\braket{i}{j}=\delta_{ij}$. The system is described by a density matrix $\hat \rho$ whose evolution follows the Lindblad master equation \eqref{Lindblad_master_equation}.
-The Laplacian operator $\hat L$, defined as in equation \eqref{Laplacian_operator}, serves as the Hamiltonian $\hat H$, while the jump operators $\{\hat J_k\}_{k<M}$ represent the thermal jumps between two node linked together. For convenience, we will denote the jump operator with two indeces referring to the starting node $j$ and the ending node $i$ of the jump: therefore, the jumps operator are $\hat J_{ij} = \ket{i}\bra{j}$. The dumping rates are $\gamma_{ij} =A_{ij}/d_i$, like the transition rates in the classical random walk \eqref{transition_rates}.
+The Laplacian operator $\hat L$, defined as in equation \eqref{Laplacian_operator}, serves as the Hamiltonian $\hat H$, while the jump operators $\{\hat J_k\}_{k<M}$ represent the thermal jumps between two node linked together. For convenience, we will denote the jump operator with two indeces referring to the starting node $j$ and the ending node $i$ of the jump: therefore, the jumps operator are $\hat J_{ij} = \ket{i}\bra{j}$. The damping rates are $\gamma_{ij} =A_{ij}/d_i$, like the transition rates in the classical random walk \eqref{transition_rates}.
 The master equation can be expressed as follows:
 \begin{equation}\label{stochastic_lindblad_master}
     \frac{d}{dt}\hat \rho = -\frac{i}{2}\left[\hat L,\hat\rho\right] + \sum_{ij}\gamma_{ij}\left[\hat J_{ij} \hat\rho\hat J_{ij}^\dagger -\frac{1}{2} \left\{ \hat J_{ij}^\dagger \hat J_{ij}, \hat\rho\right\}\right],
@@ -78,18 +78,14 @@ Instead the diagonal terms
 Following the proof of the stationary distribution in Chapter \ref{C_Lindblad}, we can find the stationary density matrix $\hat\rho^*$ for the quantum stochastic walk.
 We will consider only the dissipative dynamics, which decouples the diagonal and off-diagonal terms. The evolution of the diagonal elements is described by:
 \begin{equation}
-    \frac{d}{dt}\rho_{ii} = \sum_j\left[W(i|j)\rho_{jj}(t) - W(j|i)\rho_{ii}(t)\right],
-\end{equation}
-where the transition rates are given by
-\begin{equation}
-    W(i|j) = W(j|i) = A_{ij}.
+    \frac{d}{dt}\rho_{ii} = \sum_j\left[\gamma_{ij}\rho_{jj}(t) - \gamma_{ji}\rho_{ii}(t)\right],
 \end{equation}
 
-Since the stationary distribution must satisfy the detail balance, namely
+The stationary distribution must satisfy the detail balance, namely
 \begin{equation}
-    W(i|j)\rho_{jj}(t) = W(j|i)\rho_{ii}.
+    \gamma_{ij}\rho_{jj}(t) = \gamma_{ji}\rho_{ii}.
 \end{equation}
-This implies that the diagonal entries must be equal. 
+Because the damping rates fort this system are symmetric, the diagonal entries must be equal. 
 Instead, considering the vector $\sket{\rho}$, the block corresponding to the off-diagonal part of $\mathcal{L}$ is already eigenstate with eigenvalue $1$. Thus, the off-diagonal terms must be equal to zero.
 The stationary density matrix can then be expressed as
 \begin{equation}\label{QSW_stationary_distribution}

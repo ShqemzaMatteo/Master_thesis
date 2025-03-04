@@ -21,7 +21,7 @@ The dynamics should be linear such that the evolution of the observable per node
 where $H_{ij}$ controls the evolution of the system.
 For the continuos time random walk the control matrix coincides with the Laplacian.
 In order to apply the Wick rotation and we obtain the quantum version of the system.
-Let $\{\ket{i}\}_{i<N}$, $N$ is the number of node, be a orthonormal basis for the Hilbert space $\mathcal{H}$, the state $\ket{\psi}$ is defined as
+Let $G(N,M)$ be a network, we introduce a Hilbert space $\mathcal{H}$ with orthonormal basis $\{\ket{i}\}_{i<N}$, the state $\ket{\psi}$ is defined as
 \begin{equation}
     \ket{\psi}= \sum_i\sqrt{x_i}\ket{i}
 \end{equation}
@@ -34,13 +34,13 @@ where
 $\hat H = \sum_{ij} H_{ij} \ket{i}\bra{j}$ is the control operator or the chosen dynamics. To satisfy the Schrödinger equation the control operator must be symmetric.
 Now we can add thermal noise arriving at quantum master equation \eqref{Lindblad_energy_jump} which has stationary distribution 
 \begin{equation}
-    \rho^*= \frac{1}{Z}e^{-\beta\hat H}
+    \hat\rho_H^*= \frac{1}{Z}e^{-\beta\hat H}
 \end{equation}
 with $Z= \Tr\left[e^{-\beta\hat H}\right]$ is the partition function.
 
 Therefore, the network entropy for network under the dynamics \eqref{general_dynamics} is 
 \begin{equation}
-    S = -\Tr\left[\frac{1}{Z}e^{-\beta\hat H}\ln\left(\frac{1}{Z}e^{-\beta\hat H}\right) \right].
+    S_H(\beta) = -\Tr\left[\hat\rho_H^*\ln\hat\rho_H^* \right].
 \end{equation}
 Based on the considered dynamics the network will have a different entropy's value.
 
@@ -72,7 +72,7 @@ The dynamics \eqref{antisymmetric_master_equation} does not converge no more to 
 We can generalize as in the \eqref{stochastic_lindblad_master} 
 
 \begin{equation}
-    \frac{d}{dt}\hat \rho = -i\left[\hat H + \omega\hat H_{A},\hat\rho\right] + \sum_{ij}\gamma_{ij}\left[\hat J_{ij} \hat\rho\hat J_{ij}^\dagger -\frac{1}{2} \left\{ \hat J_{ij}^\dagger \hat J_{ij}, \hat\rho\right\}\right].
+    \frac{d}{dt}\hat \rho = -i\left[\hat H + \hat H_{A},\hat\rho\right] + \sum_{ij}\gamma_{ij}\left[\hat J_{ij} \hat\rho\hat J_{ij}^\dagger -\frac{1}{2} \left\{ \hat J_{ij}^\dagger \hat J_{ij}, \hat\rho\right\}\right].
 \end{equation}
 where $\hat H$ is the hermitian part of the Laplacian operator.
 
@@ -90,10 +90,10 @@ with
 \end{equation}
 
 If the Hamiltonian $\hat H$ is positive defined, the second exponential of the equation \eqref{not_hermitian_time_operator} dissipate energy. 
-Thus, the system can be studied again with a Lindblad master equation \eqref{Lindbladian} in the form
+The system can be viewed as a quantum open system in exchanging energy with a thermal bath \cite{Korsch_2019}. Thus, we can study it with Lindblad master equation \eqref{Lindbladian} in the form
 \begin{equation}
     \frac{d}{dt}\hat\rho = -i\left[\hat H_S,\hat\rho\right] + \sum_k \gamma_k \left(\hat J_k \hat\rho \hat J^\dagger_k - \frac{1}{2}\left\{ \hat J^\dagger_k\hat J_k, \hat\rho\right\} \right).
 \end{equation}
 The jumps operators must reproduce the same dissipation as the anti-hermitian operator $\hat H_A$.
 
-The damping coefficients do not have to hold the Kirchhoff law. Thus, the system may not converge to a stationary state but may persist some stationary density currents.
+The damping coefficients do not have to hold the Kirchhoff law. Thus, the system may not converge to a stationary state, some some stationary density currents may persist or the system may not have an attractive distribution to converge.

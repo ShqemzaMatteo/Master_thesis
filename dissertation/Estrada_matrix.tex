@@ -28,7 +28,7 @@ Alternatively, we can choose $c_k = \alpha^{k}$ with $\alpha<\frac{1}{\lambda_N}
 \begin{equation}\label{G_R}
     G^R(A) =\sum_{k=0}^{\infty} \alpha^k A^k = (I -\alpha A)^{-1}.
 \end{equation}
-%In the limit $\alpha \rightarrow \frac{1}{\lambda_N}$ and $\lambda_N -\lambda_{N-1}$ large, the two formulations for the communicability matrix $G^E(A)$ and $G^R(A)$ lead to the same result and conclusion for the network  \cite{Benzi_Klymko}.
+In the limit $\alpha \rightarrow \frac{1}{\lambda_N}$ and $\lambda_N -\lambda_{N-1}$ large, the two formulations for the communicability matrix $G^E(A)$ and $G^R(A)$ converge leading to the same results for the network \cite{Benzi_Klymko}.
 
 
 From this, we can introduce an global index for the network that consider all the different possible communication as
@@ -60,7 +60,7 @@ The exponential communicability matrix resembles the Boltzmann density matrix wi
 
 \subsection{Analogy with Hamiltonian systems}
 The formulae \eqref{Estrada indeces} can be motivated by studying a classic and quantum harmonic oscillator on a network.
-Consider a set of $N$ harmonic oscillators with coupling matrix $K = A$, where $A$ is a symmetric adjacency matrix. In this way, the nodes are considered as particle of mass $m = 1$ connected by springs with constant $A_{ij}$. The network should not have self interacting nodes, thus $A_{ii} = 0$. The system is submerged in a thermal bath at the temperature $T$. We assume there are no dumping and no external forces acting in the system besides the thermal fluctuation. 
+Consider a set of $N$ harmonic oscillators with coupling matrix $K = A$, where $A$ is a symmetric adjacency matrix. In this way, the nodes are considered as particle of mass $m = 1$ connected by springs with constant $A_{ij}$. The network should not have self interacting nodes, thus $A_{ii} = 0$. The system is submerged in a thermal bath at the temperature $T$. We assume there are no damping and no external forces acting in the system besides the thermal fluctuation. 
 Let introduce a set of coordinates $q_i$ that indicates the displacement of the $i$ particle respect the equilibrium position, the elastic elastic potential can be define as
 \begin{equation}
     V(q) = \frac{1}{4}\sum_{i\neq j} K_{ij}(q_i-q_j)^2 = \frac{1}{2}\sum_{j}K_{jj}q_j^2 - \frac{1}{2} \sum_{i\neq j}K_{ij}q_iq_j,
@@ -81,17 +81,14 @@ We can write the Lagrangian of the system as
 \begin{equation}
     \mathcal{L} = \frac{1}{2}\sum_{ij} \dot q_i G_{ij} \dot q_j - \frac{1}{2} \sum_{ij} q_iH_{ij}q_j.
 \end{equation}
-
 The equations of motion are
 \begin{equation}
     \ddot q_i = -H_{ij} q_j.
 \end{equation}
-
 The eigenmodes of the system are defined by the solution of the equation 
 \begin{equation}
     \omega^2 \phi_i = H_{ij} \phi_j.
 \end{equation}
-
 Rewriting it in matrices form
 \begin{equation}
     |\Omega^2 - H| = |\Omega^2 - H|.
