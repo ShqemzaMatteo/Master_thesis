@@ -1,6 +1,6 @@
 \subsection{Network of quantum harmonic oscillators}
 
-If we consider a system as quantum in place of a classic one the covariance matrix changes and becomes similar to te exponential communicability matrix.
+If we consider a system as quantum in place of a classic one, the covariance matrix changes and becomes similar to the exponential communicability matrix.
 In the quantum case, the quantities $H'_L$, $q_i$ and $p_j$ are promoted to operators $\hat H'_L$, $\hat q_i$ and $\hat p_j$ and they satisfy the commutator relation $\left[\hat q_i, \hat p_j\right] = i \delta_{ij}$ ($\hbar = 1$). Thus, the Hamiltonian becomes
 \begin{equation}\label{H_L_QM}
     \hat H'_L = \sum_i\left(\frac{\hat p_i^2}{2}+\frac{K'}{2}\hat q_i^2\right) + \sum_{ij}\frac{1}{2} L_{ij}\hat q_i\hat q_j.
@@ -11,21 +11,24 @@ We introduce the creation and annihilation operators as
      \hat a_i = \frac{1}{\sqrt{2}}\left(\sqrt{\Omega} \hat q_i + \frac{i}{\sqrt{\Omega}}\hat p_i\right) \qquad 
      \hat a_i^\dagger = \frac{1}{\sqrt{2}}\left(\sqrt{\Omega} \hat q_i - \frac{i}{\sqrt{\Omega}}\hat p_i\right), 
 \end{equation}
-and the inverse as
+and their inverses as
 \begin{equation}
     \hat q_i = \sqrt{\frac{1}{2\Omega}}\left(\hat a_i + \hat a_i^\dagger\right) \qquad
     \hat p_i = i\sqrt{\frac{\Omega}{2}}\left(\hat a_i - \hat a_i^\dagger\right),
 \end{equation}
 where $\Omega = \sqrt{K'}$.
-They satisfy the commutation relation $\left[\hat a_i, \hat a^\dagger_j\right] = \delta_{ij}$. 
+They satisfy the commutation relation 
+\begin{equation}
+    \left[\hat a_i, \hat a^\dagger_j\right] = \delta_{ij}.
+\end{equation}
 
 The Hamiltonian can be written as 
 \begin{equation}
     \hat H_L = \sum_i \Omega \left(\hat a_i\hat a^\dagger_i + \frac{1}{2}\right) + \frac{1}{4\Omega}\sum_{ij}\left(\hat a_i +\hat a_i^\dagger\right)L_{ij}\left(\hat a_i +\hat a_i^\dagger\right).
 \end{equation}
 
-Assuming the network satisfies the detailed balance condition \eqref{detail_condition}, $L$ is symmetric and, therefore, we can diagonalize it. The diagonalized laplacian is written in the form $\Lambda = OLO^T$, where $O$ is a orthogonal matrix.
-This generates a new pair of creation and annihilation operators respect the eigenvalue $\mu$ of the Laplacian
+Assuming the network satisfies the detailed balance condition \eqref{detail_condition}, $L$ is symmetric and, therefore, we can diagonalize it. The diagonalized Laplacian is written in the form $\Lambda = OLO^T$, where $O$ is an orthogonal matrix.
+This generates a new pair of creation and annihilation operators with respect to the eigenvalue $\mu$ of the Laplacian
 \begin{equation}
     b_\mu = \sum_j a_jO_{\mu j}  \qquad \hat b_\mu^\dagger = \sum_j a_j^\dagger O^T_{\mu j} .
 \end{equation}
@@ -48,12 +51,12 @@ With some algebra, it reduces to
 \end{equation}
 
 
-We now consider the system as fermionic so the modes do not excite beyond the first excitation state. As a consequence, we can restrict the Hilbert state of a mode to the span of the ground state $\ket{g}$ and the first excited state $\ket{e_\mu}=b_\mu^\dagger\ket{g}$. Therefore, the second term in the Hamiltonian cancel out. 
+We now consider the system as fermionic, so the modes do not excite beyond the first excitation state. As a consequence, we can restrict the Hilbert space to the span of the ground state $\ket{g}$ and the first excited state $\ket{e_\mu}=b_\mu^\dagger\ket{g}$. Therefore, the second term in the Hamiltonian cancel out. 
 
-Now, we can compute the thermal Green function or Matsubara Green function for fermions. This quantity describes the probability amplitude for the particle to travel from one state to the other in a given time $\tau$ (more details in the Appendix \ref{Appendix_B}).
-In the Heisenberg picture, the annihilation and creation operator depend on time \cite{Coleman_2015} as
+Now, we can compute the thermal Green function or Matsubara Green function for fermions. This quantity describes the probability amplitude for the particle to travel from one state to another in a given time $\tau$ (more details in the Appendix \ref{Appendix_B}).
+In the Heisenberg picture, the annihilation and creation operators depend on time \cite{Coleman_2015} as
 \begin{equation}
-    \hat b_\mu (\tau) = e^{-\mu t} \hat b_\mu \qquad \hat b_\mu^\dagger (\tau) = e^{\mu t} 
+    \hat b_\mu (\tau) = e^{-\mu t}\; \hat b_\mu \qquad \hat b_\mu^\dagger (\tau) = e^{\mu t} \;\hat b_\mu^\dagger
 \end{equation}
 For $\tau > 0$ it is
 \begin{equation}\label{Thermal_GReen_Function}
@@ -63,7 +66,7 @@ For $\tau > 0$ it is
         %&= \sum_{\mu} O_{i\mu}\left\{\frac{e^{-\mu \tau}}{e^{-\beta\left[ \Omega + \frac{1}{2\Omega^2}\mu\right]} + 1}\right\}O_{j\mu}\\
     \end{split}
 \end{equation}
-The equation \eqref{Thermal_GReen_Function} reduces, the calculation are in the Appendix \ref{Appendix_B}, to
+The equation \eqref{Thermal_GReen_Function} reduces, more details in the Appendix \ref{Appendix_B}, to
 \begin{equation}
     G^L_{ij}(\beta, \tau > 0) = \sum_{\mu} O_{i\mu}\left\{-e^{-\mu \tau}\left[\left(1-f\left( \Omega + \frac{1}{2\Omega^2}\mu\right)\right)\right]\right\}O_{j\mu},
 \end{equation} 
@@ -71,23 +74,23 @@ where $f(\epsilon)$ is the Fermi-Dirac distribution
 \begin{equation}
     f(\epsilon)=\frac{1}{e^{\beta\epsilon} + 1}.
 \end{equation}
-With some algebra we obtain
+With some algebra, we obtain
 \begin{equation}
     G^L_{ij}(\beta, \tau > 0) = \sum_{\mu} O_{i\mu}\left\{\frac{e^{-\mu \tau}}{e^{-\beta\left[ \Omega + \frac{1}{2\Omega^2}\mu\right]} + 1}\right\}O_{j\mu}
 \end{equation}
-In the limit $\tau \rightarrow 0^+$ and $\beta$ large enough it tend to
+In the limit $\tau \rightarrow 0^+$ and $\Omega$ large enough, it tend to
 \begin{equation}\label{Quantum_correlation}
     G^L(\beta) = \sum_{\mu} O_{i\mu}{e^{\beta\left[ \Omega + \frac{1}{2\Omega^2}\mu\right]}} O_{\mu i},
 \end{equation}
-that can be written also as
+which can also be written as
 \begin{equation}\label{quantum_correlation_2}
     G^L_{ij}(\beta)= e^{\beta \Omega}e^{\frac{\beta}{2\Omega}L}.
 \end{equation}
 
-Redefining the temperature $\beta \rightarrow \frac{\beta}{2\Omega}$ the equations \eqref{quantum_correlation_2} is related to equation \eqref{Estrada indeces}
+The equation \eqref{quantum_correlation_2} is related to equation \eqref{Estrada indeces}
 \begin{equation}
-    G^E(L) = e^{-\beta\Omega}G^L(\beta).
+    G^E(L) = e^{-\beta\Omega}G^L\left(\frac{\beta}{2\Omega}\right).
 \end{equation}
-When the temperature $T \rightarrow 0$ the communicability between the nodes drops to zero and the perturbation does not spread across the network. Instead, when $T \rightarrow \infty$ the communicability tend to infinity and the perturbation spread instantaneously.  
+When the temperature $T \rightarrow 0$ the communicability between the nodes drops to zero and the perturbation does not spread across the network. Instead, when $T \rightarrow \infty$ the communicability tends to infinity and the perturbation spread instantaneously.  
 
-In the high temperature limit, $\beta \rightarrow 0$, the correlation of the quantum system \eqref{Quantum_correlation} converges to the correlation of the classic one \eqref{classic_correlation}. This is well known, since in the high temperature limit the quantum effects should be negligible.
+In the high temperature limit, $\beta \rightarrow 0$, the correlation of the quantum system \eqref{Quantum_correlation} converges to the correlation of the classic one \eqref{classic_correlation}. This is well known, as in the high temperature limit the quantum effects should be negligible.

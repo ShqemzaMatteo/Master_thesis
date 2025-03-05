@@ -1,26 +1,27 @@
 \section{Quantum Network Master Equation}
 
-The previous description of noise in quantum walk lacks of parameter that in thermodynamics correspond to the temperature. 
-Thus, we change picture: instead of considering the noise on the node's basis, we consider the thermal bath interaction in the energy's basis.
-Let retake the standard Lindblad equation \eqref{Lindbladian} with Hamiltonian $\hat H = \hat L$.
-We consider the basis $\{\ket{\lambda}\}_{\lambda}$ such that $\hat H = \sum_\lambda \lambda\ket{\lambda}\bra{\lambda} = \hat L$ is diagonal (the network must hold the detail balance condition \eqref{detail_condition}).
-We define the jump operator $\hat J_{\lambda\mu} = \ket{\lambda}\bra{\mu}$ as the jumps from the energy states $\ket{\mu}$ to the energy state $\ket{\lambda}$ obtaining the master equation
+The previous description for the noise in the quantum walk lacks a parameter that, in thermodynamics, correspond to the temperature. 
+Thus, we propose another framework: instead of considering the jump operator as a transition between the nodes, we consider the thermal bath interaction in the energy states.
+Let us retake the standard Lindblad equation \eqref{Lindbladian} with Hamiltonian $\hat H = \hat L$.
+We introduce the basis $\{\ket{\lambda}\}_{\lambda}$ such that $\hat H = \sum_\lambda \lambda\ket{\lambda}\bra{\lambda} = \hat L$ is diagonal (the network must satisfy the detailed balance condition \eqref{detail_condition}).
+We define the jump operator $\hat J_{\lambda\mu} = \ket{\lambda}\bra{\mu}$ as the jumps from the energy state $\ket{\mu}$ to the energy state $\ket{\lambda}$ obtaining the master equation
 \begin{equation}\label{Lindblad_energy_jump}
     \frac{d}{dt}\hat\rho = -i\left[\hat L,\hat\rho\right] + \sum_{\lambda\mu} \gamma_{\lambda\mu} \left(\hat J_{\lambda\mu} \hat\rho \hat J^\dagger_{\lambda\mu} - \frac{1}{2}\left\{ \hat J^\dagger_{\lambda\mu}\hat J_{\lambda\mu}, \hat\rho\right\} \right),
 \end{equation}
-the coefficients $\gamma_{\lambda\mu}$ indicate the probability to take their respective jumps.
+where the coefficients $\gamma_{\lambda\mu}$ indicate the probability of taking their respective jumps.
 
 We assume that the dynamics will tend to a stationary distribution in the form of
 \begin{equation}\label{pretended_stationary_distribution}
     \hat \rho^* = \frac{e^{-\beta\hat L}}{Z},
 \end{equation}
-with $Z = \Tr\left[e^{-\beta\hat L}\right]$ is the partition function.
+with $Z = \Tr\left[e^{-\beta\hat L}\right]$ being the partition function.
 The master equation for the stationary distribution \eqref{pretended_stationary_distribution} reduces to
 \begin{equation}\label{cancel_master_equation}
     0 = -i\left[\hat H, \frac{e^{-\beta\hat L}}{Z}\right] + \sum_{\lambda\mu} \gamma_{\lambda\mu} \left(\hat J_{\lambda\mu}  \frac{e^{-\beta\hat L}}{Z} \hat J^\dagger_{\lambda\mu} - \frac{1}{2}\left\{ \hat J^\dagger_{\lambda\mu}\hat J_{\lambda\mu},  \frac{e^{-\beta\hat H}}{Z}\right\} \right).
 \end{equation}
-The first term in the r.h.s. vanishes since the commutator is zero.
-Now, we analyze the terms in the summation independently.
+The first term on the r.h.s. vanishes since the commutator is zero.
+
+Now, we analyze the dissipation terms independently.
 The first one can be written as 
 \begin{equation}\label{BCS_first_term}
         \sum_{\lambda\mu} \gamma_{\lambda\mu} \ket{\lambda}\bra{\mu}\frac{e^{-\beta\hat L}}{Z} \ket{\mu}\bra{\lambda} = 
@@ -30,26 +31,29 @@ While the second becomes
 \begin{equation}\label{BCS_second_term}
     \sum_{\lambda\mu} \gamma_{\lambda\mu}\left[\frac{1}{2}\ket{\mu}\braket{\lambda}{\lambda}\bra{\mu}\frac{e^{-\beta\hat L}}{Z} +\frac{1}{2}\frac{e^{-\beta\hat L}}{Z}\ket{\mu}\braket{\lambda}{\lambda}\bra{\mu}\right]= \sum_{\lambda\mu} \gamma_{\lambda\mu}\left[\frac{e^{-\beta \epsilon_\mu}}{Z}\ket{\mu}\bra{\mu}\right].
 \end{equation}
-Therefore, inserting the equations \eqref{BCS_first_term} and \eqref{BCS_second_term} into the master equation \eqref{cancel_master_equation} we obtain 
+Therefore, inserting the equations \eqref{BCS_first_term} and \eqref{BCS_second_term} into the master equation \eqref{cancel_master_equation}, we obtain the condition
 \begin{equation}\label{Kirchhoff_law_energy}
     \sum_{\lambda\mu}\left[\gamma_{\lambda\mu}\frac{e^{-\beta \mu}}{Z} - \gamma_{\mu\lambda}\frac{e^{-\beta \lambda}}{Z}\right]\ket{\lambda}\bra{\lambda} = 0.
 \end{equation}
-It is the Kirchhoff's current law that says that the sum of all the currents must vanish. The system should satisfy this request in order to have the Boltzmann distribution.
-However, fixed $\beta$, there are several possible choice for the coefficients $\gamma_{\lambda\mu}$ such that equation \eqref{Kirchhoff_law_energy} holds.
-Each different choice generate a different path to reach the stationary distribution \eqref{pretended_stationary_distribution}.
-We assume a strict condition, the detailed balance condition
-
-We assume that the system must satisfy the maximal entropy production principle: the system should relax to the stationary distribution following the trajectory that has maximal entropy production. The principle is satisfied when the Kirchhoff law \eqref{Kirchhoff_law_energy} reduces to the detail balance condition
+This is the Kirchhoff's current law which says that the sum of all the currents must vanish. The system should satisfy this condition in order to have the Boltzmann distribution.
+However, for a fixed $\beta$, there are several possible choices for the coefficients $\gamma_{\lambda\mu}$ such that equation \eqref{Kirchhoff_law_energy} holds.
+Each different choice generates a different path to reach the stationary distribution \eqref{pretended_stationary_distribution}.
+We are looking for a solution that is explicitly depends on the parameter $\beta$. The simplest choice is that the damping rates satisfies teh detailed balance condition 
+%We assume that the system must satisfy the maximal entropy production principle: the system should relax to the stationary distribution following the trajectory that has maximal entropy production. The principle is satisfied when the Kirchhoff law \eqref{Kirchhoff_law_energy} reduces to the detail balance condition
 \begin{equation}
-    \gamma_{\lambda\mu}\frac{e^{-\beta \epsilon_\mu}}{Z} - \gamma_{\mu\lambda}\frac{e^{-\beta \epsilon_\lambda}}{Z} = 0,
+    \gamma_{\lambda\mu}\frac{e^{-\beta \mu}}{Z} - \gamma_{\mu\lambda}\frac{e^{-\beta \lambda}}{Z} = 0,
 \end{equation}
-which has solution
+which has the solution
 \begin{equation}\label{gamma_detailed_balance}
-    \gamma_{\lambda\mu} = e^{-\frac{\beta}{2}\left(\epsilon_\lambda - \epsilon_\mu\right)}.
+    \begin{split}
+        \gamma_{\lambda\mu} = c \;e^{-\frac{\beta}{2}\left(\lambda - \mu\right)}\\
+        \gamma_{\mu\lambda} = c \; e^{\frac{\beta}{2}\left(\lambda - \mu\right)}.
+    \end{split}
 \end{equation}
+The solution is not unique;  there exist a set of possible solutions which differ by a constant $c$.
 %with $Z_\gamma = \sum_{\lambda\gamma}e^{-\frac{\beta}{2}\left(\epsilon_\lambda - \epsilon_\mu\right)}$ is the renormalization factor.
 
-Takin the limits $\beta \rightarrow \infty$, that is $T  \rightarrow 0$, the transition rates tends to
+Taking the limit $\beta \rightarrow \infty$, that is $T  \rightarrow 0$, the transition rates tend to
 \begin{equation}
     \gamma_{\lambda\mu} \rightarrow \left\{\begin{aligned}
         0 \qquad \lambda > \mu\\
@@ -57,17 +61,17 @@ Takin the limits $\beta \rightarrow \infty$, that is $T  \rightarrow 0$, the tra
         \infty \qquad  \lambda < \mu \\
     \end{aligned}\right. . 
 \end{equation}
-The transition from lower to higher energy state are suppressed, while the opposite one are extremely favorite. Thus, the system is led to the zero energy state that is the stationary state
+The transitions from lower to higher energy state are suppressed, while the opposite one are extremely favorite. Thus, the system is led to the zero energy state that is the stationary state
 \begin{equation}\label{beta_inf_stationary_distribution}
     \hat\rho^* = \ket{\lambda = 0}\bra{\lambda = 0}.
 \end{equation} 
 It is a pure state therefore the von Neumann entropy vanishes.
 
-The opposite limit $\beta \rightarrow 0$, that is $T \rightarrow \infty$, the transition rates becomes
+In the opposite limit $\beta \rightarrow 0$, that is $T \rightarrow \infty$, the transition rates become
 \begin{equation}
     \gamma_{\lambda\mu} \rightarrow 1.
 \end{equation}
-We have the opposite effect, the particle can jump across the different energy state with uniform probability. Thus, the stationary distribution is the maximal entropy state, i.e. the uniform distribution.
+We have the opposite effect, the particle can jump across the different energy state with uniform probability. Thus, the stationary distribution is the maximal entropy state, i.e. the uniform distribution
 \begin{equation}
     \hat\rho^* = \frac{1}{N}\begin{pmatrix}
         1&&0\\
@@ -75,7 +79,7 @@ We have the opposite effect, the particle can jump across the different energy s
         0&&1\\
     \end{pmatrix}.
 \end{equation}
-It is a maximal entropy state $S = \ln N$.
+It is a maximal entropy state with $S = \ln N$.
 
 \subsection{Return to node's basis}
 We can go back to the position basis $\{\ket{i}\}_{i<N}$, where $\ket{i}$ indicates the particle in the node $i$.  
