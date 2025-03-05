@@ -28,17 +28,18 @@ To ensure that $\dot S(\hat\rho) > 0$, the system must satisfy the following con
     \sum_{k}\gamma_{k}\Tr\left[\hat J_{k}\hat\rho\hat J_{k}^\dagger\ln\hat\rho\right] \leq \sum_{k}\gamma_{k} \Tr\left[\hat J_{k}^\dagger\hat J_{k}\hat\rho\ln\hat\rho\right],
 \end{equation}
 that depends on the choice of the $\gamma_{k}$. 
-Since the damping rates are positive, the inequality \eqref{entropy_inequality} holds if the following inequality is satisfied
-\begin{equation}\label{reduced_entropy_inequality}
-    \Tr\left[\hat J_{k}\hat\rho\hat J_{k}^\dagger\ln\hat\rho\right] \leq \Tr\left[\hat J_{k}^\dagger\hat J_{k}\hat\rho\ln\hat\rho\right].
-\end{equation}
-It can be proved to be satisfied for any choice of $\hat J_{k}$.
+%$Since the damping rates are positive, the inequality \eqref{entropy_inequality} holds if the following inequality is satisfied
+%\begin{equation}\label{reduced_entropy_inequality}
+%    \Tr\left[\hat J_{k}\hat\rho\hat J_{k}^\dagger\ln\hat\rho\right] \leq \Tr\left[\hat J_{k}^\dagger\hat J_{k}\hat\rho\ln\hat\rho\right].
+%\end{equation}
+%It can be proved to be satisfied for any choice of $\hat J_{k}$.
+Now, we study the trace alone.
 First we diagonalize the density matrix. Let $\ket{\lambda}$ be the eigenstate with eigenvalue $\lambda$, the density matrix can be written as
 \begin{equation}
     \hat \rho = \sum_\lambda \rho_\lambda\ket{\lambda}\bra{\lambda}.
 \end{equation}
 We transform also the jump operator in this basis $\hat{\mathcal{J}}_{k}= \hat O \hat J_{k}\hat O^\dagger$.
-The l.h.s. of the inequality \eqref{reduced_entropy_inequality} with some algebra can be reduces to 
+The l.h.s. of the inequality \eqref{entropy_inequality} with some algebra can be reduces to 
 \begin{equation}
     \begin{split}
         \Tr\left[\hat J_{k} \hat\rho\hat J_{k}^\dagger\ln\hat\rho\right]=& \sum_{\lambda\mu}\Tr\left[\hat{\mathcal{J}}_{k} \rho_\lambda\ket{\lambda}\bra{\lambda}\hat{\mathcal{J}}_{k}^\dagger\ln\rho_\mu \ket{\mu}\bra{\mu}\right] \\
@@ -68,18 +69,39 @@ The second braket in the trace is just a Kronecker delta. We use the completenes
 \end{equation}
 
 
-The inequality \eqref{reduced_entropy_inequality} reduces to 
+The inequality \eqref{entropy_inequality} reduces to 
 \begin{equation}
-    N \sum_{\lambda\mu}\rho_\lambda\ln\rho_\mu x^{(k)}_{\lambda\mu} \leq N\sum_{\lambda\mu}\rho_\lambda\ln\rho_\lambda x^{(k)}_{\lambda\mu}.
+    \dot S(\hat\rho) = N \sum_{\lambda\mu}\gamma_{\lambda\mu}\rho_\lambda\ln\rho_\mu x^{(k)}_{\lambda\mu} - N\sum_{\lambda\mu}\gamma_{\lambda\mu}\rho_\lambda\ln\rho_\lambda x^{(k)}_{\lambda\mu}.
 \end{equation}
+
+Then we add the energy difference of the environment. It can be written as
+\begin{equation}
+    \sum_{\lambda\mu}\gamma_{\lambda\mu}x^{(k)}_{\lambda\mu}\rho_\lambda\left(\ln\rho_\mu\gamma_{\lambda\mu} - \ln\gamma_{\lambda\mu}\right)  
+    - \sum_{\lambda\mu}\gamma_{\lambda\mu}x^{(k)}_{\lambda\mu}\rho_\lambda\left(\ln\rho_\lambda\gamma_{\mu\lambda}- \ln\gamma_{\mu\lambda}\right) .
+\end{equation}
+
+Rearrange the terms
+\begin{equation}
+    \sum_{\lambda\mu}\gamma_{\lambda\mu}x^{(k)}_{\lambda\mu}\rho_\lambda\left(\ln\rho_\mu\gamma_{\lambda\mu} - \ln\rho_\lambda\gamma_{\mu\lambda}\right) - \sum_{\lambda\mu}\gamma_{\lambda\mu}x^{(k)}_{\lambda\mu}\rho_\lambda\left(\ln\gamma_{\lambda\mu} - \ln\gamma_{\mu\lambda}\right)
+\end{equation}
+
+The first term the entropy of the universe, in contrast, the second is the work done by the environment to the system.
+
+We can say 
+
+\begin{equation}
+    \sum_{\lambda\mu}\gamma_{\lambda\mu}x^{(k)}_{\lambda\mu}\rho_\lambda\left(\ln\rho_\mu\gamma_{\lambda\mu} - \ln\rho_\lambda\gamma_{\mu\lambda}\right) - \sum_{\mu\lambda}\gamma_{\mu\lambda}x^{(k)}_{\mu\lambda}\rho_\lambda\left(\ln\rho_\mu\gamma_{\lambda\mu} - \ln\rho_\lambda\gamma_{\mu\lambda}\right) + the other part
+\end{equation} 
 
 We can rearrange the term in the two sum as
 \begin{equation}
     \begin{split}
         \sum_{\lambda}\sum_{\mu<\lambda}\left(\rho_\lambda\ln\rho_\mu + \rho_\mu\ln\rho_\lambda \right) x^{(k)}_{\lambda\mu} +&\sum_\lambda \rho_\lambda\ln\rho_\lambda x^{(k)}_{\lambda\lambda} \leq\\ 
-        \sum_{\lambda}\sum_{\mu<\lambda}&\left(\rho_\lambda\ln\rho_\lambda+ \rho_\mu\ln\rho_\mu\right)x^{(k)}_{\lambda\mu} + \sum_{\lambda}\rho_\lambda\ln\rho_\lambda x_{\lambda\lambda}{(k)} 
+        \sum_{\lambda}\sum_{\mu<\lambda}&\left(\rho_\lambda\ln\rho_\lambda+ \rho_\mu\ln\rho_\mu\right)x^{(k)}_{\lambda\mu} + \sum_{\lambda}\rho_\lambda\ln\rho_\lambda x_{\lambda\lambda}^{(k)} 
     \end{split}
 \end{equation}
+
+
 
 Therefore, it is sufficient that the following equation is satisfied
 \begin{equation}

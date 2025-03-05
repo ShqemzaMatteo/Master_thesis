@@ -124,30 +124,37 @@ for i in range(N_dim):
 # laplacian 
 Laplacian_star = np.identity(N_dim) - Adjacency_star
 
-#entropy
-def Von_Neumann(b, laplacian):
-    density_matrix = sc.expm(-b*laplacian)
-    density_matrix /= np.trace(density_matrix)
-    return -np.trace(density_matrix @ sc.logm(density_matrix))
+figure, axis = plt.subplots(2, 2)
+bin = np.linspace(0,2,9)
+print(bin)
 
-#plot
-y_1 = np.vectorize(lambda t: Von_Neumann(t,Laplacian))(beta)
-y_2 = np.vectorize(lambda t: Von_Neumann(t,Laplacian_er))(beta)
-y_3 = np.vectorize(lambda t: Von_Neumann(t,Laplacian_ba))(beta)
-y_4 = np.vectorize(lambda t: Von_Neumann(t,Laplacian_ws))(beta)
-#y_5 = np.vectorize(lambda t: Von_Neumann(t,Laplacian_star))(beta)
+eigen_ring = np.linalg.eigvals(Laplacian)
+axis[0,0].hist(eigen_ring,bins=bin, label='ring')
+axis[0,0].set_xlabel('eigenvalue')
+axis[0,0].set_ylabel('count')
+axis[0,0].set_title('Ring network')
+axis[0,0].grid()
 
-plt.plot(1/beta, y_1/(N_dim), label='Ring')
-plt.plot(1/beta, y_2/(N_dim), label='E-R')
-plt.plot(1/beta, y_3/(N_dim), label='B-A')
-plt.plot(1/beta, y_4/(N_dim), label='W-S')
-#plt.plot(beta, y_5/(np.log(N_dim)), label='Star')
-plt.rcParams['text.usetex'] = True
-plt.xlabel('β')
-plt.ylabel('S/N')
-plt.title('Entropy for a random graph')
-#plt.xscale('log')
-#plt.ylim((-0.15 , 1.15)) 
-plt.grid()
-plt.legend()
+eigen_er = np.linalg.eigvals(Laplacian_er)
+axis[0,1].hist(eigen_er,bins=bin, label='ER')
+axis[0,1].set_xlabel('eigenvalue')
+axis[0,1].set_ylabel('count')
+axis[0,1].set_title('E-R network')
+axis[0,1].grid()
+
+eigen_ba = np.linalg.eigvals(Laplacian_ba)
+axis[1,0].hist(eigen_ba,bins=bin, label='BA')
+axis[1,0].set_xlabel('eigenvalue')
+axis[1,0].set_ylabel('count')
+axis[1,0].set_title('B-A network')
+axis[1,0].grid()
+
+eigen_ws = np.linalg.eigvals(Laplacian_ws)
+axis[1,1].hist(eigen_ws,bins=bin, label='WS')
+axis[1,1].set_xlabel('eigenvalue')
+axis[1,1].set_ylabel('count')
+axis[1,1].set_title('W-S network')
+axis[1,1].grid()
+
+figure.suptitle('Eigenvalues of the Laplacian',fontsize=16)
 plt.show()

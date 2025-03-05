@@ -3,7 +3,7 @@ We can extend the random walk model to quantum particles.
 They must follow the Schrödinger equation with the Laplacian as Hamiltonian. However, the Schrödinger equation requires that the Laplacian is hermitian; therefore, the network must hold the detailed balance condition \eqref{detail_condition}.
 This model is known as “continuos time quantum walk" \cite{Farhi_98, quantum_walk}. This model is used to build quantum algorithms \cite{Quantum_walk_Google, classic_to_quantum_networks}.
 
-Consider a network $G(N,M)$. Let us introduce an Hilbert space $\mathcal{H}$ with an orthonormal basis $\{\ket{i}\}_{i<N}$, where each element $\ket{i}$ indicates their corresponding node $i$, satisfying $\braket{i}{j}=\delta_{ij}$. 
+Let $G(N,M)$ ba a network. We introduce an Hilbert space $\mathcal{H}$ with an orthonormal basis $\{\ket{i}\}_{i<N}$, where each element $\ket{i}$ indicates their corresponding node $i$, satisfying $\braket{i}{j}=\delta_{ij}$. 
 A general general state of the network can be encoded in the ket state $\ket{\psi}$ is define as
 \begin{equation}\label{ket_state_quantum}
     \ket{\psi} = \sum_i \sqrt{\rho_i(t)} \ket{i},

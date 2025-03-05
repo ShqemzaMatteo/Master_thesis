@@ -1,67 +1,65 @@
 \section{Estrada's Communicability matrix}
 
-Most of the study on complex networks focuses on the spread of information following the shorter path, namely the shortest sequence of links that connects two different nodes. 
-However, this is not the only way the information can flow, there are plenty of other more long route that are also available, and this vision ignores completely the complexity of the network.
-To overcome that we introduce the communicability matrix, defined to consider also these possible path to go beyond the shortest one \cite{Estrada_2012}. It consider the influence over all the path that cross the choose node, weighted by their length.
+Most studies on complex networks focus on the spread of information following the shorter path, namely the shortest sequence of links that connects two different nodes. 
+However, this is not the only way the information can flow, there are plenty of other more long route that are also available, and the shorter path description ignores completely the complexity of the network.
+To overcome that we introduce the communicability matrix, defined to accounts for all possible paths, not just the shortest ones \cite{Estrada_2012}. this matrix considers the influence of all the path that cross the chosen node, weighted by their length.
 %This concept is similar to the correlation in physics: it indicates how a node is changes in response to a perturbation in another node. 
 
 Let $G=(V,E)$ be an undirected graph composed of $N$ nodes and $E$ links and let $A$ be the adjacency matrix of the graph.
 We can define the communicability matrix as
 \begin{equation}
-    G(A) = \sum_{k=0}^{\infty}c_k A^k
+    G(A) = \sum_{k=0}^{\infty}c_k A^k.
 \end{equation}
-and the communicability from node $i$ to node $j$ is given by $G_{ij}$. The power of the adjacency matrix $(A^k)_{ij}$ give us the number of path of length $k$ starting from node $i$ ending in node $j$.
-The coefficients $c_k$ indicates the weight of the paths and it is heavier the longer is the path, this is made to give more relevance to the short ones respect to the long ones. It must be chosen such that the series is convergent, they also must penalize long paths to reflect the preference to the shorter one.
+The communicability from node $i$ to node $j$ is given by $G_{ij}$. The power of the adjacency matrix $(A^k)_{ij}$ give us the number of path of length $k$ starting from node $i$ ending in node $j$.
+The coefficients $c_k$ indicates the weight of the paths, with longer paths being penalized. This is made to give more relevance to the short ones respect to the long ones. These coefficients must be chosen such that the series is convergent.
 For weight network the adjacency matrix $A$ can be substitute by the weight matrix $W$.
 
-An intuitive choice is $c_k = \frac{1}{k!}$, which transforms the communicability into an exponential function \cite{Estrada_2008}
+An convenient choice for the coefficients is $c_k = \frac{1}{k!}$, which transforms the communicability into an exponential function \cite{Estrada_2008}
 \begin{equation}\label{G_E}
     G^E(A) =\sum_{k=0}^{\infty} \frac{A^k}{k!} = e^{A} .
 \end{equation}
-We can generalize it adding a constant term $\beta$
+We can generalize it adding a constant term $\beta$ to further penalize the longer paths
 \begin{equation}
     G^E(A) =\sum_{k=0}^{\infty} \frac{\beta^k A^k}{k!} = e^{\beta A} ,
 \end{equation}
-this formulation is similar to the thermal green function for quantum system with Hamiltonian $A$ and temperature $T = \frac{1}{\beta}$.
+which resembles to the Boltzmann distribution with Hamiltonian $A$ and temperature $T = \frac{1}{\beta}$.
 
 Alternatively, we can choose $c_k = \alpha^{k}$ with $\alpha<\frac{1}{\lambda_N}$, where $\lambda_N$ is the largest eigenvalue of the adjacency matrix \cite{Katz}. In this case, it becomes a geometrical series yielding
 \begin{equation}\label{G_R}
     G^R(A) =\sum_{k=0}^{\infty} \alpha^k A^k = (I -\alpha A)^{-1}.
 \end{equation}
-In the limit $\alpha \rightarrow \frac{1}{\lambda_N}$ and $\lambda_N -\lambda_{N-1}$ large, the two formulations for the communicability matrix $G^E(A)$ and $G^R(A)$ converge leading to the same results for the network \cite{Benzi_Klymko}.
+In the limit $\alpha \rightarrow \frac{1}{\lambda_N}$ and $\lambda_N -\lambda_{N-1}$ large, the two formulations for the communicability matrix $G^E(A)$ and $G^R(A)$ converge leading to the same communicability for the network \cite{Benzi_Klymko}.
 
-
-From this, we can introduce an global index for the network that consider all the different possible communication as
+From this, we can introduce a global index for the network that considers the communication between the different nodes as
 \begin{equation}
     EE(A)  = \Tr\left[e^{\beta A}\right].
 \end{equation}
-In the literature it is called Estrada index \cite{Estrada_2008} and can be interpreted as the sum of all the self-communication, that is the sum of the paths that end in the same node they have started. It resembles the partition function from statistical mechanics.
+In the literature, it is called Estrada index \cite{Estrada_2008} and can be interpreted as the sum of all the self-communication, which the sum of the paths that start and end in the same node. This index resembles the partition function from statistical mechanics.
 
-
-However, the communicability matrices \eqref{G_E} and \eqref{G_R} study only the network's topology, namely the paths, and ignore the presence of dynamics over the network that may change the way information spreads.
-
-If we consider the simplest dynamics, the random walk, it is governed by the Laplacian matrix $L$. 
-Thus, the communicability matrices for random walk are \cite{Estrada_2012}
+However, the communicability matrices \eqref{G_E} and \eqref{G_R} focus only on the network's topology and they ignore the presence of a dynamics over the network that may change how information spreads.
+Consider the simplest dynamics, the random walk, the information's flow is governed by the Laplacian matrix $L$. 
+Therefore, we define the dynamical communicability matrices for random walk as follow \cite{Estrada_2012}
 \begin{equation}\label{Estrada indeces}
     \begin{split}
-        G^E(L) &=\sum_{k=0}^{\infty} \frac{\beta^k L^k}{k!} = e^{\beta L}  \\ 
-        G^R(L) &= \sum_{k=0}^{\infty} \alpha^k L^k = (I -\alpha L)^{-1}
+        G^E(L) &=\sum_{k=0}^{\infty} \frac{\beta^k L^k}{k!} = e^{\beta L},  \\ 
+        G^R(L) &= \sum_{k=0}^{\infty} \alpha^k L^k = (I -\alpha L)^{-1},
     \end{split}
 \end{equation}
+with $\alpha<\frac{1}{\lambda_N}$, where $\lambda_N$ is the largest eigenvalue of the Laplacian matrix.
 
 Lastly, the Laplacian Estrada index is define as
 \begin{equation}\label{EE_L}
     EE(L) = \Tr\left[e^{\beta L}\right].
 \end{equation}
 
-The exponential communicability matrix resembles the Boltzmann density matrix with the Laplacian Estrada index as partition function. In fact, in the following section we will show how this matrix is a suitable candidate to become a network's density matrix. With it, we can define an entropy function and introduce an information theory for networks. 
+The exponential communicability matrix resembles the Boltzmann density matrix with the Laplacian Estrada index as partition function. In fact, in the following section we demonstrate how this matrix is a suitable candidate for representing the network's density matrix. With this framework, we can define an entropy function and introduce an information theory for networks. 
 
 %While the previous quantities using the adjacency matrix focalized over the topological aspects of the network and information spread, the laplacian communicability matrix embodies also the dynamical ones since the laplacian is involved in the random walk over a network. 
 
 \subsection{Analogy with Hamiltonian systems}
-The formulae \eqref{Estrada indeces} can be motivated by studying a classic and quantum harmonic oscillator on a network.
-Consider a set of $N$ harmonic oscillators with coupling matrix $K = A$, where $A$ is a symmetric adjacency matrix. In this way, the nodes are considered as particle of mass $m = 1$ connected by springs with constant $A_{ij}$. The network should not have self interacting nodes, thus $A_{ii} = 0$. The system is submerged in a thermal bath at the temperature $T$. We assume there are no damping and no external forces acting in the system besides the thermal fluctuation. 
-Let introduce a set of coordinates $q_i$ that indicates the displacement of the $i$ particle respect the equilibrium position, the elastic elastic potential can be define as
+The formulae \eqref{Estrada indeces} can be motivated by studying a classical and quantum harmonic oscillator on a network under specific conditions.
+Consider a set of $N$ harmonic oscillators with a coupling matrix $K$ proportional to the symmetric adjacency matrix $A$ of the network. In this framework, the nodes are treated as particle of mass $m = 1$ connected by springs with elastic constant $A_{ij}/d_i$. The network should not have self interacting nodes, thus $A_{ii} = 0$. The system is submerged in a thermal bath at the temperature $T$. We assume there is no damping or external forces acting on the system aside the thermal fluctuation. 
+Let us introduce a set of coordinates $q_i$ that indicates the displacement of the $i$ particle from the equilibrium position. The elastic elastic potential can be defined as
 \begin{equation}
     V(q) = \frac{1}{4}\sum_{i\neq j} K_{ij}(q_i-q_j)^2 = \frac{1}{2}\sum_{j}K_{jj}q_j^2 - \frac{1}{2} \sum_{i\neq j}K_{ij}q_iq_j,
 \end{equation}
@@ -70,16 +68,16 @@ where
     K_{jj} = \sum_{j \neq i} K_{ij}.
 \end{equation}
 
-We set $H_{ij}= K_{jj}\delta_{ij} - K_{ij}$, therefore the potential can be written as
+We define the matrix $H_{ij}= K_{jj}\delta_{ij} - K_{ij}$, allowing us to express the potential as
 \begin{equation}
     V(q) = \frac{1}{2}\sum_{i,j} H_{ij} q_i q_j.
 \end{equation}
-The $H$ matrix is a laplacian matrix and it is equal to the Laplacian of the network $L = D - A$, where $D$ is the degree matrix. It holds the property $\sum_j H_{ij} = 0$, therefore it has not negative eigenvalues and one must be equal to zero.
-The zero eigenvalue ensure us that the motion of the center of must is conserved. %% find a way to cite this sentence
+The matrix $H$ is a laplacian matrix and it is equal to the Laplacian of the network \eqref{Laplacian}. It holds the property $\sum_j H_{ij} = 0$, which implies that it has not negative eigenvalues and one must be equal to zero.
+The presence of zero eigenvalue ensures us that the motion of the center of mass is conserved. %% find a way to cite this sentence
 
 We can write the Lagrangian of the system as
 \begin{equation}
-    \mathcal{L} = \frac{1}{2}\sum_{ij} \dot q_i G_{ij} \dot q_j - \frac{1}{2} \sum_{ij} q_iH_{ij}q_j.
+    \mathcal{L} = \frac{1}{2}\sum_{ij} \dot q_i \dot q_j - \frac{1}{2} \sum_{ij} q_iH_{ij}q_j.
 \end{equation}
 The equations of motion are
 \begin{equation}
@@ -89,17 +87,23 @@ The eigenmodes of the system are defined by the solution of the equation
 \begin{equation}
     \omega^2 \phi_i = H_{ij} \phi_j.
 \end{equation}
-Rewriting it in matrices form
+Rewriting it in matrices form yields
 \begin{equation}
-    |\Omega^2 - H| = |\Omega^2 - H|.
+    |\Omega^2 - H| = 0. % |\Omega^2 - H|.
 \end{equation}
 
-Therefore, the spectral signature of the matrix $H = L$ are the same of the harmonic oscillator. In this way we can connect the harmonic oscillator and the master equation of a network and vice versa. Since $M$ is diagonal, $H$ and $L$ have the same support, eigenvectors and eigenvalues, leading to $E = \omega^2 = \lambda$, which creates a natural ranking between the eigenvectors. 
+Therefore, the spectral signature of the matrix $H = L$ is the same as that of the harmonic oscillator. This establishes a connection between the harmonic oscillator and the master equation of a network and vice versa. Since $M$ is diagonal, $H$ and $L$ have the same support, eigenvectors and eigenvalues, leading to $E = \omega^2 = \lambda$, which creates a natural ranking among the eigenvectors. 
 
-The Hamiltonian of the system is given by
+However, in order to achieve the analogy with the communicability matrix \eqref{Estrada indeces}, we should impose a constrain on the system: each particle is connected by a spring with elastic constant $K'$ to the ground. The elastic constant must be larger than the largest eigenvalue of the Laplacian. 
+Thus, the Hamiltonian of the system is given by
 \begin{equation}\label{H_L}
-    H_L = \sum_i \frac{p_i^2}{2} + \sum_{ij} \frac{1}{2}L_{ij}q_iq_j.
+    H_L = \sum_i \frac{p_i^2}{2} + \sum_{ij} \frac{1}{2}H'_{ij}q_iq_j,
 \end{equation}
+where
+\begin{equation}\label{strange_potential}
+    H'_{ij} = K'\delta_{ij} - L_{ij}.
+\end{equation}
+With the constrain, the potential is no more singular. We will study this system in both classic and quantum cases.
 
 \input{Classic_oscillator.tex}
 

@@ -33,7 +33,11 @@ Taking the continuum limit of the evolution \eqref{discrite random walk} we obta
 \begin{equation}\label{master_eq}
     \dot \rho_i(t) = \sum_j \pi_{ij}\rho_j(t) - \pi_{ji}\rho_i(t) = - \sum_j L_{ij} \rho_j(t),
 \end{equation}
-where $L_{ij} = \sum_k \pi_{kj}\delta_{ij} -\pi_{ij} $ is the Laplacian matrix.
+where 
+\begin{equation}\label{Laplacian}
+    L_{ij} = \sum_k \pi_{kj}\delta_{ij} -\pi_{ij} 
+\end{equation}
+ is the Laplacian matrix.
 The first term represents incoming transitions to node $i$, while the second term accounts for outgoing transitions.
 
 The Laplacian matrix has the property that $L_{ij} < 0 $ for $i \neq j$ and also it satisfies the relation
