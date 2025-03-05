@@ -1,52 +1,53 @@
 \section{Entropy production}\label{C_entropy_production}
 
-In thermodynamics, the irreversibility is encoded in the entropy function: a process is reversible if and only if the process does not produce entropy, $\Delta S = 0$, otherwise is irreversible. 
-The Lindblad master equation \eqref{Lindbladian} should describe irreversible processes of an open quantum system, $\Delta S \geq 0$, since the thermal fluctuations destroy time reversal. 
+In thermodynamics, the irreversibility of a process is encoded in the entropy function: a process is reversible if and only if it does not produce entropy, otherwise it is irreversible. Thus, the entropy of the universe should be conserved, namely the entropy produce by the process is $\Delta S_T = 0$. This is the second law of the thermodynamics, which assures that the of the universe can not decrease, i.e. $\Delta S_T \geq 0$.
+The Lindblad equation should satisfy this requirement.
+%The Lindblad master equation \eqref{Lindbladian} should describe irreversible processes of an open quantum system, $\Delta S \geq 0$, since the thermal fluctuations destroy time reversal. 
 
-Considering the derivative of the Von Neumann entropy
-\begin{equation}
-    \dot S\left(\hat\rho(t)\right) = -\Tr\left[\frac{d\hat\rho}{dt}\ln\hat\rho\right] + \Tr\left[\frac{d\hat\rho}{dt}\right]
+In fact, considering the derivative of the von Neumann entropy
+\begin{equation}\label{entropy_derivative}
+    \dot S\left(\hat\rho(t)\right) = -\Tr\left[\frac{d\hat\rho}{dt}\ln\hat\rho\right] + \Tr\left[\frac{d\hat\rho}{dt}\right].
 \end{equation}
-Knowing that the dynamics is trace preserving, namely $\Tr\left[\frac{d\hat\rho}{dt}\right] = 0$, it reduces to
+Knowing that the dynamics is trace preserving, $\Tr\left[\frac{d\hat\rho}{dt}\right] = 0$. the equation \eqref{entropy_derivative} reduces to
 \begin{equation}\label{entropy_production}
-    \dot S\left(\hat\rho(t)\right) = -\Tr\left[\frac{d\hat\rho}{dt}\ln\hat\rho\right] 
+    \dot S\left(\hat\rho(t)\right) = -\Tr\left[\frac{d\hat\rho}{dt}\ln\hat\rho\right] .
 \end{equation} 
-To prove that the Lindblad dynamics \eqref{Lindbladian} is truly irreversible we can insert it into \eqref{entropy_production}. The Von Neumann dynamical part does not produce entropy, thus, we can only consider the dissipative one. We reach the equation
+To prove that the Lindblad dynamics \eqref{Lindbladian} satisfies the second law, we can substitute it into \eqref{entropy_production}. The von Neumann dynamical part does not produce entropy, thus, we can only consider the dissipative one. We reach the equation
 \begin{equation}
     \dot S(\hat\rho) = -\Tr\left[\sum_{k}\gamma_{k}\left[\hat J_{k} \hat\rho\hat J_{k}^\dagger -\frac{1}{2} \left\{ \hat J_{k}^\dagger \hat J_{k}, \hat\rho\right\}\right]\ln\hat\rho\right].
 \end{equation}
-We expand the commutator
+We expand the commutator obtaining
 \begin{equation}
-    \dot S(\hat\rho) =-\sum_{k}\gamma_{k}\Tr\left[\hat J_{k} \hat\rho\hat J_{k}^\dagger\ln\hat\rho -\frac{1}{2}\hat J_{k}^\dagger \hat J_{k}\hat\rho \ln\hat\rho-\frac{1}{2} \hat\rho\hat J_{k}^\dagger \hat J_{k}\ln\hat\rho\right]\\
+    \dot S(\hat\rho) =-\sum_{k}\gamma_{k}\Tr\left[\hat J_{k} \hat\rho\hat J_{k}^\dagger\ln\hat\rho -\frac{1}{2}\hat J_{k}^\dagger \hat J_{k}\hat\rho \ln\hat\rho-\frac{1}{2} \hat\rho\hat J_{k}^\dagger \hat J_{k}\ln\hat\rho\right].\\
 \end{equation}     
 Since $\ln\hat\rho$ and $\hat\rho$ commute, the second and third terms can be summed.
 \begin{equation}\label{Lindbladian_entropy_production}
-    \dot S(\hat\rho) =  -\sum_{k}\gamma_{k}\left(\Tr\left[\hat J_{k} \hat\rho\hat J_{k}^\dagger\ln\hat\rho\right]-\Tr\left[\hat J_{k}^\dagger \hat J_{k}\hat\rho\ln\hat\rho\right]\right)
+    \dot S(\hat\rho) =  -\sum_{k}\gamma_{k}\left(\Tr\left[\hat J_{k} \hat\rho\hat J_{k}^\dagger\ln\hat\rho\right]-\Tr\left[\hat J_{k}^\dagger \hat J_{k}\hat\rho\ln\hat\rho\right]\right).
 \end{equation}
-To ensure that $\dot S(\hat\rho) > 0$, the system must satisfy the following condition
-\begin{equation}\label{entropy_inequality}
-    \sum_{k}\gamma_{k}\Tr\left[\hat J_{k}\hat\rho\hat J_{k}^\dagger\ln\hat\rho\right] \leq \sum_{k}\gamma_{k} \Tr\left[\hat J_{k}^\dagger\hat J_{k}\hat\rho\ln\hat\rho\right],
-\end{equation}
-that depends on the choice of the $\gamma_{k}$. 
+%To ensure that $\dot S(\hat\rho) > 0$, the system must satisfy the following condition
+%\begin{equation}\label{entropy_inequality}
+%    \sum_{k}\gamma_{k}\Tr\left[\hat J_{k}\hat\rho\hat J_{k}^\dagger\ln\hat\rho\right] \leq \sum_{k}\gamma_{k} \Tr\left[\hat J_{k}^\dagger\hat J_{k}\hat\rho\ln\hat\rho\right],
+%\end{equation}
+%that depends on the choice of the $\gamma_{k}$. 
 %$Since the damping rates are positive, the inequality \eqref{entropy_inequality} holds if the following inequality is satisfied
 %\begin{equation}\label{reduced_entropy_inequality}
 %    \Tr\left[\hat J_{k}\hat\rho\hat J_{k}^\dagger\ln\hat\rho\right] \leq \Tr\left[\hat J_{k}^\dagger\hat J_{k}\hat\rho\ln\hat\rho\right].
 %\end{equation}
 %It can be proved to be satisfied for any choice of $\hat J_{k}$.
-Now, we study the trace alone.
-First we diagonalize the density matrix. Let $\ket{\lambda}$ be the eigenstate with eigenvalue $\lambda$, the density matrix can be written as
+We can reduce the two traces.
+First, we diagonalize the density matrix. Let $\ket{\lambda}$ be the eigenstate with eigenvalue $\lambda$, the density matrix can be written as
 \begin{equation}
     \hat \rho = \sum_\lambda \rho_\lambda\ket{\lambda}\bra{\lambda}.
 \end{equation}
-We transform also the jump operator in this basis $\hat{\mathcal{J}}_{k}= \hat O \hat J_{k}\hat O^\dagger$.
-The l.h.s. of the inequality \eqref{entropy_inequality} with some algebra can be reduces to 
+We also transform the jump operator in this basis $\hat{\mathcal{J}}_{k}= \hat O \hat J_{k}\hat O^\dagger$.
+The first one with some algebra can be reduces to 
 \begin{equation}
     \begin{split}
         \Tr\left[\hat J_{k} \hat\rho\hat J_{k}^\dagger\ln\hat\rho\right]=& \sum_{\lambda\mu}\Tr\left[\hat{\mathcal{J}}_{k} \rho_\lambda\ket{\lambda}\bra{\lambda}\hat{\mathcal{J}}_{k}^\dagger\ln\rho_\mu \ket{\mu}\bra{\mu}\right] \\
         %&= \sum_{\lambda\mu}\rho\lambda\ln\rho\mu\Tr\left[\bra{\mu}\hat{\mathcal{J}}_{ij} \ket{\lambda}\bra{\lambda}\hat{\mathcal{J}}_{ij}^\dagger\ket{\mu}\right]\\
         &= \sum_{\lambda\mu}\rho_\lambda\ln\rho_\mu\Tr\left[|\bra{\mu}\hat{\mathcal{J}}_{k} \ket{\lambda}|^2\right]\\
         %&= \sum_{\lambda\mu}\rho_\lambda\ln\rho_\mu\Tr\left[x^{(ij)}_{\lambda,\mu}\right]\\
-        &= N \sum_{\lambda\mu}\rho_\lambda\ln\rho_\mu x^{(k)}_{\lambda\mu}
+        &= N \sum_{\lambda\mu}\rho_\lambda\ln\rho_\mu x^{(k)}_{\lambda\mu}.
     \end{split}
 \end{equation}
 where $x^{(k)}_{\lambda\mu} = |\bra{\mu}\hat{\mathcal{J}}_{k} \ket{\lambda}|^2$ is a non negative scalar. It is symmetric respect the change $\lambda \leftrightarrow \mu$. 
@@ -56,11 +57,10 @@ The other term becomes
     \begin{split}
         \Tr\left[\hat J_{k}^\dagger \hat J_{k}\hat\rho\ln\hat\rho\right]=& \sum_{\lambda\mu}\Tr\left[\hat{\mathcal{J}}_{k}^\dagger \hat{\mathcal{J}}_{k}\rho_\lambda\ket{\lambda}\bra{\lambda}\ln\rho_\mu\ket{\mu}\bra{\mu}\right]\\
         & = \sum_{\lambda\mu}\rho_\lambda\ln\rho_\lambda\Tr\left[\bra{\mu}\hat{\mathcal{J}}_{k}^\dagger\hat{\mathcal{J}}_{k}\ket{\lambda}\braket{\lambda}{\mu}\right]\\
-        &= \sum_{\lambda}\rho_\lambda\ln\rho_\lambda\Tr\left[\bra{\lambda}\hat{\mathcal{J}}_{k}^\dagger\hat{\mathcal{J}}_{k}\ket{\lambda}\right]\\
+        &= \sum_{\lambda}\rho_\lambda\ln\rho_\lambda\Tr\left[\bra{\lambda}\hat{\mathcal{J}}_{k}^\dagger\hat{\mathcal{J}}_{k}\ket{\lambda}\right].\\
     \end{split}
 \end{equation}
-
-The second braket in the trace is just a Kronecker delta. We use the completeness relation $I = \sum_\mu\ket{\mu}\bra{\mu}$ obtaining
+The second braket in the trace is simply a Kronecker delta. Using the completeness relation $I = \sum_\mu\ket{\mu}\bra{\mu}$ we obtain
 \begin{equation}
     \begin{split}
         \Tr\left[\hat J_{k}^\dagger \hat J_{k}\hat\rho\ln\hat\rho\right]&= \sum_{\lambda\mu}\rho_\lambda\ln\rho_\lambda\Tr\left[\bra{\lambda}\hat{\mathcal{J}}_{k}^\dagger\ket{\mu}\bra{\mu}\hat{\mathcal{J}}_{k}\ket{\lambda}\right]\\
@@ -68,55 +68,47 @@ The second braket in the trace is just a Kronecker delta. We use the completenes
     \end{split}
 \end{equation}
 
-
-The inequality \eqref{entropy_inequality} reduces to 
-\begin{equation}
-    \dot S(\hat\rho) = N \sum_{\lambda\mu}\gamma_{\lambda\mu}\rho_\lambda\ln\rho_\mu x^{(k)}_{\lambda\mu} - N\sum_{\lambda\mu}\gamma_{\lambda\mu}\rho_\lambda\ln\rho_\lambda x^{(k)}_{\lambda\mu}.
+The the deivative of the system's entropy \eqref{Lindbladian_entropy_production} yields 
+\begin{equation}\label{entropy_production_33}
+    \dot S(\hat\rho) = -N \sum_{\lambda\mu}\gamma_{\lambda\mu}\rho_\lambda\ln\rho_\mu x^{(k)}_{\lambda\mu} + N\sum_{\lambda\mu}\gamma_{\lambda\mu}\rho_\lambda\ln\rho_\lambda x^{(k)}_{\lambda\mu}.
 \end{equation}
-
-Then we add the energy difference of the environment. It can be written as
+We can add and subtract the term $\ln\gamma_{\lambda\mu}$ such that the equation \eqref{entropy_production_33} becomes
 \begin{equation}
-    \sum_{\lambda\mu}\gamma_{\lambda\mu}x^{(k)}_{\lambda\mu}\rho_\lambda\left(\ln\rho_\mu\gamma_{\lambda\mu} - \ln\gamma_{\lambda\mu}\right)  
-    - \sum_{\lambda\mu}\gamma_{\lambda\mu}x^{(k)}_{\lambda\mu}\rho_\lambda\left(\ln\rho_\lambda\gamma_{\mu\lambda}- \ln\gamma_{\mu\lambda}\right) .
+    \dot S(\hat\rho) = -\sum_{\lambda\mu}\gamma_{\lambda\mu}\rho_\lambda x^{(k)}_{\lambda\mu}\left(\ln\left(\rho_\mu\gamma_{\lambda\mu}\right) - \ln\gamma_{\lambda\mu}\right)  
+    + \sum_{\lambda\mu}\gamma_{\lambda\mu}\rho_\lambda x^{(k)}_{\lambda\mu}\left(\ln\left(\rho_\lambda\gamma_{\mu\lambda}\right)- \ln\gamma_{\mu\lambda}\right) .
 \end{equation}
-
-Rearrange the terms
+Rearrange the terms, we reach
 \begin{equation}
-    \sum_{\lambda\mu}\gamma_{\lambda\mu}x^{(k)}_{\lambda\mu}\rho_\lambda\left(\ln\rho_\mu\gamma_{\lambda\mu} - \ln\rho_\lambda\gamma_{\mu\lambda}\right) - \sum_{\lambda\mu}\gamma_{\lambda\mu}x^{(k)}_{\lambda\mu}\rho_\lambda\left(\ln\gamma_{\lambda\mu} - \ln\gamma_{\mu\lambda}\right)
+    \dot S(\hat\rho) =-\sum_{\lambda\mu}\gamma_{\lambda\mu}\rho_\lambda x^{(k)}_{\lambda\mu}\left(\ln\left(\rho_\mu\gamma_{\lambda\mu}\right) - \ln\left(\rho_\lambda\gamma_{\mu\lambda}\right)\right) + \sum_{\lambda\mu}\gamma_{\lambda\mu}\rho_\lambda x^{(k)}_{\lambda\mu}\left(\ln\gamma_{\lambda\mu} - \ln\gamma_{\mu\lambda}\right).
 \end{equation}
-
-The first term the entropy of the universe, in contrast, the second is the work done by the environment to the system.
-
-We can say 
-
+Here, the first term represent the entropy of the universe, in contrast, the second one represents the work done by the environment to the system.
+Thus, in order to satisfy the second law of thermodynamics the entropy of the universe must not decrease, meaning
 \begin{equation}
-    \sum_{\lambda\mu}\gamma_{\lambda\mu}x^{(k)}_{\lambda\mu}\rho_\lambda\left(\ln\rho_\mu\gamma_{\lambda\mu} - \ln\rho_\lambda\gamma_{\mu\lambda}\right) - \sum_{\mu\lambda}\gamma_{\mu\lambda}x^{(k)}_{\mu\lambda}\rho_\lambda\left(\ln\rho_\mu\gamma_{\lambda\mu} - \ln\rho_\lambda\gamma_{\mu\lambda}\right) + the other part
-\end{equation} 
-
+    \sum_{\lambda\mu}\gamma_{\lambda\mu}\rho_\lambda x^{(k)}_{\lambda\mu}\ln\left(\rho_\mu\gamma_{\lambda\mu}\right) \leq \sum_{\lambda\mu}\gamma_{\lambda\mu}\rho_\lambda x^{(k)}_{\lambda\mu}\ln\left(\rho_\lambda\gamma_{\mu\lambda}\right).
+\end{equation}
 We can rearrange the term in the two sum as
 \begin{equation}
     \begin{split}
-        \sum_{\lambda}\sum_{\mu<\lambda}\left(\rho_\lambda\ln\rho_\mu + \rho_\mu\ln\rho_\lambda \right) x^{(k)}_{\lambda\mu} +&\sum_\lambda \rho_\lambda\ln\rho_\lambda x^{(k)}_{\lambda\lambda} \leq\\ 
-        \sum_{\lambda}\sum_{\mu<\lambda}&\left(\rho_\lambda\ln\rho_\lambda+ \rho_\mu\ln\rho_\mu\right)x^{(k)}_{\lambda\mu} + \sum_{\lambda}\rho_\lambda\ln\rho_\lambda x_{\lambda\lambda}^{(k)} 
+        %\sum_{\lambda}\sum_{\mu<\lambda}\left(\rho_\lambda\ln\rho_\mu + \rho_\mu\ln\rho_\lambda \right) x^{(k)}_{\lambda\mu} +&\sum_\lambda \rho_\lambda\ln\rho_\lambda x^{(k)}_{\lambda\lambda} \leq\\ 
+        %\sum_{\lambda}\sum_{\mu<\lambda}&\left(\rho_\lambda\ln\rho_\lambda+ \rho_\mu\ln\rho_\mu\right)x^{(k)}_{\lambda\mu} + \sum_{\lambda}\rho_\lambda\ln\rho_\lambda x_{\lambda\lambda}^{(k)} 
+        \sum_{\lambda}\sum_{\mu<\lambda}\left(\gamma_{\lambda\mu}\rho_\lambda\ln\left(\gamma_{\lambda\mu}\rho_\mu\right) + \gamma_{\mu\lambda}\rho_\mu\ln\left(\gamma_{\mu\lambda}\rho_\lambda\right) \right) x^{(k)}_{\lambda\mu} +\sum_\lambda \gamma_{\lambda\lambda}\rho_\lambda\ln\left(\gamma_{\lambda\lambda}\rho_\lambda\right) x^{(k)}_{\lambda\lambda} \leq\\ 
+        \sum_{\lambda}\sum_{\mu<\lambda}\left(\gamma_{\lambda\mu}\rho_\lambda\ln\left(\gamma_{\mu\lambda}\rho_\lambda\right)+ \gamma_{\mu\lambda}\rho_\mu\ln\left(\gamma_{\lambda\mu}\rho_\mu\right)\right)x^{(k)}_{\lambda\mu} + \sum_{\lambda}\gamma_{\lambda\lambda}\rho_\lambda\ln\left(\gamma_{\lambda\lambda}\rho_\lambda\right) x_{\lambda\lambda}^{(k)} .
     \end{split}
 \end{equation}
-
-
-
 Therefore, it is sufficient that the following equation is satisfied
 \begin{equation}
-    \rho_\lambda\ln\rho_\mu + \rho_\mu\ln\rho_\lambda\leq \rho_\lambda\ln\rho_\lambda+ \rho_\mu\ln\rho_\mu.
+    %\rho_\lambda\ln\rho_\mu + \rho_\mu\ln\rho_\lambda\leq \rho_\lambda\ln\rho_\lambda+ \rho_\mu\ln\rho_\mu.
+    \gamma_{\lambda\mu}\rho_\lambda\ln\left(\gamma_{\lambda\mu}\rho_\mu\right) + \gamma_{\mu\lambda}\rho_\mu\ln\left(\gamma_{\mu\lambda}\rho_\lambda\right) \leq \gamma_{\lambda\mu}\rho_\lambda\ln\left(\gamma_{\mu\lambda}\rho_\lambda\right)+ \gamma_{\mu\lambda}\rho_\mu\ln\left(\gamma_{\lambda\mu}\rho_\mu\right)
 \end{equation}
-
-Moving all the term in the right hand side we reach
+Moving all the term in the right hand side and collecting the terms, we reach
 \begin{equation}
     \begin{split}
-        \rho_\lambda\ln\rho_\mu + \rho_\mu\ln\rho_\lambda - \rho_\lambda\ln\rho_\lambda- \rho_\mu\ln\rho_\mu \leq 0\\
+        %\rho_\lambda\ln\rho_\mu + \rho_\mu\ln\rho_\lambda - \rho_\lambda\ln\rho_\lambda- \rho_\mu\ln\rho_\mu \leq 0\\
         %\rho_\lambda\ln\left(\frac{\rho_\mu}{\rho_\lambda}\right) - \rho_\mu\ln\left(\frac{\rho_\mu}{\rho_\lambda}\right) \leq 0\\
-        \left(\rho_\lambda-\rho_\mu\right)\ln\left(\frac{\rho_\mu}{\rho_\lambda}\right) \leq0\\
+        %\left(\rho_\lambda-\rho_\mu\right)\ln\left(\frac{\rho_\mu}{\rho_\lambda}\right) \leq0\\
+        %\left(\gamma_{\lambda\mu}\rho_\lambda- \gamma_{\mu\lambda}\rho_\mu\right)\ln\left(\gamma_{\lambda\mu}\rho_\mu\right) + \left(\gamma_{\mu\lambda}\rho_\mu-\gamma_{\lambda\mu}\rho_\lambda\right)\ln\left(\gamma_{\mu\lambda}\rho_\lambda\right)\leq 0
+        \left(\gamma_{\lambda\mu}\rho_\lambda- \gamma_{\mu\lambda}\rho_\mu\right)\ln\left(\frac{\gamma_{\lambda\mu}\rho_\mu}{\gamma_{\mu\lambda}\rho_\lambda}\right)\leq 0,
     \end{split}
 \end{equation}
-That is always satisfied. The equality is satisfied for the stationary distribution.
-
-The last result tell us that the dynamics increases the entropy and, thus, change a pure density matrix in a mixed one.
-As a consequence, the stationary distribution must have maximum entropy.
+which is always satisfied. The equality is satisfied for the reversible processes.
+The last result tell us that the dynamics increases the entropy of the universe, thus, the Lindblad master equation \eqref{Lindbladian} is in accordance with the second law of thermodynamics.

@@ -1,6 +1,6 @@
 \section{Quantum Stochastic Random Walk}\label{C_Quantum Stochastic Walk}
 
-One of the early approaches to a Open Quantum Walk on network was proposed by Whitfield, Rodr\'iguez-Rosario and Aspuru-Guzik. \cite{QSW}. They defined a quantum walk on network in contact with a thermal bath with the dynamics described by a Lindblad master equation. In this framework, the jump operators are proportional to the adjacency  matrix $A_{ij}$ of the network. The thermal bath introduces noise into the dynamics, causing it which to deviate from the  Von Neumann equation \eqref{Von Neumann equation}. The system dissipation is reminiscent of the classic random walk.
+One of the early approaches to a Open Quantum Walk on network was proposed by Whitfield, Rodr\'iguez-Rosario and Aspuru-Guzik. \cite{QSW}. They defined a quantum walk on network in contact with a thermal bath with the dynamics described by a Lindblad master equation. In this framework, the jump operators are proportional to the adjacency  matrix $A_{ij}$ of the network. The thermal bath introduces noise into the dynamics, causing it which to deviate from the  von Neumann equation \eqref{Von Neumann equation}. The system dissipation is reminiscent of the classic random walk.
 
 Let us consider a quantum walk on a network $G(N,M)$, the system in contact with a thermal bath that randomly interact with modifying the dynamic of the quantum particle.
 Let us introduce a Hilbert space $\mathcal{H}$ with an orthonormal basis $\{\ket{i}\}_{i<N}$, where each element $\ket{i}$ corresponds to the node $i$, satisfying $\braket{i}{j}=\delta_{ij}$. The system is described by a density matrix $\hat \rho$ whose evolution follows the Lindblad master equation \eqref{Lindblad_master_equation}.
@@ -12,7 +12,7 @@ The master equation can be expressed as follows:
 where $[\cdot,\cdot]$ and $\{\cdot,\cdot\}$ denote respectively the commutator and the anticommutator.
 The equation \eqref{stochastic_lindblad_master} is composed by two distinct terms. The first term, also called coherent dynamics,  is given by
 $\mathcal{L}^{qm}\left[\hat\rho(t)\right] = -i\left[H,\hat\rho\right]$ is equal to the quantum walk dynamics. In contrast, the second term, denoted as $\mathcal{L}^{cl}\left[\hat\rho(t)\right] = \sum_i \gamma_i \left(\hat J_i \hat\rho \hat J^\dagger_i - \frac{1}{2}\left\{ \hat J^\dagger_i\hat J_i, \hat\rho\right\} \right)$, called decoherent dynamics, encodes the dissipation. 
-When $\gamma_{ij} = 0$ we recover the Von Neumann equation for the quantum walk \eqref{Von Neumann equation}. 
+When $\gamma_{ij} = 0$ we recover the von Neumann equation for the quantum walk \eqref{Von Neumann equation}. 
 $\mathcal{L}\left[\hat\rho(t)\right]$ act as a superoperator in the space of the density matrix.
 
 In the Fock-Liouville space, the quantum system evolves according the equation
@@ -95,7 +95,7 @@ The stationary density matrix can then be expressed as
         0&&1\\
     \end{pmatrix}.
 \end{equation}
-As discussed in chapter \ref{C_entropy_production}, the stationary density matrix has maximal Von Neumann entropy 
+As discussed in chapter \ref{C_entropy_production}, the stationary density matrix has maximal von Neumann entropy 
 \begin{equation}
     S\left(\hat\rho^*\right) = \ln N.
 \end{equation}

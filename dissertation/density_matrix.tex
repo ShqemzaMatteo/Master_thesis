@@ -1,4 +1,4 @@
-\section{Density matrix and entropy for network}
+\section{Density matrix and Entropy for networks}
 %as in paper 2023 with the special case in paper 2020
 The communicability matrix defined above possesses peculiar properties that make it suitable for use as a density matrix. Moreover, the presence of the Laplacian matrix ensures that it consider not only the topological features of the network but also its dynamics. Taking the exponential communicability matrix as a reference, we can define a density matrix as
 \begin{equation}\label{density_matrix}
@@ -8,7 +8,7 @@ where $Z$ is the partition function, which is equal to the Laplacian Estrada ind
 The density matrix $\hat \rho(\beta)$ is a Hermitian and positive definite matrix with trace equal to unity. 
 the density matrix $e^{-\beta L}$ is similar to the propagator of the master equation \eqref{random_walk_solution} considering time $t = \beta$.
 
-From this, we can define the network's entropy as the Von Neumann entropy
+From this, we can define the network's entropy as the von Neumann entropy
 \begin{equation} \label{entropy}
     S(\hat\rho) = -\Tr[\hat \rho \ln \hat \rho].
 \end{equation}
@@ -91,7 +91,7 @@ Thus, the evolution of the perturbation yields
 The size of the streams is proportional to the trapped field.
 The density matrix can be interpreted as the probability that the perturbation will flow through a specific stream $\hat \sigma_l$ at time $t$ in the ensemble of all the possible streams \cite{De_Domenico_2020}. We have recovered the density matrix \eqref{density_matrix} considering the time $t$ as the parameter $\beta$.
 
-The complexity of information streams can be quantified by the Von Neumann entropy.
+The complexity of information streams can be quantified by the von Neumann entropy.
 When the information dynamics is described by a single information stream, entropy vanishes: the density matrix is a pure state.
 In contrast, as the information dynamics becomes more complex and diverse, the number of information streams increases, resulting in higher entropy: the density matrix becomes a mixed state.
 
