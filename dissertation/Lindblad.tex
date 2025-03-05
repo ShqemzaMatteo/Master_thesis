@@ -5,7 +5,7 @@ The model investigates the evolution of a quantum system coupled to a Markovian 
 The Schrödinger equation requires a unitary time operator that does not permit energy dissipation. In contrast, the time operator of Lindblad master equation allows the system to exchange energy with its surroundings. 
 Despite this, the Lindblad dynamics remains trace preserving and completely positive.
 
-\section{Derivation of the formula}
+\section{Derivation of the Formula}
 We show the derivation of the Lindblad equation following \cite{Manzano,Breuer-Petruccione}.
 First, let $\mathcal{H}_T$ be the Hilbert space of the system and the environment combined, which can be divided into the Hilbert space $\mathcal{H}$ of the proper system and $\mathcal{H}_E$ of the environment. The combined system is a closed quantum system and evolves following the von Neumann equation 
 \begin{equation}
@@ -130,7 +130,7 @@ If the matrix $\gamma(\omega)$ can be diagonalized, namely exist a diagonal matr
 \end{equation}
 The operators $\hat J_k(\omega)= \sum_i O_{ki} \hat S_{i}(\omega)$ are called jump operators, the superoperator $\mathcal{L}$ is called Lindblad superoperator and $\gamma_i(\omega)$ are the damping rates. In the limit $\gamma_k(\omega) = 0$ the von Neumann equation is recovered with the Hamiltonian $\hat H+\hat H_{LS}$.
 
-\section{Time evolution}
+\section{Time Evolution}
 In this section, we present a solution for the Lindblad master equation \cite{fujii2012}. 
 First, we vectorize the density matrix: let introduce an Hilbert space with dimension $N^2$ such that a vector is $\sket{\rho} = (\rho_{00},\rho_{01},...,\rho_{NN-1},\rho_{NN})^T$ and the scalar product is $\sbraket{\phi}{\rho}= \Tr[\hat\phi^\dagger\hat\rho]$. This is known as the Fock-Liouville space \cite{Manzano}.
 
@@ -173,7 +173,7 @@ Depending on the choice of the jump operators and of the damping rates, the dens
 Some cases are discussed in \cite{Breuer-Petruccione} where the stationary distribution corresponds to the Boltzmann distribution. 
 In other scenarios, some stationary currents between the states may persist leading to a not equilibrium stationary solution, or the system may not converge altogether.
 
-\section{Properties of the Lindblad equation}
+\section{Properties of the Lindblad Equation}
 The Lindblad master equation satisfies some important properties.
 
 It defines a set of dynamical maps $\phi_t\left(\hat\rho\right)= e^{\mathcal{L}t}\hat\rho(0)$ on the space of density matrices, such that

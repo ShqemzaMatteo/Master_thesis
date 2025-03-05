@@ -1,4 +1,4 @@
-\subsection{Network of quantum harmonic oscillators}
+\subsection{Network of Quantum Harmonic Oscillators}
 
 If we consider a system as quantum in place of a classic one, the covariance matrix changes and becomes similar to the exponential communicability matrix.
 In the quantum case, the quantities $H'_L$, $q_i$ and $p_j$ are promoted to operators $\hat H'_L$, $\hat q_i$ and $\hat p_j$ and they satisfy the commutator relation $\left[\hat q_i, \hat p_j\right] = i \delta_{ij}$ ($\hbar = 1$). Thus, the Hamiltonian becomes
@@ -66,9 +66,9 @@ For $\tau > 0$ it is
         %&= \sum_{\mu} O_{i\mu}\left\{\frac{e^{-\mu \tau}}{e^{-\beta\left[ \Omega + \frac{1}{2\Omega^2}\mu\right]} + 1}\right\}O_{j\mu}\\
     \end{split}
 \end{equation}
-The equation \eqref{Thermal_GReen_Function} reduces, more details in the Appendix \ref{Appendix_B}, to
+The equation \eqref{Thermal_GReen_Function}, more details in the Appendix \ref{Appendix_B}, reduces to
 \begin{equation}
-    G^L_{ij}(\beta, \tau > 0) = \sum_{\mu} O_{i\mu}\left\{-e^{-\mu \tau}\left[\left(1-f\left( \Omega + \frac{1}{2\Omega^2}\mu\right)\right)\right]\right\}O_{j\mu},
+    G^L_{ij}(\beta, \tau > 0) = \sum_{\mu} O_{i\mu}\left\{-e^{-\mu \tau}\left[1-f\left( \Omega + \frac{1}{2\Omega^2}\mu\right)\right]\right\}O_{j\mu},
 \end{equation} 
 where $f(\epsilon)$ is the Fermi-Dirac distribution
 \begin{equation}
@@ -90,7 +90,7 @@ which can also be written as
 The equation \eqref{quantum_correlation_2} is related to equation \eqref{Estrada indeces}
 \begin{equation}
     G^E(L) = e^{-\beta\Omega}G^L\left(\frac{\beta}{2\Omega}\right).
-\end{equation}
-When the temperature $T \rightarrow 0$ the communicability between the nodes drops to zero and the perturbation does not spread across the network. Instead, when $T \rightarrow \infty$ the communicability tends to infinity and the perturbation spread instantaneously.  
+\end{equation} 
+In fact, the thermal Green function of the quantum harmonic oscillators is proportional at the exponential communicability matrix with parameter $\beta' = \frac{\beta}{2\Omega}$.
 
 In the high temperature limit, $\beta \rightarrow 0$, the correlation of the quantum system \eqref{Quantum_correlation} converges to the correlation of the classic one \eqref{classic_correlation}. This is well known, as in the high temperature limit the quantum effects should be negligible.

@@ -1,17 +1,17 @@
-\chapter{Mathematical method to solve differential equation from matrix}\label{A_vectorial_density_matrix}
+\chapter{Mathematical Method to Solve Differential Equation from Matrix}\label{A_vectorial_density_matrix}
 
-In the chapter \ref{C_Quantum Stochastic Walk} we study the time evolution of the density matrix transforming it into a vector. In this chapter we explain how it works.
+In chapter \ref{C_Quantum Stochastic Walk} we study the time evolution of the density matrix by transforming it into a vector. In this chapter we explain how this transformation works.
 
-First of all, we start with a differential equation in the form
+First, we start with a differential equation in the form
 \begin{eqnarray}
     \frac{d}{dt} X = A X B,
 \end{eqnarray}
 where $X$, $A$ and $B$ are $2\times 2$ matrix. 
-We can solve the differential equation transforming the matrix $X$ into a vector $\sket{X} = \left(x_{11}, x_{12},x_{21}, x_{22}\right)^T$, thus, the differential equation becomes
+We can solve the differential equation by transforming the matrix $X$ into a vector $\sket{X} = \left(x_{11}, x_{12},x_{21}, x_{22}\right)^T$, thus, the differential equation becomes
 \begin{equation}
     \frac{d}{dt} \sket{X} = C \sket{X},
 \end{equation}
-$C$ is a matrix that derives from $A$ and $B$.
+where the $4\times 4$ matrix $C$ is a matrix derived from $A$ and $B$.
 
 As a matter of fact, considering the evolution of each element of $X$ we obtain
 \begin{equation}
@@ -22,7 +22,7 @@ As a matter of fact, considering the evolution of each element of $X$ we obtain
         \frac{dx_{22}}{dt} = a_{21}x_{11}b_{12} +a_{21}x_{12}b_{22}+ a_{22}x_{21}b_{12}+ a_{22}x_{22}b_{22}\\
     \end{aligned}\right. 
 \end{equation}
-We can rearrange them in a vectorial form
+We can rearrange these equations     in a vectorial form
 \begin{equation}\label{differential_matrix_element}
     \frac{d}{dt}\begin{pmatrix}
         x_{11}\\ x_{12}\\x_{21}\\ x_{22}\\
@@ -45,10 +45,10 @@ The matrix $C$ in equation \eqref{differential_matrix_element} is the tensorial 
 \end{equation}
 where $B^T$ is the transpose of matrix $B$.
 
-With similar procedure, we can vectorize also the differential equation
+Using a similar procedure, we can vectorize also the differential equation
 \begin{equation}
     \frac{d}{dt}X = AX + XB \rightarrow \frac{d}{dt}\sket{X} = \left(A\otimes \mathbb{I} + \mathbb{I} \otimes B^T\right)\sket{X}
 \end{equation}
 where $\mathbb{I}$ is the identity matrix.
 
-The generalization to $N \times N$ matrix and finite dimensional operator is straightforward.
+The generalization to a $N \times N$ matrix and finite dimensional operator is straightforward.

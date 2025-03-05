@@ -1,7 +1,7 @@
 \chapter{Sub-additivity of the network's entropy}\label{C_sub_additivity}
-In chapter \ref{C_Density_Matrix} we have claimed that the network's entropy satisfies the sun-additivity property, there is the proof as in \cite{De_Domenico_2016}.
+In Chapter \ref{C_Density_Matrix} we have claimed that the network's entropy satisfies the sub-additivity property. Here, we provide the proof as in \cite{De_Domenico_2016}.
 
-Let $G$, $H$ and $I$ be networks such that $G = H + I$ and $\hat\rho$, $\hat\sigma$ and $\hat\rho$ their density matrix respectively.
+Let $G$, $H$ and $I$ be networks such that $G = H + I$ and let $\hat\rho$, $\hat\sigma$ and $\hat\rho$ be their respective density matrix.
 Consider the KL divergence between $G$ and $H$
 \begin{equation}\label{app_kl}
     \begin{aligned}
@@ -9,23 +9,23 @@ Consider the KL divergence between $G$ and $H$
         &= - S(\hat\rho)+ \beta\Tr\left[L_H\hat\rho\right] + \ln Z_H .
     \end{aligned}
 \end{equation}
-Similar for the KL divergence between $G$ and $I$. Because both the Laplacian and the density matrices are positive defined, the following inequality holds
+A similar expression holds for the KL divergence between $G$ and $I$. Since both the Laplacian and the density matrices are positive definite, the following inequality holds
 \begin{equation}
     \beta\Tr\left[L_H\hat\rho\right]  \geq 0.
 \end{equation}
-Thus, the following equation is just a summation of positive term
+Thus, the following equation consists of a summation of positive terms
 \begin{equation}\label{app_sum}
     D(\hat\rho||\hat\sigma)+D(\hat\rho||\hat\tau) +\beta\Tr\left[L_H\hat\sigma\right] +\beta\Tr\left[L_I\hat\tau\right] +\ln Z_H +\ln Z_I\geq 0.
 \end{equation} 
-Inserting equation \eqref{app_kl} into \eqref{app_sum}, we reach
+Substituting equation \eqref{app_kl} into \eqref{app_sum}, we obtain
 \begin{equation}
     \begin{split}
         - S(\hat\rho)+ \beta\Tr\left[L_H\hat\rho\right] + \ln Z_H - S(\hat\rho) +\beta\Tr\left[L_I\hat\rho\right] + \ln Z_I& \\
         +\beta\Tr\left[L_H\hat\sigma\right] +\beta\Tr\left[L_I\hat\tau\right] +\ln Z_H +\ln Z_I&\geq 0.
     \end{split}
 \end{equation}
-We can rearrange it using the fact the $S(\hat\rho) = \beta \Tr\left[L\hat\rho\right] + \ln Z$ and that $L_H + L_I = L_G$ we obtain
+Rearranging and using the fact that $S(\hat\rho) = \beta \Tr\left[L\hat\rho\right] + \ln Z$ and that $L_H + L_I = L_G$ we obtain
 \begin{equation}
     S(\hat\sigma) + S(\hat\tau) -  S(\hat\rho)\geq 0,
 \end{equation}
-which is the sub additivity property.
+which is the sub-additivity property.
