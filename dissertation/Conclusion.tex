@@ -2,11 +2,17 @@
 \markboth{\textbf{CONCLUSION}}{\textbf{CONCLUSION}}
 \addcontentsline{toc}{chapter}{Conclusion}
 
+In this dissertation, we have explored a candidate for a density matrix and for an entropy for networks, based on the quantum density matrix and on the von Neumann entropy. The density matrix is defined as the exponential of the Laplacian matrix of the network scaled by a  parameter $\beta$.
+This entropy captures both the topological and dynamical aspects of the networks.
+
 The aim of this dissertation is to explore the connection between the network's entropy and the random walk, especially the quantum version.
+In fact, considering a quantum walk on a network subjected to thermal noise tuned by the parameter $\beta$, the system converges to the same density matrix we have previously discussed. This system has been studied using the Lindblad master equation, where the effect of the noise is encoded in the jump operators. 
+This analogy allows us to explain the role of the parameter $\beta$. In fact, it suppresses the contribution to the spread of information of the eigenstate with high eigenvalue .  
 
-The network's entropy permit us to introduce an information theory for networks, considering not only the topological properties but also the dynamical aspects. 
-In this work, we prove that formulation for the network's entropy can be obtain also starting from a dynamical problem: the quantum walk subjected to thermal noise.
+The network's entropy permits us to introduce an information-theoretic framework for networks, including measures such as the Kullback-Leibler and Jensen-Shannon divergences. These quantities can be used to measure the distance between networks, facilitating network aggregation or the reconstruction of networks from real data. However, since these divergences depend only on the spectrum of the Laplacian, they cannot distinguish between networks that share the same spectrum but have different eigenvectors.
 
+Nevertheless, the quantum walk requires that the network to satisfy the detailed balance condition. As a consequence, this analogy breaks down when this requirement is not met. We have proposed some approaches to handle a not hermitian Laplacian but further studies are required.
 
+The network's entropy we have discussed in this work can be use to better understand information dynamics in networks with application in biochemistry, it can be used to find the best network that map a protein, in urban traffic management and in the study of the social interactions on the Internet.
 
-This work is just a first step towards understanding the problem. There are still many obscure aspects of this model as dealing with systems that do not satisfy the detailed balance condition. 
+This work represent only a first step towards understanding the problem. Many aspects of this model remains obscure and requires further studies.

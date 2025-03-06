@@ -1,4 +1,4 @@
-\section{Quantum Network Master Equation}
+\section{Quantum Network Master Equation}\label{C_quantum_network_master_equation}
 
 The previous description for the noise in the quantum walk lacks a parameter that, in thermodynamics, correspond to the temperature. 
 Thus, we propose another framework: instead of considering the jump operator as a transition between the nodes, we consider the thermal bath interaction in the energy states.
@@ -53,6 +53,8 @@ which has the solution
 The solution is not unique;  there exist a set of possible solutions which differ by a constant $c$.
 %with $Z_\gamma = \sum_{\lambda\gamma}e^{-\frac{\beta}{2}\left(\epsilon_\lambda - \epsilon_\mu\right)}$ is the renormalization factor.
 
+The von Neumann entropy measure the mi
+
 Taking the limit $\beta \rightarrow \infty$, that is $T  \rightarrow 0$, the transition rates tend to
 \begin{equation}
     \gamma_{\lambda\mu} \rightarrow \left\{\begin{aligned}
@@ -82,23 +84,22 @@ We have the opposite effect, the particle can jump across the different energy s
 It is a maximal entropy state with $S = \ln N$.
 
 \subsection{Return to node's basis}
-We can go back to the position basis $\{\ket{i}\}_{i<N}$, where $\ket{i}$ indicates the particle in the node $i$.  
-The jump operators can be expressed in this basis as
+We go back to the position basis $\{\ket{i}\}_{i<N}$, where $\ket{i}$ indicates the particle in the node $i$.  
+The jump operators can be expressed as
 \begin{align}
     \hat J_{\lambda\mu} = \sum_{ij} \braket{i}{\lambda}\braket{\mu}{j}\hat J_{ij}\\
     \hat J_{\lambda\mu}^\dagger = \sum_{ij} \braket{j}{\mu}\braket{\lambda}{i}\hat J_{ij}^\dagger
 \end{align}
 where $\hat J_{ij} = \ket{i}\bra{j}$.
-Thus, the equation \eqref{Lindblad_energy_jump} becomes
+Thus, substituting these expressions into equation into the equation \eqref{Lindblad_energy_jump} we obtain
 \begin{equation}\label{quantum_network_position}
     \frac{d}{dt}\hat\rho = -i\left[\hat H,\hat\rho\right] +\sum_{ijkl} \gamma_{ij;kl} \left(\hat J_{ij}\hat\rho \hat J_{kl}^\dagger - \frac{1}{2}\left\{ \hat J_{kl}^\dagger\hat J_{ij}, \hat\rho\right\} \right),
 \end{equation}
-with the damping coefficient
+where the damping coefficient are define as
 \begin{equation}\label{gamma_position}
     \gamma_{ij;kl}= \sum_{\lambda\mu}\gamma_{\lambda\mu}\braket{i}{\lambda}\braket{\lambda}{k}\braket{l}{\mu}\braket{\mu}{j}.
 \end{equation}
-The master equation \eqref{quantum_network_position} is more complicated because its formulate in the general form \eqref{general_Lindblad_equation}. The damping rates are no more diagonal.
-Inserting the equation \eqref{gamma_detailed_balance} into \eqref{gamma_position}, the damping rates in this basis are
+Unlike the energy basis, the damping rates in the position basis are no longer diagonal, making the master equation \eqref{quantum_network_position} appear more complex as in the the equation\eqref{general_Lindblad_equation}. Using the detailed balance condition \eqref{gamma_detailed_balance} in \eqref{gamma_position}, we rewrite the damping rates as:.
 \begin{equation}
     \gamma_{ij;kl}= \sum_{\lambda\mu}e^{-\frac{\beta}{2}\left(\epsilon_\lambda - \epsilon_\mu\right)}\braket{i}{\lambda}\braket{\lambda}{k}\braket{l}{\mu}\braket{\mu}{j}.
 \end{equation}
@@ -130,11 +131,11 @@ Thus, combining all together we obtain
 It can be interpreted as a Kirchhoff law in the link. Let suppose that the transition of the particle through the link is not instantaneous, then at each movement the particle chooses one link to travel. The probability to be in a specific link $(i,j)$ is given by $\frac{e^{-\beta H_{ij}}}{Z}$. In order to have a stationary distribution the dumping rate must satisfy the Kirchhoff law over the links distribution.
 \end{comment}
 
-Taking again the two limits, in the extremely hot environment, $\beta \rightarrow 0$, the damping rates are
+In the high temperature limit, $\beta \rightarrow 0$, the damping rates are
 \begin{equation}
     \gamma_{ij;kl}= \sum_{\lambda\mu} 1 \braket{i}{\lambda}\braket{\lambda}{k}\braket{l}{\mu}\braket{\mu}{j}.
 \end{equation}
-Using the completeness relation we reach
+Using the completeness relation, we obtain
 \begin{equation}
     \gamma_{ij;kl} = 1 \delta_{ik}\delta_{jl},
 \end{equation}
@@ -143,7 +144,7 @@ In this case the position quantum network master equation \eqref{quantum_network
 \begin{equation}
     \frac{d}{dt}\hat\rho = -i\left[\hat H,\hat\rho\right] +\sum_{ij}\left(\hat J_{ij}\hat\rho \hat J_{ij}^\dagger - \frac{1}{2}\left\{ \hat J_{ij}^\dagger\hat J_{ij}, \hat\rho\right\} \right).
 \end{equation}
-Since the relation \eqref{gamma_detailed_balance} can be modify by a constant, we recover the master equation for the Quantum Stochastic Walk \eqref{stochastic_lindblad_master}.
+Since the relation \eqref{gamma_detailed_balance} can be modify by a constant factor, we recover the master equation for the Quantum Stochastic Walk \eqref{stochastic_lindblad_master}.
 The stationary distribution is 
 \begin{equation}
     \hat\rho^* = \frac{1}{N}\begin{pmatrix}
@@ -153,8 +154,8 @@ The stationary distribution is
     \end{pmatrix}.
 \end{equation}
 
-
-In contrast, in the extremely cold environment, $\beta \rightarrow \infty$, the damping coefficient are
+\begin{comment}
+In contrast, in the low temperature limit, $\beta \rightarrow \infty$, the damping coefficient are
 \begin{equation}
     \begin{split}
         \gamma_{ij;kl}&= \sum_{\lambda\mu}e^{-\frac{\beta}{2}\left(\epsilon_\lambda - \epsilon_\mu\right)}\braket{i}{\lambda}\braket{\lambda}{k}\braket{l}{\mu}\braket{\mu}{j}\Theta(\lambda-\mu)\\
@@ -168,13 +169,14 @@ The first term cancel out,  and the second is a sum of Kronecker delta. Thus, it
         \gamma_{ij;kl}&= \sum_{\lambda}\braket{i}{\lambda}\braket{\lambda}{k}\braket{l}{\lambda}\braket{\lambda}{j}+ \sum_{\mu>\lambda}\infty\braket{i}{\lambda}\braket{\lambda}{k}\braket{l}{\mu}\braket{\mu}{j} \rightarrow \infty
     \end{split}
 \end{equation}
-The stationary distribution \eqref{beta_inf_stationary_distribution} for the node reduces to
+\end{comment}
+In contrast, in the low temperature limit, $\beta \rightarrow \infty$, the stationary distribution \eqref{beta_inf_stationary_distribution} for the node reduces to
 \begin{equation}
     \hat\rho^* = \sum_{ij} \braket{i}{\lambda = 0}\braket{\lambda = 0}{j} \ket{i}\bra{j} = \sqrt{\rho^*_i\rho^*_j} \ket{i}\bra{j}
 \end{equation}
-The von Neumann entropy vanishes. 
+The von Neumann entropy vanishes, indicating a pure state. 
 
-Collegare a overdamped case 
+%Collegare a overdamped case 
 
 
 \begin{comment}
@@ -213,20 +215,23 @@ that is the density matrix \eqref{density_matrix} introduced by De Domenico to i
 \end{comment}
 
 
-\subsection{Interpretation}
+\subsection{Analogy with the Network's Entropy}
 
-The equation \eqref{Lindblad_energy_jump} describes the evolution of a quantum walk in presence of a classic noise, the temperature $T$ determines the noise strength.
-If we start from the stationary state and we add a perturbation in one node, the spread of the perturbation across the network depends on temperature: higher is the temperature, fewer nodes the perturbation can reach. Thus, the parameter $\beta$ permits us to analyze the system's dynamics over paths of varying length.
+The equation \eqref{Lindblad_energy_jump} describes the evolution of a quantum walk in the presence of classical noise. The temperature $T$ determines the noise strength.
+Increasing the parameter $\beta$ suppresses the energy state with high eigenvalue, until just the zero eigenstate remains. Thus, the parameter $\beta$ allows us to analyze the information's spread along paths of chosen eigenstate. The von Neumann entropy measures the uncertainty over the state of the particle. 
 
-In addition, we can apply a Wick rotation to the quantum dynamics \eqref{Lindblad_energy_jump} returning to a special random walk of classic particle. The rotation connect the stationary distribution at inverse temperature $\beta$ \eqref{pretended_stationary_distribution} with the propagator at time $t$ \eqref{random_walk_solution}.
+This entropy behaves as the network's entropy \eqref{entropy}. 
+The network's entropy measures the complexity of the spread of information across the network, which depends on the parameter $\beta$. 
+In fact, for low values of $\beta$, all the possible channel are available, resulting in a complex spread of information and, thus, high entropy. As $\beta$ increases, the channels with high eigenvalue are suppressed until only the zero eigenstate remains, thus, zero entropy. 
+
+In addition, we can apply a Wick rotation to the quantum dynamics \eqref{Lindblad_energy_jump} returning to a special random walk of classical particle. This rotation connect the stationary distribution at inverse temperature $\beta$ \eqref{pretended_stationary_distribution} with the propagator at time $t$ \eqref{random_walk_solution}.
 \begin{equation}
 e^{-\beta\hat L} \rightarrow e^{-t\hat L}
 \end{equation}
+Thus, cooling down the quantum system is analogous to the temporal evolution of the classical one. In fact, the two limits $\beta \rightarrow \infty$ and $t \rightarrow \infty$ converge to the same distribution: the system will be entirely in the zero eigenstate of the Laplacian.
+Moreover, the density distribution \eqref{pretended_stationary_distribution} is always in the maximal entropy state. As a consequence, also the distribution for the classical random walk should cross state with maximal entropy.
 
-Thus, cooling down the quantum system is similar to the temporal evolution of the classical one. In fact, the two limits $\beta \rightarrow \infty$ and $t \rightarrow \infty$ converge to the same distribution: the system will be entirely in the zero eigenstate of the Laplacian.
-Moreover, the density distribution \eqref{pretended_stationary_distribution} is always in the maximal entropy state, as a consequence, also the  distribution for the classical random walk should cross state with maximal entropy.
-
-The complexity of the possible paths is encoded into the von Neumann entropy as explained in chapter \ref{C_Density_Matrix}.
-The entropy allows us to classify different network based on the dynamical properties of the network itself. 
-We can do it introducing the Kullback-Lieber divergence \eqref{KL_divergence} and the Jensen-Shannon divergence \eqref{JS_metric}.
-However, because this quantities employs the trace of a Laplacian's function, the entropy studies only the spectral properties of the system. Therefore, networks with same spectrum but different structure and eigenstate may be indistinguishable with these methods.
+The complexity of the possible paths is encoded in the von Neumann entropy as explained in chapter \ref{C_Density_Matrix}.
+The entropy allows us to classify different networks based on the dynamical properties of the network itself. 
+We can achieve it introducing the Kullback-Leibler divergence \eqref{KL_divergence} and the Jensen-Shannon divergence \eqref{JS_metric}.
+However, because these quantities employ the trace of a Laplacian's function, the entropy studies only the spectral properties of the network. Therefore, networks with same spectrum but different structures and eigenstates may be indistinguishable using these methods.

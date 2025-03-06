@@ -19,11 +19,12 @@ One of the most important model is the quantum walk. It is the quantum equivalen
 
 However, there is a lack of a unified theoretical framework in the network theory, particularly concerning information theory and entropy. 
 In the literature, there have been various attempts to formulate entropy for networks. A notable contribution was made by Bianconi \cite{Bianconi_entropy_1,Bianconi_entropy_2}, who considered an ensemble of all possible graphs with specific properties, but this approach neglected the dynamical aspects of the system.
-Another attempt was made by De Domenico \cite{De_Domenico_2016}. Starting from the Estrada communicability matrix \cite{Estrada_2008}, he defined the network entropy at time $t$ as $\Tr[\rho \ln \rho]$ with $\rho = e^{-tL}$ as density matrix and $L$ as the Laplacian matrix. This type of entropy not only captured the topological features of the network but also its dynamical behavior. In fact, the entropy held the property of the relaxation of a random walk on the network. Starting from there, we expanded the information related quantities introducing The Kullback Leibler divergence and the Jensen Shannon divergence. This two quantities could be employed to distinguish between networks \cite{multilayer}.
+Another attempt was made by De Domenico \cite{De_Domenico_2016}. Starting from the Estrada communicability matrix \cite{Estrada_2008}, he defined the network entropy as $\Tr[\rho \ln \rho]$ with $\rho = e^{-\beta L}$ as density matrix and $L$ as the Laplacian matrix. This type of entropy not only captured the topological features of the network but also its dynamical behavior. In fact, the entropy held the property of the relaxation of a random walk on the network. Starting from there, we expanded the information related quantities introducing The Kullback Leibler divergence and the Jensen Shannon divergence. This two quantities could be employed to distinguish between networks \cite{multilayer}.
 
-The density matrix introduced by De Domenico is reminiscent of the density matrix of a quantum canonical ensemble with the Laplacian as Hamiltonian. This observation suggests a deep connection between network entropy and continuous time quantum walks.
-The aim of this dissertation is to explore this connection using techniques borrowed from open quantum system, specifically the Lindblad master equation. These results can be use in several fields: from the study of the interaction between the amino acids in the proteins, to the management of the urban traffic, passing through the social interaction on the Internet.
-The theoretical calculations come with numerical simulations made in python.
+The density matrix introduced by De Domenico is reminiscent of the density matrix of a quantum canonical ensemble with the Laplacian as Hamiltonian. This observation suggests a deep connection between network entropy and continuous time quantum walks. 
+In fact, this dissertation explores the continuous time quantum walks on a network with noise which is models as a thermal bath in contact with the quantum particle. The open quantum system is studied using the Lindblad master equation.
+With this analogy, we try to give explain the behavior of the entropy and the meaning of the parameter $\beta$.
+These results can be use in several fields: from the study of the interaction between the amino acids in the proteins, to the management of the urban traffic, passing through the social interaction on the Internet.
 
 The dissertation is structured as follows.
 The Chapter \ref{Network_Theory} is an introduction to the Network theory. There we explain the foundation of network, the classic random walk and the quantum version.
@@ -32,4 +33,6 @@ The Chapter \ref{C_Density_Matrix} focuses on the network entropy. Starting from
 
 Before entering the last argument, in the Chapter \ref{C_Lindblad} there is an introduction to the Markovian open quantum system and the Gorini-Kossakowski-Sudarshan-Lindblad master equation. 
 
-The last Chapter explains the connection between the quantum walk with thermal noise and the network entropy.
+The last Chapter \ref{C_Quantum_Network_Master_Equation} explains the connection between the quantum walk with thermal noise and the network entropy.
+
+The theoretical calculations come with numerical simulations made in python.
